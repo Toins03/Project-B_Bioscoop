@@ -8,7 +8,16 @@ class Program
 {
     static void Main(string[] args)
     {
-        AuditoriumMap.TakeSeats();
+        switch(args)
+        {
+            default:
+            {
+                Console.WriteLine("this is not a valid one");
+                break;
+            }
+        }
+
+//        AuditoriumMap.TakeSeats();
     }
 
 
