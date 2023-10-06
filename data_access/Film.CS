@@ -21,5 +21,10 @@ public class Film
         this.Director = director;
     }
 
+    public void Add_genre(string genre)
+    {
+        this.Genres.Add(genre);
+    }
+
 
 }
