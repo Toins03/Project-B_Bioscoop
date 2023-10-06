@@ -1,0 +1,11 @@
+[
+  {
+    "Title": "Test film",
+    "Genres": [],
+    "Director": "unknown",
+    "ReleaseYear": 0,
+    "FilmRunTime": 1,
+    "FilmPrice": 1.0,
+    "FilmRating": 1.0
+  }
+]

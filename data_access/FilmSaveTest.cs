@@ -33,10 +33,12 @@ public class FilmSaveTest
         List<Film> films_read = filmsave.ReadFilms();        
         for (int i = 0; i < films.Count; i++)
         {
-            Assert.AreEqual(films[i].Title, films_read[i].Title);
-            Assert.AreEqual(films[i].FilmRunTime, films_read[i].FilmRunTime);
-            Assert.AreEqual(films[i].FilmRating, films_read[i].FilmRating);
-            Assert.AreEqual(films[i].FilmPrice, films_read[i].FilmPrice);
+            Assert.AreEqual(films_read[i].Title, films[i].Title);
+            Assert.AreEqual(films_read[i].Director, films[i].Director);
+            Assert.AreEqual(films_read[i].FilmRunTime, films[i].FilmRunTime);
+            Assert.AreEqual(films_read[i].ReleaseYear, films[i].ReleaseYear);
+            Assert.AreEqual(films_read[i].FilmPrice, films[i].FilmPrice);
+            Assert.AreEqual(films_read[i].FilmRating, films[i].FilmRating);
         }
     }
 

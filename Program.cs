@@ -2,21 +2,31 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
+using data_acces.Tests;
 
 
 class Program
 {
     static void Main(string[] args)
     {
-        switch(args)
+        foreach (string arg in args)
         {
-            default:
+            Console.WriteLine(arg);
+            switch(arg)
             {
-                Console.WriteLine("this is not a valid one");
-                break;
+                case "TESTSAVE":
+                {
+                    FilmSaveTest saveTest = new();
+                    saveTest.read_films_test("Test film", 1, 1, 1);
+                    break;
+                }
+                default:
+                {
+                    Console.WriteLine("this is not a valid one");
+                    break;
+                }
             }
         }
-
 //        AuditoriumMap.TakeSeats();
     }
 
