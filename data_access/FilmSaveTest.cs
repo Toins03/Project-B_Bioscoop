@@ -26,11 +26,18 @@ public class FilmSaveTest
 
     public void read_films_test(string title, int duration, double price, double rating)
     {
-        Film film1 = new Film("test film", 1, 1, 1);
+        Film film1 = new Film(title, duration, price, rating);
         List<Film> films = new() {film1};
         FilmSave filmsave = new(this.test_json);
         filmsave.AddToJson(film1);
-        Assert.AreEqual(films, filmsave.ReadFilms());
+        List<Film> films_read = filmsave.ReadFilms();        
+        for (int i = 0; i < films.Count; i++)
+        {
+            Assert.AreEqual(films[i].Title, films_read[i].Title);
+            Assert.AreEqual(films[i].FilmRunTime, films_read[i].FilmRunTime);
+            Assert.AreEqual(films[i].FilmRating, films_read[i].FilmRating);
+            Assert.AreEqual(films[i].FilmPrice, films_read[i].FilmPrice);
+        }
     }
 
 }
