@@ -45,7 +45,13 @@ public abstract class CinemaMap
             Keyboard_input(keyInfo);
         }
         while (keyInfo.Key != ConsoleKey.Enter);
-        Console.WriteLine("je bent uit Auditorium 150");
+        Console.WriteLine($"je hebt de zitplaatsen: ");
+        foreach (var seat in ListReservedSeats)
+        {
+            Console.Write(seat);
+        }
+        System.Console.WriteLine("Gereserveerd");
+
         WriteCinemaMapToJson();
     }
 
@@ -57,13 +63,11 @@ public abstract class CinemaMap
             case ConsoleKey.UpArrow or ConsoleKey.W:
                 if (selectedRow > 0)
                 {
-
                     selectedRow--;
-
                 }
                 break;
             case ConsoleKey.DownArrow or ConsoleKey.S:
-                if (selectedRow < CinemaMap1.Count)
+                if (selectedRow < CinemaMap1.Count - 1)
                 {
                     selectedRow++;
                 }
@@ -75,7 +79,7 @@ public abstract class CinemaMap
                 }
                 break;
             case ConsoleKey.RightArrow or ConsoleKey.D:
-                if (selectedColumn < CinemaMap1.Count - 1)
+                if (selectedColumn < CinemaMap1[0].Count - 1)
                 {
                     selectedColumn++;
                 }
@@ -104,7 +108,7 @@ public abstract class CinemaMap
             jsonData = reader.ReadToEnd();
         }
 
-        CinemaMap1Json = JsonConvert.DeserializeObject<List<List<string>>>(jsonData)!;
+        CinemaMap1Json = JsonConvert.DeserializeObject<List<List<string>>>(jsonData);
         if (CinemaMap1Json != null)
         {
             if (CinemaMap1Json.Count == CinemaMap1.Count)
@@ -139,8 +143,10 @@ public abstract class CinemaMap
     {
         if (!ReservingSeats.Contains($"{CinemaMap1[row][column]}") && $"{CinemaMap1[row][column]}" != purpleColor + "[SEL]" + resetText)
         {
+
             ListReservedSeats.Add($"{CinemaMap1[row][column]}");
             CinemaMap1[row][column] = purpleColor + "[SEL]" + resetText;
+
         }
     }
 
@@ -148,21 +154,22 @@ public abstract class CinemaMap
     {
         if (CinemaMap1[row][column] == purpleColor + "[SEL]" + resetText)
         {
+            ListReservedSeats.Remove($"{CinemaMapCopy[row][column]}");
             CinemaMap1[row][column] = CinemaMapCopy[row][column];
-            ListReservedSeats.Remove(seat);
-            ReservingSeats = "plekken die je hebt geselecteerd: ";
-            foreach (var reservedSeat in ListReservedSeats)
-            {
-                ReservingSeats += $"{reservedSeat} ";
-            }
+            ReservingSeats = ReservingSeats.Replace($"{seat}", "");
         }
     }
+
     private static void PrintSelectedSeatsLegenda()
     {
         Console.SetCursorPosition(0, 0);
         System.Console.WriteLine($"{Guide}");
         Console.SetCursorPosition(0, CinemaMap1.Count + 10);
         System.Console.WriteLine($"\n{ReservingSeats}");
+        foreach (var seat in ListReservedSeats)
+        {
+            System.Console.Write(seat);
+        }
         System.Console.WriteLine("\nLegenda\n");
         System.Console.WriteLine("Huidige Positie       \x1b[37m[POS]\x1b[0m");
         System.Console.WriteLine("Beschikbaar           \x1b[32m[***]\x1b[0m");

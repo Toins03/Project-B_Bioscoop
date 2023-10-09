@@ -16,7 +16,7 @@ class Program
                     saveTest.read_films_test("Test film", 1, 1, 1);
                     break;
                 }
-                case "TESTMAP":
+       case "TESTMAP":
                 {
                     AuditoriumMap500 map500 = new AuditoriumMap500();
                     map500.TakeSeats();
