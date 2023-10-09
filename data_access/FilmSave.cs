@@ -52,6 +52,20 @@ class FilmSave
         }
     }
 
+    public static void printfilmInfo(Film film)
+    {
+        Console.WriteLine();
+        Console.WriteLine("Movie Information:");
+        Console.WriteLine($"Title: {film.Title}");
+        Console.WriteLine($"Genres: {string.Join(", ", film.Genres!)}");
+        Console.WriteLine($"§Director: {film.Director}");
+        Console.WriteLine($"Release Year: {film.ReleaseYear}");
+        Console.WriteLine($"Film RunTime: {film.FilmRunTime} minutes");
+        Console.WriteLine($"Film Price: Euro {film.FilmPrice}");
+        Console.WriteLine($"Film Rating: {film.FilmRating}");
+        Console.WriteLine();
+    }
+
     public void AddToJson(Film filmToAdd)
     {
         List<Film> films = this.ReadFilms();
