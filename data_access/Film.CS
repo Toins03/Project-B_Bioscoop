@@ -11,7 +11,7 @@ public class Film
     public double FilmRating = 5;
 
     [JsonConstructor]
-    public Film(string title,  int runtime, double price, double filmrating, List<string> genres = null, string director = "unknown")
+    public Film(string title,  int runtime, double price, double filmrating, List<string> genres = null!, string director = "unknown")
     {
         this.Genres = new List<string> () {};
         if (genres is not null) this.Genres = genres;

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography;
-using data_acces.Tests;
+﻿using data_acces.Tests;
 
 
 class Program
@@ -19,6 +15,12 @@ class Program
                     FilmSaveTest saveTest = new();
                     saveTest.read_films_test("Test film", 1, 1, 1);
                     break;
+                }
+                case "TESTMAP":
+                {
+                    AuditoriumMap500 map500 = new AuditoriumMap500();
+                    map500.TakeSeats();
+                    return;
                 }
                 default:
                 {
@@ -203,9 +205,3 @@ class Program
         FilmSave.printfilmInfo(options[selectedIndex]);
     }
 }
-
-
-
-
-
-
