@@ -87,10 +87,13 @@ public abstract class CinemaMap
             case ConsoleKey.Spacebar:
                 if (CinemaMap1[selectedRow][selectedColumn] != "     ")
                 {
+
                     if (CinemaMap1[selectedRow][selectedColumn] != purpleColor + "[SEL]" + resetText && CinemaMap1[selectedRow][selectedColumn] != "\x1b[31m" + "[BEZ]" + resetText)
                         SelectedSeats(selectedRow, selectedColumn);
                     else
+                    {
                         DeselectSeat(selectedRow, selectedColumn, CinemaMapCopy[selectedRow][selectedColumn]);
+                    }
                 }
                 break;
             case ConsoleKey.Escape:
@@ -108,7 +111,7 @@ public abstract class CinemaMap
             jsonData = reader.ReadToEnd();
         }
 
-        CinemaMap1Json = JsonConvert.DeserializeObject<List<List<string>>>(jsonData);
+        CinemaMap1Json = JsonConvert.DeserializeObject<List<List<string>>>(jsonData)!;
         if (CinemaMap1Json != null)
         {
             if (CinemaMap1Json.Count == CinemaMap1.Count)
@@ -152,7 +155,7 @@ public abstract class CinemaMap
 
     private static void DeselectSeat(int row, int column, string seat)
     {
-        if (CinemaMap1[row][column] == purpleColor + "[SEL]" + resetText)
+        if (!CinemaMap1[row][column].Contains("[SEL]") || !CinemaMap1[row][column].Contains("[BEZ]"))
         {
             ListReservedSeats.Remove($"{CinemaMapCopy[row][column]}");
             CinemaMap1[row][column] = CinemaMapCopy[row][column];
