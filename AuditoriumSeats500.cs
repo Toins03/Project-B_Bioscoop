@@ -190,6 +190,7 @@ public class AuditoriumMap500 : CinemaMap
                         skip.Add("     ");
                     }
                     CinemaMap1.Add(skip);
+                    CinemaMapCopy.Add(skip);
                 }
                 RowSeats.Add("     ");
 
@@ -223,6 +224,7 @@ public class AuditoriumMap500 : CinemaMap
                         skip.Add("     ");
                     }
                     CinemaMap1.Add(skip);
+                    CinemaMapCopy.Add(skip);
                 }
                 for (int seat = 1; seat <= 30; seat++)
                 {
