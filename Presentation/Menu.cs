@@ -59,6 +59,10 @@ class FrontPage
         {
             CinemaInfo();
         }
+        else if (options[selectedIndex] == "film kiezen")
+        {
+            Films_UI.Films_kiezen();
+        }
     }
 
     public static void CinemaInfo()
@@ -69,7 +73,7 @@ class FrontPage
 
     }
 
-    private static void CreateTitleASCII()
+    protected static void CreateTitleASCII()
     {
         string[] asciiArt =
         {
@@ -87,7 +91,7 @@ class FrontPage
         }
     }
 
-    private static void CenterText(string text)
+    protected static void CenterText(string text)
     {
         int screenWidth = Console.WindowWidth;
         int textLength = text.Length;
