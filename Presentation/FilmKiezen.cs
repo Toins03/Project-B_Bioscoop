@@ -2,7 +2,7 @@ class Films_UI: FrontPage
 {
         public static void Films_kiezen()
     {
-        FilmSave film_menu = new("FilmSaveTest.json");
+        FilmSave film_menu = new("Movies.json");
         List<Film> options = film_menu.ReadFilms();
         int selectedIndex = 0;
 
@@ -43,5 +43,6 @@ class Films_UI: FrontPage
         } while (keyInfo.Key != ConsoleKey.Enter);
 
         FilmSave.printfilmInfo(options[selectedIndex]);
+        Console.ReadKey();
     }
 }

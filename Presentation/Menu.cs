@@ -2,66 +2,77 @@ class FrontPage
 {
     public static void MainMenu()
     {
-        List<string> options = new List<string>
-                {
-        "inloggen",
-        "film kiezen",
-        "bioscoop informatie"
-                };
-
-        int selectedIndex = 0;
-
-        ConsoleKeyInfo keyInfo;
-        string line = new string('=', Console.WindowWidth);
-
-        do
+        while (true)
         {
+            List<string> options = new List<string>
+                    {
+            "inloggen",
+            "film kiezen",
+            "bioscoop informatie"
+                    };
+
+            int selectedIndex = 0;
+
+            ConsoleKeyInfo keyInfo;
+            string line = new string('=', Console.WindowWidth);
+
+            do
+            {
+                Console.Clear();
+                System.Console.WriteLine(line);
+                CreateTitleASCII();
+                System.Console.WriteLine(line);
+                CenterText("menu opties");
+
+                for (int i = 0; i < options.Count; i++)
+                {
+                    if (i == selectedIndex)
+                    {
+                        Console.WriteLine("--> " + options[i]);
+                    }
+                    else
+                    {
+                        Console.WriteLine("    " + options[i]);
+                    }
+                }
+                System.Console.WriteLine(line);
+                System.Console.WriteLine(@"gebruik WASD keys om je optie te selecteren druk daarna op Enter op je keuze te bevestigen
+Druk op ESC om te vertrekken.
+");
+                keyInfo = Console.ReadKey();
+
+                if (keyInfo.Key == ConsoleKey.W && selectedIndex > 0)
+                {
+                    selectedIndex--;
+                }
+                else if (keyInfo.Key == ConsoleKey.S && selectedIndex < options.Count - 1)
+                {
+                    selectedIndex++;
+                }
+            } while (keyInfo.Key != ConsoleKey.Enter & keyInfo.Key != ConsoleKey.Escape);
+            
+            if (keyInfo.Key == ConsoleKey.Escape)
+            {
+                Console.WriteLine(" See you!");
+                break;
+            }
+            
+            Console.WriteLine("je hebt dit geselecteerd: " + options[selectedIndex]);
+            Console.ReadKey();
             Console.Clear();
-            System.Console.WriteLine(line);
-            CreateTitleASCII();
-            System.Console.WriteLine(line);
-            CenterText("menu opties");
 
-            for (int i = 0; i < options.Count; i++)
+            if (options[selectedIndex] == "inloggen")
             {
-                if (i == selectedIndex)
-                {
-                    Console.WriteLine("--> " + options[i]);
-                }
-                else
-                {
-                    Console.WriteLine("    " + options[i]);
-                }
+                LogIn();
             }
-            System.Console.WriteLine(line);
-            System.Console.WriteLine("gebruik WASD keys om je optie te selecteren druk daarna op Enter op je keuze te bevestigen\n\n");
-            keyInfo = Console.ReadKey();
-
-            if (keyInfo.Key == ConsoleKey.W && selectedIndex > 0)
+            else if (options[selectedIndex] == "bioscoop informatie")
             {
-                selectedIndex--;
+                CinemaInfo();
             }
-            else if (keyInfo.Key == ConsoleKey.S && selectedIndex < options.Count - 1)
+            else if (options[selectedIndex] == "film kiezen")
             {
-                selectedIndex++;
+                Films_UI.Films_kiezen();
             }
-        } while (keyInfo.Key != ConsoleKey.Enter);
-
-        Console.WriteLine("je hebt dit geselecteerd: " + options[selectedIndex]);
-        Console.ReadKey();
-        Console.Clear();
-
-        if (options[selectedIndex] == "inloggen")
-        {
-            LogIn();
-        }
-        else if (options[selectedIndex] == "bioscoop informatie")
-        {
-            CinemaInfo();
-        }
-        else if (options[selectedIndex] == "film kiezen")
-        {
-            Films_UI.Films_kiezen();
         }
     }
 
