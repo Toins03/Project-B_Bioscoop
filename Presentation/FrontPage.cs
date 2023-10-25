@@ -84,7 +84,7 @@ Druk op ESC om te vertrekken.
 
     }
 
-    protected static void CreateTitleASCII()
+    public static void CreateTitleASCII()
     {
         string[] asciiArt =
         {

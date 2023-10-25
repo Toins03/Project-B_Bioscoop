@@ -7,7 +7,7 @@ class AdminSave
         this.PathName = json_path;
     }
     
-    public List<Admin> Readadmins()
+    public List<Admin> GetAdmins()
     {
         if (File.Exists(this.PathName))
         {
@@ -22,12 +22,12 @@ class AdminSave
 
     public void AddAdmin(Admin newAdmin)
     {
-        List<Admin> admins = this.Readadmins();
+        List<Admin> admins = this.GetAdmins();
         admins.Add(newAdmin);
         StreamWriter writer = new(this.PathName);
         string list_to_json = JsonConvert.SerializeObject(admins, Formatting.Indented);
         writer.Write(list_to_json);
         writer.Close();
     }
-    
+
 }
