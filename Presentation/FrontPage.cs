@@ -53,7 +53,7 @@ Druk op ESC om te vertrekken.
             
             if (keyInfo.Key == ConsoleKey.Escape)
             {
-                Console.WriteLine(" See you!");
+                Console.WriteLine(" SSee you!");
                 break;
             }
             

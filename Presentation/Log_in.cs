@@ -19,8 +19,7 @@ static class LogIn
         Console.WriteLine("Please enter your password");
         string password = Console.ReadLine()!;
 
-        AdminSave adminSave = new("Admin_info.json");
-        List<Admin> admins = adminSave.GetAdmins();
+        List<Admin> admins = AdminSave.GetAdmins();
         Console.WriteLine(admins);
         Console.WriteLine(admins.Count);
 // check in if it is correct else go back.
