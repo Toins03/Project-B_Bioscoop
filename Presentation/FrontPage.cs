@@ -71,7 +71,7 @@ Druk op ESC om te vertrekken.
             }
             else if (options[selectedIndex] == "film kiezen")
             {
-                Films_UI.Films_kiezen();
+                ChooseMovie.Films_kiezen();
             }
         }
     }

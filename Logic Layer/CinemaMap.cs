@@ -110,19 +110,21 @@ public abstract class CinemaMap
 
     private static void LoadCinemaMapFromJson()
     {
-        string jsonData;
-        using (StreamReader reader = new StreamReader(FileName))
-        {
-            jsonData = reader.ReadToEnd();
-        }
-
-        CinemaMap1Json = JsonConvert.DeserializeObject<List<List<string>>>(jsonData)!;
-        if (CinemaMap1Json != null)
-        {
-            if (CinemaMap1Json.Count == CinemaMap1.Count)
+        {   
+            string jsonData;
+            using (StreamReader reader = new StreamReader(FileName))
             {
-                if (CinemaMap1Json != CinemaMap1)
-                    CinemaMap1 = CinemaMap1Json;
+                jsonData = reader.ReadToEnd();
+            }
+
+            CinemaMap1Json = JsonConvert.DeserializeObject<List<List<string>>>(jsonData)!;
+            if (CinemaMap1Json != null)
+            {
+                if (CinemaMap1Json.Count == CinemaMap1.Count)
+                {
+                    if (CinemaMap1Json != CinemaMap1)
+                        CinemaMap1 = CinemaMap1Json;
+                }
             }
         }
     }
