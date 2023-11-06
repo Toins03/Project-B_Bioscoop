@@ -63,7 +63,7 @@ Druk op ESC om te vertrekken.
 
             if (options[selectedIndex] == "inloggen")
             {
-                LogIn();
+                LogIn.LogInMenu();
             }
             else if (options[selectedIndex] == "bioscoop informatie")
             {
@@ -117,13 +117,4 @@ Druk op ESC om te vertrekken.
         Console.WriteLine(centeredText);
     }
 
-    public static void LogIn()
-    {
-        Console.Clear();
-        System.Console.Write("enter in your Username:  ");
-        string username = Console.ReadLine()!;
-        System.Console.Write("enter in your Password:  ");
-        string Password = Console.ReadLine()!;
-        MainMenu();
-    }
 }

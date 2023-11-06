@@ -1,4 +1,4 @@
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 public class Film
 {
@@ -8,7 +8,7 @@ public class Film
     public int ReleaseYear;
     public int FilmRunTime;
     public double FilmPrice = 0;
-    public double FilmRating = 5;
+    public double FilmRating;
 
     [JsonConstructor]
     public Film(string title,  int runtime, double price, double filmrating, List<string> genres = null!, string director = "unknown")

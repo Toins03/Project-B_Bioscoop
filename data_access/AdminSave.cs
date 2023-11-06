@@ -15,9 +15,30 @@ class AdminSave
             string filefromjson = reader.ReadToEnd();
             List<Admin> admins = JsonConvert.DeserializeObject<List<Admin>>(filefromjson)!;
             reader.Close();
-            return admins;
+            if (admins is not null) return admins;
+            else 
+            {
+                AddAdmin(new Admin(name: "super", password: "12345", adminID: 0));
+                admins = new List<Admin>() {new Admin(name: "super", password: "12345", adminID: 0)};           
+                Admin superadmin = new Admin(name: "super", password: "12345", adminID: 0);
+                admins.Add(superadmin);
+                StreamWriter writer = new(this.PathName);
+                string list_to_json = JsonConvert.SerializeObject(admins, Formatting.Indented);
+                writer.Write(list_to_json);
+                writer.Close();
+                return admins;
+            }
         }
-        else return new List<Admin> {};
+        else 
+        {
+            Console.WriteLine("Adminfile does not exist");
+            List<Admin> admins = new List<Admin>() {new Admin(name: "super", password: "12345", adminID: 0)};           
+            StreamWriter writer = new(this.PathName);
+            string list_to_json = JsonConvert.SerializeObject(admins, Formatting.Indented);
+            writer.Write(list_to_json);
+            writer.Close();
+            return new List<Admin> {};
+        }
     }
 
     public void AddAdmin(Admin newAdmin)
