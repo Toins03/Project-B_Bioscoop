@@ -1,31 +1,7 @@
-<<<<<<< Updated upstream
-=======
-using System.Data.Common;
->>>>>>> Stashed changes
 using Newtonsoft.Json;
 
-class FilmSave
+static class FilmSave
 {
-    public List<Film> Films = new() { };
-
-<<<<<<< Updated upstream
-    public string PathName;
-
-    public FilmSave(string Json_file)
-    {
-        this.PathName = Json_file;
-        if (File.Exists(Json_file))
-        {
-            Films = ReadFilms();
-        }
-    }
-
-    public List<Film> ReadFilms()
-    {
-        if (File.Exists(this.PathName))
-        {
-            StreamReader reader = new(this.PathName);
-=======
     public static string PathName = "Movies.json";
 
 
@@ -35,30 +11,19 @@ class FilmSave
         if (File.Exists(PathName))
         {
             StreamReader reader = new(PathName);
->>>>>>> Stashed changes
             string filefromjson = reader.ReadToEnd();
             List<Film> films = JsonConvert.DeserializeObject<List<Film>>(filefromjson)!;
             reader.Close();
             return films;
         }
-<<<<<<< Updated upstream
         else return new List<Film> {};
-=======
-        else return new List<Film> { };
->>>>>>> Stashed changes
     }
 
-    public void ReadJsonFile()
+    public static void ReadJsonFile()
     {
-<<<<<<< Updated upstream
-        if (File.Exists(this.PathName))
-        {
-            StreamReader reader = new(this.PathName);
-=======
         if (File.Exists(PathName))
         {
             StreamReader reader = new(PathName);
->>>>>>> Stashed changes
             string filefromjson = reader.ReadToEnd();
             List<Film> films = JsonConvert.DeserializeObject<List<Film>>(filefromjson)!;
             reader.Close();
@@ -92,13 +57,8 @@ class FilmSave
         Console.WriteLine();
     }
 
-    public void AddToJson(Film filmToAdd)
+    public static void AddToJson(Film filmToAdd)
     {
-<<<<<<< Updated upstream
-        List<Film> films = this.ReadFilms();
-        films.Add(filmToAdd);
-        StreamWriter writer = new(this.PathName);
-=======
         List<Film> films = ReadFilms();
         films.Add(filmToAdd);
         StreamWriter writer = new(PathName);
@@ -107,7 +67,7 @@ class FilmSave
         writer.Close();
     }
 
-    public void AppendToJason(Film filmToAdd)
+    public static void AppendToJason(Film filmToAdd)
     {
         List<Film> films = ReadFilms();
         foreach (Film film in films)
@@ -136,7 +96,6 @@ class FilmSave
             }
         }
         StreamWriter writer = new(PathName);
->>>>>>> Stashed changes
         string list_to_json = JsonConvert.SerializeObject(films, Formatting.Indented);
         writer.Write(list_to_json);
         writer.Close();

@@ -2,8 +2,8 @@ class Films_UI: FrontPage
 {
         public static void Films_kiezen()
     {
-        FilmSave film_menu = new("Movies.json");
-        List<Film> options = film_menu.ReadFilms();
+
+        List<Film> options = FilmSave.ReadFilms();
         int selectedIndex = 0;
 
         ConsoleKeyInfo keyInfo;

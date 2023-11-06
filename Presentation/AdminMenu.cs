@@ -20,6 +20,8 @@ static class AdminMenu
 
         do 
         {
+
+            Console.Clear();
             System.Console.WriteLine("Admin commands");
 
             for (int i = 0; i < options.Count; i++)

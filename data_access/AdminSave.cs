@@ -1,17 +1,13 @@
 using Newtonsoft.Json;
-class AdminSave
+static class AdminSave
 {
-    public string PathName = "Admin_info.json";
-    public AdminSave(string json_path)
-    {
-        this.PathName = json_path;
-    }
+    public static string PathName = "Admin_info.json";
     
-    public List<Admin> GetAdmins()
+    public static List<Admin> GetAdmins()
     {
-        if (File.Exists(this.PathName))
+        if (File.Exists(PathName))
         {
-            StreamReader reader = new(this.PathName);
+            StreamReader reader = new(PathName);
             string filefromjson = reader.ReadToEnd();
             List<Admin> admins = JsonConvert.DeserializeObject<List<Admin>>(filefromjson)!;
             reader.Close();
@@ -22,7 +18,7 @@ class AdminSave
                 admins = new List<Admin>() {new Admin(name: "super", password: "12345", adminID: 0)};           
                 Admin superadmin = new Admin(name: "super", password: "12345", adminID: 0);
                 admins.Add(superadmin);
-                StreamWriter writer = new(this.PathName);
+                StreamWriter writer = new(PathName);
                 string list_to_json = JsonConvert.SerializeObject(admins, Formatting.Indented);
                 writer.Write(list_to_json);
                 writer.Close();
@@ -33,7 +29,7 @@ class AdminSave
         {
             Console.WriteLine("Adminfile does not exist");
             List<Admin> admins = new List<Admin>() {new Admin(name: "super", password: "12345", adminID: 0)};           
-            StreamWriter writer = new(this.PathName);
+            StreamWriter writer = new(PathName);
             string list_to_json = JsonConvert.SerializeObject(admins, Formatting.Indented);
             writer.Write(list_to_json);
             writer.Close();
@@ -41,11 +37,11 @@ class AdminSave
         }
     }
 
-    public void AddAdmin(Admin newAdmin)
+    public static void AddAdmin(Admin newAdmin)
     {
-        List<Admin> admins = this.GetAdmins();
+        List<Admin> admins = GetAdmins();
         admins.Add(newAdmin);
-        StreamWriter writer = new(this.PathName);
+        StreamWriter writer = new(PathName);
         string list_to_json = JsonConvert.SerializeObject(admins, Formatting.Indented);
         writer.Write(list_to_json);
         writer.Close();
