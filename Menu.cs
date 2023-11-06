@@ -37,11 +37,11 @@ class FrontPage
             System.Console.WriteLine(line);
             keyInfo = Console.ReadKey();
 
-            if (keyInfo.Key == ConsoleKey.W || keyInfo.Key == ConsoleKey.UpArrow && selectedIndex > 0)
+            if (keyInfo.Key == ConsoleKey.W && selectedIndex > 0 || keyInfo.Key == ConsoleKey.UpArrow && selectedIndex > 0)
             {
                 selectedIndex--;
             }
-            else if (keyInfo.Key == ConsoleKey.S || keyInfo.Key == ConsoleKey.DownArrow && selectedIndex < options.Count - 1)
+            else if (keyInfo.Key == ConsoleKey.S && selectedIndex < options.Count - 1 || keyInfo.Key == ConsoleKey.DownArrow && selectedIndex < options.Count - 1)
             {
                 selectedIndex++;
             }
