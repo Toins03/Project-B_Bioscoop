@@ -70,10 +70,6 @@ static class FilmSave
     public static void AppendToJason(Film filmToAdd)
     {
         List<Film> films = ReadFilms();
-        foreach (Film film in films)
-        {
-
-        }
         films.Add(filmToAdd);
         StreamWriter writer = new(PathName);
         string list_to_json = JsonConvert.SerializeObject(films, Formatting.Indented);
@@ -91,8 +87,7 @@ static class FilmSave
             System.Console.WriteLine(film.Title == filmtoaddto.Title);
             if (film.Title == filmtoaddto.Title)
             {
-                System.Console.WriteLine(true);
-                film.CinemaAudience.Add($"Customer ID {customertoadd.ID} Customer Name {customertoadd.Name}");
+                film.AddCinemaAudience(customertoadd);
             }
         }
         StreamWriter writer = new(PathName);

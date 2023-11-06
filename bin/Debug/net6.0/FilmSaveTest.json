@@ -7,6 +7,9 @@
     "FilmRunTime": 2,
     "FilmPrice": 3.0,
     "FilmRating": 5.0,
-    "CinemaAudience": []
+    "CinemaAudience": [
+      "Customer ID 2 Customer Name dr. Evil",
+      "Customer ID 2 Customer Name dr. Evil"
+    ]
   }
 ]
