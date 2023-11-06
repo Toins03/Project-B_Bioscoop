@@ -5,8 +5,7 @@ static class AdminMenu
         Console.Clear();
         List<string> options = new List<string>()
         {
-            "films beheren",
-            "reserveringen beheren"
+            "films beheren"
         };
         Admin adminUsed = admin;
         if (admin.AdminID == 0)
