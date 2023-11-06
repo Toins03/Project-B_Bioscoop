@@ -1,4 +1,4 @@
-static class FilmsBeheren
+static class FilmsManage
 {
     static void FilmManageMenu()
     {
