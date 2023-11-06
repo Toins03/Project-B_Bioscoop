@@ -1,5 +1,6 @@
 [
   {
+<<<<<<< Updated upstream
     "Title": "gestoorderitus",
     "Genres": [],
     "Director": "unknown",
@@ -16,5 +17,58 @@
     "FilmRunTime": 1,
     "FilmPrice": 1.0,
     "FilmRating": 1.0
+=======
+    "Title": "Sample Film",
+    "Genres": [
+      "Action",
+      "Adventure"
+    ],
+    "Director": "John Doe",
+    "ReleaseYear": 0,
+    "FilmRunTime": 120,
+    "FilmPrice": 12.99,
+    "FilmRating": 4.5,
+    "CinemaAudience": [
+      "Customer ID 1 Customer Name valdier",
+      "Customer ID 2 Customer Name valdier",
+      "Customer ID 3 Customer Name valdier",
+      "Customer ID 4 Customer Name valdier",
+      "Customer ID 5 Customer Name valdier",
+      "Customer ID 6 Customer Name valdier",
+      "Customer ID 7 Customer Name valdier",
+      "Customer ID 8 Customer Name Rowan",
+      "Customer ID 9 Customer Name Rowan",
+      "Customer ID 10 Customer Name Rowan",
+      "Customer ID 11 Customer Name Rowan",
+      "Customer ID 12 Customer Name Rowan",
+      "Customer ID 13 Customer Name Rowan",
+      "Customer ID 1 Customer Name valdier",
+      "Customer ID 2 Customer Name valdier",
+      "Customer ID 3 Customer Name valdier",
+      "Customer ID 4 Customer Name valdier",
+      "Customer ID 5 Customer Name valdier",
+      "Customer ID 6 Customer Name valdier",
+      "Customer ID 7 Customer Name valdier",
+      "Customer ID 8 Customer Name Rowan",
+      "Customer ID 9 Customer Name Rowan",
+      "Customer ID 10 Customer Name Rowan",
+      "Customer ID 11 Customer Name Rowan",
+      "Customer ID 12 Customer Name Rowan",
+      "Customer ID 13 Customer Name Rowan"
+    ]
+  },
+  {
+    "Title": "Hello Film",
+    "Genres": [
+      "Action",
+      "Adventure"
+    ],
+    "Director": "John Doe",
+    "ReleaseYear": 0,
+    "FilmRunTime": 120,
+    "FilmPrice": 12.99,
+    "FilmRating": 4.5,
+    "CinemaAudience": []
+>>>>>>> Stashed changes
   }
 ]
