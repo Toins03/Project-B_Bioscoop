@@ -53,4 +53,9 @@ static class AdminSave
         AddAdmin(ToAdd);
     }
 
+    public static void RemoveAdmin()
+    {
+        
+    }
+
 }

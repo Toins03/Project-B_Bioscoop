@@ -5,6 +5,7 @@ static class AdminsManage
         Console.Clear();
         List<string> options = new List<string>()
         {
+            "View admins",
             "Add admins",
             "Remove admins",
         };
@@ -48,9 +49,14 @@ static class AdminsManage
             return;
         }
 
+        
         if (options[selectedIndex] == "Add admins")
         {
             AddAdmin();
+        }
+        else if (options[selectedIndex] == "Remove admins")
+        {
+            RemoveAdmin();
         }
 
     }
@@ -66,5 +72,18 @@ static class AdminsManage
         if (ToAddPassWord is null) return;
         else if (ToAddPassWord == "") return;
         AdminSave.AddAdmin(ToAddName, ToAddPassWord);
+    }
+
+    private static void RemoveAdmin()
+    {
+        System.Console.WriteLine("Please input the name or ID of the admin. To go back to the admin manager keep this line empty.");
+        string ToRemove = Console.ReadLine()!;
+        if (ToRemove is null) return;
+        else if (ToRemove == "") return;
+        if (int.TryParse(ToRemove, out _))
+        {
+            
+        }
+
     }
 }

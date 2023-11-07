@@ -1,27 +1,17 @@
-static class AdminMenu
+static class BasicMenu
 {
-    public static void Menu(Admin admin)
+    public static List<dynamic> MenuBasic(List<string> options, string MenuName)
     {
-        Console.Clear();
-        List<string> options = new List<string>()
-        {
-            "films beheren"
-        };
-        Admin adminUsed = admin;
-        if (admin.AdminID == 0)
-        {
-            options.Add("Admins beheren");
-        }
-        
+        if (options is null) return null!;
+        if (options.Count == 0) return null!;
         int selectedIndex = 0;
         ConsoleKeyInfo keyInfo;
-
 
         do 
         {
 
             Console.Clear();
-            System.Console.WriteLine("Admin commands");
+            System.Console.WriteLine(MenuName);
 
             for (int i = 0; i < options.Count; i++)
             {
@@ -47,21 +37,13 @@ static class AdminMenu
 
         } while (keyInfo.Key != ConsoleKey.Enter & keyInfo.Key != ConsoleKey.Escape);
 
+        bool isKeyEsc;
         if (keyInfo.Key == ConsoleKey.Escape)
         {
-            Console.WriteLine(" Leaving admin options!");
-            return;
+            isKeyEsc = true;
         }
-
-        if (options[selectedIndex] == "films beheren")
-        {
-            FilmsManage.FilmmanageMenu();
-        }
-        else if (options[selectedIndex] == "Admins beheren")
-        {
-            AdminsManage.AdminmanageMenu();
-        }
-
-
+        else isKeyEsc = false;
+        List<dynamic> ToReturn = new() {isKeyEsc, options[selectedIndex]};
+        return ToReturn;
     }
 }

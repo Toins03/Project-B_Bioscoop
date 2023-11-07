@@ -66,7 +66,6 @@ static class FilmSave
         writer.Write(list_to_json);
         writer.Close();
     }
-
     public static void AppendToJason(Film filmToAdd)
     {
         List<Film> films = ReadFilms();
@@ -75,6 +74,11 @@ static class FilmSave
         string list_to_json = JsonConvert.SerializeObject(films, Formatting.Indented);
         writer.Write(list_to_json);
         writer.Close();
+    }
+
+    public static void RemoveFilm(Film filmtoremove)
+    {
+        throw new NotImplementedException();
     }
 
     public static void AddCustomerToFilm(Film filmtoaddto, Customer customertoadd)

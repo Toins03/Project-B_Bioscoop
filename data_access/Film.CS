@@ -35,4 +35,9 @@ public class Film
 
         CinemaAudience.Add("Customer ID " + customer.ID + " Customer Name " + customer.Name);
     }
+
+    public void ChangeRating(double newRating)
+    {
+        this.FilmRating = newRating;
+    }
 }

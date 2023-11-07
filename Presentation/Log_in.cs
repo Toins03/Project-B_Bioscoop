@@ -20,8 +20,7 @@ static class LogIn
         string password = Console.ReadLine()!;
 
         List<Admin> admins = AdminSave.GetAdmins();
-        Console.WriteLine(admins);
-        Console.WriteLine(admins.Count);
+
 // check in if it is correct else go back.
         foreach (Admin admin in admins)
         {
