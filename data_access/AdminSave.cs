@@ -47,4 +47,10 @@ static class AdminSave
         writer.Close();
     }
 
+    public static void AddAdmin(string name, string password)
+    {
+        Admin ToAdd = new Admin(name, password);
+        AddAdmin(ToAdd);
+    }
+
 }
