@@ -51,6 +51,7 @@ public abstract class CinemaMap
             Console.Write(seat);
         }
         Console.WriteLine(" Gereserveerd");
+        System.Console.WriteLine($"Bevestegingscode voor alle stoelen die je hebt gereserveerd: \n{GenerateConfirmationCode()}");
         WriteCinemaMapToJson();
         Console.WriteLine("\nWil je terug naar de hoofdpagina toets 'enter' wil je stoppen toets een willekeurig knop");
         keyInfo = Console.ReadKey();
@@ -136,7 +137,7 @@ public abstract class CinemaMap
             {
                 if (CinemaMap1[column][row] == purpleColor + "[SEL]" + resetText)
                     CinemaMap1[column][row] = "\x1b[31m" + "[BEZ]" + resetText;
-                
+
             }
         }
         using (StreamWriter writer = new StreamWriter(FileName))
@@ -145,6 +146,8 @@ public abstract class CinemaMap
             writer.Write(List2Json);
         }
     }
+
+
 
     private static void SelectedSeats(int row, int column)
     {
@@ -166,6 +169,52 @@ public abstract class CinemaMap
             ReservingSeats = ReservingSeats.Replace($"{seat}", "");
         }
     }
+
+    private string GetReservedSeats()
+    {
+        string placeholder = "";
+        foreach (string seat in ListReservedSeats)
+        {
+            placeholder += $"{seat}";
+        }
+        return placeholder;
+    }
+
+    private string GetAuditoriumnumber()
+    {
+        string className = this.GetType().Name;
+        switch (className)
+        {
+            case "AuditoriumMap150":
+                return "1";
+            case "AuditoriumMap300":
+                return "2";
+            case "AuditoriumMap500":
+                return "3";
+            default:
+                return "";
+        }
+    }
+
+    public string GenerateConfirmationCode()
+    {
+        // Get the current date and time
+        DateTime currentDateTime = DateTime.Now;
+
+        // You can also access individual components like year, month, day, hour, minute, second, etc.
+        int year = currentDateTime.Year - 2000;
+        int month = currentDateTime.Month;
+        int day = currentDateTime.Day;
+        int hour = currentDateTime.Hour;
+        int minute = currentDateTime.Minute;
+        int second = currentDateTime.Second;
+
+        return $"Z{GetAuditoriumnumber()}S{GetReservedSeats()}D{day}-{month}-{year}T{hour}:{minute}";
+    }
+
+
+
+
 
     private static void PrintSelectedSeatsLegenda()
     {
