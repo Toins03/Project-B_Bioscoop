@@ -2,27 +2,30 @@ using Newtonsoft.Json;
 
 public abstract class CinemaMap
 {
-    private static int selectedRow = 0;
-    private static int selectedColumn = 0;
-    private static List<List<string>> CinemaMap1Json = new();
-    protected static List<List<string>> CinemaMap1 = new();
-    protected static List<List<string>> CinemaMapCopy = new();
-    private static string Guide = "Gebruik de pijltjes of 'WASD' om te navigeren. \nToets de 'spatie' om een stoel te selecteren. \nToets Enter wanneer je klaar bent met het selecteren van stoelen en wil afrekenen. \nToets 'esc' wanneer je terug wil gaan naar de vorige pagina.\n";
-    private static string ReservingSeats = "plekken die je hebt geselecteerd: ";
-    private static ConsoleKeyInfo keyInfo;
-    private static string purpleColor = "\u001b[35m";
-    protected static string resetText = "\x1b[0m";
-    private static string FileName = "CinemaMaps.json";
-    public static List<string> ListReservedSeats = new();
+    private static int selectedRow { get; set; }
+    private static int selectedColumn { get; set; }
+    private static List<List<string>> CinemaMap1Json { get; set; } = new();
+    protected static List<List<string>> CinemaMap1 { get; set; } = new();
+    protected static List<List<string>> CinemaMapCopy { get; set; } = new();
+    private static string Guide { get; set; } = "Gebruik de pijltjes of 'WASD' om te navigeren. \nToets de 'spatie' om een stoel te selecteren. \nToets Enter wanneer je klaar bent met het selecteren van stoelen en wil afrekenen. \nToets 'esc' wanneer je terug wil gaan naar de vorige pagina.\n";
+    private static string ReservingSeats { get; set; } = "plekken die je hebt geselecteerd: ";
+    private static ConsoleKeyInfo keyInfo { get; set; }
+    private static string purpleColor { get; set; } = "\u001b[35m";
+    protected static string resetText { get; set; } = "\x1b[0m";
+    private static string FileName { get; set; } = "CinemaMaps.json";
+    public static List<string> ListReservedSeats { get; set; } = new();
 
     protected abstract void CreateCinemaMap();
 
     public void TakeSeats()
     {
+
         CreateCinemaMap();
         LoadCinemaMapFromJson();
+        Console.Clear();
         do
         {
+            System.Console.WriteLine($"{Guide}");
             Console.SetCursorPosition(0, 7);
             for (int row = 0; row < CinemaMap1.Count; row++)
             {
@@ -45,18 +48,15 @@ public abstract class CinemaMap
             Keyboard_input(keyInfo);
         }
         while (keyInfo.Key != ConsoleKey.Enter);
-        Console.WriteLine($"je hebt de zitplaatsen: ");
-        foreach (var seat in ListReservedSeats)
-        {
-            Console.Write(seat);
-        }
-        Console.WriteLine(" Gereserveerd");
-        System.Console.WriteLine($"Bevestegingscode voor alle stoelen die je hebt gereserveerd: \n{GenerateConfirmationCode()}");
+        System.Console.WriteLine(GenerateConfirmationCode());
         WriteCinemaMapToJson();
         Console.WriteLine("\nWil je terug naar de hoofdpagina toets 'enter' wil je stoppen toets een willekeurig knop");
         keyInfo = Console.ReadKey();
         if (keyInfo.Key == ConsoleKey.Enter)
+        {
+            Console.Clear();
             FrontPage.MainMenu();
+        }
         else
             return;
     }
@@ -208,19 +208,22 @@ public abstract class CinemaMap
         int hour = currentDateTime.Hour;
         int minute = currentDateTime.Minute;
         int second = currentDateTime.Second;
-
-        return $"Z{GetAuditoriumnumber()}S{GetReservedSeats()}D{day}-{month}-{year}T{hour}:{minute}";
+        string ReservedString = "je hebt de zitplaatsen: ";
+        if (ListReservedSeats.Count != 0)
+        {
+            foreach (var seat in ListReservedSeats)
+            {
+                ReservedString += $"{seat} ";
+            }
+            ReservedString += " Gereserveerd\n";
+            ReservedString += $"Bevestegingscode voor alle stoelen die je hebt gereserveerd: \n{GenerateConfirmationCode()}";
+            return $"Z{GetAuditoriumnumber()}S{GetReservedSeats()}D{day}-{month}-{year}T{hour}:{minute}";
+        }
+        else
+            return "Je hebt geen stoelen geselecteerd";
     }
-
-
-
-
-
-    private static void PrintSelectedSeatsLegenda()
+    private void PrintSelectedSeatsLegenda()
     {
-        Console.SetCursorPosition(0, 0);
-        System.Console.WriteLine($"{Guide}");
-        Console.SetCursorPosition(0, CinemaMap1.Count + 10);
         System.Console.WriteLine($"\n{ReservingSeats}");
         foreach (var seat in ListReservedSeats)
         {
