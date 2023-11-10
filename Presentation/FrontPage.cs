@@ -50,13 +50,13 @@ Druk op ESC om te vertrekken.
                     selectedIndex++;
                 }
             } while (keyInfo.Key != ConsoleKey.Enter & keyInfo.Key != ConsoleKey.Escape);
-            
+
             if (keyInfo.Key == ConsoleKey.Escape)
             {
                 Console.WriteLine(" SSee you!");
                 break;
             }
-            
+
             Console.WriteLine("je hebt dit geselecteerd: " + options[selectedIndex]);
             Console.ReadKey();
             Console.Clear();
@@ -71,7 +71,7 @@ Druk op ESC om te vertrekken.
             }
             else if (options[selectedIndex] == "film kiezen")
             {
-                Films_UI.Films_kiezen();
+                ChooseMovie.Films_kiezen();
             }
         }
     }

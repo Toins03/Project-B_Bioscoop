@@ -1,20 +1,49 @@
 [
   {
     "Title": "Oppenheimer",
-    "Genres": ["Drama", "Biografie"],
+    "Genres": [
+      "Drama",
+      "Biografie"
+    ],
     "Director": "Christopher Nolan",
     "ReleaseYear": 2023,
     "FilmRunTime": 180,
     "FilmPrice": 17.0,
-    "FilmRating": 9.0
+    "FilmRating": 9.0,
+    "CinemaAudience": [
+      "Customer ID 1 Customer Name Jahlani",
+      "Customer ID 3 Customer Name Valdier"
+    ],
+    "DateAndAuditorium": null
   },
   {
     "Title": "Barbie",
-    "Genres": ["Komedie"],
+    "Genres": [
+      "Komedie"
+    ],
     "Director": "Greta Gerwig",
     "ReleaseYear": 2023,
     "FilmRunTime": 114,
     "FilmPrice": 18.0,
-    "FilmRating": 9.0
+    "FilmRating": 9.0,
+    "CinemaAudience": [],
+    "DateAndAuditorium": null
+  },
+  {
+    "Title": "Inception",
+    "Genres": [
+      "Sci-Fi",
+      "Action",
+      "Thriller"
+    ],
+    "Director": "Christopher Nolan",
+    "ReleaseYear": 2000,
+    "FilmRunTime": 148,
+    "FilmPrice": 10.99,
+    "FilmRating": 4.5,
+    "CinemaAudience": [],
+    "DateAndAuditorium": {
+      "11-11-2023 12:00": "1"
+    }
   }
 ]

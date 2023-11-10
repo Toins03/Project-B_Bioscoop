@@ -2,44 +2,49 @@ using System;
 using System.IO;
 using System.Collections.Generic;
 using Newtonsoft.Json;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 public class Customer
 {
     public int ID;
     public string Name;
     public string UserName;
-    public string Password;
+    private string Password;
     public string Email;
+    public string ConfirmationCode;
     public static int Counter { get; private set; } = 1;
 
 
     [JsonConstructor]
-    public Customer(int ID, string name, string username, string password, string email)
+    public Customer(int ID, string name, string username, string password, string email, string confirmationcode)
     {
         Name = name;
         UserName = username;
         Password = password;
         Email = email;
+        ConfirmationCode = confirmationcode;
         this.ID = ID;
     }
 
-    public Customer(string name, string username = "none ", string password = "none", string email = "none")
+    public Customer(string name, string confirmationcode, string username = "none ", string password = "none", string email = "none")
     {
         Name = name;
         UserName = username;
         Password = password;
         Email = email;
+        ConfirmationCode = confirmationcode;
         ID = Counter;
         Counter++;
     }
 
 
-
+    // alle eigenschappen van customer word naar Customer.json geschreven
     public void SaveToJsonFile()
     {
         // List<Customer> number = LoadFromJsonFile();
         List<Customer> customers = LoadFromJsonFile() ?? new List<Customer>();
-        // ID = customers.Count() + 1;
+        // RAAK DIT NIET AAN AUB
+        ID = customers.Count() + 1;
 
         customers.Add(this); // Add the current customer to the list
 
@@ -78,4 +83,4 @@ public class Customer
         return null!;
 
     }
-} // Return null
+}

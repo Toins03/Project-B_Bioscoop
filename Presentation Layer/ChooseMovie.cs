@@ -15,7 +15,7 @@ class ChooseMovie : FrontPage
             System.Console.WriteLine(line);
             CreateTitleASCII();
             System.Console.WriteLine(line);
-            CenterText("Film opties:\n");
+            CenterText("Film kiezen om te bekijken:\n");
 
             for (int i = 0; i < options.Count; i++)
             {
