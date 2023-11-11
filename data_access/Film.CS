@@ -41,6 +41,17 @@ public class Film: IEquatable<Film>
         this.FilmRating = newRating;
     }
 
+    public override string ToString()
+    {
+        string toReturn =@$"Title: {this.Title}
+Genres: {string.Join(", ", this.Genres!)}
+Director: {this.Director}
+Release Year: {this.ReleaseYear}
+Film RunTime: {this.FilmRunTime} minutes
+Film Price: Euro {this.FilmPrice}
+Film Rating: {this.FilmRating}";
+        return toReturn;
+    }
     public override bool Equals(object? obj)
     {
 
@@ -71,8 +82,8 @@ public class Film: IEquatable<Film>
     public static bool operator ==(Film? a1, Film a2)
     {
         if (a1 is null && a2 is null) return true;
-        else if (a1 is null ^ a2 is null) return false;
-        else return a1!.Equals(a2);
+        else if (a1 is null || a2 is null) return false;
+        else return a1.Equals(a2);
     }
 
     public static bool operator !=(Film? a1, Film a2)

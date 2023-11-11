@@ -1,20 +1,37 @@
 [
   {
     "Title": "Oppenheimer",
-    "Genres": ["Drama", "Biografie"],
+    "Genres": [
+      "Drama",
+      "Biografie"
+    ],
     "Director": "Christopher Nolan",
     "ReleaseYear": 2023,
     "FilmRunTime": 180,
     "FilmPrice": 17.0,
-    "FilmRating": 9.0
+    "FilmRating": 9.0,
+    "CinemaAudience": []
   },
   {
     "Title": "Barbie",
-    "Genres": ["Komedie"],
+    "Genres": [
+      "Komedie"
+    ],
     "Director": "Greta Gerwig",
     "ReleaseYear": 2023,
     "FilmRunTime": 114,
     "FilmPrice": 18.0,
-    "FilmRating": 9.0
+    "FilmRating": 9.0,
+    "CinemaAudience": []
+  },
+  {
+    "Title": "gestoorderitus",
+    "Genres": [],
+    "Director": "rowan",
+    "ReleaseYear": 0,
+    "FilmRunTime": 3600,
+    "FilmPrice": 500.0,
+    "FilmRating": 0.0,
+    "CinemaAudience": []
   }
 ]

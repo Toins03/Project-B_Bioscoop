@@ -9,6 +9,7 @@ static class FilmsManage
         {
             "Add Films",
             "Remove Films",
+            "View Films",
         };
 
 
@@ -33,6 +34,10 @@ static class FilmsManage
         {
             Console.WriteLine("Removing films has not been implemented yet!");
             throw new NotImplementedException();
+        }
+        else if (request == "View Films")
+        {
+            ViewFilms();
         }
         
         FilmmanageMenu();
@@ -116,7 +121,47 @@ static class FilmsManage
         Film filmToAdd = new Film(ToAddName, ToAddRunTime, ToAddPrice, toAddFilmRating, toAddGenres, ToAddDirector);
 
         FilmSave.AddToJson(filmToAdd);
-        Console.WriteLine("succes");
+        Console.WriteLine("succes! Press any key to continue.");
+        Console.ReadKey();
+    }
+
+    public static void ViewFilms()
+    {
+        List<Film> films = FilmSave.ReadFilms();
+        List<string> filmNames = new() {};
+        foreach (Film film in films)
+        {
+            filmNames.Add(film.Title);
+        }
+
+        List<string> inputs = BasicMenu.MenuBasic(filmNames, "view all films");
+
+        string Keyleaving = inputs[0];
+
+        if (Keyleaving == "escape")
+        {
+            Console.WriteLine("Leaving Film options!");
+            return;
+        }
+
+        string film_chosen = inputs[1];
+
+        Film ToShow = null!;
+
+        foreach (Film film in films)
+        {
+            if (film.Title == film_chosen) 
+            {
+                ToShow = film;
+                break;
+            }
+        }
+
+        Console.WriteLine(ToShow.ToString());
+        Console.WriteLine("press any button to continue");
+        Console.ReadKey();
+
+        ViewFilms();
     }
 
 }

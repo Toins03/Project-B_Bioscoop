@@ -4,8 +4,6 @@ static class FilmSave
 {
     public static string PathName = "Movies.json";
 
-
-
     public static List<Film> ReadFilms()
     {
         if (File.Exists(PathName))
@@ -19,26 +17,14 @@ static class FilmSave
         else return new List<Film> {};
     }
 
-    public static void ReadJsonFile()
+    public static void PrintAllFilms()
     {
         if (File.Exists(PathName))
         {
-            StreamReader reader = new(PathName);
-            string filefromjson = reader.ReadToEnd();
-            List<Film> films = JsonConvert.DeserializeObject<List<Film>>(filefromjson)!;
-            reader.Close();
+            List<Film> films = ReadFilms();
             foreach (Film film in films)
             {
-                Console.WriteLine();
-                Console.WriteLine("Movie Information:");
-                Console.WriteLine($"Title: {film.Title}");
-                Console.WriteLine($"Genres: {string.Join(", ", film.Genres!)}");
-                Console.WriteLine($"§Director: {film.Director}");
-                Console.WriteLine($"Release Year: {film.ReleaseYear}");
-                Console.WriteLine($"Film RunTime: {film.FilmRunTime} minutes");
-                Console.WriteLine($"Film Price: Euro {film.FilmPrice}");
-                Console.WriteLine($"Film Rating: {film.FilmRating}");
-                Console.WriteLine();
+                if (film is not null) Console.WriteLine(film.ToString());
             }
         }
     }
@@ -61,24 +47,39 @@ static class FilmSave
     {
         List<Film> films = ReadFilms();
         films.Add(filmToAdd);
-        StreamWriter writer = new(PathName);
-        string list_to_json = JsonConvert.SerializeObject(films, Formatting.Indented);
-        writer.Write(list_to_json);
-        writer.Close();
+        WritefilmList(films);
     }
     public static void AppendToJason(Film filmToAdd)
     {
         List<Film> films = ReadFilms();
         films.Add(filmToAdd);
-        StreamWriter writer = new(PathName);
-        string list_to_json = JsonConvert.SerializeObject(films, Formatting.Indented);
-        writer.Write(list_to_json);
-        writer.Close();
+        WritefilmList(films);
     }
 
-    public static void RemoveFilm(Film filmtoremove)
+    public static void Removefilm(string filmName)
     {
-        throw new NotImplementedException();
+        List<Film> films = ReadFilms();
+        Film ToDelete = null!;
+        foreach (Film film in films)
+        {
+            if (true)
+            {
+                ToDelete = film;
+                break;
+            }
+        }
+        
+        if (ToDelete is null)
+        {
+            Console.WriteLine("The film with this Name does not exist!");
+            return;
+        }
+        else
+        {
+            films.Remove(ToDelete);
+            WritefilmList(films);
+            Console.WriteLine("The film with this name has been deleted");
+        }
     }
 
     public static void AddCustomerToFilm(Film filmtoaddto, Customer customertoadd)
@@ -94,9 +95,13 @@ static class FilmSave
                 film.AddCinemaAudience(customertoadd);
             }
         }
-        StreamWriter writer = new(PathName);
-        string list_to_json = JsonConvert.SerializeObject(films, Formatting.Indented);
-        writer.Write(list_to_json);
-        writer.Close();
+        WritefilmList(films);
     }
+
+    private static void WritefilmList(List<Film> ToWrite)
+    {
+        StreamWriter writer = new(PathName);
+        string list_to_json = JsonConvert.SerializeObject(ToWrite, Formatting.Indented);
+        writer.Write(list_to_json);
+        writer.Close();    }
 }
