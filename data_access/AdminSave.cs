@@ -11,17 +11,14 @@ static class AdminSave
             string filefromjson = reader.ReadToEnd();
             List<Admin> admins = JsonConvert.DeserializeObject<List<Admin>>(filefromjson)!;
             reader.Close();
-            if (admins is not null) return admins;
+            if (admins is null) 
+            {
+                List<Admin> to_make = new() {new Admin(name: "super", password: "12345", adminID: 0)};
+                WriteAdminList(to_make);
+                return to_make;
+            }
             else 
             {
-                AddAdmin(new Admin(name: "super", password: "12345", adminID: 0));
-                admins = new List<Admin>() {new Admin(name: "super", password: "12345", adminID: 0)};           
-                Admin superadmin = new Admin(name: "super", password: "12345", adminID: 0);
-                admins.Add(superadmin);
-                StreamWriter writer = new(PathName);
-                string list_to_json = JsonConvert.SerializeObject(admins, Formatting.Indented);
-                writer.Write(list_to_json);
-                writer.Close();
                 return admins;
             }
         }
@@ -29,11 +26,8 @@ static class AdminSave
         {
             Console.WriteLine("Adminfile does not exist");
             List<Admin> admins = new List<Admin>() {new Admin(name: "super", password: "12345", adminID: 0)};           
-            StreamWriter writer = new(PathName);
-            string list_to_json = JsonConvert.SerializeObject(admins, Formatting.Indented);
-            writer.Write(list_to_json);
-            writer.Close();
-            return new List<Admin> {};
+            WriteAdminList(admins);
+            return admins;
         }
     }
 
@@ -41,10 +35,7 @@ static class AdminSave
     {
         List<Admin> admins = GetAdmins();
         admins.Add(newAdmin);
-        StreamWriter writer = new(PathName);
-        string list_to_json = JsonConvert.SerializeObject(admins, Formatting.Indented);
-        writer.Write(list_to_json);
-        writer.Close();
+        WriteAdminList(admins);
     }
 
     public static void AddAdmin(string name, string password)
@@ -72,7 +63,12 @@ static class AdminSave
             return;
         }
         
-        admins.Remove(ToDelete);
+        else
+        {
+            admins.Remove(ToDelete);
+            WriteAdminList(admins);
+            Console.WriteLine("The admin with this ID has been deleted");
+        }
     }
 
     public static void RemoveAdmin(string AdminName)
@@ -95,9 +91,18 @@ static class AdminSave
         }
         else
         {
-        admins.Remove(ToDelete);
-        Console.WriteLine("The admin with this name has been deleted");
+            admins.Remove(ToDelete);
+            WriteAdminList(admins);
+            Console.WriteLine("The admin with this name has been deleted");
         }
+    }
+
+    private static void WriteAdminList(List<Admin> ToWrite)
+    {
+        StreamWriter writer = new(PathName);
+        string list_to_json = JsonConvert.SerializeObject(ToWrite, Formatting.Indented);
+        writer.Write(list_to_json);
+        writer.Close();       
     }
 
 }
