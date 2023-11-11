@@ -9,60 +9,33 @@ static class AdminsManage
             "Add admins",
             "Remove admins",
         };
-        int selectedIndex = 0;
-        ConsoleKeyInfo keyInfo;
+        
+        List<string> menuResult = BasicMenu.MenuBasic(options, "Manage admins");
 
+        string keyInfo = menuResult[0];
+        string option_chosen = menuResult[1];
 
-        do 
-        {
-
-            Console.Clear();
-            System.Console.WriteLine("Manage admins");
-
-            for (int i = 0; i < options.Count; i++)
-            {
-                if (i == selectedIndex)
-                {
-                    Console.WriteLine("--> " + options[i]);
-                }
-                else
-                {
-                    Console.WriteLine("    " + options[i]);
-                }
-            }
-            keyInfo = Console.ReadKey();
-
-            if (keyInfo.Key == ConsoleKey.W && selectedIndex > 0)
-            {
-                selectedIndex--;
-            }
-            else if (keyInfo.Key == ConsoleKey.S && selectedIndex < options.Count - 1)
-            {
-                selectedIndex++;
-            }
-
-        } while (keyInfo.Key != ConsoleKey.Enter & keyInfo.Key != ConsoleKey.Escape);
-
-        if (keyInfo.Key == ConsoleKey.Escape)
+        if (keyInfo == "escape")
         {
             Console.WriteLine(" Leaving admin options!");
             return;
         }
 
         
-        if (options[selectedIndex] == "Add admins")
+        if (option_chosen == "Add admins")
         {
             AddAdmin();
         }
-        else if (options[selectedIndex] == "Remove admins")
+        else if (option_chosen == "Remove admins")
         {
             RemoveAdmin();
         }
-        else if (options[selectedIndex] == "View admins")
+        else if (option_chosen == "View admins")
         {
             ViewAdmins();
         }
 
+        AdminmanageMenu();
     }
 
     private static void AddAdmin()
@@ -80,19 +53,36 @@ static class AdminsManage
 
     private static void RemoveAdmin()
     {
-        System.Console.WriteLine("Please input the name or ID of the admin. To go back to the admin manager keep this line empty.");
+        System.Console.WriteLine("Please input the name or ID of the admin. Inputting the name is not case sensitive. To go back to the admin manager keep this line empty.");
         string ToRemove = Console.ReadLine()!;
-        if (ToRemove is null) return;
+        if (ToRemove is null) 
+        {
+            Console.WriteLine("Invalid input");
+        }
         else if (ToRemove == "") return;
+        else if (int.TryParse(ToRemove, out _))
+        {
+            int ToRemoveInt = Convert.ToInt32(ToRemove);
+            AdminSave.RemoveAdmin(ToRemoveInt);
+        }
+        else 
+        {
+            AdminSave.RemoveAdmin(ToRemove);
+        }
 
     }
 
     private static void ViewAdmins()
     {
         List<Admin> admins = AdminSave.GetAdmins();
+        if (admins is not null)
+        {
         foreach (Admin admin in admins)
         {
-            System.Console.WriteLine($"Name: {admin.Name}, ID: {admin.AdminID}");
+            System.Console.WriteLine(admin.ToString());
         }
+        }
+        Console.WriteLine("press any button to leave this screen.");
+        Console.ReadKey();
     }
 }

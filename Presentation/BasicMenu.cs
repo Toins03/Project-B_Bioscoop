@@ -1,9 +1,10 @@
 static class BasicMenu
 {
-    public static List<dynamic> MenuBasic(List<string> options, string MenuName)
+    public static List<string> MenuBasic(List<string> options, string MenuName)
     {
         if (options is null) return null!;
         if (options.Count == 0) return null!;
+        if (MenuName is null) return null!;
         int selectedIndex = 0;
         ConsoleKeyInfo keyInfo;
 
@@ -37,13 +38,13 @@ static class BasicMenu
 
         } while (keyInfo.Key != ConsoleKey.Enter & keyInfo.Key != ConsoleKey.Escape);
 
-        bool isKeyEsc;
+        string Keyleaving;
         if (keyInfo.Key == ConsoleKey.Escape)
         {
-            isKeyEsc = true;
+            Keyleaving = "escape";
         }
-        else isKeyEsc = false;
-        List<dynamic> ToReturn = new() {isKeyEsc, options[selectedIndex]};
+        else Keyleaving = "enter";
+        List<string> ToReturn = new() {Keyleaving, options[selectedIndex]};
         return ToReturn;
     }
 }

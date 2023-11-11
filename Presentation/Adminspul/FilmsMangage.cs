@@ -12,11 +12,11 @@ static class FilmsManage
         };
 
 
-        List<dynamic> inputs = BasicMenu.MenuBasic(options, "Manage films");
+        List<string> inputs = BasicMenu.MenuBasic(options, "Manage films");
 
-        bool isKeyEsc = inputs[0];
+        string Keyleaving = inputs[0];
 
-        if (isKeyEsc)
+        if (Keyleaving == "escape")
         {
             Console.WriteLine("Leaving Film options!");
             return;

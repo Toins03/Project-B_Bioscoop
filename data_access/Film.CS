@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 
-public class Film
+public class Film: IEquatable<Film>
 {
     public string Title;
     public List<string> Genres;
@@ -39,5 +39,44 @@ public class Film
     public void ChangeRating(double newRating)
     {
         this.FilmRating = newRating;
+    }
+
+    public override bool Equals(object? obj)
+    {
+
+        if (obj == null || GetType() != obj.GetType())
+        {
+            return false;
+        }
+        if (GetType() != obj.GetType()) return this.Equals(obj as Film);
+        // TODO: write your implementation of Equals() here
+        return base.Equals (obj);
+    }
+    
+    // override object.GetHashCode
+    public override int GetHashCode()
+    {
+        // TODO: write your implementation of GetHashCode() here
+        return base.GetHashCode();
+    }
+
+    public bool Equals(Film? film)
+    {
+        if (this is null && film is null) return true;
+        else if (film is null ^ this is null) return false;
+        else if (film!.Title == this.Title && film.Genres == this.Genres && film.FilmRunTime == this.FilmRunTime && film.Director == this.Director) return true;
+        else return false;
+    }
+
+    public static bool operator ==(Film? a1, Film a2)
+    {
+        if (a1 is null && a2 is null) return true;
+        else if (a1 is null ^ a2 is null) return false;
+        else return a1!.Equals(a2);
+    }
+
+    public static bool operator !=(Film? a1, Film a2)
+    {
+        return !(a1 == a2);
     }
 }

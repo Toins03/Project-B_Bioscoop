@@ -53,9 +53,51 @@ static class AdminSave
         AddAdmin(ToAdd);
     }
 
-    public static void RemoveAdmin()
+    public static void RemoveAdmin(int AdminID)
     {
+        List<Admin> admins = GetAdmins();
+        Admin ToDelete = null!;
+        foreach (Admin admin in admins)
+        {
+            if (admin.AdminID == AdminID)
+            {
+                ToDelete = admin;
+                break;
+            }
+        }
+
+        if (ToDelete is null)
+        {
+            Console.WriteLine("The admin with this ID does not exist!");
+            return;
+        }
         
+        admins.Remove(ToDelete);
+    }
+
+    public static void RemoveAdmin(string AdminName)
+    {
+        List<Admin> admins = GetAdmins();
+        Admin ToDelete = null!;
+        foreach (Admin admin in admins)
+        {
+            if (admin.Name == AdminName)
+            {
+                ToDelete = admin;
+                break;
+            }
+        }
+        
+        if (ToDelete is null)
+        {
+            Console.WriteLine("The admin with this Name does not exist!");
+            return;
+        }
+        else
+        {
+        admins.Remove(ToDelete);
+        Console.WriteLine("The admin with this name has been deleted");
+        }
     }
 
 }
