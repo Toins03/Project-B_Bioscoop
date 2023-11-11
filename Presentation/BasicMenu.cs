@@ -7,12 +7,19 @@ static class BasicMenu
         if (MenuName is null) return null!;
         int selectedIndex = 0;
         ConsoleKeyInfo keyInfo;
+        string line = new string('=', Console.WindowWidth);
+
 
         do 
         {
 
             Console.Clear();
+            System.Console.WriteLine(line);
+            CreateTitleASCII();
+            System.Console.WriteLine(line);
             System.Console.WriteLine(MenuName);
+            System.Console.WriteLine("menu opties");
+
 
             for (int i = 0; i < options.Count; i++)
             {
@@ -47,4 +54,39 @@ static class BasicMenu
         List<string> ToReturn = new() {Keyleaving, options[selectedIndex]};
         return ToReturn;
     }
+
+    public static void CreateTitleASCII()
+    {
+        string[] asciiArt =
+        {
+      @"  __  .__                                        .___",
+      @"_/  |_|  |__   ____     _____ _____    ____    __| _/____   _____",
+      @"\   __\  |  \_/ __ \   /     \\__  \  /    \  / __ |/ __ \ /     \",
+      @" |  | |   Y  \  ___/  |  Y Y  \/ __ \|   |  \/ /_/ \  ___/|  Y Y  \",
+      @" |__| |___|  /\___  > |__|_|  (____  /___|  /\____ |\___  >__|_|  /",
+      @"           \/     \/        \/     \/     \/      \/    \/      \/"
+        };
+
+        foreach (string line in asciiArt)
+        {
+            Console.WriteLine(line);
+        }
+    }
+
+    public static void CenterText(string text)
+    {
+        int screenWidth = Console.WindowWidth;
+        int textLength = text.Length;
+
+        // Calculate the number of spaces to insert before the text to center it
+        int spacesToInsert = (screenWidth - textLength) / 2;
+
+        // Create a string with the calculated spaces
+        string centeredText = new string(' ', spacesToInsert) + text;
+
+        // Print the centered text
+        Console.WriteLine(centeredText);
+    }
+
+
 }

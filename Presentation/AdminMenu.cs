@@ -61,7 +61,5 @@ static class AdminMenu
         {
             AdminsManage.AdminmanageMenu();
         }
-
-
     }
 }
