@@ -34,7 +34,8 @@ static class FilmsManage
             Console.WriteLine("Removing films has not been implemented yet!");
             throw new NotImplementedException();
         }
-
+        
+        FilmmanageMenu();
     }
 
     private static void AddFilm()
@@ -43,6 +44,7 @@ static class FilmsManage
         string ToAddName = Console.ReadLine()!;
         if (ToAddName is null) return;
         else if (ToAddName == "") return;
+        Console.Clear();
         
         int ToAddRunTime;
         while (true)
@@ -57,6 +59,7 @@ static class FilmsManage
                 break;
             }
         }
+        Console.Clear();
         
         double ToAddPrice;
         while (true)
@@ -70,7 +73,14 @@ static class FilmsManage
                 ToAddPrice = Convert.ToDouble(ToAddPricestring);
                 break;
             }
+            else
+            {
+                Console.WriteLine("This is not an integer! Press any button to retry.");
+                Console.ReadKey();
+                Console.Clear();
+            }
         }
+        Console.Clear();
 
         double toAddFilmRating = 0;
 
@@ -89,6 +99,7 @@ static class FilmsManage
                     if (genreToAdd is null) break;
                     else if (genreToAdd == "") break;
                     else toAddGenres.Add(genreToAdd);
+                    Console.Clear();
                 }
             }
             else if (genreAdd.ToLower() == "n" ^ genreAdd.ToLower() == "no")

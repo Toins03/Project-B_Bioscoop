@@ -32,6 +32,10 @@ static class BasicMenu
                     Console.WriteLine("    " + options[i]);
                 }
             }
+            System.Console.WriteLine(line);
+            System.Console.WriteLine(@"gebruik WASD keys om je optie te selecteren druk daarna op Enter op je keuze te bevestigen
+Druk op ESC om te vertrekken.
+");
             keyInfo = Console.ReadKey();
 
             if (keyInfo.Key == ConsoleKey.W && selectedIndex > 0)
