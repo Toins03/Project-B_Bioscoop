@@ -37,8 +37,27 @@ public class Film
         this.ReleaseYear = ReleaseYear;
         this.Director = director;
         if (cinemaAudience is not null) this.CinemaAudience = cinemaAudience;
-        this.DateAndAuditorium = DateAndAuditorium;
+
+        // Extract the first key from DateAndAuditorium dictionary
+        if (DateAndAuditorium is not null && DateAndAuditorium.Count > 0)
+        {
+            string dateString = DateAndAuditorium.Keys.First();
+            DateTime dateTime = DateTime.ParseExact(dateString, "MM-dd-yyyy HH:mm", null);
+
+            DayOfWeek dayOfWeek = dateTime.DayOfWeek;
+
+            this.FirstDateAndAuditoriumKey = $"{DateAndAuditorium.Keys.First()} - {dayOfWeek}";
+        }
+        else
+        {
+            this.FirstDateAndAuditoriumKey = "No DateAndAuditorium information available";
+        }
+
+        this.DateAndAuditorium = DateAndAuditorium!;
     }
+
+    // Add a property to store the first key from the dictionary
+    public string FirstDateAndAuditoriumKey { get; }
 
     public void Add_genre(string genre)
     {

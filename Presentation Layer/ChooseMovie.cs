@@ -4,6 +4,7 @@ class ChooseMovie : FrontPage
     {
         MovieWriteAndLoad film_menu = new("Movies.json");
         List<Film> options = film_menu.ReadFilms();
+
         int selectedIndex = 0;
 
         ConsoleKeyInfo keyInfo;
@@ -21,7 +22,8 @@ class ChooseMovie : FrontPage
             {
                 if (i == selectedIndex)
                 {
-                    Console.WriteLine("--> " + options[i].Title);
+                    // display test van valdier
+                    Console.WriteLine("--> " + options[i].Title + " " + options[i].FirstDateAndAuditoriumKey);
                 }
                 else
                 {
@@ -31,13 +33,18 @@ class ChooseMovie : FrontPage
             System.Console.WriteLine(line);
             keyInfo = Console.ReadKey();
 
-            if (keyInfo.Key == ConsoleKey.W || keyInfo.Key == ConsoleKey.UpArrow && selectedIndex > 0)
+            // update aan de controls uparrow and W gaan niet meer boven de begin optie of onder de laatste optie dit graag behouden aub
+            if (keyInfo.Key == ConsoleKey.W && selectedIndex > 0 || keyInfo.Key == ConsoleKey.UpArrow && selectedIndex > 0)
             {
                 selectedIndex--;
             }
-            else if (keyInfo.Key == ConsoleKey.S || keyInfo.Key == ConsoleKey.DownArrow && selectedIndex < options.Count - 1)
+            else if (keyInfo.Key == ConsoleKey.S && selectedIndex < options.Count - 1 || keyInfo.Key == ConsoleKey.DownArrow && selectedIndex < options.Count - 1)
             {
                 selectedIndex++;
+            }
+            else
+            {
+
             }
         } while (keyInfo.Key != ConsoleKey.Enter);
 
