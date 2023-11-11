@@ -58,6 +58,10 @@ static class AdminsManage
         {
             RemoveAdmin();
         }
+        else if (options[selectedIndex] == "View admins")
+        {
+            ViewAdmins();
+        }
 
     }
 
@@ -80,10 +84,15 @@ static class AdminsManage
         string ToRemove = Console.ReadLine()!;
         if (ToRemove is null) return;
         else if (ToRemove == "") return;
-        if (int.TryParse(ToRemove, out _))
-        {
-            
-        }
 
+    }
+
+    private static void ViewAdmins()
+    {
+        List<Admin> admins = AdminSave.GetAdmins();
+        foreach (Admin admin in admins)
+        {
+            System.Console.WriteLine($"Name: {admin.Name}, ID: {admin.AdminID}");
+        }
     }
 }
