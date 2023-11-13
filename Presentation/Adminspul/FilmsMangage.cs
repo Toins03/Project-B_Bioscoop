@@ -1,5 +1,3 @@
-using System.Diagnostics.Tracing;
-
 static class FilmsManage
 {
     public static void FilmmanageMenu()
