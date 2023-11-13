@@ -1,196 +1,69 @@
 using Newtonsoft.Json;
 
-public class ManageReservations
+public class MovieScheduleInformation
 {
-    public static void ReservationsOptions()
+    public string? Title { get; set; }
+    public Dictionary<string, List<List<string>>> ScreeningTimeAndAuditorium { get; set; } = new Dictionary<string, List<List<string>>>();
+    public List<string> ReservationsList { get; set; } = new List<string>();
+
+    public void AddTitleAndScreeningTimeAndAuditorium(string AddTitle, string Date, List<List<string>> Auditorium, string ConfirmationCode)
     {
-        Console.Clear();
-        List<string> options = new List<string>()
+        ScreeningTimeAndAuditorium.Add(Date, Auditorium);
+        List<MovieScheduleInformation> AddToJson = new List<MovieScheduleInformation>
         {
-            "Reservatie(s) toevoegen",
-            "Reservatie(s) verwijderen"
+            new MovieScheduleInformation
+            {
+                Title = AddTitle,
+                ScreeningTimeAndAuditorium = new Dictionary<string, List<List<string>>>(ScreeningTimeAndAuditorium),
+                ReservationsList = new List<string>(ReservationsList)
+            }
         };
-        int selectedIndex = 0;
-        ConsoleKeyInfo keyInfo;
-        do
-        {
-            Console.Clear();
 
-            for (int i = 0; i < options.Count; i++)
-            {
-                if (i == selectedIndex)
-                {
-                    Console.WriteLine("--> " + options[i]);
-                }
-                else
-                {
-                    Console.WriteLine("    " + options[i]);
-                }
-            }
-            keyInfo = Console.ReadKey();
-
-            if (keyInfo.Key == ConsoleKey.W && selectedIndex > 0 || keyInfo.Key == ConsoleKey.UpArrow && selectedIndex > 0)
-            {
-                selectedIndex--;
-            }
-            else if (keyInfo.Key == ConsoleKey.S && selectedIndex < options.Count - 1 || keyInfo.Key == ConsoleKey.DownArrow && selectedIndex < options.Count - 1)
-            {
-                selectedIndex++;
-            }
-
-        } while (keyInfo.Key != ConsoleKey.Enter & keyInfo.Key != ConsoleKey.Escape);
-
-        if (options[selectedIndex] == "Reservatie(s) toevoegen")
-        {
-            Console.Clear();
-            MovieTitleToManageReservations(true);
-
-        }
-        if (options[selectedIndex] == "Reservatie(s) verwijderen")
-        {
-            Console.Clear();
-            MovieTitleToManageReservations(false);
-
-        }
-
+        WriteDataFromJsin(AddToJson, ConfirmationCode);
     }
 
-    private static void MovieTitleToManageReservations(bool IsAdd)
+    private void WriteDataFromJsin(List<MovieScheduleInformation> AddToJson, string ConfirmationCode)
     {
-        System.Console.WriteLine("Voor welke film wil je een reservatie toevoegen?:\n");
-        string movieTitle = Console.ReadLine()!;
-        List<MovieScheduleInformation> allMovies = ReadDataFromJson()!;
-        foreach (var movie in allMovies)
+        List<MovieScheduleInformation> ExistingData = ReadDataFromJson()!;
+        if (File.Exists("MovieScheduleInformation.json"))
         {
-            if (movie.Title == movieTitle)
+            try
             {
-                if (IsAdd)
-                    AddReservation(movieTitle);
-                else
-                    RemoveReservation(movieTitle);
-            }
-            else
-            {
-                System.Console.WriteLine("Sorry maar die film bestaat niet in de database. \nZorg ervoor dat je de titel goed spelt.");
-                MovieTitleToManageReservations(IsAdd);
-            }
-        }
-    }
-
-    private static void AddReservation(string MovieTitle)
-    {
-        List<MovieScheduleInformation> AllMoviesFromJson = ReadDataFromJson()!;
-        foreach (var movie in AllMoviesFromJson)
-        {
-            if (movie.Title == MovieTitle)
-            {
-                List<List<string>> movieAuditorium = movie.ScreeningTimeAndAuditorium["11-11-2023"];
-                switch (movieAuditorium.Count)
+                using (StreamWriter writer = new StreamWriter("MovieScheduleInformation.json"))
                 {
-                    case 14:
-                        AuditoriumMap150 map150 = new AuditoriumMap150();
-                        map150.TakeSeats(MovieTitle, false);
-                        break;
-                    case 19:
-                        AuditoriumMap300 map300 = new AuditoriumMap300();
-                        map300.TakeSeats(MovieTitle, false);
-                        break;
-                    case 20:
-                        AuditoriumMap500 map500 = new AuditoriumMap500();
-                        map500.TakeSeats(MovieTitle, false);
-                        break;
-                    default:
-                        break;
-                }
-
-            }
-        }
-    }
-
-    private static void RemoveReservation(string MovieTitle)
-    {
-        System.Console.WriteLine("Welke reservatie wil je verwijderen?:\n");
-        List<MovieScheduleInformation> AllMoviesFromJson = ReadDataFromJson()!;
-        foreach (var movie in AllMoviesFromJson!)
-        {
-            if (movie.Title == MovieTitle)
-            {
-                if (RemoveTheReservation(movie.ReservationsList))
-                {
-
-                    switch (movie.ScreeningTimeAndAuditorium["11-11-2023"].Count)
+                    foreach (MovieScheduleInformation movie in ExistingData)
                     {
-                        case 14:
-                            AuditoriumMap150 map150 = new AuditoriumMap150();
-                            map150.TakeSeats(MovieTitle, true);
-                            break;
-                        case 19:
-                            AuditoriumMap300 map300 = new AuditoriumMap300();
-                            map300.TakeSeats(MovieTitle, true);
-                            break;
-                        case 20:
-                            AuditoriumMap500 map500 = new AuditoriumMap500();
-                            map500.TakeSeats(MovieTitle, true);
-                            break;
-                        default:
-                            break;
+                        if (movie.Title == AddToJson[0].Title)
+                        {
+                            movie.ScreeningTimeAndAuditorium["11-11-2023"] = AddToJson[0].ScreeningTimeAndAuditorium["11-11-2023"];
+                            if (ConfirmationCode.Contains(':'))
+                                movie.ReservationsList.Add(ConfirmationCode);
+                            string List3Json = JsonConvert.SerializeObject(ExistingData, Formatting.Indented);
+                            writer.Write(List3Json);
+                            return;
+                        }
                     }
-                    System.Console.WriteLine("Reservatie is verwijderd");
-                }
-                else
-                {
-                    ReservationsOptions();
-                }
 
+
+
+                    foreach (MovieScheduleInformation movieSchedule in AddToJson)
+                    {
+                        movieSchedule.ReservationsList.Add(ConfirmationCode);
+                        ExistingData.Add(movieSchedule);
+
+                    }
+                    string List2Json = JsonConvert.SerializeObject(ExistingData, Formatting.Indented);
+                    writer.Write(List2Json);
+                }
             }
-
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error reading JSON data: {ex.Message}");
+            }
         }
     }
 
-    private static bool RemoveTheReservation(List<string> reservations)
-    {
-        int selectedIndex = 0;
-        ConsoleKeyInfo keyInfo;
-        do
-        {
-
-            Console.Clear();
-            System.Console.WriteLine("Admin commands");
-
-            for (int i = 0; i < reservations.Count; i++)
-            {
-                if (i == selectedIndex)
-                {
-                    Console.WriteLine("--> " + reservations[i]);
-                }
-                else
-                {
-                    Console.WriteLine("    " + reservations[i]);
-                }
-            }
-            keyInfo = Console.ReadKey();
-
-            if (keyInfo.Key == ConsoleKey.W && selectedIndex > 0)
-            {
-                selectedIndex--;
-            }
-            else if (keyInfo.Key == ConsoleKey.S && selectedIndex < reservations.Count - 1)
-            {
-                selectedIndex++;
-            }
-
-        } while (keyInfo.Key != ConsoleKey.Enter & keyInfo.Key != ConsoleKey.Escape);
-        reservations.RemoveAt(selectedIndex);
-        if (keyInfo.Key == ConsoleKey.Escape)
-        {
-            Console.WriteLine("Je gaat terug naar het vorige menu");
-            return false;
-        }
-        return true;
-    }
-
-
-    private static List<MovieScheduleInformation>? ReadDataFromJson()
+    private List<MovieScheduleInformation>? ReadDataFromJson()
     {
         if (File.Exists("MovieScheduleInformation.json"))
         {
@@ -213,5 +86,12 @@ public class ManageReservations
             }
         }
         return null;
+    }
+
+
+    public void AddReservation(string Confirmationcode)
+    {
+        if (Confirmationcode.Contains(':'))
+            ReservationsList.Add(Confirmationcode);
     }
 }
