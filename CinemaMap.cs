@@ -17,12 +17,14 @@ public abstract class CinemaMap
 
     private string ReservedString { get; set; } = "je hebt de zitplaatsen: \n";
 
+    protected string ChosenMovie { get; set; } = "";
+
 
     protected abstract void CreateCinemaMap();
 
-    public void TakeSeats()
+    public void TakeSeats(string MovieTitle, bool IsAddmin)
     {
-
+        ChosenMovie = MovieTitle;
         CreateCinemaMap();
         LoadCinemaMapFromJson();
         Console.Clear();
@@ -48,7 +50,7 @@ public abstract class CinemaMap
             }
             PrintSelectedSeatsLegenda();
             keyInfo = Console.ReadKey();
-            Keyboard_input(keyInfo);
+            Keyboard_input(keyInfo, IsAddmin);
         }
         while (keyInfo.Key != ConsoleKey.Enter);
         System.Console.WriteLine($"{ReservedString} {GenerateConfirmationCode()}");
@@ -64,7 +66,7 @@ public abstract class CinemaMap
             return;
     }
 
-    private void Keyboard_input(ConsoleKeyInfo keyInfo)
+    private void Keyboard_input(ConsoleKeyInfo keyInfo, bool IsAddmin)
     {
         Console.Clear();
         switch (keyInfo.Key)
@@ -101,7 +103,10 @@ public abstract class CinemaMap
                         SelectedSeats(selectedRow, selectedColumn);
                     else
                     {
-                        DeselectSeat(selectedRow, selectedColumn, CinemaMapCopy[selectedRow][selectedColumn]);
+                        if (IsAddmin)
+                            DeselectSeat(selectedRow, selectedColumn, CinemaMapCopy[selectedRow][selectedColumn], true);
+                        else
+                            DeselectSeat(selectedRow, selectedColumn, CinemaMapCopy[selectedRow][selectedColumn]);
                     }
                 }
                 break;
@@ -115,12 +120,24 @@ public abstract class CinemaMap
     private void LoadCinemaMapFromJson()
     {
         string jsonData;
-        using (StreamReader reader = new StreamReader(FileName))
+        using (StreamReader reader = new StreamReader("MovieScheduleInformation.json"))
         {
             jsonData = reader.ReadToEnd();
         }
 
-        CinemaMap1Json = JsonConvert.DeserializeObject<List<List<string>>>(jsonData)!;
+        List<MovieScheduleInformation> ExistingData = JsonConvert.DeserializeObject<List<MovieScheduleInformation>>(jsonData)!;
+        if (ExistingData == null)
+        {
+            return;
+        }
+        foreach (MovieScheduleInformation movie in ExistingData)
+        {
+            if (movie.Title == ChosenMovie)
+            {
+                CinemaMap1Json = movie.ScreeningTimeAndAuditorium["11-11-2023"];
+            }
+        }
+
         if (CinemaMap1Json != null)
         {
 
@@ -144,14 +161,14 @@ public abstract class CinemaMap
 
             }
         }
+        MovieScheduleInformation movieSchedule = new MovieScheduleInformation();
+        movieSchedule.AddTitleAndScreeningTimeAndAuditorium(ChosenMovie, "11-11-2023", CinemaMap1, GenerateConfirmationCode());
+
         using (StreamWriter writer = new StreamWriter(FileName))
         {
             string List2Json = JsonConvert.SerializeObject(CinemaMap1, Formatting.Indented);
             writer.Write(List2Json);
         }
-        // MovieScheduleInformation movieSchedule = new MovieScheduleInformation();
-        // movieSchedule.AddTitleAndScreeningTimeAndAuditorium("Mario Bros", "11-11-2023", CinemaMap1);
-
 
     }
 
@@ -171,6 +188,16 @@ public abstract class CinemaMap
     private void DeselectSeat(int row, int column, string seat)
     {
         if (!CinemaMap1[row][column].Contains("[SEL]") || !CinemaMap1[row][column].Contains("[BEZ]"))
+        {
+            ListReservedSeats.Remove($"{CinemaMapCopy[row][column]}");
+            CinemaMap1[row][column] = CinemaMapCopy[row][column];
+            ReservingSeats = ReservingSeats.Replace($"{seat}", "");
+        }
+    }
+
+    private void DeselectSeat(int row, int column, string seat, bool IsAdd)
+    {
+        if (!CinemaMap1[row][column].Contains("[SEL]"))
         {
             ListReservedSeats.Remove($"{CinemaMapCopy[row][column]}");
             CinemaMap1[row][column] = CinemaMapCopy[row][column];
@@ -225,10 +252,17 @@ public abstract class CinemaMap
             }
             ReservedString += " Gereserveerd \nBevestegingscode voor alle stoelen die je hebt gereserveerd: \n";
             ConfirmationCode += $"Z{GetAuditoriumnumber()}S{GetReservedSeats()}D{day}-{month}-{year}T{hour}:{minute}";
+            ConfirmationCode = CleanUpString(ConfirmationCode);
             return ConfirmationCode;
         }
         else
             return "Je hebt geen stoelen geselecteerd";
+    }
+
+    private string CleanUpString(string input)
+    {
+        string cleanString = input.Replace("\x1b[37m", "");
+        return cleanString;
     }
     private void PrintSelectedSeatsLegenda()
     {
