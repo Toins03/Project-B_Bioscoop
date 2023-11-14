@@ -10,11 +10,9 @@
     "FilmRunTime": 180,
     "FilmPrice": 17.0,
     "FilmRating": 9.0,
-    "CinemaAudience": [
-      "Customer ID 1 Customer Name Jahlani",
-      "Customer ID 3 Customer Name Valdier"
-    ],
-    "DateAndAuditorium": null
+    "CinemaAudience": [],
+    "DateAndAuditorium": null,
+    "FirstDateAndAuditoriumKey": "No DateAndAuditorium information available"
   },
   {
     "Title": "Barbie",
@@ -27,7 +25,20 @@
     "FilmPrice": 18.0,
     "FilmRating": 9.0,
     "CinemaAudience": [],
-    "DateAndAuditorium": null
+    "DateAndAuditorium": null,
+    "FirstDateAndAuditoriumKey": "No DateAndAuditorium information available"
+  },
+  {
+    "Title": "gestoorderitus",
+    "Genres": [],
+    "Director": "rowan",
+    "ReleaseYear": 0,
+    "FilmRunTime": 3600,
+    "FilmPrice": 500.0,
+    "FilmRating": 0.0,
+    "CinemaAudience": [],
+    "DateAndAuditorium": null,
+    "FirstDateAndAuditoriumKey": "No DateAndAuditorium information available"
   },
   {
     "Title": "Inception",
@@ -44,6 +55,7 @@
     "CinemaAudience": [],
     "DateAndAuditorium": {
       "11-11-2023 12:00": "1"
-    }
+    },
+    "FirstDateAndAuditoriumKey": "11-11-2023 12:00 - Saturday"
   }
 ]
