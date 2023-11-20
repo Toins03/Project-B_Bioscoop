@@ -1,6 +1,5 @@
 class ChooseMovie : FrontPage
 {
-    static string Title { get; set; } = "";
     public static void Films_kiezen()
     {
         MovieWriteAndLoad film_menu = new("Movies.json");
@@ -25,7 +24,6 @@ class ChooseMovie : FrontPage
                 {
                     // display test van valdier
                     Console.WriteLine("--> " + options[i].Title + " " + options[i].FirstDateAndAuditoriumKey);
-                    Title = options[i].Title;
                 }
                 else
                 {
@@ -48,7 +46,7 @@ class ChooseMovie : FrontPage
             {
 
             }
-        } while (keyInfo.Key != ConsoleKey.Enter && keyInfo.Key != ConsoleKey.Escape);
+        } while (keyInfo.Key != ConsoleKey.Enter);
 
         MovieWriteAndLoad.printfilmInfo(options[selectedIndex]);
         System.Console.WriteLine("Druk op Enter om stoelen te reserveren voor deze film \nDruk een ander willekeurige toets om terug te gaan naar de vorige pagina");
@@ -62,8 +60,8 @@ class ChooseMovie : FrontPage
         if (keyInfo.Key == ConsoleKey.Enter)
         {
             Console.Clear();
-            AuditoriumMap150 map500 = new AuditoriumMap150();
-            map500.TakeSeats(Title, false);
+            AuditoriumMap500 map500 = new AuditoriumMap500();
+            map500.TakeSeats();
         }
         else if (keyInfo.Key != ConsoleKey.Enter)
         {

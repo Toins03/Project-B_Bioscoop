@@ -1,8 +1,4 @@
-using System;
-using System.IO;
-using System.Collections.Generic;
 using Newtonsoft.Json;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 public class Customer
 {

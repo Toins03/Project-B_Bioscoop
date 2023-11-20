@@ -12,7 +12,6 @@ static class FilmsManage
             "View Films",
         };
 
-
         List<string> inputs = BasicMenu.MenuBasic(options, "Manage films");
 
         string Keyleaving = inputs[0];

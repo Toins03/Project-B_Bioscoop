@@ -57,8 +57,10 @@ public class ManageReservations
 
     private static void MovieTitleToManageReservations(bool IsAdd)
     {
-        System.Console.WriteLine("Voor welke film wil je een reservatie toevoegen?:\n");
+        System.Console.WriteLine("Voor welke film wil je een reservatie toevoegen?:\n Hou deze lijn leeg als je terug wilt gaan.\n");
         string movieTitle = Console.ReadLine()!;
+        if (movieTitle == null) return;
+        if (movieTitle == "") return;
         List<MovieScheduleInformation> allMovies = ReadDataFromJson()!;
         foreach (var movie in allMovies)
         {
