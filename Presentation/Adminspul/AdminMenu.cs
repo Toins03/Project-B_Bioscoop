@@ -5,19 +5,20 @@ static class AdminMenu
         Console.Clear();
         List<string> options = new List<string>()
         {
-            "films beheren"
+            "films beheren",
+            "Reserveringen beheren"
         };
         Admin adminUsed = admin;
         if (admin.AdminID == 0)
         {
             options.Add("Admins beheren");
         }
-        
+
         int selectedIndex = 0;
         ConsoleKeyInfo keyInfo;
 
 
-        do 
+        do
         {
 
             Console.Clear();
@@ -55,7 +56,19 @@ static class AdminMenu
 
         if (options[selectedIndex] == "films beheren")
         {
-            LogIn.LogInMenu();
+            FilmsManage.FilmmanageMenu();
+            AdminMenu.Menu(admin);
+        }
+        if (options[selectedIndex] == "Reserveringen beheren")
+        {
+            Console.Clear();
+            ManageReservations.ReservationsOptions();
+            AdminMenu.Menu(admin);
+        }
+        if (options[selectedIndex] == "Admins beheren")
+        {
+            AdminsManage.AdminmanageMenu();
+            AdminMenu.Menu(admin);
         }
 
 

@@ -3,10 +3,15 @@
     "Title": "Test film2",
     "Genres": [],
     "Director": "unknown",
-    "ReleaseYear": 0,
+    "ReleaseYear": 2001,
     "FilmRunTime": 2,
     "FilmPrice": 3.0,
     "FilmRating": 5.0,
-    "CinemaAudience": []
+    "CinemaAudience": [
+      "Customer ID 2 Customer Name dr. Evil",
+      "Customer ID 2 Customer Name dr. Evil"
+    ],
+    "DateAndAuditorium": null,
+    "FirstDateAndAuditoriumKey": "No DateAndAuditorium information available"
   }
 ]

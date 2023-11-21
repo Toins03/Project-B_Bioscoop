@@ -2,6 +2,8 @@ using Newtonsoft.Json;
 
 public class Film
 {
+
+
     public string Title;
     public List<string> Genres;
     public string Director;
@@ -12,8 +14,6 @@ public class Film
     public List<string> CinemaAudience = new() { };
 
     public Dictionary<string, string> DateAndAuditorium = new Dictionary<string, string>();
-
-
 
 
     [JsonConstructor]
@@ -59,6 +59,7 @@ public class Film
     // Add a property to store the first key from the dictionary
     public string FirstDateAndAuditoriumKey { get; }
 
+
     public void Add_genre(string genre)
     {
         this.Genres.Add(genre);
@@ -70,6 +71,61 @@ public class Film
         CinemaAudience.Add("Customer ID " + customer.ID + " Customer Name " + customer.Name);
     }
 
+    public void ChangeRating(double newRating)
+    {
+        this.FilmRating = newRating;
+    }
+
+    public override string ToString()
+    {
+        string toReturn = @$"Title: {this.Title}
+Genres: {string.Join(", ", this.Genres!)}
+Director: {this.Director}
+Release Year: {this.ReleaseYear}
+Film RunTime: {this.FilmRunTime} minutes
+Film Price: Euro {this.FilmPrice}
+Film Rating: {this.FilmRating}";
+        return toReturn;
+    }
+    public override bool Equals(object? obj)
+    {
+
+        if (obj == null || GetType() != obj.GetType())
+        {
+            return false;
+        }
+        if (GetType() != obj.GetType()) return this.Equals(obj as Film);
+        // TODO: write your implementation of Equals() here
+        return base.Equals(obj);
+    }
+
+    // override object.GetHashCode
+    public override int GetHashCode()
+    {
+        // TODO: write your implementation of GetHashCode() here
+        return base.GetHashCode();
+    }
+
+    public bool Equals(Film? film)
+    {
+        if (this is null && film is null) return true;
+        else if (film is null ^ this is null) return false;
+        else if (film!.Title == this.Title && film.Genres == this.Genres && film.FilmRunTime == this.FilmRunTime && film.Director == this.Director) return true;
+        else return false;
+    }
+
+    public static bool operator ==(Film? a1, Film a2)
+    {
+        if (a1 is null && a2 is null) return true;
+        else if (a1 is null || a2 is null) return false;
+        else return a1.Equals(a2);
+    }
+
+    public static bool operator !=(Film? a1, Film a2)
+    {
+        return !(a1 == a2);
+    }
+
     public void AddDateTimeAndAuditorium(string AuditorumNumber)
     {
         DateTime specificDateTime = new DateTime(2023, 11, 11, 12, 0, 0); // November 11, 2023, 12:00 PM
@@ -77,18 +133,7 @@ public class Film
         // string dayOfWeekString = dayOfWeek.ToString();
         // deze code later gebruiken voor het uitlezen van de json file maar niet om ernaar toe te schrijven
         string formattedDateTime = specificDateTime.ToString($"MM-dd-yyyy HH:mm");
-
-
-
         DateAndAuditorium.Add(formattedDateTime, AuditorumNumber);
+
     }
-
-    // public string GetDate()
-    // {
-    //     List<Film> films = FilmSave.ReadFilms();
-    //     foreach (Film this.base in films)
-    //     {
-
-    //     }
-    // }
 }

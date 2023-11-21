@@ -24,7 +24,7 @@ class Program
                         runtime: 148,
                         price: 10.99,
                         filmrating: 4.5,
-                        ReleaseYear: 2000, // Make sure this is provided
+                        ReleaseYear: 2000,
                         genres: new List<string> { "Sci-Fi", "Action", "Thriller" },
                         director: "Christopher Nolan",
                         cinemaAudience: new List<string> { },
@@ -38,19 +38,13 @@ class Program
                     }
 
 
-
                 // case "TESTSAVE":
                 //     {
                 //         FilmSaveTest saveTest = new();
                 //         saveTest.read_films_test("Test film", 1, 1, 1, 2000);
                 //         break;
                 //     }
-                case "TESTMAP":
-                    {
-                        AuditoriumMap500 map500 = new AuditoriumMap500();
-                        map500.TakeSeats();
-                        return;
-                    }
+
                 case "TESTCUSTOMER":
                     {
                         AuditoriumMap150 map1 = new AuditoriumMap150();

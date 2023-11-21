@@ -3,5 +3,20 @@
     "Name": "super",
     "Password": "12345",
     "AdminID": 0
+  },
+  {
+    "Name": "rowan",
+    "Password": "54321",
+    "AdminID": 1
+  },
+  {
+    "Name": "Valdier",
+    "Password": "pennandteller",
+    "AdminID": 2
+  },
+  {
+    "Name": "Jahlani",
+    "Password": "34567",
+    "AdminID": 3
   }
 ]
