@@ -5,18 +5,13 @@
     "AdminID": 0
   },
   {
-    "Name": "rowan",
-    "Password": "54321",
-    "AdminID": 1
+    "Name": "blarg",
+    "Password": "1223",
+    "AdminID": 2
   },
   {
-    "Name": "Valdier",
-    "Password": "pennandteller",
-    "AdminID": 1
-  },
-  {
-    "Name": "Jahlani",
-    "Password": "34567",
-    "AdminID": 1
+    "Name": "hasan2",
+    "Password": "asdad",
+    "AdminID": 2
   }
 ]

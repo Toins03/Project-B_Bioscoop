@@ -11,7 +11,7 @@ static class LogIn
         System.Console.WriteLine(line);
         FrontPage.CreateTitleASCII();
         System.Console.WriteLine(line);
-// add in the basic frontpage items then login data
+        // add in the basic frontpage items then login data
         Console.WriteLine("You have decided to log in");
         Console.WriteLine("Please enter your username.");
         string username = Console.ReadLine()!;
@@ -21,7 +21,7 @@ static class LogIn
 
         List<Admin> admins = AdminSave.GetAdmins();
 
-// check in if it is correct else go back.
+        // check in if it is correct else go back.
         foreach (Admin admin in admins)
         {
             Console.WriteLine($"{admin.Name}, {admin.Name == username} \n");

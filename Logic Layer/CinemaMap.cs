@@ -22,8 +22,9 @@ public abstract class CinemaMap
 
     protected abstract void CreateCinemaMap();
 
-    public void TakeSeats(string MovieTitle, bool isToRemove)
+    public void TakeSeats(string MovieTitle, bool IsAddmin)
     {
+
         ChosenMovie = MovieTitle;
         CreateCinemaMap();
         LoadCinemaMapFromJson();
@@ -50,11 +51,9 @@ public abstract class CinemaMap
             }
             PrintSelectedSeatsLegenda();
             keyInfo = Console.ReadKey();
-            Keyboard_input(keyInfo, isToRemove);
+            Keyboard_input(keyInfo, IsAddmin);
         }
         while (keyInfo.Key != ConsoleKey.Enter);
-        if (!GenerateConfirmationCode().Contains("Je hebt geen stoelen geselecteerd")) ;
-        Customer.CreateCustomer(MovieTitle, GenerateConfirmationCode());
         System.Console.WriteLine($"{ReservedString} {GenerateConfirmationCode()}");
         WriteCinemaMapToJson();
         Console.WriteLine("\nWil je terug naar de hoofdpagina toets 'enter' wil je stoppen toets een willekeurig knop");
@@ -68,7 +67,7 @@ public abstract class CinemaMap
             return;
     }
 
-    private void Keyboard_input(ConsoleKeyInfo keyInfo, bool isToRemove)
+    private void Keyboard_input(ConsoleKeyInfo keyInfo, bool IsAddmin)
     {
         Console.Clear();
         switch (keyInfo.Key)
@@ -105,8 +104,8 @@ public abstract class CinemaMap
                         SelectedSeats(selectedRow, selectedColumn);
                     else
                     {
-                        if (isToRemove)
-                            DeselectSeatAdmin(selectedRow, selectedColumn, CinemaMapCopy[selectedRow][selectedColumn]);
+                        if (IsAddmin)
+                            DeselectSeat(selectedRow, selectedColumn, CinemaMapCopy[selectedRow][selectedColumn], true);
                         else
                             DeselectSeat(selectedRow, selectedColumn, CinemaMapCopy[selectedRow][selectedColumn]);
                     }
@@ -189,7 +188,7 @@ public abstract class CinemaMap
 
     private void DeselectSeat(int row, int column, string seat)
     {
-        if (!CinemaMap1[row][column].Contains("[SEL]") && !CinemaMap1[row][column].Contains("[BEZ]"))
+        if (!CinemaMap1[row][column].Contains("[SEL]") || !CinemaMap1[row][column].Contains("[BEZ]"))
         {
             ListReservedSeats.Remove($"{CinemaMapCopy[row][column]}");
             CinemaMap1[row][column] = CinemaMapCopy[row][column];
@@ -197,7 +196,7 @@ public abstract class CinemaMap
         }
     }
 
-    private void DeselectSeatAdmin(int row, int column, string seat)
+    private void DeselectSeat(int row, int column, string seat, bool IsAdd)
     {
         if (!CinemaMap1[row][column].Contains("[SEL]"))
         {
@@ -279,6 +278,4 @@ public abstract class CinemaMap
         System.Console.WriteLine("Bezet                 \x1b[31m[BEZ]\x1b[0m");
         System.Console.WriteLine("Geselecteerd          \u001b[35m[SEL]\x1b[0m");
     }
-
-
 }

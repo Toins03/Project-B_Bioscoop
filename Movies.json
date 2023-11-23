@@ -11,8 +11,7 @@
     "FilmPrice": 17.0,
     "FilmRating": 9.0,
     "CinemaAudience": [],
-    "DateAndAuditorium": null,
-    "FirstDateAndAuditoriumKey": "No DateAndAuditorium information available"
+    "DateAndAuditorium": {}
   },
   {
     "Title": "Barbie",
@@ -25,20 +24,33 @@
     "FilmPrice": 18.0,
     "FilmRating": 9.0,
     "CinemaAudience": [],
-    "DateAndAuditorium": null,
-    "FirstDateAndAuditoriumKey": "No DateAndAuditorium information available"
+    "DateAndAuditorium": {}
   },
   {
-    "Title": "gestoorderitus",
+    "Title": "Mario",
     "Genres": [],
-    "Director": "rowan",
-    "ReleaseYear": 0,
-    "FilmRunTime": 3600,
-    "FilmPrice": 500.0,
-    "FilmRating": 0.0,
+    "Director": "unknown",
+    "ReleaseYear": 4,
+    "FilmRunTime": 2,
+    "FilmPrice": 1.0,
+    "FilmRating": 3.0,
     "CinemaAudience": [],
-    "DateAndAuditorium": null,
-    "FirstDateAndAuditoriumKey": "No DateAndAuditorium information available"
+    "DateAndAuditorium": {}
+  },
+  {
+    "Title": "Inception",
+    "Genres": [
+      "Sci-Fi",
+      "Action",
+      "Thriller"
+    ],
+    "Director": "Christopher Nolan",
+    "ReleaseYear": 2000,
+    "FilmRunTime": 148,
+    "FilmPrice": 10.99,
+    "FilmRating": 4.5,
+    "CinemaAudience": [],
+    "DateAndAuditorium": {}
   },
   {
     "Title": "Inception",
@@ -54,8 +66,50 @@
     "FilmRating": 4.5,
     "CinemaAudience": [],
     "DateAndAuditorium": {
-      "11-11-2023 12:00": "1"
-    },
-    "FirstDateAndAuditoriumKey": "11-11-2023 12:00 - Saturday"
+      "2023-11-23T12:00:00": "3"
+    }
+  },
+  {
+    "Title": "Inception",
+    "Genres": [
+      "Sci-Fi",
+      "Action",
+      "Thriller"
+    ],
+    "Director": "Christopher Nolan",
+    "ReleaseYear": 2000,
+    "FilmRunTime": 148,
+    "FilmPrice": 10.99,
+    "FilmRating": 4.5,
+    "CinemaAudience": [],
+    "DateAndAuditorium": {
+      "2023-11-24T13:00:00": "2"
+    }
+  },
+  {
+    "Title": "baba",
+    "Genres": [],
+    "Director": "unknown",
+    "ReleaseYear": 2022,
+    "FilmRunTime": 90,
+    "FilmPrice": 30.0,
+    "FilmRating": 4.0,
+    "CinemaAudience": [],
+    "DateAndAuditorium": {
+      "2023-11-24T09:00:00": "3"
+    }
+  },
+  {
+    "Title": "Luigi",
+    "Genres": [],
+    "Director": "unknown",
+    "ReleaseYear": 2022,
+    "FilmRunTime": 90,
+    "FilmPrice": 20.0,
+    "FilmRating": 9.0,
+    "CinemaAudience": [],
+    "DateAndAuditorium": {
+      "2022-03-04T03:00:00": "2"
+    }
   }
 ]

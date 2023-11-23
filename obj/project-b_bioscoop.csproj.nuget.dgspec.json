@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\rowan\\OneDrive\\Documents\\school 2023-2024\\project b\\groepsopdracht cinema\\cinema_gitfiles\\test merge\\Project-B_Bioscoop\\Project-B_Bioscoop.csproj": {}
+    "C:\\Users\\valdi\\OneDrive\\Bureaublad\\opdracht tree\\Nieuwe map (2)\\Project-B_Bioscoop-rowantest\\Project-B_Bioscoop\\project-b_bioscoop.csproj": {}
   },
   "projects": {
-    "C:\\Users\\rowan\\OneDrive\\Documents\\school 2023-2024\\project b\\groepsopdracht cinema\\cinema_gitfiles\\test merge\\Project-B_Bioscoop\\Project-B_Bioscoop.csproj": {
+    "C:\\Users\\valdi\\OneDrive\\Bureaublad\\opdracht tree\\Nieuwe map (2)\\Project-B_Bioscoop-rowantest\\Project-B_Bioscoop\\project-b_bioscoop.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\rowan\\OneDrive\\Documents\\school 2023-2024\\project b\\groepsopdracht cinema\\cinema_gitfiles\\test merge\\Project-B_Bioscoop\\Project-B_Bioscoop.csproj",
-        "projectName": "Project-B_Bioscoop",
-        "projectPath": "C:\\Users\\rowan\\OneDrive\\Documents\\school 2023-2024\\project b\\groepsopdracht cinema\\cinema_gitfiles\\test merge\\Project-B_Bioscoop\\Project-B_Bioscoop.csproj",
-        "packagesPath": "C:\\Users\\rowan\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\rowan\\OneDrive\\Documents\\school 2023-2024\\project b\\groepsopdracht cinema\\cinema_gitfiles\\test merge\\Project-B_Bioscoop\\obj\\",
+        "projectUniqueName": "C:\\Users\\valdi\\OneDrive\\Bureaublad\\opdracht tree\\Nieuwe map (2)\\Project-B_Bioscoop-rowantest\\Project-B_Bioscoop\\project-b_bioscoop.csproj",
+        "projectName": "project-b_bioscoop",
+        "projectPath": "C:\\Users\\valdi\\OneDrive\\Bureaublad\\opdracht tree\\Nieuwe map (2)\\Project-B_Bioscoop-rowantest\\Project-B_Bioscoop\\project-b_bioscoop.csproj",
+        "packagesPath": "C:\\Users\\valdi\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\valdi\\OneDrive\\Bureaublad\\opdracht tree\\Nieuwe map (2)\\Project-B_Bioscoop-rowantest\\Project-B_Bioscoop\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\rowan\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\valdi\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
@@ -70,12 +70,30 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[6.0.19, 6.0.19]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Host.win-x64",
+              "version": "[6.0.19, 6.0.19]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[6.0.19, 6.0.19]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[6.0.19, 6.0.19]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.405\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.305\\RuntimeIdentifierGraph.json"
         }
       }
     }

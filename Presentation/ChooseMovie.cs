@@ -24,7 +24,7 @@ class ChooseMovie : FrontPage
                 if (i == selectedIndex)
                 {
                     // display test van valdier
-                    Console.WriteLine("--> " + options[i].Title + " " + options[i].FirstDateAndAuditoriumKey);
+                    Console.WriteLine("--> " + options[i].Title + " " + options[i].ShowDate());
                     Title = options[i].Title;
                 }
                 else
@@ -49,6 +49,12 @@ class ChooseMovie : FrontPage
 
             }
         } while (keyInfo.Key != ConsoleKey.Enter && keyInfo.Key != ConsoleKey.Escape);
+
+        if (keyInfo.Key == ConsoleKey.Escape)
+        {
+            System.Console.WriteLine("Je verlaat het film scherm!");
+            return;
+        }
 
         MovieWriteAndLoad.printfilmInfo(options[selectedIndex]);
         System.Console.WriteLine("Druk op Enter om stoelen te reserveren voor deze film \nDruk een ander willekeurige toets om terug te gaan naar de vorige pagina");
