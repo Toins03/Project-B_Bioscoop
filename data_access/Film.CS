@@ -45,9 +45,31 @@ public class Film
         this.DateAndAuditorium = DateAndAuditorium ?? new Dictionary<DateTime, string>();
     }
 
+    public Film(
+    string title,
+    int runtime,
+    double price,
+    double filmrating,
+    int ReleaseYear,
+    string director,
+    List<string> genres,
+    List<string> cinemaAudience = null!,
+    Dictionary<DateTime, string> DateAndAuditorium = null!)
+    {
+        this.Title = title;
+        this.FilmRunTime = runtime;
+        this.FilmPrice = price;
+        this.FilmRating = filmrating;
+        this.ReleaseYear = ReleaseYear;
+        this.Director = director;
+        this.Genres = genres ?? new List<string>();
+        this.CinemaAudience = cinemaAudience ?? new List<string>();
+        this.DateAndAuditorium = DateAndAuditorium ?? new Dictionary<DateTime, string>();
+    }
+
     // Add a property to store the first key from the dictionary
 
-
+    // string.Join(", ", this.Genres!)
     public void Add_genre(string genre)
     {
         this.Genres.Add(genre);

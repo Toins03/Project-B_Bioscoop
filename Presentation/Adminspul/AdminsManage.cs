@@ -112,19 +112,24 @@ static class AdminsManage
         {
 
             var filmInfo = GetFilmInfo();
+            var GenreForMovie = GenreList();
+
 
             string title = filmInfo.Title;
             int runtime = filmInfo.Runtime;
             double price = filmInfo.Price;
             double filmRating = filmInfo.FilmRating;
             int releaseYear = filmInfo.ReleaseYear;
+            string directorName = filmInfo.director;
 
             Film film = new Film(
-                title: title,
-                runtime: runtime,
-                price: price,
-                filmrating: filmRating,
-                ReleaseYear: releaseYear
+                title,
+                runtime,
+                price,
+                filmRating,
+                releaseYear,
+                directorName,
+                GenreForMovie
             );
             film.AddDateTimeAndAuditorium();
 
@@ -149,7 +154,7 @@ static class AdminsManage
         }
         FilmManagement();
     }
-    public static (string Title, int Runtime, double Price, double FilmRating, int ReleaseYear) GetFilmInfo()
+    public static (string Title, int Runtime, double Price, double FilmRating, int ReleaseYear, string director) GetFilmInfo()
     {
         string title;
         do
@@ -181,7 +186,32 @@ static class AdminsManage
         {
             Console.Write($"Enter a valid release year between 1800 and {DateTime.Now.Year}: ");
         }
+        string director;
+        do
+        {
+            Console.Write("Enter the film director: ");
+            director = Console.ReadLine()!;
+        } while (string.IsNullOrWhiteSpace(director));
 
-        return (title, runtime, price, filmRating, releaseYear);
+        return (title, runtime, price, filmRating, releaseYear, director);
+    }
+
+    public static List<string> GenreList()
+    {
+        System.Console.WriteLine("Enter the genre for this movie\n if there are multiple space them with (,)");
+        string genrestring = Console.ReadLine()!;
+        List<string> genresList;
+
+        if (genrestring!.Contains(","))
+        {
+            genresList = genrestring.Split(",").Select(genre => genre.Trim()).ToList();
+        }
+        else
+        {
+            genresList = new List<string> { genrestring.Trim() };
+        }
+        // System.Console.WriteLine($"{string.Join(" - ", genresList)}");
+
+        return genresList;
     }
 }

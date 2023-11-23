@@ -52,21 +52,35 @@ class Program
                     }
                 case "SAVE":
                     {
-                        Film myFilm = new Film(
-                        title: "Inception",
-                        runtime: 148,
-                        price: 10.99,
-                        filmrating: 4.5,
-                        ReleaseYear: 2000,
-                        genres: new List<string> { "Sci-Fi", "Action", "Thriller" },
-                        director: "Christopher Nolan",
-                        cinemaAudience: new List<string> { },
-                        DateAndAuditorium: new Dictionary<DateTime, string>());
-                        System.Console.WriteLine("object created");
-                        myFilm.AddDateTimeAndAuditorium();
-                        System.Console.WriteLine(myFilm.ShowDate());
 
-                        FilmSave.AddToJson(myFilm);
+                        string genrestring = Console.ReadLine();
+                        List<string> genresList;
+
+                        if (genrestring.Contains(","))
+                        {
+                            genresList = genrestring.Split(",").Select(genre => genre.Trim()).ToList();
+                        }
+                        else
+                        {
+                            genresList = new List<string> { genrestring.Trim() };
+                        }
+                        System.Console.WriteLine($"{string.Join(" - ", genresList)}");
+
+                        // Film myFilm = new Film(
+                        // title: "Inception",
+                        // runtime: 148,
+                        // price: 10.99,
+                        // filmrating: 4.5,
+                        // ReleaseYear: 2000,
+                        // genres: new List<string> { "Sci-Fi", "Action", "Thriller" },
+                        // director: "Christopher Nolan",
+                        // cinemaAudience: ,
+                        // DateAndAuditorium: new Dictionary<DateTime, string>());
+                        // System.Console.WriteLine("object created");
+                        // myFilm.AddDateTimeAndAuditorium();
+                        // System.Console.WriteLine(myFilm.ShowDate());
+
+                        // FilmSave.AddToJson(myFilm);
 
                         return;
 
