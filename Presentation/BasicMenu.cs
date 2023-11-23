@@ -1,3 +1,5 @@
+using System.Data;
+
 static class BasicMenu
 {
     public static List<string> MenuBasic(List<string> options, string MenuName)
@@ -10,14 +12,13 @@ static class BasicMenu
         string line = new string('=', Console.WindowWidth);
 
 
-        do 
+        do
         {
 
-            Console.Clear();
-            System.Console.WriteLine(line);
-            CreateTitleASCII();
-            System.Console.WriteLine(line);
+
+            ShowBasics();
             System.Console.WriteLine(MenuName);
+
             System.Console.WriteLine("menu opties");
 
 
@@ -47,7 +48,7 @@ Druk op ESC om te vertrekken.
                 selectedIndex++;
             }
 
-        } while (keyInfo.Key != ConsoleKey.Enter & keyInfo.Key != ConsoleKey.Escape);
+        } while (keyInfo.Key != ConsoleKey.Enter && keyInfo.Key != ConsoleKey.Escape);
 
         string Keyleaving;
         if (keyInfo.Key == ConsoleKey.Escape)
@@ -55,8 +56,18 @@ Druk op ESC om te vertrekken.
             Keyleaving = "escape";
         }
         else Keyleaving = "enter";
-        List<string> ToReturn = new() {Keyleaving, options[selectedIndex]};
+        List<string> ToReturn = new() { Keyleaving, options[selectedIndex] };
         return ToReturn;
+    }
+
+    public static void ShowBasics()
+    {
+        string line = new string('=', Console.WindowWidth);
+
+        Console.Clear();
+        System.Console.WriteLine(line);
+        CreateTitleASCII();
+        System.Console.WriteLine(line);
     }
 
     public static void CreateTitleASCII()

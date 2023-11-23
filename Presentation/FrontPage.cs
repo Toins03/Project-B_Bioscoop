@@ -2,14 +2,27 @@ class FrontPage
 {
     public static void MainMenu()
     {
+        Customer currentCustomer = null!;
+
         while (true)
         {
-            List<string> options = new List<string>
+            List<string> options = new List<string> { };
+            if (currentCustomer is null)
+            {
+                options.Add("inloggen");
+                options.Add("registreren");
+            }
+            else if (currentCustomer is Customer)
+            {
+                options.Add("zie persoonlijke informatie");
+                options.Add("uitloggen");
+            }
+
+            options.AddRange(new List<string>
                     {
-            "inloggen",
             "film kiezen",
             "bioscoop informatie"
-                    };
+                    });
 
             int selectedIndex = 0;
 
@@ -49,21 +62,25 @@ Druk op ESC om te vertrekken.
                 {
                     selectedIndex++;
                 }
-            } while (keyInfo.Key != ConsoleKey.Enter & keyInfo.Key != ConsoleKey.Escape);
-            
+            } while (keyInfo.Key != ConsoleKey.Enter && keyInfo.Key != ConsoleKey.Escape);
+
             if (keyInfo.Key == ConsoleKey.Escape)
             {
-                Console.WriteLine(" SSee you!");
+                System.Console.WriteLine(" SSee you!");
                 break;
             }
-            
+
             Console.WriteLine("je hebt dit geselecteerd: " + options[selectedIndex]);
             Console.ReadKey();
             Console.Clear();
 
             if (options[selectedIndex] == "inloggen")
             {
-                LogIn.LogInMenu();
+                currentCustomer = LogIn.LogInMenu();
+            }
+            else if (options[selectedIndex] == "registreren")
+            {
+                currentCustomer = registreren.RegistreerMenu();
             }
             else if (options[selectedIndex] == "bioscoop informatie")
             {
@@ -72,6 +89,20 @@ Druk op ESC om te vertrekken.
             else if (options[selectedIndex] == "film kiezen")
             {
                 ChooseMovie.Films_kiezen();
+            }
+            else if (options[selectedIndex] == "uitloggen")
+            {
+                Console.WriteLine("Weet je zeker dat je wilt uitloggen? Zo ja typ in ja. zo nee typ iets anders in.");
+                string response = Console.ReadLine()!;
+                if (response is null) continue;
+                else if (response.ToLower() == "ja" ^ response.ToLower() == "y")
+                {
+                    currentCustomer = null!;
+                }
+            }
+            else if (options[selectedIndex] == "zie persoonlijke informatie")
+            {
+                ViewCustomerInfo.ViewInfoMenu(currentCustomer);
             }
         }
     }

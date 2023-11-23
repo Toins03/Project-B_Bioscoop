@@ -4,7 +4,7 @@ static class LogIn
     public static string user_json = "User_info.json";
 
 
-    public static void LogInMenu()
+    public static Customer LogInMenu()
     {
         string line = new string('=', Console.WindowWidth);
         Console.Clear();
@@ -12,6 +12,7 @@ static class LogIn
         FrontPage.CreateTitleASCII();
         System.Console.WriteLine(line);
         // add in the basic frontpage items then login data
+
         Console.WriteLine("You have decided to log in");
         Console.WriteLine("Please enter your username.");
         string username = Console.ReadLine()!;
@@ -19,19 +20,32 @@ static class LogIn
         Console.WriteLine("Please enter your password");
         string password = Console.ReadLine()!;
 
+        // check in if it is in admins else go back.
         List<Admin> admins = AdminSave.GetAdmins();
-
-        // check in if it is correct else go back.
         foreach (Admin admin in admins)
         {
-            Console.WriteLine($"{admin.Name}, {admin.Name == username} \n");
             if (username == admin.Name && password == admin.Password)
             {
                 AdminMenu.Menu(admin);
-                return;
+                return null!;
             }
         }
+
+        List<Customer> customers = Customer.LoadFromJsonFile();
+
+        foreach (Customer customer in customers)
+        {
+            if (customer.UserName == username && customer.Password == password)
+            {
+                System.Console.WriteLine("You have successfully logged in.");
+                System.Console.WriteLine($"Welcome back, {customer.UserName}");
+                return customer;
+            }
+        }
+
         Console.WriteLine("The username or password are incorrect");
         Console.ReadKey();
+        return null!;
+
     }
 }

@@ -1,5 +1,5 @@
-class SuperAdmin: Admin
+class SuperAdmin : Admin
 {
-    public SuperAdmin(string name, string password): base(name, password, adminID: 0)
-    {}
+    public SuperAdmin(string name, string password) : base(name, password, adminID: 0)
+    { }
 }

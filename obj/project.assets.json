@@ -6046,11 +6046,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\valdi\\OneDrive\\Bureaublad\\opdracht tree\\Nieuwe map (2)\\Project-B_Bioscoop-rowantest\\Project-B_Bioscoop\\Project-B_Bioscoop.csproj",
+      "projectUniqueName": "C:\\Users\\valdi\\OneDrive\\Bureaublad\\opdracht tree\\project B versions 1.2\\Project-B_Bioscoop-jahlanitest\\Project-B_Bioscoop\\Project-B_Bioscoop.csproj",
       "projectName": "Project-B_Bioscoop",
-      "projectPath": "C:\\Users\\valdi\\OneDrive\\Bureaublad\\opdracht tree\\Nieuwe map (2)\\Project-B_Bioscoop-rowantest\\Project-B_Bioscoop\\Project-B_Bioscoop.csproj",
+      "projectPath": "C:\\Users\\valdi\\OneDrive\\Bureaublad\\opdracht tree\\project B versions 1.2\\Project-B_Bioscoop-jahlanitest\\Project-B_Bioscoop\\Project-B_Bioscoop.csproj",
       "packagesPath": "C:\\Users\\valdi\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\valdi\\OneDrive\\Bureaublad\\opdracht tree\\Nieuwe map (2)\\Project-B_Bioscoop-rowantest\\Project-B_Bioscoop\\obj\\",
+      "outputPath": "C:\\Users\\valdi\\OneDrive\\Bureaublad\\opdracht tree\\project B versions 1.2\\Project-B_Bioscoop-jahlanitest\\Project-B_Bioscoop\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\valdi\\AppData\\Roaming\\NuGet\\NuGet.Config"
