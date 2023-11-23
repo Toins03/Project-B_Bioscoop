@@ -30,9 +30,15 @@ class registreren
 
 
         Console.WriteLine("Please input your Email address. To go back to the front Page keep this line empty.");
-        string Email = Console.ReadLine()!;
-        if (Email is null) return null!;
-        else if (Email.Length == 0) return null!;
+        string Email;
+        while (true)
+        {
+            Email = Console.ReadLine()!;
+            if (Email is null) return null!;
+            else if (Email.Length == 0) return null!;
+            else if (EmailParser.IsEmailValid(Email)) break;
+
+        }
         ConfirmationData.Add($"Email: {Email}");
 
 

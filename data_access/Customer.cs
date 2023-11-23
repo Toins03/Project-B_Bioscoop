@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 
-public class Customer
+public class Customer: IEquatable<Customer>
 {
     public static string CustomerPath = "Customer.json";
     public int ID;
@@ -102,6 +102,45 @@ public class Customer
         }
 
         return null!;
-
     }
+
+        public override bool Equals(object? obj)
+    {
+
+        if (obj == null || GetType() != obj.GetType())
+        {
+            return false;
+        }
+        if (GetType() != obj.GetType()) return this.Equals(obj as Customer);
+        // TODO: write your implementation of Equals() here
+        return base.Equals(obj);
+    }
+
+    // override object.GetHashCode
+    public override int GetHashCode()
+    {
+        // TODO: write your implementation of GetHashCode() here
+        return base.GetHashCode();
+    }
+
+    public bool Equals(Customer? customer)
+    {
+        if (this is null && customer is null) return true;
+        else if (customer is null ^ this is null) return false;
+        else if (customer!.Name == this.Name && customer.UserName == this.UserName && customer.Password == this.Password && customer.Email == this.Email) return true;
+        else return false;
+    }
+
+    public static bool operator ==(Customer? a1, Customer a2)
+    {
+        if (a1 is null && a2 is null) return true;
+        else if (a1 is null || a2 is null) return false;
+        else return a1.Equals(a2);
+    }
+
+    public static bool operator !=(Customer? a1, Customer a2)
+    {
+        return !(a1 == a2);
+    }
+
 }
