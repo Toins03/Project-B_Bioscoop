@@ -16,11 +16,31 @@ class registreren
         else if (RealName.Length == 0) return null!;
         ConfirmationData.Add($"Real Name: {RealName}");
 
-        Console.WriteLine("Please input your username. To go back to the front Page keep this line empty.");
-        string userName = Console.ReadLine()!;
-        if (userName is null) return null!;
-        else if (userName.Length == 0) return null!;
-        ConfirmationData.Add($"Username: {userName}");
+// get list of usernames ready
+        List<Customer> current_customers = Customer.LoadFromJsonFile();
+        List<string> existingNames = new();
+        foreach (Customer customer in current_customers)
+        {
+            existingNames.Add(customer.UserName.ToLower());
+        }
+
+        string userName;
+        while (true)
+        {
+            Console.WriteLine("Please input your username. To go back to the front Page keep this line empty.");
+            userName = Console.ReadLine()!;
+            if (userName is null) return null!;
+            else if (userName.Length == 0) return null!;
+            else if (existingNames.Contains(userName.ToLower())) 
+            {
+                Console.WriteLine("Die gebruikersnaam is al genomen! kies een nieuwe.");
+            }
+            else
+            {
+                ConfirmationData.Add($"UserName: {userName}");
+                break;
+            }
+        }
 
         Console.WriteLine("Please input your Password. To go back to the front Page keep this line empty.");
         string Password = Console.ReadLine()!;

@@ -12,6 +12,11 @@ class FrontPage
                 options.Add("inloggen");
                 options.Add("registreren");
             }
+            else if (currentCustomer is Customer)
+            {
+                options.Add("zie persoonlijke informatie");
+                options.Add("uitloggen");
+            }
 
             options.AddRange( new List<string>
                     {
@@ -84,6 +89,20 @@ Druk op ESC om te vertrekken.
             else if (options[selectedIndex] == "film kiezen")
             {
                 ChooseMovie.Films_kiezen();
+            }
+            else if (options[selectedIndex] == "uitloggen")
+            {
+                Console.WriteLine("Weet je zeker dat je wilt uitloggen? Zo ja typ in ja. zo nee typ iets anders in.");
+                string response = Console.ReadLine()!;
+                if (response is null) continue;
+                else if (response.ToLower() == "ja" ^ response.ToLower() == "y") 
+                {
+                    currentCustomer = null!;
+                }
+            }
+            else if (options[selectedIndex] == "zie persoonlijke informatie")
+            {
+                ViewCustomerInfo.ViewInfoMenu(currentCustomer);
             }
         }
     }
