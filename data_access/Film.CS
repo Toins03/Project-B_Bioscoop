@@ -13,7 +13,7 @@ public class Film
     public int FilmRunTime;
     public double FilmPrice = 0;
     public double FilmRating = 5;
-    public List<string> CinemaAudience = new() { };
+    public List<Customer> CinemaAudience = new() { };
 
     public Dictionary<string, string> DateAndAuditorium = new Dictionary<string, string>();
 
@@ -29,7 +29,7 @@ public class Film
     int ReleaseYear,
     List<string> genres = null!,
     string director = "unknown",
-    List<string> cinemaAudience = null!,
+    List<Customer> cinemaAudience = null!,
     Dictionary<string, string> DateAndAuditorium = null!)
     {
         this.Genres = new List<string>() { };
@@ -72,7 +72,7 @@ public class Film
     public void AddCinemaAudience(Customer customer)
     {
 
-        CinemaAudience.Add("Customer ID " + customer.ID + " Customer Name " + customer.Name);
+        CinemaAudience.Add(customer);
     }
 
     public void ChangeRating(double newRating)
