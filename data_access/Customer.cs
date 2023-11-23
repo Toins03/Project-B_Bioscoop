@@ -2,10 +2,11 @@ using Newtonsoft.Json;
 
 public class Customer
 {
+    public static string CustomerPath = "Customer.json";
     public int ID;
     public string Name;
     public string UserName;
-    private string Password;
+    public string Password {get;}
     public string Email;
     public string ConfirmationCode;
     public static int Counter { get; private set; } = 1;
@@ -33,6 +34,17 @@ public class Customer
         Counter++;
     }
 
+    public Customer(string name, string username, string password, string email)
+    {
+        Name = name;
+        UserName = username;
+        Password = password;
+        Email = email;
+        ConfirmationCode = "none";
+        ID = Counter;
+        Counter++;
+    }
+
 
     // alle eigenschappen van customer word naar Customer.json geschreven
     public void SaveToJsonFile()
@@ -48,17 +60,17 @@ public class Customer
         string json = JsonConvert.SerializeObject(customers);
 
         // Write the JSON to the file
-        File.WriteAllText("Customer.json", json);
+        File.WriteAllText(CustomerPath, json);
     }
 
     public static List<Customer> LoadFromJsonFile()
     {
-        if (File.Exists("Customer.json"))
+        if (File.Exists(CustomerPath))
         {
             try
             {
                 // Read the JSON from the file
-                string json = File.ReadAllText("Customer.json");
+                string json = File.ReadAllText(CustomerPath);
 
                 // Deserialize the JSON into a list of Customer objects
                 List<Customer> customers = JsonConvert.DeserializeObject<List<Customer>>(json)!;
@@ -73,7 +85,7 @@ public class Customer
         }
         else
         {
-            Console.WriteLine($"File not found: {"Customer.json"}");
+            Console.WriteLine($"File not found: {CustomerPath}");
         }
 
         return null!;

@@ -1,0 +1,12 @@
+[
+  {
+    "Name": "Test Admin2",
+    "Password": "password",
+    "AdminID": 1
+  },
+  {
+    "Name": "testadmin2",
+    "Password": "54321",
+    "AdminID": 1
+  }
+]

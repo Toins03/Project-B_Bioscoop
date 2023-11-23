@@ -17,6 +17,12 @@ static class AdminSave
                 WriteAdminList(to_make);
                 return to_make;
             }
+            else if (admins.Count == 0)
+            {
+                List<Admin> to_make = new() {new Admin(name: "super", password: "12345", adminID: 0)};
+                WriteAdminList(to_make);
+                return to_make;
+            }
             else 
             {
                 return admins;
@@ -97,7 +103,7 @@ static class AdminSave
         }
     }
 
-    private static void WriteAdminList(List<Admin> ToWrite)
+    public static void WriteAdminList(List<Admin> ToWrite)
     {
         StreamWriter writer = new(PathName);
         string list_to_json = JsonConvert.SerializeObject(ToWrite, Formatting.Indented);

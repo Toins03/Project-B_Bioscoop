@@ -52,7 +52,7 @@ class Admin: IEquatable<Admin>, IComparable<Admin>
     public bool Equals(Admin? admin)
     {
         if (this is null && admin is null) return true;
-        else if (admin is null ^ this is null) return false;
+        else if (admin is null || this is null) return false;
         else if (admin!.Name == this.Name && admin.AdminID == this.AdminID && admin.Password == this.Password) return true;
         else return false;
     }

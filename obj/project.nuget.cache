@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "d8Rxl93d6SW6A7geDNBRJhoH/8P8hAmvz7p/CJr9gKlkVcNQESAAr9/FDvja9pNP14Swqukv/4uWljAiO6vYSg==",
+  "dgSpecHash": "dZgdNPwFd8jMGALWVcnpDyPDzVLqDAdhtLIJ71pezqtIEjMTnd1RqXTqe7bMX2LhNfY2D1UBrhVnxgbuuskWeg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\rowan\\OneDrive\\Documents\\school 2023-2024\\project b\\groepsopdracht cinema\\cinema_gitfiles\\Project-B_Bioscoop\\project-b_bioscoop.csproj",
+  "projectFilePath": "C:\\Users\\rowan\\OneDrive\\Documents\\school 2023-2024\\project b\\groepsopdracht cinema\\cinema_gitfiles\\Project-B_Bioscoop\\Project-B_Bioscoop.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\rowan\\.nuget\\packages\\coverlet.collector\\3.1.2\\coverlet.collector.3.1.2.nupkg.sha512",
     "C:\\Users\\rowan\\.nuget\\packages\\microsoft.codecoverage\\17.1.0\\microsoft.codecoverage.17.1.0.nupkg.sha512",

@@ -4,7 +4,7 @@ static class LogIn
     public static string user_json = "User_info.json";
 
 
-    public static void LogInMenu()
+    public static Customer LogInMenu()
     {
         string line = new string('=', Console.WindowWidth);
         Console.Clear();
@@ -24,14 +24,28 @@ static class LogIn
         List<Admin> admins = AdminSave.GetAdmins();
         foreach (Admin admin in admins)
         {
-            Console.WriteLine($"{admin.Name}, {admin.Name == username} \n");
             if (username == admin.Name && password == admin.Password)
             {
                 AdminMenu.Menu(admin);
-                return;
+                return null!;
             }
         }
+
+        List<Customer> customers = Customer.LoadFromJsonFile();
+
+        foreach (Customer customer in customers)
+        {
+            if (customer.UserName == username && customer.Password == password)
+            {
+                System.Console.WriteLine("You have successfully logged in.");
+                System.Console.WriteLine($"Welcome back, {customer.UserName}");
+                return customer;
+            }
+        }
+
         Console.WriteLine("The username or password are incorrect");
         Console.ReadKey();
+        return null!;
+
     }
 }

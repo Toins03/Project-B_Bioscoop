@@ -2,14 +2,22 @@ class FrontPage
 {
     public static void MainMenu()
     {
+        Customer currentCustomer = null!;
+
         while (true)
         {
-            List<string> options = new List<string>
+            List<string> options = new List<string>{};
+            if (currentCustomer is null) 
+            {
+                options.Add("inloggen");
+                options.Add("registreren");
+            }
+
+            options.AddRange( new List<string>
                     {
-            "inloggen",
             "film kiezen",
             "bioscoop informatie"
-                    };
+                    });
 
             int selectedIndex = 0;
 
@@ -53,7 +61,7 @@ Druk op ESC om te vertrekken.
             
             if (keyInfo.Key == ConsoleKey.Escape)
             {
-                Console.WriteLine(" SSee you!");
+                System.Console.WriteLine(" SSee you!");
                 break;
             }
             
@@ -63,7 +71,11 @@ Druk op ESC om te vertrekken.
 
             if (options[selectedIndex] == "inloggen")
             {
-                LogIn.LogInMenu();
+                currentCustomer = LogIn.LogInMenu();
+            }
+            else if(options[selectedIndex] == "registreren") 
+            {
+                currentCustomer = registreren.RegistreerMenu();
             }
             else if (options[selectedIndex] == "bioscoop informatie")
             {
