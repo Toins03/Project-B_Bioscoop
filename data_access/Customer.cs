@@ -1,38 +1,50 @@
+using System;
+using System.IO;
+using System.Collections.Generic;
 using Newtonsoft.Json;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 public class Customer
 {
     public int ID;
     public string Name;
-    public string UserName;
-    private string Password;
     public string Email;
     public string ConfirmationCode;
     public static int Counter { get; private set; } = 1;
 
 
     [JsonConstructor]
-    public Customer(int ID, string name, string username, string password, string email, string confirmationcode)
+    public Customer(int ID, string name, string email, string confirmationcode)
     {
         Name = name;
-        UserName = username;
-        Password = password;
         Email = email;
         ConfirmationCode = confirmationcode;
         this.ID = ID;
     }
 
-    public Customer(string name, string confirmationcode, string username = "none ", string password = "none", string email = "none")
+    public Customer(string name, string email, string confirmationcode)
     {
         Name = name;
-        UserName = username;
-        Password = password;
         Email = email;
         ConfirmationCode = confirmationcode;
         ID = Counter;
         Counter++;
     }
-
+    public static void CreateCustomer(string MovieTitle, string confirmationCode)
+    {
+        Console.WriteLine("Voer je naam in: ");
+        string name = Console.ReadLine()!;
+        string email;
+        do
+        {
+            Console.WriteLine("Voer je email in: ");
+            email = Console.ReadLine()!;
+            Console.WriteLine("Dit is geen geldig email adres");
+        } while (!email.Contains("@"));
+        Customer newCustomer = new Customer(name, email, confirmationCode);
+        newCustomer.SaveToJsonFile();
+        FilmSave.AddCustomerToFilm(MovieTitle, newCustomer);
+    }
 
     // alle eigenschappen van customer word naar Customer.json geschreven
     public void SaveToJsonFile()
@@ -45,7 +57,7 @@ public class Customer
         customers.Add(this); // Add the current customer to the list
 
         // Serialize the list of customers to JSON
-        string json = JsonConvert.SerializeObject(customers);
+        string json = JsonConvert.SerializeObject(customers, Formatting.Indented);
 
         // Write the JSON to the file
         File.WriteAllText("Customer.json", json);
@@ -77,6 +89,5 @@ public class Customer
         }
 
         return null!;
-
     }
 }
