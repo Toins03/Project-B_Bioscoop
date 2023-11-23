@@ -14,7 +14,7 @@ static class FilmSave
             reader.Close();
             return films;
         }
-        else return new List<Film> {};
+        else return new List<Film> { };
     }
 
     public static void PrintAllFilms()
@@ -68,7 +68,7 @@ static class FilmSave
                 break;
             }
         }
-        
+
         if (ToDelete is null)
         {
             Console.WriteLine("The film with this Name does not exist!");
@@ -82,15 +82,14 @@ static class FilmSave
         }
     }
 
-    public static void AddCustomerToFilm(Film filmtoaddto, Customer customertoadd)
+    public static void AddCustomerToFilm(string filmtoaddto, Customer customertoadd)
     {
         List<Film> films = ReadFilms();
-        System.Console.WriteLine(filmtoaddto.Title);
+        System.Console.WriteLine(filmtoaddto);
 
         foreach (Film film in films)
         {
-            System.Console.WriteLine(film.Title == filmtoaddto.Title);
-            if (film.Title == filmtoaddto.Title)
+            if (film.Title == filmtoaddto)
             {
                 film.AddCinemaAudience(customertoadd);
             }
@@ -103,5 +102,6 @@ static class FilmSave
         StreamWriter writer = new(PathName);
         string list_to_json = JsonConvert.SerializeObject(ToWrite, Formatting.Indented);
         writer.Write(list_to_json);
-        writer.Close();    }
+        writer.Close();
+    }
 }
