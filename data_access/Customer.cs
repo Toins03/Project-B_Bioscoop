@@ -63,6 +63,19 @@ public class Customer
         File.WriteAllText(CustomerPath, json);
     }
 
+    public static void AddCustomerToJson(Customer? toAdd)
+    {
+        if (File.Exists(CustomerPath) && toAdd is not null)
+        {
+            List<Customer> customers = LoadFromJsonFile();
+            customers.Add(toAdd);
+            StreamWriter writer = new StreamWriter(CustomerPath);
+            string toJson = JsonConvert.SerializeObject(customers, Formatting.Indented);
+            writer.Write(toJson);
+            writer.Close();
+        }
+    }
+
     public static List<Customer> LoadFromJsonFile()
     {
         if (File.Exists(CustomerPath))

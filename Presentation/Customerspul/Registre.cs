@@ -39,6 +39,8 @@ class registreren
 
         Customer new_customer = new Customer(name: RealName, username: userName, password: Password, email:Email);
 
+        Customer.AddCustomerToJson(new_customer);
+
         return new_customer!;
     }
 }
