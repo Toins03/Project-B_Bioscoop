@@ -1,11 +1,10 @@
 class ChooseMovie : FrontPage
 {
-    static string Title { get; set; } = "";
-    public static void Films_kiezen()
+    static string movieTitle = "";
+    public static void Films_kiezen(Customer currentCustomer)
     {
         MovieWriteAndLoad film_menu = new("Movies.json");
         List<Film> options = film_menu.ReadFilms();
-
         int selectedIndex = 0;
 
         ConsoleKeyInfo keyInfo;
@@ -24,8 +23,7 @@ class ChooseMovie : FrontPage
                 if (i == selectedIndex)
                 {
                     // display test van valdier
-                    Console.WriteLine("--> " + options[i].Title + " " + options[i].ShowDate());
-                    Title = options[i].Title;
+                    Console.WriteLine("--> " + options[i].Title + " " + options[i].FirstDateAndAuditoriumKey);
                 }
                 else
                 {
@@ -48,20 +46,15 @@ class ChooseMovie : FrontPage
             {
 
             }
-        } while (keyInfo.Key != ConsoleKey.Enter && keyInfo.Key != ConsoleKey.Escape);
-
-        if (keyInfo.Key == ConsoleKey.Escape)
-        {
-            System.Console.WriteLine("Je verlaat het film scherm!");
-            return;
-        }
+        } while (keyInfo.Key != ConsoleKey.Enter);
 
         MovieWriteAndLoad.printfilmInfo(options[selectedIndex]);
         System.Console.WriteLine("Druk op Enter om stoelen te reserveren voor deze film \nDruk een ander willekeurige toets om terug te gaan naar de vorige pagina");
-        MovieConfirm();
+        movieTitle = options[selectedIndex].Title;
+        MovieConfirm(currentCustomer);
     }
 
-    public static void MovieConfirm()
+    public static void MovieConfirm(Customer currentCustomer)
     {
         ConsoleKeyInfo keyInfo;
         keyInfo = Console.ReadKey();
@@ -69,11 +62,11 @@ class ChooseMovie : FrontPage
         {
             Console.Clear();
             AuditoriumMap150 map500 = new AuditoriumMap150();
-            map500.TakeSeats(Title, false);
+            map500.TakeSeats(movieTitle, currentCustomer, false);
         }
         else if (keyInfo.Key != ConsoleKey.Enter)
         {
-            Films_kiezen();
+            Films_kiezen(currentCustomer);
         }
     }
 }
