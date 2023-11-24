@@ -22,7 +22,7 @@ public abstract class CinemaMap
 
     protected abstract void CreateCinemaMap();
 
-    public void TakeSeats(string MovieTitle, bool IsAddmin)
+    public void TakeSeats(string MovieTitle, Customer currentCustomer, bool IsAddmin)
     {
 
         ChosenMovie = MovieTitle;
@@ -56,7 +56,8 @@ public abstract class CinemaMap
         while (keyInfo.Key != ConsoleKey.Enter);
         System.Console.WriteLine($"{ReservedString} {GenerateConfirmationCode()}");
         WriteCinemaMapToJson();
-        Console.WriteLine("\nWil je terug naar de hoofdpagina toets 'enter' wil je stoppen toets een willekeurig knop");
+        Customer.CreateCustomer(MovieTitle, GenerateConfirmationCode(), currentCustomer);
+        Console.WriteLine("\n\nWil je terug naar de hoofdpagina toets 'enter' wil je stoppen toets een willekeurig knop\n");
         keyInfo = Console.ReadKey();
         if (keyInfo.Key == ConsoleKey.Enter)
         {
