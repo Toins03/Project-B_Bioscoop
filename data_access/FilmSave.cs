@@ -62,7 +62,7 @@ static class FilmSave
         Film ToDelete = null!;
         foreach (Film film in films)
         {
-            if (film.Title == filmName)
+            if (true)
             {
                 ToDelete = film;
                 break;
@@ -82,15 +82,14 @@ static class FilmSave
         }
     }
 
-    public static void AddCustomerToFilm(Film filmtoaddto, Customer customertoadd)
+    public static void AddCustomerToFilm(string filmtoaddto, Customer customertoadd)
     {
         List<Film> films = ReadFilms();
-        System.Console.WriteLine(filmtoaddto.Title);
+        System.Console.WriteLine(filmtoaddto);
 
         foreach (Film film in films)
         {
-            System.Console.WriteLine(film.Title == filmtoaddto.Title);
-            if (film.Title == filmtoaddto.Title)
+            if (film.Title == filmtoaddto)
             {
                 film.AddCinemaAudience(customertoadd);
             }
@@ -98,7 +97,7 @@ static class FilmSave
         WritefilmList(films);
     }
 
-    public static void WritefilmList(List<Film> ToWrite)
+    private static void WritefilmList(List<Film> ToWrite)
     {
         StreamWriter writer = new(PathName);
         string list_to_json = JsonConvert.SerializeObject(ToWrite, Formatting.Indented);
