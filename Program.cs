@@ -29,6 +29,7 @@ class Program
                         director: "Christopher Nolan",
                         cinemaAudience: new List<string> { },
                         DateAndAuditorium: new Dictionary<string, string>());
+                        
                         System.Console.WriteLine("object created");
                         myFilm.AddDateTimeAndAuditorium("1");
                         FilmSave.AddToJson(myFilm);
