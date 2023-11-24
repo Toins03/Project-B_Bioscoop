@@ -45,6 +45,32 @@ public class Customer : IEquatable<Customer>
         Counter++;
     }
 
+    public static void CreateCustomer(string MovieTitle, string confirmationCode, Customer currentCustomer)
+    {
+        if (currentCustomer != null)
+        {
+            Console.WriteLine($"Ingelogd als: {currentCustomer.Name}");
+            Console.WriteLine($"Email: {currentCustomer.Email}");
+            Console.WriteLine($"Gebruikersnaam: {currentCustomer.UserName}");
+            FilmSave.AddCustomerToFilm(MovieTitle, currentCustomer);
+        }
+        else
+        {
+            Console.WriteLine("Voer je naam in: ");
+            string name = Console.ReadLine()!;
+            string email;
+            do
+            {
+                Console.WriteLine("Voer je email in: ");
+                email = Console.ReadLine()!;
+            } while (!email.Contains("@"));
+
+            Customer newCustomer = new Customer(name, name, email, confirmationCode);
+            newCustomer.SaveToJsonFile();
+            FilmSave.AddCustomerToFilm(MovieTitle, newCustomer);
+        }
+    }
+
 
     // alle eigenschappen van customer word naar Customer.json geschreven
     public void SaveToJsonFile()
