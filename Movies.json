@@ -1,43 +1,5 @@
 [
   {
-    "Title": "Oppenheimer",
-    "Genres": [
-      "Drama",
-      "Biografie"
-    ],
-    "Director": "Christopher Nolan",
-    "ReleaseYear": 2023,
-    "FilmRunTime": 180,
-    "FilmPrice": 17.0,
-    "FilmRating": 9.0,
-    "CinemaAudience": [],
-    "DateAndAuditorium": {}
-  },
-  {
-    "Title": "Barbie",
-    "Genres": [
-      "Komedie"
-    ],
-    "Director": "Greta Gerwig",
-    "ReleaseYear": 2023,
-    "FilmRunTime": 114,
-    "FilmPrice": 18.0,
-    "FilmRating": 9.0,
-    "CinemaAudience": [],
-    "DateAndAuditorium": {}
-  },
-  {
-    "Title": "Mario",
-    "Genres": [],
-    "Director": "unknown",
-    "ReleaseYear": 4,
-    "FilmRunTime": 2,
-    "FilmPrice": 1.0,
-    "FilmRating": 3.0,
-    "CinemaAudience": [],
-    "DateAndAuditorium": {}
-  },
-  {
     "Title": "Inception",
     "Genres": [
       "Sci-Fi",
@@ -49,39 +11,11 @@
     "FilmRunTime": 148,
     "FilmPrice": 10.99,
     "FilmRating": 4.5,
-    "CinemaAudience": [],
-    "DateAndAuditorium": {}
-  },
-  {
-    "Title": "Inception",
-    "Genres": [
-      "Sci-Fi",
-      "Action",
-      "Thriller"
+    "CinemaAudience": [
+      "Customer ID 1 Customer Name Valdier",
+      "Customer ID 1 Customer Name Valdier",
+      "Customer ID 15 Customer Name valdier"
     ],
-    "Director": "Christopher Nolan",
-    "ReleaseYear": 2000,
-    "FilmRunTime": 148,
-    "FilmPrice": 10.99,
-    "FilmRating": 4.5,
-    "CinemaAudience": [],
-    "DateAndAuditorium": {
-      "2023-11-23T12:00:00": "3"
-    }
-  },
-  {
-    "Title": "Inception",
-    "Genres": [
-      "Sci-Fi",
-      "Action",
-      "Thriller"
-    ],
-    "Director": "Christopher Nolan",
-    "ReleaseYear": 2000,
-    "FilmRunTime": 148,
-    "FilmPrice": 10.99,
-    "FilmRating": 4.5,
-    "CinemaAudience": [],
     "DateAndAuditorium": {
       "2023-11-24T13:00:00": "2"
     }

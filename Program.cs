@@ -98,11 +98,11 @@ class Program
 
                 case "TESTCUSTOMERTOFILM":
                     {
-                        List<Film> films = FilmSave.ReadFilms();
-                        List<Customer> customers = Customer.LoadFromJsonFile();
-                        FilmSave.AddCustomerToFilm(films[0], customers[2]);
-                        System.Console.WriteLine("Done");
-                        Console.ReadKey();
+                        // List<Film> films = FilmSave.ReadFilms();
+                        // List<Customer> customers = Customer.LoadFromJsonFile();
+                        // FilmSave.AddCustomerToFilm(films[0], customers[2]);
+                        // System.Console.WriteLine("Done");
+                        // Console.ReadKey();
                         break;
                     }
                 default:

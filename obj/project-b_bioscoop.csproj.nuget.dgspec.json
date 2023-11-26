@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\valdi\\OneDrive\\Bureaublad\\opdracht tree\\project B versions 1.2\\Project-B_Bioscoop-jahlanitest\\Project-B_Bioscoop\\project-b_bioscoop.csproj": {}
+    "C:\\Users\\valdi\\OneDrive\\Bureaublad\\project 2\\Project-B_Bioscoop\\project-b_bioscoop.csproj": {}
   },
   "projects": {
-    "C:\\Users\\valdi\\OneDrive\\Bureaublad\\opdracht tree\\project B versions 1.2\\Project-B_Bioscoop-jahlanitest\\Project-B_Bioscoop\\project-b_bioscoop.csproj": {
+    "C:\\Users\\valdi\\OneDrive\\Bureaublad\\project 2\\Project-B_Bioscoop\\project-b_bioscoop.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\valdi\\OneDrive\\Bureaublad\\opdracht tree\\project B versions 1.2\\Project-B_Bioscoop-jahlanitest\\Project-B_Bioscoop\\project-b_bioscoop.csproj",
+        "projectUniqueName": "C:\\Users\\valdi\\OneDrive\\Bureaublad\\project 2\\Project-B_Bioscoop\\project-b_bioscoop.csproj",
         "projectName": "project-b_bioscoop",
-        "projectPath": "C:\\Users\\valdi\\OneDrive\\Bureaublad\\opdracht tree\\project B versions 1.2\\Project-B_Bioscoop-jahlanitest\\Project-B_Bioscoop\\project-b_bioscoop.csproj",
+        "projectPath": "C:\\Users\\valdi\\OneDrive\\Bureaublad\\project 2\\Project-B_Bioscoop\\project-b_bioscoop.csproj",
         "packagesPath": "C:\\Users\\valdi\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\valdi\\OneDrive\\Bureaublad\\opdracht tree\\project B versions 1.2\\Project-B_Bioscoop-jahlanitest\\Project-B_Bioscoop\\obj\\",
+        "outputPath": "C:\\Users\\valdi\\OneDrive\\Bureaublad\\project 2\\Project-B_Bioscoop\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\valdi\\AppData\\Roaming\\NuGet\\NuGet.Config"

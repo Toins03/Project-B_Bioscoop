@@ -23,7 +23,7 @@ class ChooseMovie : FrontPage
                 if (i == selectedIndex)
                 {
                     // display test van valdier
-                    Console.WriteLine("--> " + options[i].Title + " " + options[i].FirstDateAndAuditoriumKey);
+                    Console.WriteLine("--> " + options[i].Title + " " + options[i].ShowDate());
                 }
                 else
                 {
