@@ -67,6 +67,48 @@ public abstract class CinemaMap
         else
             return;
     }
+    public void TakeSeats(bool IsAddmin)
+    {
+
+        CreateCinemaMap();
+        LoadCinemaMapFromJson();
+        Console.Clear();
+        do
+        {
+            System.Console.WriteLine($"{Guide}");
+            Console.SetCursorPosition(0, 7);
+            for (int row = 0; row < CinemaMap1.Count; row++)
+            {
+                for (int column = 0; column < CinemaMap1[row].Count; column++)
+                {
+
+                    if (row == selectedRow && column == selectedColumn)
+                    {
+                        Console.Write($"\x1b[37m[POS]\x1b[0m");
+                    }
+                    else
+                    {
+                        Console.Write(CinemaMap1[row][column]);
+                    }
+                }
+                Console.WriteLine();
+            }
+            PrintSelectedSeatsLegenda();
+            keyInfo = Console.ReadKey();
+            Keyboard_input(keyInfo, IsAddmin);
+        }
+        while (keyInfo.Key != ConsoleKey.Enter);
+        WriteCinemaMapToJson();
+        Console.WriteLine("\n\nWil je terug naar de hoofdpagina toets 'enter' wil je stoppen toets een willekeurig knop\n");
+        keyInfo = Console.ReadKey();
+        if (keyInfo.Key == ConsoleKey.Enter)
+        {
+            Console.Clear();
+            FrontPage.MainMenu();
+        }
+        else
+            return;
+    }
 
     private void Keyboard_input(ConsoleKeyInfo keyInfo, bool IsAddmin)
     {
