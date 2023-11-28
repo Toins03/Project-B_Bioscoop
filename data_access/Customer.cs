@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 
-public class Customer : IEquatable<Customer>: IEquatable<Customer>
+public class Customer : IEquatable<Customer>
 {
     public static string CustomerPath = "Customer.json";
     public int ID;
