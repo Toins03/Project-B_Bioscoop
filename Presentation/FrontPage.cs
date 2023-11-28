@@ -1,8 +1,11 @@
 class FrontPage
 {
-    public static void MainMenu()
+    public static void MainMenu(Customer customer)
     {
+
         Customer currentCustomer = null!;
+
+        if (customer is not null) currentCustomer = customer;
 
         while (true)
         {
