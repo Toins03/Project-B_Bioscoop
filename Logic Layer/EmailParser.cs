@@ -1,4 +1,4 @@
-static class EmailParser 
+static class EmailParser
 {
     public static (string recipient, string domain, string topLevelDomain) ParseEmail(string emailAddress)
     {
@@ -6,7 +6,7 @@ static class EmailParser
         if (AddressSplit.Length != 2) return (null, null, null)!;
 
         string recipient = AddressSplit[0];
-        
+
         string[] domains = AddressSplit[1].Split(".");
         if (domains.Length != 2) return (null, null, null)!;
 

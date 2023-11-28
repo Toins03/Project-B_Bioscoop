@@ -1,7 +1,7 @@
 
 class registreren
 {
-    public static string customerPath {get => Customer.CustomerPath;}
+    public static string customerPath { get => Customer.CustomerPath; }
 
     public static Customer RegistreerMenu()
     {
@@ -16,7 +16,7 @@ class registreren
         else if (RealName.Length == 0) return null!;
         ConfirmationData.Add($"Real Name: {RealName}");
 
-// get list of usernames ready
+        // get list of usernames ready
         List<Customer> current_customers = Customer.LoadFromJsonFile();
         List<string> existingNames = new();
         foreach (Customer customer in current_customers)
@@ -31,7 +31,7 @@ class registreren
             userName = Console.ReadLine()!;
             if (userName is null) return null!;
             else if (userName.Length == 0) return null!;
-            else if (existingNames.Contains(userName.ToLower())) 
+            else if (existingNames.Contains(userName.ToLower()))
             {
                 Console.WriteLine("Die gebruikersnaam is al genomen! kies een nieuwe.");
             }
@@ -63,7 +63,7 @@ class registreren
 
 
 
-        Customer new_customer = new Customer(name: RealName, username: userName, password: Password, email:Email);
+        Customer new_customer = new Customer(name: RealName, username: userName, password: Password, email: Email);
 
         Customer.AddCustomerToJson(new_customer);
 

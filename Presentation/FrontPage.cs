@@ -1,13 +1,16 @@
 class FrontPage
 {
-    public static void MainMenu()
+    public static void MainMenu(Customer customer)
     {
+
         Customer currentCustomer = null!;
+
+        if (customer is not null) currentCustomer = customer;
 
         while (true)
         {
-            List<string> options = new List<string>{};
-            if (currentCustomer is null) 
+            List<string> options = new List<string> { };
+            if (currentCustomer is null)
             {
                 options.Add("inloggen");
                 options.Add("registreren");
@@ -18,7 +21,7 @@ class FrontPage
                 options.Add("uitloggen");
             }
 
-            options.AddRange( new List<string>
+            options.AddRange(new List<string>
                     {
             "film kiezen",
             "bioscoop informatie"
@@ -63,13 +66,13 @@ Druk op ESC om te vertrekken.
                     selectedIndex++;
                 }
             } while (keyInfo.Key != ConsoleKey.Enter && keyInfo.Key != ConsoleKey.Escape);
-            
+
             if (keyInfo.Key == ConsoleKey.Escape)
             {
                 System.Console.WriteLine(" SSee you!");
                 break;
             }
-            
+
             Console.WriteLine("je hebt dit geselecteerd: " + options[selectedIndex]);
             Console.ReadKey();
             Console.Clear();
@@ -78,7 +81,7 @@ Druk op ESC om te vertrekken.
             {
                 currentCustomer = LogIn.LogInMenu();
             }
-            else if(options[selectedIndex] == "registreren") 
+            else if (options[selectedIndex] == "registreren")
             {
                 currentCustomer = registreren.RegistreerMenu();
             }
@@ -88,7 +91,21 @@ Druk op ESC om te vertrekken.
             }
             else if (options[selectedIndex] == "film kiezen")
             {
-                ChooseMovie.Films_kiezen();
+                ChooseMovie.Films_kiezen(currentCustomer);
+            }
+            else if (options[selectedIndex] == "uitloggen")
+            {
+                Console.WriteLine("Weet je zeker dat je wilt uitloggen? Zo ja typ in ja. zo nee typ iets anders in.");
+                string response = Console.ReadLine()!;
+                if (response is null) continue;
+                else if (response.ToLower() == "ja" ^ response.ToLower() == "y")
+                {
+                    currentCustomer = null!;
+                }
+            }
+            else if (options[selectedIndex] == "zie persoonlijke informatie")
+            {
+                ViewCustomerInfo.ViewInfoMenu(currentCustomer);
             }
             else if (options[selectedIndex] == "uitloggen")
             {

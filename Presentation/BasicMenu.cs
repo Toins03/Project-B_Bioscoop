@@ -12,7 +12,7 @@ static class BasicMenu
         string line = new string('=', Console.WindowWidth);
 
 
-        do 
+        do
         {
 
 
@@ -56,7 +56,7 @@ Druk op ESC om te vertrekken.
             Keyleaving = "escape";
         }
         else Keyleaving = "enter";
-        List<string> ToReturn = new() {Keyleaving, options[selectedIndex]};
+        List<string> ToReturn = new() { Keyleaving, options[selectedIndex] };
         return ToReturn;
     }
 

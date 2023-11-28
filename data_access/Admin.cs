@@ -1,11 +1,11 @@
 using Newtonsoft.Json;
 
-class Admin: IEquatable<Admin>, IComparable<Admin>
+class Admin : IEquatable<Admin>, IComparable<Admin>
 {
     public string Name;
     public string Password;
     private int _adminID;
-    public int AdminID {get => _adminID; set => _adminID = (value < 0) ? GetNewID() : value;}
+    public int AdminID { get => _adminID; set => _adminID = (value < 0) ? GetNewID() : value; }
 
     public Admin(string name, string password)
     {
@@ -13,8 +13,8 @@ class Admin: IEquatable<Admin>, IComparable<Admin>
         this.Password = password;
         this.AdminID = GetNewID();
     }
-    
-    [JsonConstructor]    
+
+    [JsonConstructor]
     public Admin(string name, string password, int adminID)
     {
         this.Name = name;
@@ -39,9 +39,9 @@ class Admin: IEquatable<Admin>, IComparable<Admin>
         }
         if (GetType() != obj.GetType()) return this.Equals(obj as Admin);
         // TODO: write your implementation of Equals() here
-        return base.Equals (obj);
+        return base.Equals(obj);
     }
-    
+
     // override object.GetHashCode
     public override int GetHashCode()
     {

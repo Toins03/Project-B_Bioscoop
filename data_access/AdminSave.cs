@@ -2,7 +2,7 @@ using Newtonsoft.Json;
 static class AdminSave
 {
     public static string PathName = "Admin_info.json";
-    
+
     public static List<Admin> GetAdmins()
     {
         if (File.Exists(PathName))
@@ -19,19 +19,25 @@ static class AdminSave
             }
             else if (admins.Count == 0)
             {
-                List<Admin> to_make = new() {new Admin(name: "super", password: "12345", adminID: 0)};
+                List<Admin> to_make = new() { new Admin(name: "super", password: "12345", adminID: 0) };
                 WriteAdminList(to_make);
                 return to_make;
             }
-            else 
+            else if (admins.Count == 0)
+            {
+                List<Admin> to_make = new() { new Admin(name: "super", password: "12345", adminID: 0) };
+                WriteAdminList(to_make);
+                return to_make;
+            }
+            else
             {
                 return admins;
             }
         }
-        else 
+        else
         {
             Console.WriteLine("Adminfile does not exist");
-            List<Admin> admins = new List<Admin>() {new Admin(name: "super", password: "12345", adminID: 0)};           
+            List<Admin> admins = new List<Admin>() { new Admin(name: "super", password: "12345", adminID: 0) };
             WriteAdminList(admins);
             return admins;
         }
@@ -68,7 +74,7 @@ static class AdminSave
             Console.WriteLine("The admin with this ID does not exist!");
             return;
         }
-        
+
         else
         {
             admins.Remove(ToDelete);
@@ -89,7 +95,7 @@ static class AdminSave
                 break;
             }
         }
-        
+
         if (ToDelete is null)
         {
             Console.WriteLine("The admin with this Name does not exist!");
@@ -108,7 +114,7 @@ static class AdminSave
         StreamWriter writer = new(PathName);
         string list_to_json = JsonConvert.SerializeObject(ToWrite, Formatting.Indented);
         writer.Write(list_to_json);
-        writer.Close();       
+        writer.Close();
     }
 
 }

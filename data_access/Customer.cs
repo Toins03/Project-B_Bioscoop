@@ -1,12 +1,12 @@
 using Newtonsoft.Json;
 
-public class Customer: IEquatable<Customer>
+public class Customer : IEquatable<Customer>: IEquatable<Customer>
 {
     public static string CustomerPath = "Customer.json";
     public int ID;
     public string Name;
     public string UserName;
-    public string Password {get;}
+    public string Password { get; }
     public string Email;
     public string ConfirmationCode;
     public static int Counter { get; private set; } = 1;
@@ -43,6 +43,32 @@ public class Customer: IEquatable<Customer>
         ConfirmationCode = "none";
         ID = Counter;
         Counter++;
+    }
+
+    public static void CreateCustomer(string MovieTitle, string confirmationCode, Customer currentCustomer)
+    {
+        if (currentCustomer != null)
+        {
+            Console.WriteLine($"Ingelogd als: {currentCustomer.Name}");
+            Console.WriteLine($"Email: {currentCustomer.Email}");
+            Console.WriteLine($"Gebruikersnaam: {currentCustomer.UserName}");
+            FilmSave.AddCustomerToFilm(MovieTitle, currentCustomer);
+        }
+        else
+        {
+            Console.WriteLine("Voer je naam in: ");
+            string name = Console.ReadLine()!;
+            string email;
+            do
+            {
+                Console.WriteLine("Voer je email in: ");
+                email = Console.ReadLine()!;
+            } while (!email.Contains("@"));
+
+            Customer newCustomer = new Customer(name, name, email, confirmationCode);
+            newCustomer.SaveToJsonFile();
+            FilmSave.AddCustomerToFilm(MovieTitle, newCustomer);
+        }
     }
 
 
@@ -104,7 +130,7 @@ public class Customer: IEquatable<Customer>
         return null!;
     }
 
-        public override bool Equals(object? obj)
+    public override bool Equals(object? obj)
     {
 
         if (obj == null || GetType() != obj.GetType())

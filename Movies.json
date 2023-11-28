@@ -1,46 +1,5 @@
 [
   {
-    "Title": "Oppenheimer",
-    "Genres": [
-      "Drama",
-      "Biografie"
-    ],
-    "Director": "Christopher Nolan",
-    "ReleaseYear": 2023,
-    "FilmRunTime": 180,
-    "FilmPrice": 17.0,
-    "FilmRating": 9.0,
-    "CinemaAudience": [],
-    "DateAndAuditorium": null,
-    "FirstDateAndAuditoriumKey": "No DateAndAuditorium information available"
-  },
-  {
-    "Title": "Barbie",
-    "Genres": [
-      "Komedie"
-    ],
-    "Director": "Greta Gerwig",
-    "ReleaseYear": 2023,
-    "FilmRunTime": 114,
-    "FilmPrice": 18.0,
-    "FilmRating": 9.0,
-    "CinemaAudience": [],
-    "DateAndAuditorium": null,
-    "FirstDateAndAuditoriumKey": "No DateAndAuditorium information available"
-  },
-  {
-    "Title": "gestoorderitus",
-    "Genres": [],
-    "Director": "rowan",
-    "ReleaseYear": 0,
-    "FilmRunTime": 3600,
-    "FilmPrice": 500.0,
-    "FilmRating": 0.0,
-    "CinemaAudience": [],
-    "DateAndAuditorium": null,
-    "FirstDateAndAuditoriumKey": "No DateAndAuditorium information available"
-  },
-  {
     "Title": "Inception",
     "Genres": [
       "Sci-Fi",
@@ -52,10 +11,57 @@
     "FilmRunTime": 148,
     "FilmPrice": 10.99,
     "FilmRating": 4.5,
+    "CinemaAudience": [
+      "Customer ID 1 Customer Name Valdier",
+      "Customer ID 1 Customer Name Valdier",
+      "Customer ID 15 Customer Name valdier"
+    ],
+    "DateAndAuditorium": {
+      "2023-11-24T13:00:00": "2"
+    }
+  },
+  {
+    "Title": "baba",
+    "Genres": [],
+    "Director": "unknown",
+    "ReleaseYear": 2022,
+    "FilmRunTime": 90,
+    "FilmPrice": 30.0,
+    "FilmRating": 4.0,
     "CinemaAudience": [],
     "DateAndAuditorium": {
-      "11-11-2023 12:00": "1"
-    },
-    "FirstDateAndAuditoriumKey": "11-11-2023 12:00 - Saturday"
+      "2023-11-24T09:00:00": "3"
+    }
+  },
+  {
+    "Title": "Luigi",
+    "Genres": [],
+    "Director": "unknown",
+    "ReleaseYear": 2022,
+    "FilmRunTime": 90,
+    "FilmPrice": 20.0,
+    "FilmRating": 9.0,
+    "CinemaAudience": [],
+    "DateAndAuditorium": {
+      "2022-03-04T03:00:00": "2"
+    }
+  },
+  {
+    "Title": "TestFilm",
+    "Genres": [
+      "dit",
+      "is",
+      "een",
+      "test"
+    ],
+    "Director": "Weet ik niet",
+    "ReleaseYear": 2022,
+    "FilmRunTime": 90,
+    "FilmPrice": 20.0,
+    "FilmRating": 8.0,
+    "CinemaAudience": [],
+    "DateAndAuditorium": {
+      "2023-02-03T04:01:00": "1"
+    }
   }
 ]

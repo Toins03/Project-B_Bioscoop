@@ -22,7 +22,7 @@ public abstract class CinemaMap
 
     protected abstract void CreateCinemaMap();
 
-    public void TakeSeats(string MovieTitle, bool IsAddmin)
+    public void TakeSeats(string MovieTitle, Customer currentCustomer, bool IsAddmin)
     {
 
         ChosenMovie = MovieTitle;
@@ -54,14 +54,58 @@ public abstract class CinemaMap
             Keyboard_input(keyInfo, IsAddmin);
         }
         while (keyInfo.Key != ConsoleKey.Enter);
+        if (ListReservedSeats.Count == 0) FrontPage.MainMenu(currentCustomer);
         System.Console.WriteLine($"{ReservedString} {GenerateConfirmationCode()}");
         WriteCinemaMapToJson();
-        Console.WriteLine("\nWil je terug naar de hoofdpagina toets 'enter' wil je stoppen toets een willekeurig knop");
+        Customer.CreateCustomer(MovieTitle, GenerateConfirmationCode(), currentCustomer);
+        Console.WriteLine("\n\nWil je terug naar de hoofdpagina toets 'enter' wil je stoppen toets een willekeurig knop\n");
         keyInfo = Console.ReadKey();
         if (keyInfo.Key == ConsoleKey.Enter)
         {
             Console.Clear();
-            FrontPage.MainMenu();
+            FrontPage.MainMenu(currentCustomer);
+        }
+        else
+            return;
+    }
+    public void TakeSeats(bool IsAddmin)
+    {
+
+        CreateCinemaMap();
+        LoadCinemaMapFromJson();
+        Console.Clear();
+        do
+        {
+            System.Console.WriteLine($"{Guide}");
+            Console.SetCursorPosition(0, 7);
+            for (int row = 0; row < CinemaMap1.Count; row++)
+            {
+                for (int column = 0; column < CinemaMap1[row].Count; column++)
+                {
+
+                    if (row == selectedRow && column == selectedColumn)
+                    {
+                        Console.Write($"\x1b[37m[POS]\x1b[0m");
+                    }
+                    else
+                    {
+                        Console.Write(CinemaMap1[row][column]);
+                    }
+                }
+                Console.WriteLine();
+            }
+            PrintSelectedSeatsLegenda();
+            keyInfo = Console.ReadKey();
+            Keyboard_input(keyInfo, IsAddmin);
+        }
+        while (keyInfo.Key != ConsoleKey.Enter);
+        WriteCinemaMapToJson();
+        Console.WriteLine("\n\nWil je terug naar de hoofdpagina toets 'enter'. \nwil je stoppen met het programma toets een willekeurig knop\n");
+        keyInfo = Console.ReadKey();
+        if (keyInfo.Key == ConsoleKey.Enter)
+        {
+            Console.Clear();
+            FrontPage.MainMenu(null!);
         }
         else
             return;
@@ -170,7 +214,6 @@ public abstract class CinemaMap
             string List2Json = JsonConvert.SerializeObject(CinemaMap1, Formatting.Indented);
             writer.Write(List2Json);
         }
-
     }
 
 
@@ -188,7 +231,7 @@ public abstract class CinemaMap
 
     private void DeselectSeat(int row, int column, string seat)
     {
-        if (!CinemaMap1[row][column].Contains("[SEL]") || !CinemaMap1[row][column].Contains("[BEZ]"))
+        if (!CinemaMap1[row][column].Contains("[SEL]") && !CinemaMap1[row][column].Contains("[BEZ]"))
         {
             ListReservedSeats.Remove($"{CinemaMapCopy[row][column]}");
             CinemaMap1[row][column] = CinemaMapCopy[row][column];

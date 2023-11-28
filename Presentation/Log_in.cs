@@ -11,7 +11,7 @@ static class LogIn
         System.Console.WriteLine(line);
         FrontPage.CreateTitleASCII();
         System.Console.WriteLine(line);
-// add in the basic frontpage items then login data
+        // add in the basic frontpage items then login data
 
         Console.WriteLine("You have decided to log in");
         Console.WriteLine("Please enter your username.");
@@ -20,7 +20,7 @@ static class LogIn
         Console.WriteLine("Please enter your password");
         string password = Console.ReadLine()!;
 
-// check in if it is in admins else go back.
+        // check in if it is in admins else go back.
         List<Admin> admins = AdminSave.GetAdmins();
         foreach (Admin admin in admins)
         {
