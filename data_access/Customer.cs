@@ -47,7 +47,7 @@ public class Customer : IEquatable<Customer>
 
     public static void CreateCustomer(string MovieTitle, string confirmationCode, Customer currentCustomer)
     {
-        if (currentCustomer != null)
+        if (currentCustomer != null!)
         {
             Console.WriteLine($"Ingelogd als: {currentCustomer.Name}");
             Console.WriteLine($"Email: {currentCustomer.Email}");
@@ -69,6 +69,8 @@ public class Customer : IEquatable<Customer>
             newCustomer.SaveToJsonFile();
             FilmSave.AddCustomerToFilm(MovieTitle, newCustomer);
         }
+        Console.Clear();
+        FrontPage.MainMenu(currentCustomer!);
     }
 
 

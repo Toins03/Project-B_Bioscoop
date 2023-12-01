@@ -54,6 +54,7 @@ public abstract class CinemaMap
             Keyboard_input(keyInfo, IsAddmin);
         }
         while (keyInfo.Key != ConsoleKey.Enter);
+        if (ListReservedSeats.Count == 0) FrontPage.MainMenu(currentCustomer);
         System.Console.WriteLine($"{ReservedString} {GenerateConfirmationCode()}");
         WriteCinemaMapToJson();
         Customer.CreateCustomer(MovieTitle, GenerateConfirmationCode(), currentCustomer);
@@ -62,7 +63,7 @@ public abstract class CinemaMap
         if (keyInfo.Key == ConsoleKey.Enter)
         {
             Console.Clear();
-            FrontPage.MainMenu();
+            FrontPage.MainMenu(currentCustomer);
         }
         else
             return;
@@ -99,12 +100,12 @@ public abstract class CinemaMap
         }
         while (keyInfo.Key != ConsoleKey.Enter);
         WriteCinemaMapToJson();
-        Console.WriteLine("\n\nWil je terug naar de hoofdpagina toets 'enter' wil je stoppen toets een willekeurig knop\n");
+        Console.WriteLine("\n\nWil je terug naar de hoofdpagina toets 'enter'. \nwil je stoppen met het programma toets een willekeurig knop\n");
         keyInfo = Console.ReadKey();
         if (keyInfo.Key == ConsoleKey.Enter)
         {
             Console.Clear();
-            FrontPage.MainMenu();
+            FrontPage.MainMenu(null!);
         }
         else
             return;
@@ -213,7 +214,6 @@ public abstract class CinemaMap
             string List2Json = JsonConvert.SerializeObject(CinemaMap1, Formatting.Indented);
             writer.Write(List2Json);
         }
-
     }
 
 
@@ -231,7 +231,7 @@ public abstract class CinemaMap
 
     private void DeselectSeat(int row, int column, string seat)
     {
-        if (!CinemaMap1[row][column].Contains("[SEL]") || !CinemaMap1[row][column].Contains("[BEZ]"))
+        if (!CinemaMap1[row][column].Contains("[SEL]") && !CinemaMap1[row][column].Contains("[BEZ]"))
         {
             ListReservedSeats.Remove($"{CinemaMapCopy[row][column]}");
             CinemaMap1[row][column] = CinemaMapCopy[row][column];
