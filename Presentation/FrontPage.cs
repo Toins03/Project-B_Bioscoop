@@ -88,7 +88,7 @@ Druk op ESC om te vertrekken.
             }
             else if (options[selectedIndex] == "film kiezen")
             {
-                ChooseMovie.Films_kiezen(currentCustomer);
+                ChooseMovie.Films_kiezen(currentCustomer!);
             }
             else if (options[selectedIndex] == "uitloggen")
             {

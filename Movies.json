@@ -14,7 +14,9 @@
     "CinemaAudience": [
       "Customer ID 1 Customer Name Valdier",
       "Customer ID 1 Customer Name Valdier",
-      "Customer ID 15 Customer Name valdier"
+      "Customer ID 15 Customer Name valdier",
+      "Customer ID 1 Customer Name Valdier",
+      "Customer ID 16 Customer Name Valdier"
     ],
     "DateAndAuditorium": {
       "2023-11-24T13:00:00": "2"
