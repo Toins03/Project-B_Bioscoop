@@ -7,17 +7,18 @@ class Snack
 
     public int Price { get; }
 
+
     public Snack(string name, int price)
     {
         Name = name;
         Price = price;
     }
 
-    public static string DisplayShoppingCart()
+    public static string DisplayShoppingCart(List<Snack> winkelWagen)
     {
         string Items = "Je winkelWagen\n";
         System.Console.WriteLine("");
-        foreach (Snack snack in Winkelwagen.winkelWagen)
+        foreach (Snack snack in winkelWagen)
         {
 
             Items += $"{snack.Name}\n";
@@ -25,10 +26,10 @@ class Snack
         return Items;
     }
 
-    private static void FoodOptionsToList()
+    private static void FoodOptionsToList(Winkelwagen winkelwagen)
     {
         List<Snack> Food = LoadFoodOptions();
-        LoopOverSnacks(Food);
+        LoopOverSnacks(Food, winkelwagen);
 
 
     }
@@ -54,10 +55,10 @@ class Snack
         return Snacks;
 
     }
-    private static void DrinksOptionsToList()
+    private static void DrinksOptionsToList(Winkelwagen winkelwagen)
     {
         List<Snack> Drinks = LoadDrinkOptions();
-        LoopOverSnacks(Drinks);
+        LoopOverSnacks(Drinks, winkelwagen);
 
     }
 
@@ -77,16 +78,17 @@ class Snack
 
         if (choice == "ja")
         {
+            Winkelwagen winkelwagen = new();
             List<string> options = new List<string> { };
             options.Add("eten");
             options.Add("drinken");
 
-            SnackMainMenu(options);
+            SnackMainMenu(options, winkelwagen);
         }
 
 
     }
-    private static void SnackMainMenu(List<string> options)
+    private static void SnackMainMenu(List<string> options, Winkelwagen winkelwagen)
     {
         while (true)
         {
@@ -138,19 +140,19 @@ Druk op ESC om te vertrekken.
 
             if (options[selectedIndex] == "eten")
             {
-                FoodOptionsToList();
+                FoodOptionsToList(winkelwagen);
                 Console.ReadKey();
             }
             else if (options[selectedIndex] == "drinken")
             {
-                DrinksOptionsToList();
+                DrinksOptionsToList(winkelwagen);
                 Console.ReadKey();
 
             }
         }
 
     }
-    private static void LoopOverSnacks(List<Snack> options)
+    private static void LoopOverSnacks(List<Snack> options, Winkelwagen winkelwagen)
     {
         while (true)
         {
@@ -175,7 +177,7 @@ Druk op ESC om te vertrekken.
                     }
 
                 }
-                System.Console.WriteLine(DisplayShoppingCart());
+                System.Console.WriteLine(DisplayShoppingCart(winkelwagen.winkelWagen));
                 System.Console.WriteLine(line);
                 System.Console.WriteLine(@"gebruik WASD keys om je optie te selecteren druk daarna op Enter op je keuze te bevestigen
 Druk op ESC om te vertrekken.
@@ -199,10 +201,7 @@ Druk op ESC om te vertrekken.
             }
             else if (keyInfo.Key == ConsoleKey.Spacebar)
             {
-                foreach (Snack snack in Winkelwagen.winkelWagen)
-                {
-                    System.Console.WriteLine(snack.Name);
-                };
+                Confirmation();
                 break;
             }
 
@@ -216,9 +215,8 @@ Druk op ESC om te vertrekken.
                 if (options[selectedIndex].Name == snack.Name)
                 {
                     System.Console.WriteLine(snack.Name);
-                    Winkelwagen.AddtoWinkelWagen(snack);
+                    winkelwagen.AddtoWinkelWagen(snack);
                     System.Console.WriteLine("is toegevoegd aan je winkelwagen");
-                    System.Console.WriteLine(Winkelwagen.winkelWagen);
                     Console.ReadKey();
                 }
             }
@@ -239,7 +237,7 @@ Druk op ESC om te vertrekken.
         } while (choice != "ja" && choice != "nee");
         if (choice == "ja")
         {
-
+            ChooseToAddSnackOrNot();
         }
     }
 }

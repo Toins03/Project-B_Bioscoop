@@ -1,8 +1,12 @@
-static class Winkelwagen
+class Winkelwagen
 {
-    public static List<Snack> winkelWagen = new List<Snack>();
+    public List<Snack> winkelWagen;
 
-    public static void AddtoWinkelWagen(Snack snack)
+    public Winkelwagen()
+    {
+        winkelWagen = new List<Snack>();
+    }
+    public void AddtoWinkelWagen(Snack snack)
     {
         winkelWagen.Add(snack);
     }
