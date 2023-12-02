@@ -14,11 +14,11 @@ class Snack
         Price = price;
     }
 
-    public static string DisplayShoppingCart(List<Snack> winkelWagen)
+    public static string DisplayShoppingCart(Winkelwagen winkelwagen)
     {
-        string Items = "Je winkelWagen\n";
+        string Items = $"Je winkelWagen - je snack kosten tot nu toe: €{winkelwagen.WinkelWagenKosten()}\ndit zijn de producten die je tot nu toe wilt kopen\n";
         System.Console.WriteLine("");
-        foreach (Snack snack in winkelWagen)
+        foreach (Snack snack in winkelwagen.winkelWagen)
         {
 
             Items += $"{snack.Name}\n";
@@ -37,10 +37,10 @@ class Snack
     private static List<Snack> LoadFoodOptions()
     {
         List<Snack> Snacks = new();
-        Snack snack = new Snack("bueno", 30);
-        Snack snack1 = new Snack("Lays Chips", 20);
-        Snacks.Add(snack);
-        Snacks.Add(snack1);
+        Snack bueno = new Snack("bueno", 30);
+        Snack LaysChips = new Snack("Lays Chips", 20);
+        Snacks.Add(bueno);
+        Snacks.Add(LaysChips);
         return Snacks;
 
     }
@@ -48,10 +48,10 @@ class Snack
     private static List<Snack> LoadDrinkOptions()
     {
         List<Snack> Snacks = new();
-        Snack snack = new Snack("Fanta 1L", 30);
-        Snack snack1 = new Snack("Cola 1L", 20);
-        Snacks.Add(snack);
-        Snacks.Add(snack1);
+        Snack Fanta = new Snack("Fanta 1L", 30);
+        Snack Cola = new Snack("Cola 1L", 20);
+        Snacks.Add(Fanta);
+        Snacks.Add(Cola);
         return Snacks;
 
     }
@@ -177,7 +177,7 @@ Druk op ESC om te vertrekken.
                     }
 
                 }
-                System.Console.WriteLine(DisplayShoppingCart(winkelwagen.winkelWagen));
+                System.Console.WriteLine(DisplayShoppingCart(winkelwagen));
                 System.Console.WriteLine(line);
                 System.Console.WriteLine(@"gebruik WASD keys om je optie te selecteren druk daarna op Enter op je keuze te bevestigen
 Druk op ESC om te vertrekken.

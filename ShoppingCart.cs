@@ -11,4 +11,14 @@ class Winkelwagen
         winkelWagen.Add(snack);
     }
 
+    public double WinkelWagenKosten()
+    {
+        double Total = 0;
+        foreach (Snack snack in winkelWagen)
+        {
+            Total += snack.Price;
+        }
+        return Total;
+    }
+
 }

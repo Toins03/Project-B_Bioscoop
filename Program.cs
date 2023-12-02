@@ -117,6 +117,6 @@ class Program
                     }
             }
         }
-        // FrontPage.MainMenu();
+        FrontPage.MainMenu(null!);
     }
 }
