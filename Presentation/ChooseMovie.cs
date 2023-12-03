@@ -1,13 +1,12 @@
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+
 class ChooseMovie : FrontPage
 {
     public static void Films_kiezen(Customer currentCustomer)
     {
         MovieWriteAndLoad film_menu = new("Movies.json");
 
-        List<string> options = new()
-        {
-            "Film zoeken op titel", "Sorteer op titel\n"
-        };
+        List<string> options = new() { "Film zoeken op titel", "Sorteer op titel\n" };
         List<Film> Movies = film_menu.ReadFilms();
 
         foreach (var movie in film_menu.ReadFilms())
@@ -15,51 +14,22 @@ class ChooseMovie : FrontPage
             options.Add(movie.Title);
         }
 
-        int selectedIndex = 0;
         ConsoleKeyInfo keyInfo;
+        int selectedIndex = 0;
 
         do
         {
             Display(options, selectedIndex);
             keyInfo = Console.ReadKey();
 
-            // update aan de controls uparrow and W gaan niet meer boven de begin optie of onder de laatste optie dit graag behouden aub
-            switch (keyInfo.Key)
-            {
-                case ConsoleKey.W or ConsoleKey.UpArrow:
-                    if (selectedIndex > 0) selectedIndex--;
-                    break;
-                case ConsoleKey.S or ConsoleKey.DownArrow:
-                    if (selectedIndex < options.Count - 1) selectedIndex++;
-                    break;
-            }
+            HandleUserInput(keyInfo, options, ref selectedIndex);
 
-        }
-        while (keyInfo.Key != ConsoleKey.Enter);
+        } while (keyInfo.Key != ConsoleKey.Enter);
 
-        if (selectedIndex >= 2 && selectedIndex < options.Count)
-        {
-            MovieWriteAndLoad.printfilmInfo(Movies[selectedIndex - 2]);
-            System.Console.WriteLine("Druk op Enter om stoelen te reserveren voor deze film \nDruk een ander willekeurige toets om terug te gaan naar de vorige pagina");
-            MovieConfirm(currentCustomer, options[selectedIndex]);
-
-        }
-        else if (selectedIndex == 0)
-        {
-            // Placeholder for search method
-            System.Console.WriteLine("Search method");
-            System.Console.ReadLine();
-        }
-        else if (selectedIndex == 1)
-        {
-            System.Console.WriteLine("Sort method");
-            System.Console.ReadLine();
-            // Placeholder for sort method
-        }
-
+        HandleSelecedOption(currentCustomer, Movies, options, selectedIndex);
     }
 
-    private static void Display(List<string> options, int selectedIndex)
+    public static void Display(List<string> options, int selectedIndex)
     {
         string line = new string('=', Console.WindowWidth);
         Console.Clear();
@@ -82,7 +52,104 @@ class ChooseMovie : FrontPage
         Console.WriteLine(line);
     }
 
-    public static void MovieConfirm(Customer currentCustomer, string MovieTitle)
+
+    public static void HandleUserInput(ConsoleKeyInfo keyInfo, List<string> options, ref int selectedIndex)
+    {
+        switch (keyInfo.Key)
+        {
+            case ConsoleKey.W or ConsoleKey.UpArrow:
+                if (selectedIndex > 0) selectedIndex--;
+                break;
+            case ConsoleKey.S or ConsoleKey.DownArrow:
+                if (selectedIndex < options.Count - 1) selectedIndex++;
+                break;
+        }
+    }
+
+    public static void HandleSelecedOption(Customer currentCustomer, List<Film> movies, List<string> options, int selectedIndex)
+    {
+        if (selectedIndex >= 2 && selectedIndex < options.Count)
+        {
+            MovieWriteAndLoad.printfilmInfo(movies[selectedIndex - 2]);
+            System.Console.WriteLine("Druk op Enter om stoelen te reserveren voor deze film \nDruk een ander willekeurige toets om terug te gaan naar de vorige pagina");
+            ConfirmMovieSelection(currentCustomer, options[selectedIndex]);
+        }
+        else if (selectedIndex == 0)
+        {
+            SearchForMovie(currentCustomer, movies);
+        }
+        else if (selectedIndex == 1)
+        {
+            // Placeholder for sort method
+            Console.WriteLine("Sort method");
+            Console.ReadLine();
+        }
+    }
+
+
+    public static void SearchForMovie(Customer currentCustomer, List<Film> movies)
+    {
+        Console.WriteLine("Druk Enter en laat het veld leeg om terug te gaan \nType de titel van de film om op te zoeken:");
+        string title = Console.ReadLine()!;
+
+        if (!string.IsNullOrEmpty(title) && TitleToSearch(title, movies, currentCustomer))
+        {
+            ConfirmMovieSelection(currentCustomer, title);
+        }
+        else
+        {
+            Films_kiezen(currentCustomer);
+        }
+    }
+
+    public static bool TitleToSearch(string title, List<Film> movies, Customer currentCustomer)
+    {
+        if (string.IsNullOrEmpty(title)) return false;
+
+        string foundMovie = FindMovieByTitle(title, movies);
+
+        if (foundMovie != null && foundMovie.ToLower() == title.ToLower())
+        {
+            ConfirmMovieSelection(currentCustomer, foundMovie);
+            return true;
+        }
+        else
+        {
+            string choice;
+            do
+            {
+                Console.WriteLine("Titel niet gevonden");
+                Console.WriteLine("Wil je verder zoeken? \n\nType 'j' voor ja en 'n' voor nee");
+                choice = Console.ReadLine()!;
+                if (choice.ToLower() == "j")
+                {
+                    SearchForMovie(currentCustomer, movies);
+                }
+                else if (choice.ToLower() == "n")
+                {
+                    return false;
+                }
+            }
+            while (choice.ToLower() != "j" && choice.ToLower() != "n");
+        }
+        return false;
+    }
+
+
+    public static string FindMovieByTitle(string title, List<Film> Movies)
+    {
+        foreach (var movie in Movies)
+        {
+            if (title.ToLower() == movie.Title.ToLower())
+            {
+                MovieWriteAndLoad.printfilmInfo(movie);
+                Console.WriteLine("Druk op Enter om stoelen te reserveren voor deze film \nDruk een ander willekeurige toets om terug te gaan naar de vorige pagina");
+                return movie.Title;
+            }
+        }
+        return null!;
+    }
+    public static void ConfirmMovieSelection(Customer currentCustomer, string MovieTitle)
     {
         ConsoleKeyInfo keyInfo;
         keyInfo = Console.ReadKey();
