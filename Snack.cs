@@ -14,11 +14,12 @@ class Snack
         Price = price;
     }
 
-    public static string DisplayShoppingCart(Winkelwagen winkelwagen)
+    public static string DisplayShoppingCart(ShoppingCart shoppingcart)
     {
-        string Items = $"Je winkelWagen - je snack kosten tot nu toe: €{winkelwagen.WinkelWagenKosten()}\ndit zijn de producten die je tot nu toe wilt kopen\n";
         System.Console.WriteLine("");
-        foreach (Snack snack in winkelwagen.winkelWagen)
+        string Items = $"Je ShoppingCart - je snack kosten tot nu toe: €{shoppingcart.ShoppingCartCosts()}\ndit zijn de producten die je tot nu toe wilt kopen\n\n";
+
+        foreach (Snack snack in shoppingcart.shoppingcart)
         {
 
             Items += $"{snack.Name}\n";
@@ -26,10 +27,10 @@ class Snack
         return Items;
     }
 
-    private static void FoodOptionsToList(Winkelwagen winkelwagen)
+    private static void FoodOptionsToList(ShoppingCart ShoppingCart)
     {
         List<Snack> Food = LoadFoodOptions();
-        LoopOverSnacks(Food, winkelwagen);
+        LoopOverSnacks(Food, ShoppingCart);
 
 
     }
@@ -55,10 +56,10 @@ class Snack
         return Snacks;
 
     }
-    private static void DrinksOptionsToList(Winkelwagen winkelwagen)
+    private static void DrinksOptionsToList(ShoppingCart shoppingCart)
     {
         List<Snack> Drinks = LoadDrinkOptions();
-        LoopOverSnacks(Drinks, winkelwagen);
+        LoopOverSnacks(Drinks, shoppingCart);
 
     }
 
@@ -78,17 +79,17 @@ class Snack
 
         if (choice == "ja")
         {
-            Winkelwagen winkelwagen = new();
+            ShoppingCart shoppingCart = new();
             List<string> options = new List<string> { };
             options.Add("eten");
             options.Add("drinken");
 
-            SnackMainMenu(options, winkelwagen);
+            SnackMainMenu(options, shoppingCart);
         }
 
 
     }
-    private static void SnackMainMenu(List<string> options, Winkelwagen winkelwagen)
+    private static void SnackMainMenu(List<string> options, ShoppingCart shoppingcart)
     {
         while (true)
         {
@@ -115,6 +116,8 @@ class Snack
                 System.Console.WriteLine(line);
                 System.Console.WriteLine(@"gebruik WASD keys om je optie te selecteren druk daarna op Enter op je keuze te bevestigen
 Druk op ESC om te vertrekken.
+druk op spatie om je bestellingen to confirmeren
+druk op p om je producten uit je winkelwagen te verwijderen
 ");
                 keyInfo = Console.ReadKey();
 
@@ -126,11 +129,21 @@ Druk op ESC om te vertrekken.
                 {
                     selectedIndex++;
                 }
-            } while (keyInfo.Key != ConsoleKey.Enter && keyInfo.Key != ConsoleKey.Escape);
+            } while (keyInfo.Key != ConsoleKey.Enter && keyInfo.Key != ConsoleKey.Escape && keyInfo.Key != ConsoleKey.Spacebar && keyInfo.Key != ConsoleKey.P);
 
             if (keyInfo.Key == ConsoleKey.Escape)
             {
                 System.Console.WriteLine(" SSee you!");
+                break;
+            }
+            else if (keyInfo.Key == ConsoleKey.Spacebar)
+            {
+                Confirmation();
+                break;
+            }
+            else if (keyInfo.Key == ConsoleKey.P)
+            {
+                shoppingcart.ModifyShoppingCart();
                 break;
             }
 
@@ -140,19 +153,19 @@ Druk op ESC om te vertrekken.
 
             if (options[selectedIndex] == "eten")
             {
-                FoodOptionsToList(winkelwagen);
+                FoodOptionsToList(shoppingcart);
                 Console.ReadKey();
             }
             else if (options[selectedIndex] == "drinken")
             {
-                DrinksOptionsToList(winkelwagen);
+                DrinksOptionsToList(shoppingcart);
                 Console.ReadKey();
 
             }
         }
 
     }
-    private static void LoopOverSnacks(List<Snack> options, Winkelwagen winkelwagen)
+    private static void LoopOverSnacks(List<Snack> options, ShoppingCart shoppingcart)
     {
         while (true)
         {
@@ -177,10 +190,12 @@ Druk op ESC om te vertrekken.
                     }
 
                 }
-                System.Console.WriteLine(DisplayShoppingCart(winkelwagen));
+                System.Console.WriteLine(DisplayShoppingCart(shoppingcart));
                 System.Console.WriteLine(line);
                 System.Console.WriteLine(@"gebruik WASD keys om je optie te selecteren druk daarna op Enter op je keuze te bevestigen
 Druk op ESC om te vertrekken.
+druk op spatie om je bestellingen to confirmeren
+druk op p om je producten uit je winkelwagen te verwijderen
 ");
                 keyInfo = Console.ReadKey();
 
@@ -192,7 +207,7 @@ Druk op ESC om te vertrekken.
                 {
                     selectedIndex++;
                 }
-            } while (keyInfo.Key != ConsoleKey.Enter && keyInfo.Key != ConsoleKey.Escape && keyInfo.Key != ConsoleKey.Spacebar);
+            } while (keyInfo.Key != ConsoleKey.Enter && keyInfo.Key != ConsoleKey.Escape && keyInfo.Key != ConsoleKey.Spacebar && keyInfo.Key != ConsoleKey.P);
 
             if (keyInfo.Key == ConsoleKey.Escape)
             {
@@ -202,6 +217,11 @@ Druk op ESC om te vertrekken.
             else if (keyInfo.Key == ConsoleKey.Spacebar)
             {
                 Confirmation();
+                break;
+            }
+            else if (keyInfo.Key == ConsoleKey.P)
+            {
+                shoppingcart.ModifyShoppingCart();
                 break;
             }
 
@@ -215,8 +235,8 @@ Druk op ESC om te vertrekken.
                 if (options[selectedIndex].Name == snack.Name)
                 {
                     System.Console.WriteLine(snack.Name);
-                    winkelwagen.AddtoWinkelWagen(snack);
-                    System.Console.WriteLine("is toegevoegd aan je winkelwagen");
+                    shoppingcart.AddtoShoppingCart(snack);
+                    System.Console.WriteLine("is toegevoegd aan je ShoppingCart");
                     Console.ReadKey();
                 }
             }
@@ -237,6 +257,12 @@ Druk op ESC om te vertrekken.
         } while (choice != "ja" && choice != "nee");
         if (choice == "ja")
         {
+            // zelf implenmenteren bij het mergen dit is nu een placeholder
+            ChooseToAddSnackOrNot();
+        }
+        else if (choice == "nee")
+        {
+            // zelf implenmenteren bij het mergen dit is nu een placeholder
             ChooseToAddSnackOrNot();
         }
     }
