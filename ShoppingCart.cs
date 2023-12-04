@@ -1,3 +1,5 @@
+using System.Xml.Serialization;
+
 class ShoppingCart
 {
     public List<Snack> shoppingcart;
@@ -30,10 +32,34 @@ class ShoppingCart
             System.Console.WriteLine(snack.Name);
         }
         System.Console.WriteLine("");
-        System.Console.WriteLine("welke product wil je uit je winkelwagen?");
-
         bool CheckFound = false;
-        string choice = Console.ReadLine()!;
+
+        string choice;
+        do
+        {
+            System.Console.WriteLine("welke product wil je uit je winkelwagen?");
+            choice = Console.ReadLine()!;
+
+        } while (choice is null);
+
+
+        int AmountOfTimes;
+
+        do
+        {
+            System.Console.WriteLine("Hoeveel wil je ervan verwijderen");
+        } while (!int.TryParse(Console.ReadLine(), out AmountOfTimes));
+
+
+
+        int removedCount = 0;
+
+
+
+
+
+
+
 
 
         for (int i = shoppingcart.Count - 1; i >= 0; i--)
@@ -41,9 +67,15 @@ class ShoppingCart
             Snack snack = shoppingcart[i];
             if (choice == snack.Name)
             {
+                if (removedCount == AmountOfTimes)
+                {
+                    break; // controle over hoeveel er eruit gaat
+                }
+
                 shoppingcart.RemoveAt(i);
                 CheckFound = true;
-                // zet hier break als je alleen wilt dat de eerste snack eruit gaat zondar break gaan ze allemaal weg met hetzelfde naam
+                removedCount++;
+
             }
         }
 
