@@ -5,10 +5,10 @@ class Snack
 {
     public string Name { get; }
 
-    public int Price { get; }
+    public double Price { get; }
 
 
-    public Snack(string name, int price)
+    public Snack(string name, double price)
     {
         Name = name;
         Price = price;
