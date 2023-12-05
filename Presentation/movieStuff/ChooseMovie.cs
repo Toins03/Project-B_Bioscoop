@@ -1,7 +1,7 @@
 class ChooseMovie : FrontPage
 {
     static string movieTitle = "";
-    public static void Films_kiezen(Customer currentCustomer)
+    public static void Films_kiezen(Customer? currentCustomer)
     {
         MovieWriteAndLoad film_menu = new("Movies.json");
         List<Film> options = film_menu.ReadFilms();
@@ -20,10 +20,15 @@ class ChooseMovie : FrontPage
 
             for (int i = 0; i < options.Count + 1; i++)
             {
-                if (i == 0)
+                if (i == 0 && i == selectedIndex)
                 {
                     Console.WriteLine("--> Sort Movies");
                 }
+                else if (i == 0 && i != selectedIndex)
+                {
+                    Console.WriteLine("    Sort Movies");
+                }
+
                 else if (i == selectedIndex)
                 {
                     // display test van valdier
@@ -57,10 +62,12 @@ class ChooseMovie : FrontPage
             System.Console.WriteLine("Je verlaat het film scherm!");
             return;
         }
+
 // if they decide to sort movies
         if (selectedIndex == 0)
         {
-            SortedMovies.ViewmoviesSorted(currentCustomer, options);
+            SortedMovies.ViewSortOptions(currentCustomer, options);
+            
         }
         else
         {
@@ -71,7 +78,7 @@ class ChooseMovie : FrontPage
         }
     }
 
-    public static void MovieConfirm(Customer currentCustomer)
+    public static void MovieConfirm(Customer? currentCustomer)
     {
         ConsoleKeyInfo keyInfo;
         keyInfo = Console.ReadKey();

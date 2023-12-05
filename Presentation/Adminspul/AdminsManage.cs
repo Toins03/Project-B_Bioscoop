@@ -12,7 +12,7 @@ static class AdminsManage
 
         (string? optionChosen, ConsoleKey lastKey) menuResult = BasicMenu.MenuBasic(options, "Manage admins");
 
-        string option_chosen = menuResult.optionChosen;
+        string option_chosen = menuResult.optionChosen!;
         ConsoleKey keyInfo = menuResult.lastKey;
 
         if (keyInfo == ConsoleKey.Escape)
@@ -101,7 +101,7 @@ static class AdminsManage
 
         (string? optionChosen, ConsoleKey lastKey) menuResult = BasicMenu.MenuBasic(options, "Manage admins");
 
-        string option_chosen = menuResult.optionChosen;
+        string option_chosen = menuResult.optionChosen!;
         ConsoleKey keyInfo = menuResult.lastKey;
 
         if (keyInfo == ConsoleKey.Escape)
