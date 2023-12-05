@@ -1,6 +1,6 @@
 class FrontPage
 {
-    public static void MainMenu(Customer? currentCustomer = null!)
+    public static void MainMenu(Customer currentCustomer = null!)
     {
 
         while (true)
@@ -87,7 +87,21 @@ Druk op ESC om te vertrekken.
             }
             else if (options[selectedIndex] == "film kiezen")
             {
-                ChooseMovie.Films_kiezen(currentCustomer);
+                ChooseMovie.Films_kiezen(currentCustomer!);
+            }
+            else if (options[selectedIndex] == "uitloggen")
+            {
+                Console.WriteLine("Weet je zeker dat je wilt uitloggen? Zo ja typ in ja. zo nee typ iets anders in.");
+                string response = Console.ReadLine()!;
+                if (response is null) continue;
+                else if (response.ToLower() == "ja" ^ response.ToLower() == "y")
+                {
+                    currentCustomer = null!;
+                }
+            }
+            else if (options[selectedIndex] == "zie persoonlijke informatie")
+            {
+                ViewCustomerInfo.ViewInfoMenu(currentCustomer);
             }
             else if (options[selectedIndex] == "uitloggen")
             {

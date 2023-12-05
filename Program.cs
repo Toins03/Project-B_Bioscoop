@@ -9,6 +9,11 @@ class Program
             Console.WriteLine(arg);
             switch (arg)
             {
+                case "SnackMenu":
+                    {
+                        Snack.ChooseToAddSnackOrNot();
+                        break;
+                    }
                 case "modify movies":
                     {
                         List<Film> films = FilmSave.ReadFilms();
@@ -112,6 +117,6 @@ class Program
                     }
             }
         }
-        FrontPage.MainMenu();
+        FrontPage.MainMenu(null!);
     }
 }

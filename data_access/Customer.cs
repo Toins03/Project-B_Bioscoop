@@ -69,6 +69,8 @@ public class Customer : IEquatable<Customer>
             newCustomer.SaveToJsonFile();
             FilmSave.AddCustomerToFilm(MovieTitle, newCustomer);
         }
+        Console.Clear();
+        FrontPage.MainMenu(currentCustomer!);
     }
 
 
