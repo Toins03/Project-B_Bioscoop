@@ -6,7 +6,7 @@ using Newtonsoft.Json;
 [TestClass]
 public class AdminSaveTest
 {
-    private string test_json = "AdminsaveTest.json";
+    private string test_json = "Test/AdminsaveTest.json";
 
     [TestInitialize]
     public void remove_films()
@@ -17,7 +17,6 @@ public class AdminSaveTest
         string list_to_json = JsonConvert.SerializeObject(admins, Formatting.Indented);
         writer.Write(list_to_json);
         writer.Close();
-
     }
 
     [DataTestMethod]
@@ -59,6 +58,23 @@ public class AdminSaveTest
         Assert.AreEqual(admins[i].Name, TestList[i].Name);
         Assert.AreEqual(TestList[i].Password, admins[i].Password);
         }
-
     }
+
+    [DataTestMethod]
+    [DataRow("Test Admin", "12345")]
+    [DataRow("Test Admin2", "password")]
+    public void RemoveAdmins(string AdminName, string password)
+    {
+        Admin adminNew = new Admin(AdminName, password);
+        StreamWriter writer = new StreamWriter(test_json);
+        List<Admin> admins = new() {adminNew};
+        string list_to_json = JsonConvert.SerializeObject(admins, Formatting.Indented);
+        writer.Write(list_to_json);
+        writer.Close();
+        List<Admin> admins_read = AdminSave.GetAdmins();
+        Assert.AreEqual(1, admins_read.Count);
+        Assert.IsTrue(admins_read[0] == adminNew);
+        Assert.AreEqual(admins_read[0].AdminID, adminNew.AdminID);
+        Assert.AreEqual(admins_read[0].Name, adminNew.Name);
+        Assert.AreEqual(admins_read[0].Password, adminNew.Password);    }
 }

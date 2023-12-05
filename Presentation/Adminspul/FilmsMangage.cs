@@ -13,17 +13,22 @@ static class FilmsManage
         };
 
 
-        List<string> inputs = BasicMenu.MenuBasic(options, "Manage films");
+        (string? optionChosen, ConsoleKey keyLeaving) inputs = BasicMenu.MenuBasic(options, "Manage films");
 
-        string Keyleaving = inputs[0];
+        ConsoleKey Keyleaving = inputs.keyLeaving;
 
-        if (Keyleaving == "escape")
+        if (Keyleaving == ConsoleKey.Escape)
+        {
+            Console.WriteLine("Leaving Film options!");
+            return;
+        }
+        else if (inputs.optionChosen is null)
         {
             Console.WriteLine("Leaving Film options!");
             return;
         }
 
-        string request = inputs[1];
+        string request = inputs.optionChosen;
         if (request is null) return;
         else if (request == "Add Films")
         {
@@ -134,17 +139,22 @@ static class FilmsManage
             filmNames.Add(film.Title);
         }
 
-        List<string> inputs = BasicMenu.MenuBasic(filmNames, "view all films");
+        (string? optionChosen, ConsoleKey keyLeaving) inputs = BasicMenu.MenuBasic(filmNames, "view all films");
 
-        string Keyleaving = inputs[0];
+        ConsoleKey Keyleaving = inputs.keyLeaving;
 
-        if (Keyleaving == "escape")
+        if (Keyleaving == ConsoleKey.Escape)
+        {
+            Console.WriteLine("Leaving Film options!");
+            return;
+        }
+        if (inputs.optionChosen is null)
         {
             Console.WriteLine("Leaving Film options!");
             return;
         }
 
-        string film_chosen = inputs[1];
+        string film_chosen = inputs.optionChosen!;
 
         Film ToShow = null!;
 

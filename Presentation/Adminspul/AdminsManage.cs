@@ -10,17 +10,21 @@ static class AdminsManage
             "Remove admins",
         };
 
-        List<string> menuResult = BasicMenu.MenuBasic(options, "Manage admins");
+        (string? optionChosen, ConsoleKey lastKey) menuResult = BasicMenu.MenuBasic(options, "Manage admins");
 
-        string keyInfo = menuResult[0];
-        string option_chosen = menuResult[1];
+        string option_chosen = menuResult.optionChosen;
+        ConsoleKey keyInfo = menuResult.lastKey;
 
-        if (keyInfo == "escape")
+        if (keyInfo == ConsoleKey.Escape)
         {
             Console.WriteLine(" LLeaving admin options!");
             return;
         }
-
+        else if (option_chosen is null) 
+        {
+            Console.WriteLine("something went wrong");
+            return;
+        }
 
         if (option_chosen == "Add admins")
         {
@@ -95,19 +99,23 @@ static class AdminsManage
             "Remove Films",
         };
 
-        List<string> menuResult = BasicMenu.MenuBasic(options, "Manage admins");
+        (string? optionChosen, ConsoleKey lastKey) menuResult = BasicMenu.MenuBasic(options, "Manage admins");
 
-        string keyInfo = menuResult[0];
-        string option_chosen = menuResult[1];
+        string option_chosen = menuResult.optionChosen;
+        ConsoleKey keyInfo = menuResult.lastKey;
 
-        if (keyInfo == "escape")
+        if (keyInfo == ConsoleKey.Escape)
         {
             Console.WriteLine("  LLeaving admin options!");
 
             return;
         }
-
-
+        else if (option_chosen is null) 
+        {
+            Console.WriteLine("something went wrong");
+            return;
+        }
+        
         if (option_chosen == "Add Films")
         {
 

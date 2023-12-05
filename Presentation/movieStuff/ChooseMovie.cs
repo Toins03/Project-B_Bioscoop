@@ -18,16 +18,20 @@ class ChooseMovie : FrontPage
             System.Console.WriteLine(line);
             CenterText("Film kiezen om te bekijken:\n");
 
-            for (int i = 0; i < options.Count; i++)
+            for (int i = 0; i < options.Count + 1; i++)
             {
-                if (i == selectedIndex)
+                if (i == 0)
+                {
+                    Console.WriteLine("--> Sort Movies");
+                }
+                else if (i == selectedIndex)
                 {
                     // display test van valdier
-                    Console.WriteLine("--> " + options[i].Title + " " + options[i].ShowDate());
+                    Console.WriteLine("--> " + options[i - 1].Title + " " + options[i - 1].ShowDate());
                 }
                 else
                 {
-                    Console.WriteLine("    " + options[i].Title);
+                    Console.WriteLine("    " + options[i - 1].Title);
                 }
             }
             System.Console.WriteLine(line);
@@ -46,18 +50,25 @@ class ChooseMovie : FrontPage
             {
 
             }
-        } while (keyInfo.Key != ConsoleKey.Enter);
+        } while (keyInfo.Key != ConsoleKey.Enter && keyInfo.Key != ConsoleKey.Escape);
 
         if (keyInfo.Key == ConsoleKey.Escape)
         {
             System.Console.WriteLine("Je verlaat het film scherm!");
             return;
         }
-        
-        MovieWriteAndLoad.printfilmInfo(options[selectedIndex]);
-        System.Console.WriteLine("Druk op Enter om stoelen te reserveren voor deze film \nDruk een ander willekeurige toets om terug te gaan naar de vorige pagina");
-        movieTitle = options[selectedIndex].Title;
-        MovieConfirm(currentCustomer);
+// if they decide to sort movies
+        if (selectedIndex == 0)
+        {
+            SortedMovies.ViewmoviesSorted(currentCustomer, options);
+        }
+        else
+        {
+            MovieWriteAndLoad.printfilmInfo(options[selectedIndex]);
+            System.Console.WriteLine("Druk op Enter om stoelen te reserveren voor deze film \nDruk een ander willekeurige toets om terug te gaan naar de vorige pagina");
+            movieTitle = options[selectedIndex].Title;
+            MovieConfirm(currentCustomer);
+        }
     }
 
     public static void MovieConfirm(Customer currentCustomer)
@@ -75,4 +86,6 @@ class ChooseMovie : FrontPage
             Films_kiezen(currentCustomer);
         }
     }
+
+
 }

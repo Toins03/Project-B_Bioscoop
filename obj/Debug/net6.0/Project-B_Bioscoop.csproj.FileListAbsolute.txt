@@ -592,3 +592,4 @@ C:\Users\valdi\OneDrive\Bureaublad\project 2\Project-B_Bioscoop\bin\Debug\net6.0
 C:\Users\valdi\OneDrive\Bureaublad\project 2\Project-B_Bioscoop\obj\Debug\net6.0\project-b_bioscoop.csproj.CopyComplete
 C:\Users\valdi\OneDrive\Bureaublad\project 2\Project-B_Bioscoop\obj\Debug\net6.0\project-b_bioscoop.genruntimeconfig.cache
 C:\Users\valdi\OneDrive\Bureaublad\project 2\Project-B_Bioscoop\obj\Debug\net6.0\ref\project-b_bioscoop.dll
+c:\Users\rowan\OneDrive\Documents\school 2023-2024\project b\groepsopdracht cinema\cinema_gitfiles\Project-B_Bioscoop\obj\Debug\net6.0\Project-B_Bioscoop.sourcelink.json
