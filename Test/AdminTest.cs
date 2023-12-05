@@ -1,6 +1,3 @@
-
-
-
 namespace data_acces.Tests;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -9,7 +6,7 @@ using Newtonsoft.Json;
 [TestClass]
 public class AdminSaveTest
 {
-    private string test_json = "Test/AdminsaveTest.json";
+    private string test_json = "AdminsaveTest.json";
 
     [TestInitialize]
     public void remove_films()

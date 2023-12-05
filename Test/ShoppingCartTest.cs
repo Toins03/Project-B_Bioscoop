@@ -1,14 +1,21 @@
+namespace Snacks.Tests;
+
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 [TestClass]
 public class ShoppingCartTests
 {
-    [TestMethod]
-    public void AddToShoppingCart_ShouldIncreaseItemCount()
+    [TestInitialize]
+    public void Starttest()
+    {}    
+    
+    [DataTestMethod]
+    [DataRow("Test Snack", 4)]
+    public void AddToShoppingCart_ShouldIncreaseItemCount(string testname, double price)
     {
         // Arrange
         ShoppingCart cart = new ShoppingCart();
-        Snack snack = new Snack("Test Snack", 2.99); // Assuming you have a Snack class
+        Snack snack = new Snack(testname, price); // Assuming you have a Snack class
 
         // Act
         cart.AddtoShoppingCart(snack);

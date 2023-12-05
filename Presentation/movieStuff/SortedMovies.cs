@@ -13,12 +13,25 @@ static class SortedMovies
         return toreturn;
     }
 
+    public static List<Film> SortFilmByReleaseYear(List<Film> Tosort, bool desc)
+    {
+        
+
+        List<Film> toreturn = Tosort.OrderBy(q => q.ReleaseYear).ToList();
+        if (desc is true)
+        {
+            toreturn.Reverse();
+        } 
+
+        return toreturn;
+    }
+
 
     public static void ViewSortOptions(Customer? currentcustomer, List<Film> ToView)
     {
         List<string> sortOptions = new() {
-            "By Title"
-
+            "By Title",
+            "By Release Year"
         };
         
         (string? optionChosen, ConsoleKey keyLeaving) sortsChosen = BasicMenu.MenuBasic(sortOptions, "Sort Options");
@@ -43,7 +56,7 @@ static class SortedMovies
             "Descending"
         };
 
-        (string? optionChosen, ConsoleKey keyLeaving) ascOrDescchosen = BasicMenu.MenuBasic(ascOrDesc, "Sort Options");
+        (string? optionChosen, ConsoleKey keyLeaving) ascOrDescchosen = BasicMenu.MenuBasic(ascOrDesc, $"Want to sort by {sortFinal} ascending or descending?");
 
 
         if (ascOrDescchosen.keyLeaving is ConsoleKey.Escape)
@@ -70,8 +83,13 @@ static class SortedMovies
         {
             case "By Title":
             {
-                
                 sortedFilm = SortFilmByTitle(ToView, chosenAscOrDesc);
+                DisplaySortedMovies(currentcustomer, sortedFilm);
+                break;
+            }
+            case "By Release Year":
+            {    
+                sortedFilm = SortFilmByReleaseYear(ToView, chosenAscOrDesc);
                 DisplaySortedMovies(currentcustomer, sortedFilm);
                 break;
             }
