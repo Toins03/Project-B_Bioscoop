@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "xJa09wy+ZZZ52hE12ZJZblM1omMqRjRHNnALyUF6kA67RUcUlEsUcV1gFIIaogvOmP485BLqXJuWAkw124yo9A==",
+  "success": true,
+  "projectFilePath": "C:\\practice_coding\\Project_Cinema\\Project_Cinema\\Project_Cinema.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\jahla\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}

@@ -1,0 +1,17 @@
+C:\practice_coding\Project_Cinema\Project_Cinema\obj\Debug\net8.0\Project_Cinema.GeneratedMSBuildEditorConfig.editorconfig
+C:\practice_coding\Project_Cinema\Project_Cinema\obj\Debug\net8.0\Project_Cinema.AssemblyInfoInputs.cache
+C:\practice_coding\Project_Cinema\Project_Cinema\obj\Debug\net8.0\Project_Cinema.AssemblyInfo.cs
+C:\practice_coding\Project_Cinema\Project_Cinema\obj\Debug\net8.0\Project_Cinema.csproj.CoreCompileInputs.cache
+C:\practice_coding\Project_Cinema\Project_Cinema\obj\Debug\net8.0\Project_Cinema.csproj.AssemblyReference.cache
+C:\practice_coding\Project_Cinema\Project_Cinema\bin\Debug\net8.0\Project_Cinema.exe
+C:\practice_coding\Project_Cinema\Project_Cinema\bin\Debug\net8.0\Project_Cinema.deps.json
+C:\practice_coding\Project_Cinema\Project_Cinema\bin\Debug\net8.0\Project_Cinema.runtimeconfig.json
+C:\practice_coding\Project_Cinema\Project_Cinema\bin\Debug\net8.0\Project_Cinema.dll
+C:\practice_coding\Project_Cinema\Project_Cinema\bin\Debug\net8.0\Project_Cinema.pdb
+C:\practice_coding\Project_Cinema\Project_Cinema\bin\Debug\net8.0\Newtonsoft.Json.dll
+C:\practice_coding\Project_Cinema\Project_Cinema\obj\Debug\net8.0\Project_Cinema.csproj.CopyComplete
+C:\practice_coding\Project_Cinema\Project_Cinema\obj\Debug\net8.0\Project_Cinema.dll
+C:\practice_coding\Project_Cinema\Project_Cinema\obj\Debug\net8.0\refint\Project_Cinema.dll
+C:\practice_coding\Project_Cinema\Project_Cinema\obj\Debug\net8.0\Project_Cinema.pdb
+C:\practice_coding\Project_Cinema\Project_Cinema\obj\Debug\net8.0\Project_Cinema.genruntimeconfig.cache
+C:\practice_coding\Project_Cinema\Project_Cinema\obj\Debug\net8.0\ref\Project_Cinema.dll
