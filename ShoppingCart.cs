@@ -95,11 +95,7 @@ class ShoppingCart
     }
     public void ModifyShoppingCartForTests(string choice, int AmountOfTimes)
     {
-        do
-        {
-            System.Console.WriteLine("Hoeveel wil je ervan verwijderen");
-        } while (!int.TryParse(Console.ReadLine(), out AmountOfTimes));
-
+        
 
         bool CheckFound = false;
 
