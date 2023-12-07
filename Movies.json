@@ -1,0 +1,159 @@
+[
+  {
+    "Title": "Oppenheimer",
+    "Genres": [
+      "Drama",
+      "Biografie"
+    ],
+    "Director": "Christopher Nolan",
+    "ReleaseYear": 2023,
+    "FilmRunTime": 180,
+    "FilmPrice": 17.0,
+    "FilmRating": 9.0,
+    "Screenings": [],
+    "CinemaAudience": [
+      {
+        "ID": 2,
+        "Name": "Johan",
+        "UserName": "Johan",
+        "Email": "Jahlani@",
+        "ConfirmationCode": "none",
+        "Password": "lop"
+      },
+      {
+        "ID": 9,
+        "Name": "",
+        "UserName": "",
+        "Email": "Z1S\u001b[32m[13C]\u001b[0m\u001b[32m[13D]\u001b[0mD26-11-23T14:14",
+        "ConfirmationCode": "none",
+        "Password": "jhgfd@f"
+      },
+      {
+        "ID": 1,
+        "Name": "Aidan",
+        "UserName": "JahlaniloverXx",
+        "Email": "aidan@gmail.com",
+        "ConfirmationCode": "none",
+        "Password": "aidan123"
+      },
+      {
+        "ID": 16,
+        "Name": "jhgf",
+        "UserName": "jhgf",
+        "Email": "Z1S\u001b[32m[14A]\u001b[0m\u001b[32m[14B]\u001b[0mD28-11-23T22:18",
+        "ConfirmationCode": "none",
+        "Password": "jhgfd@"
+      }
+    ],
+    "DateAndAuditorium": null,
+    "FirstDateAndAuditoriumKey": "No DateAndAuditorium information available"
+  },
+  {
+    "Title": "Barbie",
+    "Genres": [
+      "Komedie"
+    ],
+    "Director": "Greta Gerwig",
+    "ReleaseYear": 2023,
+    "FilmRunTime": 114,
+    "FilmPrice": 18.0,
+    "FilmRating": 9.0,
+    "Screenings": [],
+    "CinemaAudience": [
+      {
+        "ID": 7,
+        "Name": "Jahlni",
+        "UserName": "Jahlni",
+        "Email": "Z1S\u001b[32m[14A]\u001b[0m\u001b[32m[14B]\u001b[0mD24-11-23T14:5",
+        "ConfirmationCode": "none",
+        "Password": "Jahlani@gmail.com"
+      },
+      {
+        "ID": 8,
+        "Name": "Jah",
+        "UserName": "Jah",
+        "Email": "Z1S\u001b[32m[14C]\u001b[0m\u001b[32m[14D]\u001b[0m\u001b[32m[14E]\u001b[0mD26-11-23T14:13",
+        "ConfirmationCode": "none",
+        "Password": "hgfddfgh@"
+      },
+      {
+        "ID": 1,
+        "Name": "Jahlani",
+        "UserName": "Koe",
+        "Email": "Jahlani@",
+        "ConfirmationCode": "none",
+        "Password": "Koe12345"
+      },
+      {
+        "ID": 1,
+        "Name": "jhgf",
+        "UserName": "jhgf",
+        "Email": "Z1S\u001b[32m[14A]\u001b[0mD30-11-23T13:14",
+        "ConfirmationCode": "none",
+        "Password": "hgfd@"
+      }
+    ],
+    "DateAndAuditorium": null,
+    "FirstDateAndAuditoriumKey": "No DateAndAuditorium information available"
+  },
+  {
+    "Title": "Inception",
+    "Genres": [
+      "Sci-Fi",
+      "Action",
+      "Thriller"
+    ],
+    "Director": "Christopher Nolan",
+    "ReleaseYear": 2000,
+    "FilmRunTime": 148,
+    "FilmPrice": 10.99,
+    "FilmRating": 4.5,
+    "Screenings": [],
+    "CinemaAudience": [
+      {
+        "ID": 3,
+        "Name": "Anestro",
+        "UserName": null,
+        "Email": "Anestro@gmail.com",
+        "ConfirmationCode": "Z3S\u001b[32m[19A]\u001b[0m\u001b[32m[19B]\u001b[0m\u001b[32m[19C]\u001b[0mD21-11-23T14:39",
+        "Password": null
+      },
+      {
+        "ID": 6,
+        "Name": "Jahlani",
+        "UserName": "Jahlani",
+        "Email": "Z1S\u001b[32m[1 A]\u001b[0m\u001b[32m[1 B]\u001b[0mD24-11-23T14:3",
+        "ConfirmationCode": "none",
+        "Password": "Jahlani@"
+      },
+      {
+        "ID": 1,
+        "Name": "Aidan",
+        "UserName": "JahlaniloverXx",
+        "Email": "aidan@gmail.com",
+        "ConfirmationCode": "none",
+        "Password": "aidan123"
+      },
+      {
+        "ID": 11,
+        "Name": "aidan",
+        "UserName": "aidan",
+        "Email": "Z1S\u001b[32m[9 G]\u001b[0m\u001b[32m[9 I]\u001b[0m\u001b[32m[7 I]\u001b[0m\u001b[32m[12H]\u001b[0m\u001b[32m[13G]\u001b[0mD27-11-23T14:23",
+        "ConfirmationCode": "none",
+        "Password": "aidan@gmail.com"
+      },
+      {
+        "ID": 12,
+        "Name": "Kajlani",
+        "UserName": "Kajlani",
+        "Email": "Z1S\u001b[32m[14A]\u001b[0m\u001b[32m[14B]\u001b[0mD27-11-23T18:28",
+        "ConfirmationCode": "none",
+        "Password": "jhgfd@"
+      }
+    ],
+    "DateAndAuditorium": {
+      "11-11-2023 12:00": "1"
+    },
+    "FirstDateAndAuditoriumKey": "11-11-2023 12:00 - Saturday"
+  }
+]
