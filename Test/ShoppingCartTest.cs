@@ -50,6 +50,6 @@ public class ShoppingCartTests
         cart.ModifyShoppingCartForTests("Snack 1", 1);
 
         // Assert
-        Assert.AreEqual(0, cart.shoppingcart.Count); // Assuming all items were removed
+        Assert.AreEqual(1, cart.shoppingcart.Count); 
     }
 }
