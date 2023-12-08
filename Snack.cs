@@ -1,7 +1,4 @@
-using System.Security.Cryptography.X509Certificates;
-using Microsoft.VisualStudio.TestPlatform.ObjectModel;
-
-class Snack
+public class Snack
 {
     public string Name { get; }
 

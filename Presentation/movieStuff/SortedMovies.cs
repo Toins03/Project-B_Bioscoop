@@ -1,9 +1,57 @@
+using System.ComponentModel.Design;
+using System.Diagnostics;
+
 static class SortedMovies
 {
-    public static List<Film> SortFilmByTitle(List<Film> Tosort, bool desc)
+
+// sort on genre and date available TODO
+    public static List<Film>? SortfilmByGenreQuestions(List<Film> toSort, bool isDesc = false)
+    {
+        List<string> genreoptions = new();
+        foreach (Film film in toSort)
+        {
+            genreoptions.AddRange(film.Genres);
+        }
+        List<string> uniqueGenres = genreoptions.Distinct().ToList();
+        (string? optionChosen, ConsoleKey keyLeaving) genre = BasicMenu.MenuBasic(uniqueGenres, "Different genres possible");
+        
+        if (genre.keyLeaving is ConsoleKey.Escape)
+        {
+            Console.WriteLine("returning to movies unsorted");
+            return null;
+        }
+        else if (genre.optionChosen is null)
+        {
+            Console.WriteLine("returning to movies unsorted");
+            return null;
+        }
+
+
+        return FilterfilmByGenre(toSort, genre.optionChosen, isDesc);
+    }
+    
+    
+    public static List<Film> FilterfilmByGenre(List<Film> toSort, string GenreSought, bool desc = false )
     {
         
+        List<Film> toReturn = toSort.Where(q => q.Genres.Contains(GenreSought)).ToList();
 
+        if (desc)
+        {
+            toReturn.Reverse();
+        }
+
+        return toReturn; 
+    }
+
+    public static List<Film> SortFilmByDateAvailable(List<Film> ToSort, bool desc = false)
+    {
+        throw new NotImplementedException();
+    }
+    
+    public static List<Film> SortFilmByTitle(List<Film> Tosort, bool desc = false)
+    {
+        
         List<Film> toreturn = Tosort.OrderBy(q => q.Title).ToList();
         if (desc is true)
         {
@@ -31,20 +79,22 @@ static class SortedMovies
     {
         List<string> sortOptions = new() {
             "By Title",
-            "By Release Year"
+            "By Release Year",
+            "By Genre"
         };
-        
+
         (string? optionChosen, ConsoleKey keyLeaving) sortsChosen = BasicMenu.MenuBasic(sortOptions, "Sort Options");
-        
-        
+
 
         if (sortsChosen.keyLeaving is ConsoleKey.Escape)
         {
             Console.WriteLine("returning to movies unsorted");
+            ChooseMovie.Films_kiezen(currentcustomer);
             return;
         }
         else if (sortsChosen.optionChosen is null)
         {
+            ChooseMovie.Films_kiezen(currentcustomer);
             Console.WriteLine("returning to movies unsorted");
             return;
         }
@@ -62,11 +112,13 @@ static class SortedMovies
         if (ascOrDescchosen.keyLeaving is ConsoleKey.Escape)
         {
             Console.WriteLine("returning to movies unsorted");
+            ChooseMovie.Films_kiezen(currentcustomer);
             return;
         }
         else if (ascOrDescchosen.optionChosen is null)
         {
             Console.WriteLine("returning to movies unsorted");
+            ChooseMovie.Films_kiezen(currentcustomer);
             return;
         }
 
@@ -90,6 +142,13 @@ static class SortedMovies
             case "By Release Year":
             {    
                 sortedFilm = SortFilmByReleaseYear(ToView, chosenAscOrDesc);
+                DisplaySortedMovies(currentcustomer, sortedFilm);
+                break;
+            }
+            case "By Genre":
+            {
+                sortedFilm = SortfilmByGenreQuestions(ToView, chosenAscOrDesc)!;
+                if (sortedFilm is null) return; 
                 DisplaySortedMovies(currentcustomer, sortedFilm);
                 break;
             }
@@ -141,6 +200,9 @@ static class SortedMovies
                 }
             }
             System.Console.WriteLine(line);
+            System.Console.WriteLine(@"gebruik WASD keys om je optie te selecteren druk daarna op Enter op je keuze te bevestigen
+Druk op ESC om te vertrekken.
+");
             keyInfo = Console.ReadKey();
 
             // update aan de controls uparrow and W gaan niet meer boven de begin optie of onder de laatste optie dit graag behouden aub
@@ -148,7 +210,7 @@ static class SortedMovies
             {
                 selectedIndex--;
             }
-            else if (keyInfo.Key == ConsoleKey.S && selectedIndex < options.Count - 1 || keyInfo.Key == ConsoleKey.DownArrow && selectedIndex < options.Count - 1)
+            else if (keyInfo.Key == ConsoleKey.S && selectedIndex < options.Count || keyInfo.Key == ConsoleKey.DownArrow && selectedIndex < options.Count)
             {
                 selectedIndex++;
             }
@@ -161,6 +223,7 @@ static class SortedMovies
         if (keyInfo.Key == ConsoleKey.Escape)
         {
             System.Console.WriteLine("Je verlaat het film scherm!");
+            Console.ReadKey();
             return;
         }
 

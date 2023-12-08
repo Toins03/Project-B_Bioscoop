@@ -37,7 +37,7 @@
   },
   {
     "Title": "Luigi",
-    "Genres": [],
+    "Genres": ["Action"],
     "Director": "unknown",
     "ReleaseYear": 2022,
     "FilmRunTime": 90,
@@ -51,6 +51,7 @@
   {
     "Title": "TestFilm",
     "Genres": [
+      "Action",
       "dit",
       "is",
       "een",
@@ -65,5 +66,33 @@
     "DateAndAuditorium": {
       "2023-02-03T04:01:00": "1"
     }
+  },
+  {
+    "Title": "the Matrix",
+    "Genres": [
+      "Action"
+    ],
+    "Director": "Lana Wachowski",
+    "ReleaseYear": 1999,
+    "FilmRunTime": 120,
+    "FilmPrice": 20.0,
+    "FilmRating": 9.0,
+    "CinemaAudience": [],
+    "DateAndAuditorium": {
+      "2023-11-01T00:04:00": "1"
+    }
+  },
+  {
+    "Title": "Hunger Games",
+    "Genres": [
+      "Action"
+    ],
+    "Director": "test director",
+    "ReleaseYear": 2023,
+    "FilmRunTime": 120,
+    "FilmPrice": 20.0,
+    "FilmRating": 8.0,
+    "CinemaAudience": [],
+    "DateAndAuditorium": {}
   }
 ]

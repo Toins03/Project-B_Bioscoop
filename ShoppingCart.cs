@@ -1,6 +1,4 @@
-using System.Xml.Serialization;
-
-class ShoppingCart
+public class ShoppingCart
 {
     public List<Snack> shoppingcart;
 

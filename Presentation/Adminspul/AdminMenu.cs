@@ -57,7 +57,7 @@ static class AdminMenu
 
         if (options[selectedIndex] == "films beheren")
         {
-            AdminsManage.FilmManagement();
+            FilmsManage.FilmManagement();
             AdminMenu.Menu(admin);
         }
         if (options[selectedIndex] == "Reserveringen beheren")

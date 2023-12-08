@@ -32,7 +32,7 @@ class Program
                     }
                 case "START":
                     {
-                        var filmInfo = AdminsManage.GetFilmInfo();
+                        var filmInfo = FilmsManage.GetFilmInfo();
 
                         string title = filmInfo.Title;
                         int runtime = filmInfo.Runtime;

@@ -8,12 +8,14 @@ public class Customer : IEquatable<Customer>
     public string UserName;
     public string Password { get; }
     public string Email;
-    public string ConfirmationCode;
+    public string? ConfirmationCode;
     public static int Counter { get; private set; } = 1;
+
+    public List<Snack> SnacksBought {get; private set;} = new();
 
 
     [JsonConstructor]
-    public Customer(int ID, string name, string username, string password, string email, string confirmationcode)
+    public Customer(int ID, string name, string username, string password, string email, string? confirmationcode, List<Snack>? snacksReserved)
     {
         Name = name;
         UserName = username;
@@ -21,6 +23,8 @@ public class Customer : IEquatable<Customer>
         Email = email;
         ConfirmationCode = confirmationcode;
         this.ID = ID;
+        if (SnacksBought is null) this.SnacksBought = new List<Snack>();
+        else this.SnacksBought = snacksReserved!;
     }
 
     public Customer(string name, string confirmationcode, string username = "none ", string password = "none", string email = "none")
@@ -131,6 +135,21 @@ public class Customer : IEquatable<Customer>
 
         return null!;
     }
+
+    public void AddSnack(List<Snack>? snacks)
+    {
+        if (snacks is null) return;
+
+        this.SnacksBought.AddRange(snacks);
+    }
+
+    public void AddSnack(Snack? snack)
+    {
+        if (snack is null) return;
+
+        this.SnacksBought.Add(snack);
+    }
+
 
     public override bool Equals(object? obj)
     {

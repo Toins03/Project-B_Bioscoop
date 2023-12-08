@@ -40,6 +40,9 @@ class ChooseMovie : FrontPage
                 }
             }
             System.Console.WriteLine(line);
+            System.Console.WriteLine(@"gebruik WASD keys om je optie te selecteren druk daarna op Enter op je keuze te bevestigen
+Druk op ESC om te vertrekken.
+");
             keyInfo = Console.ReadKey();
 
             // update aan de controls uparrow and W gaan niet meer boven de begin optie of onder de laatste optie dit graag behouden aub
@@ -47,7 +50,7 @@ class ChooseMovie : FrontPage
             {
                 selectedIndex--;
             }
-            else if (keyInfo.Key == ConsoleKey.S && selectedIndex < options.Count - 1 || keyInfo.Key == ConsoleKey.DownArrow && selectedIndex < options.Count - 1)
+            else if (keyInfo.Key == ConsoleKey.S && selectedIndex < options.Count || keyInfo.Key == ConsoleKey.DownArrow && selectedIndex < options.Count)
             {
                 selectedIndex++;
             }
