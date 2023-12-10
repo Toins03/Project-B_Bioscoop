@@ -91,5 +91,40 @@ public class ShoppingCart
 
 
     }
+    public void ModifyShoppingCartForTests(string choice, int AmountOfTimes)
+    {
+        
+
+        bool CheckFound = false;
+
+        int removedCount = 0;
+
+        for (int i = shoppingcart.Count - 1; i >= 0; i--)
+        {
+            Snack snack = shoppingcart[i];
+            if (choice == snack.Name)
+            {
+                if (removedCount == AmountOfTimes)
+                {
+                    break; // controle over hoeveel er eruit gaat
+                }
+
+                shoppingcart.RemoveAt(i);
+                CheckFound = true;
+                removedCount++;
+
+            }
+        }
+
+        if (CheckFound == true)
+        {
+            System.Console.WriteLine("het product is uit je winkelwagen gehaalt");
+        }
+        else if (CheckFound == false)
+        {
+            System.Console.WriteLine("het product is niet gevonden in de winkelwagen");
+        }
+
+    }
 
 }

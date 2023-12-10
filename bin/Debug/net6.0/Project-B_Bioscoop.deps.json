@@ -6,7 +6,7 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v6.0": {
-      "project-b_bioscoop/1.0.0": {
+      "Project-B_Bioscoop/1.0.0": {
         "dependencies": {
           "MSTest.TestAdapter": "2.2.8",
           "MSTest.TestFramework": "2.2.8",
@@ -15,7 +15,7 @@
           "coverlet.collector": "3.1.2"
         },
         "runtime": {
-          "project-b_bioscoop.dll": {}
+          "Project-B_Bioscoop.dll": {}
         }
       },
       "coverlet.collector/3.1.2": {},
@@ -1011,7 +1011,7 @@
     }
   },
   "libraries": {
-    "project-b_bioscoop/1.0.0": {
+    "Project-B_Bioscoop/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
