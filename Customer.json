@@ -150,6 +150,15 @@
     "Email": "rowankiksen@gmail.com",
     "ConfirmationCode": "none",
     "Password": "54321",
+    "SnacksBought": null
+  },
+  {
+    "ID": 1,
+    "Name": "hallo",
+    "UserName": "abcde",
+    "Email": "nee@nee.com",
+    "ConfirmationCode": "none",
+    "Password": "neee",
     "SnacksBought": []
   }
 ]

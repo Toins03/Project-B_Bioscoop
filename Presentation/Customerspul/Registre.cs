@@ -57,7 +57,7 @@ class registreren
             if (Email is null) return null!;
             else if (Email.Length == 0) return null!;
             else if (EmailParser.IsEmailValid(Email)) break;
-
+            else System.Console.WriteLine("This was not a valid email addres! Please try again.");
         }
         ConfirmationData.Add($"Email: {Email}");
 
