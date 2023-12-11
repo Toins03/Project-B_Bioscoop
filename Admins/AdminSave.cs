@@ -1,5 +1,5 @@
 using Newtonsoft.Json;
-static class AdminSave
+public static class AdminSave
 {
     public static string PathName = "Admin_info.json";
     
@@ -97,7 +97,7 @@ static class AdminSave
         }
     }
 
-    private static void WriteAdminList(List<Admin> ToWrite)
+    public static void WriteAdminList(List<Admin> ToWrite)
     {
         StreamWriter writer = new(PathName);
         string list_to_json = JsonConvert.SerializeObject(ToWrite, Formatting.Indented);

@@ -1,18 +1,16 @@
-using System.Data;
-
 static class BasicMenu
 {
-    public static List<string> MenuBasic(List<string> options, string MenuName)
+    public static (string? optionChosen, ConsoleKey lastKey) MenuBasic(List<string> options, string MenuName)
     {
-        if (options is null) return null!;
-        if (options.Count == 0) return null!;
-        if (MenuName is null) return null!;
+        if (options is null) return (null, ConsoleKey.Escape);
+        if (options.Count == 0) return (null, ConsoleKey.Escape);
+        if (MenuName is null) return (null, ConsoleKey.Escape);
         int selectedIndex = 0;
         ConsoleKeyInfo keyInfo;
         string line = new string('=', Console.WindowWidth);
 
 
-        do 
+        do
         {
 
 
@@ -50,13 +48,7 @@ Druk op ESC om te vertrekken.
 
         } while (keyInfo.Key != ConsoleKey.Enter && keyInfo.Key != ConsoleKey.Escape);
 
-        string Keyleaving;
-        if (keyInfo.Key == ConsoleKey.Escape)
-        {
-            Keyleaving = "escape";
-        }
-        else Keyleaving = "enter";
-        List<string> ToReturn = new() {Keyleaving, options[selectedIndex]};
+        (string, ConsoleKey) ToReturn = (options[selectedIndex], keyInfo.Key);
         return ToReturn;
     }
 

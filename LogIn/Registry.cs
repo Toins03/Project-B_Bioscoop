@@ -1,3 +1,4 @@
+
 class registreren
 {
     public static string customerPath { get => Customer.CustomerPath; }
@@ -56,6 +57,7 @@ class registreren
             if (Email is null) return null!;
             else if (Email.Length == 0) return null!;
             else if (EmailParser.IsEmailValid(Email)) break;
+            else System.Console.WriteLine("This was not a valid email addres! Please try again.");
 
         }
         ConfirmationData.Add($"Email: {Email}");
@@ -63,8 +65,6 @@ class registreren
 
 
         Customer new_customer = new Customer(name: RealName, username: userName, password: Password, email: Email);
-
-        // Debugging: Print customer information
 
         Customer.AddCustomerToJson(new_customer);
 

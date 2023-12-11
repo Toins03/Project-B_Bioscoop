@@ -31,7 +31,7 @@ public abstract class CinemaMap
         Console.Clear();
         do
         {
-            System.Console.WriteLine($"Movie: {MovieTitle}");
+            System.Console.WriteLine($"Movie: {MovieTitle}\n Auditorium 1");
             System.Console.WriteLine($"{Guide}");
             Console.SetCursorPosition(0, 7);
             for (int row = 0; row < CinemaMap1.Count; row++)
@@ -62,7 +62,7 @@ public abstract class CinemaMap
         if (ListReservedSeats.Count == 0) FrontPage.MainMenu(currentCustomer);
         System.Console.WriteLine($"{ReservedString} {GenerateConfirmationCode()}");
         WriteCinemaMapToJson();
-        Customer.CreateCustomer(MovieTitle, GenerateConfirmationCode(), currentCustomer);
+        Snack.ChooseToAddSnackOrNot(MovieTitle, GenerateConfirmationCode(), currentCustomer);
         Console.WriteLine("\n\nWil je terug naar de hoofdpagina toets 'enter' wil je stoppen toets een willekeurig knop\n");
         keyInfo = Console.ReadKey();
         if (keyInfo.Key == ConsoleKey.Enter)
@@ -73,11 +73,10 @@ public abstract class CinemaMap
         else
             return;
     }
-    public void TakeSeats(bool IsAddmin)
+    public void TakeSeats(List<List<string>> auditorium, bool IsAddmin)
     {
-
-        CreateCinemaMap();
-        LoadCinemaMapFromJson();
+        CinemaMap1 = auditorium;
+        CinemaMapCopy = auditorium;
         Console.Clear();
         do
         {

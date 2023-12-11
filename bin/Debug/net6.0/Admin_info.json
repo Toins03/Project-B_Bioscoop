@@ -1,0 +1,17 @@
+[
+  {
+    "Name": "super",
+    "Password": "12345",
+    "AdminID": 0
+  },
+  {
+    "Name": "blarg",
+    "Password": "1223",
+    "AdminID": 2
+  },
+  {
+    "Name": "hasan2",
+    "Password": "asdad",
+    "AdminID": 2
+  }
+]

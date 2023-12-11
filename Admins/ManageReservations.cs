@@ -144,15 +144,15 @@ public class ManageReservations
         {
             case 14:
                 AuditoriumMap150 map150 = new AuditoriumMap150();
-                map150.TakeSeats(true);
+                map150.TakeSeats(Movie.ScreeningTimeAndAuditorium["11-11-2023"], true);
                 break;
             case 21:
                 AuditoriumMap300 map300 = new AuditoriumMap300();
-                map300.TakeSeats(true);
+                map300.TakeSeats(Movie.ScreeningTimeAndAuditorium["11-11-2023"], true);
                 break;
             case 22:
                 AuditoriumMap500 map500 = new AuditoriumMap500();
-                map500.TakeSeats(true);
+                map500.TakeSeats(Movie.ScreeningTimeAndAuditorium["11-11-2023"], true);
                 break;
             default:
                 break;
