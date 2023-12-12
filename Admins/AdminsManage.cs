@@ -9,19 +9,23 @@ static class AdminsManage
             "Add admins",
             "Remove admins",
         };
-        
-        List<string> menuResult = BasicMenu.MenuBasic(options, "Manage admins");
 
-        string keyInfo = menuResult[0];
-        string option_chosen = menuResult[1];
+        (string? optionChosen, ConsoleKey lastKey) menuResult = BasicMenu.MenuBasic(options, "Manage admins");
 
-        if (keyInfo == "escape")
+        string option_chosen = menuResult.optionChosen!;
+        ConsoleKey keyInfo = menuResult.lastKey;
+
+        if (keyInfo == ConsoleKey.Escape)
         {
-            Console.WriteLine(" Leaving admin options!");
+            Console.WriteLine(" LLeaving admin options!");
+            return;
+        }
+        else if (option_chosen is null)
+        {
+            Console.WriteLine("something went wrong");
             return;
         }
 
-        
         if (option_chosen == "Add admins")
         {
             AddAdmin();
@@ -55,7 +59,7 @@ static class AdminsManage
     {
         System.Console.WriteLine("Please input the name or ID of the admin. Inputting the name is not case sensitive. To go back to the admin manager keep this line empty.");
         string ToRemove = Console.ReadLine()!;
-        if (ToRemove is null) 
+        if (ToRemove is null)
         {
             Console.WriteLine("Invalid input");
         }
@@ -65,7 +69,7 @@ static class AdminsManage
             int ToRemoveInt = Convert.ToInt32(ToRemove);
             AdminSave.RemoveAdmin(ToRemoveInt);
         }
-        else 
+        else
         {
             AdminSave.RemoveAdmin(ToRemove);
         }
@@ -77,10 +81,10 @@ static class AdminsManage
         List<Admin> admins = AdminSave.GetAdmins();
         if (admins is not null)
         {
-        foreach (Admin admin in admins)
-        {
-            System.Console.WriteLine(admin.ToString());
-        }
+            foreach (Admin admin in admins)
+            {
+                System.Console.WriteLine(admin.ToString());
+            }
         }
         Console.WriteLine("press any button to leave this screen.");
         Console.ReadKey();

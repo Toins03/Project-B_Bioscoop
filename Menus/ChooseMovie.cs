@@ -80,9 +80,7 @@ public class ChooseMovie : FrontPage
         }
         else if (selectedIndex == 1)
         {
-            // Placeholder for sort method
-            Console.WriteLine("Sort method");
-            Console.ReadLine();
+            SortedMovies.ViewSortOptions(currentCustomer, movies);
         }
     }
 
@@ -154,7 +152,7 @@ public class ChooseMovie : FrontPage
         if (keyInfo.Key == ConsoleKey.Enter)
         {
             Console.Clear();
-            AuditoriumMap500 map500 = new AuditoriumMap500();
+            AuditoriumMap150 map500 = new AuditoriumMap150();
             map500.TakeSeats(MovieTitle, currentCustomer, false);
         }
         else if (keyInfo.Key != ConsoleKey.Enter)

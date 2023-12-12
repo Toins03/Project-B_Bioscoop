@@ -1,9 +1,12 @@
 using System.Security.Cryptography.X509Certificates;
-class Snack
+public class Snack
 {
     public string Name { get; }
-
     public double Price { get; }
+    public static Customer currentCustomer { get; set; }
+    public static string MovieTitle { get; set; }
+    public static string Confirmationcode { get; set; }
+    public static ShoppingCart shoppingCart = new();
 
 
     public Snack(string name, double price)
@@ -36,10 +39,16 @@ class Snack
     private static List<Snack> LoadFoodOptions()
     {
         List<Snack> Snacks = new();
-        Snack bueno = new Snack("bueno", 30);
-        Snack LaysChips = new Snack("Lays Chips", 20);
+        Snack bueno = new Snack("Kinder bueno x8",  6.99);
+        Snack LaysChips = new Snack("Lays chips", 2.99);
+        Snack SweetPopcorn = new Snack("Popcorn zoet", 3.59);
+        Snack SaltPopcorn = new Snack("Popcorn zout", 3.59);
+        Snack CaramelPopcorn = new Snack("Popcorn caramel", 3.59);
         Snacks.Add(bueno);
         Snacks.Add(LaysChips);
+        Snacks.Add(SaltPopcorn);
+        Snacks.Add(SweetPopcorn);
+        Snacks.Add(CaramelPopcorn);
         return Snacks;
 
     }
@@ -47,10 +56,14 @@ class Snack
     private static List<Snack> LoadDrinkOptions()
     {
         List<Snack> Snacks = new();
-        Snack Fanta = new Snack("Fanta 1L", 30);
-        Snack Cola = new Snack("Cola 1L", 20);
+        Snack Fanta = new Snack("Fanta 0,5L", 1.25);
+        Snack Cola = new Snack("Cola 0,5L", 1.25);
+        Snack Pepsi = new Snack("Pepsi 0,5L", 1.25);
+        Snack Water = new Snack("Water 0,5L", 1.25);
         Snacks.Add(Fanta);
         Snacks.Add(Cola);
+        Snacks.Add(Pepsi);
+        Snacks.Add(Water);
         return Snacks;
 
     }
@@ -62,8 +75,11 @@ class Snack
     }
 
 
-    public static void ChooseToAddSnackOrNot()
+    public static void ChooseToAddSnackOrNot(string movieTitle, string conformationCode, Customer currentCustomer)
     {
+        MovieTitle = movieTitle;
+        Confirmationcode = conformationCode;
+        currentCustomer = currentCustomer;
         string choice;
         do
 
@@ -77,13 +93,13 @@ class Snack
 
         if (choice == "ja")
         {
-            ShoppingCart shoppingCart = new();
             List<string> options = new List<string> { };
             options.Add("eten");
             options.Add("drinken");
 
             SnackMainMenu(options, shoppingCart);
         }
+        else Customer.CreateCustomer(MovieTitle, Confirmationcode, currentCustomer, shoppingCart);
 
 
     }
@@ -255,13 +271,12 @@ druk op p om je producten uit je winkelwagen te verwijderen
         } while (choice != "ja" && choice != "nee");
         if (choice == "ja")
         {
-            // zelf implenmenteren bij het mergen dit is nu een placeholder
-            ChooseToAddSnackOrNot();
+            Customer.CreateCustomer(MovieTitle, Confirmationcode, currentCustomer, shoppingCart);
         }
         else if (choice == "nee")
         {
             // zelf implenmenteren bij het mergen dit is nu een placeholder
-            ChooseToAddSnackOrNot();
+            Snack.ChooseToAddSnackOrNot(MovieTitle, Confirmationcode, currentCustomer);
         }
     }
 }

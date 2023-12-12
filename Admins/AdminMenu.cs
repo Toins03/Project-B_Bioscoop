@@ -50,22 +50,28 @@ static class AdminMenu
 
         if (keyInfo.Key == ConsoleKey.Escape)
         {
-            Console.WriteLine(" Leaving admin options!");
+            Console.WriteLine("  LLeaving admin options!");
+            Console.ReadLine();
             return;
         }
 
         if (options[selectedIndex] == "films beheren")
         {
-            FilmsManage.FilmmanageMenu();
+            FilmsManage.FilmManagement();
+            AdminMenu.Menu(admin);
         }
         if (options[selectedIndex] == "Reserveringen beheren")
         {
             Console.Clear();
             ManageReservations.ManageReservationsOptions();
+            AdminMenu.Menu(admin);
+
         }
         if (options[selectedIndex] == "Admins beheren")
         {
             AdminsManage.AdminmanageMenu();
+            AdminMenu.Menu(admin);
+
         }
 
 

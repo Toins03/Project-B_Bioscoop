@@ -2,18 +2,18 @@ using Newtonsoft.Json;
 
 public class Film
 {
+
+
     public string Title;
     public List<string> Genres;
     public string Director;
     public int ReleaseYear;
     public int FilmRunTime;
-    public double FilmPrice;
+    public double FilmPrice = 0;
     public double FilmRating = 5;
-    public List<Customer> CinemaAudience = new();
+    public List<string> CinemaAudience = new() { };
 
-    public Dictionary<string, string> DateAndAuditorium = new Dictionary<string, string>();
-
-
+    public Dictionary<DateTime, string> DateAndAuditorium = new Dictionary<DateTime, string>();
 
 
     [JsonConstructor]
@@ -25,8 +25,8 @@ public class Film
     int ReleaseYear,
     List<string> genres = null!,
     string director = "unknown",
-    List<Customer> cinemaAudience = null!,
-    Dictionary<string, string> DateAndAuditorium = null!)
+    List<string> cinemaAudience = null!,
+    Dictionary<DateTime, string> DateAndAuditorium = null!)
     {
         this.Genres = new List<string>() { };
         if (genres is not null) this.Genres = genres;
@@ -37,29 +37,35 @@ public class Film
         this.ReleaseYear = ReleaseYear;
         this.Director = director;
         if (cinemaAudience is not null) this.CinemaAudience = cinemaAudience;
+        //test
+        this.DateAndAuditorium = DateAndAuditorium ?? new Dictionary<DateTime, string>();
+    }
 
-        // Extract the first key from DateAndAuditorium dictionary
-        if (DateAndAuditorium is not null && DateAndAuditorium.Count > 0)
-        {
-            string dateString = DateAndAuditorium.Keys.First();
-            DateTime dateTime = DateTime.ParseExact(dateString, "MM-dd-yyyy HH:mm", null);
-
-            DayOfWeek dayOfWeek = dateTime.DayOfWeek;
-
-            this.FirstDateAndAuditoriumKey = $"{DateAndAuditorium.Keys.First()} - {dayOfWeek}";
-        }
-        else
-        {
-            this.FirstDateAndAuditoriumKey = "No DateAndAuditorium information available";
-        }
-
-        this.DateAndAuditorium = DateAndAuditorium!;
+    public Film(
+    string title,
+    int runtime,
+    double price,
+    double filmrating,
+    int ReleaseYear,
+    string director,
+    List<string> genres,
+    List<string> cinemaAudience = null!,
+    Dictionary<DateTime, string> DateAndAuditorium = null!)
+    {
+        this.Title = title;
+        this.FilmRunTime = runtime;
+        this.FilmPrice = price;
+        this.FilmRating = filmrating;
+        this.ReleaseYear = ReleaseYear;
+        this.Director = director;
+        this.Genres = genres ?? new List<string>();
+        this.CinemaAudience = cinemaAudience ?? new List<string>();
+        this.DateAndAuditorium = DateAndAuditorium ?? new Dictionary<DateTime, string>();
     }
 
     // Add a property to store the first key from the dictionary
-    public string FirstDateAndAuditoriumKey { get; }
 
-
+    // string.Join(", ", this.Genres!)
     public void Add_genre(string genre)
     {
         this.Genres.Add(genre);
@@ -68,7 +74,7 @@ public class Film
     public void AddCinemaAudience(Customer customer)
     {
 
-        CinemaAudience.Add(customer);
+        CinemaAudience.Add("Customer ID " + customer.ID + " Customer Name " + customer.Name);
     }
 
     public void ChangeRating(double newRating)
@@ -126,13 +132,66 @@ Film Rating: {this.FilmRating}";
         return !(a1 == a2);
     }
 
-    public void AddDateTimeAndAuditorium(string AuditorumNumber)
+    public void AddDateTimeAndAuditorium()
     {
-        DateTime specificDateTime = new DateTime(2023, 11, 11, 12, 0, 0); // November 11, 2023, 12:00 PM
-        // DayOfWeek dayOfWeek = specificDateTime.DayOfWeek;
-        // string dayOfWeekString = dayOfWeek.ToString();
-        // deze code later gebruiken voor het uitlezen van de json file maar niet om ernaar toe te schrijven
-        string formattedDateTime = specificDateTime.ToString($"MM-dd-yyyy HH:mm");
-        DateAndAuditorium.Add(formattedDateTime, AuditorumNumber);
+        string AuditorumNumber;
+        do
+        {
+            System.Console.WriteLine("Enter the number of the auditorium room you want this movie to be in");
+            AuditorumNumber = Console.ReadLine()!;
+        } while (AuditorumNumber != "1" && AuditorumNumber != "2" && AuditorumNumber != "3");
+        var dateAndTime = AskDateAndTime();
+
+
+        DateTime specificDateTime = new DateTime(dateAndTime.Year, dateAndTime.month, dateAndTime.day, dateAndTime.hour, dateAndTime.minutes, 0);
+        SetTime(specificDateTime, AuditorumNumber);
+
+
+
+
     }
+
+    private (int Year, int month, int day, int hour, int minutes) AskDateAndTime()
+    {
+
+        Console.Write("Enter the year: ");
+        int year = int.Parse(Console.ReadLine()!);
+
+        Console.Write("Enter the month: ");
+        int month = int.Parse(Console.ReadLine()!);
+
+        Console.Write("Enter the day: ");
+        int day = int.Parse(Console.ReadLine()!);
+
+        Console.Write("Enter the hour: ");
+        int hour = int.Parse(Console.ReadLine()!);
+
+        Console.Write("Enter the minutes: ");
+        int minutes = int.Parse(Console.ReadLine()!);
+
+        return (year, month, day, hour, minutes);
+
+
+    }
+    private void SetTime(DateTime specifiedTime, string AuditorumNumber)
+    {
+        // string formattedDateTime = specifiedTime.ToString($"MM-dd-yyyy HH:mm");
+        DateAndAuditorium.Add(specifiedTime, AuditorumNumber);
+    }
+
+    public string ShowDate()
+    {
+        string Date;
+
+        foreach (DateTime key in DateAndAuditorium.Keys)
+        {
+            // wijzig dit date display
+            Date = key.ToString();
+            return Date;
+
+        }
+        return "no date to be seen";
+    }
+
+
 }

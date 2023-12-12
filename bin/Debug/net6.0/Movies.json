@@ -1,0 +1,75 @@
+[
+  {
+    "Title": "Inception",
+    "Genres": [
+      "Sci-Fi",
+      "Action",
+      "Thriller"
+    ],
+    "Director": "Christopher Nolan",
+    "ReleaseYear": 2000,
+    "FilmRunTime": 148,
+    "FilmPrice": 10.99,
+    "FilmRating": 4.5,
+    "CinemaAudience": [
+      "Customer ID 19 Customer Name jhgf"
+    ],
+    "DateAndAuditorium": {
+      "2023-11-24T13:00:00": "2"
+    }
+  },
+  {
+    "Title": "Mario",
+    "Genres": [
+      "Action",
+      "Avondtuur"
+    ],
+    "Director": "unknown",
+    "ReleaseYear": 2023,
+    "FilmRunTime": 110,
+    "FilmPrice": 30.0,
+    "FilmRating": 4.0,
+    "CinemaAudience": [
+      "Customer ID 20 Customer Name Hawraz"
+    ],
+    "DateAndAuditorium": {
+      "2023-11-24T09:00:00": "3"
+    }
+  },
+  {
+    "Title": "Barbie",
+    "Genres": [
+      "Avondtuur"
+    ],
+    "Director": "Greta Thunburg",
+    "ReleaseYear": 2023,
+    "FilmRunTime": 120,
+    "FilmPrice": 20.0,
+    "FilmRating": 8.5,
+    "CinemaAudience": [
+      "Customer ID 21 Customer Name Khalid"
+    ],
+    "DateAndAuditorium": {
+      "2022-03-04T03:00:00": "2"
+    }
+  },
+  {
+    "Title": "Oppenheimer",
+    "Genres": [
+      "Action",
+      "Thriller"
+    ],
+    "Director": "Christopher Nolan",
+    "ReleaseYear": 2023,
+    "FilmRunTime": 120,
+    "FilmPrice": 20.0,
+    "FilmRating": 8.0,
+    "CinemaAudience": [
+      "Customer ID 22 Customer Name Calvin",
+      "Customer ID 25 Customer Name Denhijer"
+    ],
+    "DateAndAuditorium": {
+      "2023-02-03T04:01:00": "1"
+    }
+  }
+]

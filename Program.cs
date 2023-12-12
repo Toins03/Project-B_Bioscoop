@@ -11,7 +11,7 @@ class Program
             {
                 case "snack":
                     {
-                        Snack.ChooseToAddSnackOrNot();
+                        Console.WriteLine("");
                         break;
                     }                
                 default:
@@ -21,6 +21,6 @@ class Program
                     }
             }
         }
-        Snack.ChooseToAddSnackOrNot();
+        FrontPage.MainMenu(null!);
     }
 }

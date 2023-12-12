@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 
-class Admin: IEquatable<Admin>
+public class Admin: IEquatable<Admin>
 {
     public string Name;
     public string Password;
