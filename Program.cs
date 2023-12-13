@@ -9,7 +9,7 @@ class Program
             Console.WriteLine(arg);
             switch (arg)
             {
-                case "SnackMenu":
+                case "snack":
                     {
                         Snack.ChooseToAddSnackOrNot();
                         break;
@@ -109,7 +109,7 @@ class Program
                         // System.Console.WriteLine("Done");
                         // Console.ReadKey();
                         break;
-                    }
+                    }                
                 default:
                     {
                         Console.WriteLine("this is not a valid one");

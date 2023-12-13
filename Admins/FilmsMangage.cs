@@ -1,3 +1,5 @@
+using System.Diagnostics.Tracing;
+
 static class FilmsManage
 {
     public static void FilmmanageMenu()
@@ -57,7 +59,7 @@ static class FilmsManage
         int ToAddRunTime;
         while (true)
         {
-            System.Console.WriteLine("Please input the runtime of the Film in seconds. To go back to the Film manager keep this line empty.");
+            System.Console.WriteLine("Please input the runtime of the Film in minutes. To go back to the Film manager keep this line empty.");
             string ToAddRunTimestring = Console.ReadLine()!;
             if (ToAddRunTimestring is null) return;
             else if (ToAddRunTimestring == "") return;
@@ -192,12 +194,12 @@ static class FilmsManage
 
             return;
         }
-        else if (option_chosen is null) 
+        else if (option_chosen is null)
         {
             Console.WriteLine("something went wrong");
             return;
         }
-        
+
         if (option_chosen == "Add Films")
         {
 
@@ -230,10 +232,11 @@ static class FilmsManage
                 keyread = Console.ReadKey();
             } while (keyread.Key != ConsoleKey.Y && keyread.Key != ConsoleKey.N);
 
-            if (keyread.Key == ConsoleKey.Y) {
-            film.AddDateTimeAndAuditorium();
+            if (keyread.Key == ConsoleKey.Y)
+            {
+                film.AddDateTimeAndAuditorium();
             }
-            
+
             FilmSave.AppendToJason(film);
         }
         else if (option_chosen == "Remove Films")

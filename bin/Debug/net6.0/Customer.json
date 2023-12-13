@@ -2,10 +2,10 @@
   {
     "ID": 1,
     "Name": "valdier",
-    "UserName": "jvp010",
-    "Email": "Valdier@live.nl",
+    "UserName": "Goku",
+    "Email": "Goku@gmail.com",
     "ConfirmationCode": null,
-    "Password": "Holland-010",
+    "Password": "Dr!agonballZ",
     "SnacksBought": null
   },
   {
@@ -144,21 +144,84 @@
     "SnacksBought": null
   },
   {
-    "ID": 1,
-    "Name": "Rowan",
-    "UserName": "RowanTest",
-    "Email": "rowankiksen@gmail.com",
+    "ID": 17,
+    "Name": "Jahlani",
+    "UserName": "Jahlani",
+    "Email": "Z3S\u001b[32m[19A]\u001b[0m\u001b[32m[19B]\u001b[0m\u001b[32m[19C]\u001b[0m\u001b[32m[19D]\u001b[0mD11-12-23T11:47",
     "ConfirmationCode": "none",
-    "Password": "54321",
+    "Password": "Jahlani@",
+    "SnacksBought": null
+  },
+  {
+    "ID": 18,
+    "Name": "Jahlani",
+    "UserName": "Jahlani",
+    "Email": "Z3S\u001b[32m[18A]\u001b[0m\u001b[32m[18B]\u001b[0m\u001b[32m[18C]\u001b[0mD11-12-23T11:49",
+    "ConfirmationCode": "none",
+    "Password": "Jahlani@",
+    "SnacksBought": null
+  },
+  {
+    "ID": 19,
+    "Name": "jhgf",
+    "UserName": "jhgf",
+    "Email": "Z1S\u001b[32m[14A]\u001b[0mD11-12-23T13:53",
+    "ConfirmationCode": "none",
+    "Password": "hgf@",
+    "SnacksBought": null
+  },
+  {
+    "ID": 20,
+    "Name": "Hawraz",
+    "UserName": "Hawraz",
+    "Email": "Z1S\u001b[32m[14A]\u001b[0mD11-12-23T14:4",
+    "ConfirmationCode": "none",
+    "Password": "Hawraz@gmail.com",
+    "SnacksBought": null
+  },
+  {
+    "ID": 21,
+    "Name": "Khalid",
+    "UserName": "Khalid",
+    "Email": "Z1S\u001b[32m[14A]\u001b[0mD11-12-23T14:4",
+    "ConfirmationCode": "none",
+    "Password": "Khalid@gmail.com",
+    "SnacksBought": null
+  },
+  {
+    "ID": 22,
+    "Name": "Calvin",
+    "UserName": "Calvin",
+    "Email": "Z1S\u001b[32m[14A]\u001b[0mD11-12-23T14:4",
+    "ConfirmationCode": "none",
+    "Password": "Calvin@yahoo.com",
     "SnacksBought": null
   },
   {
     "ID": 1,
-    "Name": "hallo",
-    "UserName": "abcde",
-    "Email": "nee@nee.com",
+    "Name": "loo",
+    "UserName": "loo",
+    "Email": "loo@e.com",
     "ConfirmationCode": "none",
-    "Password": "neee",
+    "Password": "loo",
+    "SnacksBought": null
+  },
+  {
+    "ID": 2,
+    "Name": "loo",
+    "UserName": "loo2",
+    "Email": "loo@ff.com",
+    "ConfirmationCode": "none",
+    "Password": "loo",
+    "SnacksBought": null
+  },
+  {
+    "ID": 25,
+    "Name": "Denhijer",
+    "UserName": "Denhijer",
+    "Email": "Z1S\u001b[32m[13D]\u001b[0m\u001b[32m[13E]\u001b[0mD11-12-23T16:3",
+    "ConfirmationCode": "none",
+    "Password": "Gert@jan.nl",
     "SnacksBought": []
   }
 ]
