@@ -20,7 +20,7 @@ public class ShoppingCart
         {
             Total += snack.Price;
         }
-        return Total;
+        return Math.Round(Total, 2);
     }
 
     public void ModifyShoppingCart()

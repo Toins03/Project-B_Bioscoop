@@ -134,19 +134,19 @@ Druk op ESC om te vertrekken.
         }
     }
 
-    protected static void CenterText(string text)
-    {
-        int screenWidth = Console.WindowWidth;
-        int textLength = text.Length;
+    // protected static void CenterText(string text)
+    // {
+    //     int screenWidth = Console.WindowWidth;
+    //     int textLength = text.Length;
 
-        // Calculate the number of spaces to insert before the text to center it
-        int spacesToInsert = (screenWidth - textLength) / 2;
+    //     // Calculate the number of spaces to insert before the text to center it
+    //     int spacesToInsert = (screenWidth - textLength) / 2;
 
-        // Create a string with the calculated spaces
-        string centeredText = new string(' ', spacesToInsert) + text;
+    //     // Create a string with the calculated spaces
+    //     string centeredText = new string(' ', spacesToInsert) + text;
 
-        // Print the centered text
-        Console.WriteLine(centeredText);
-    }
+    //     // Print the centered text
+    //     Console.WriteLine(centeredText);
+    // }
 
 }

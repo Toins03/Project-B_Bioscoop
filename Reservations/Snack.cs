@@ -6,7 +6,6 @@ public class Snack
     public static Customer currentCustomer { get; set; }
     public static string MovieTitle { get; set; }
     public static string Confirmationcode { get; set; }
-    public static ShoppingCart shoppingCart = new();
 
 
     public Snack(string name, double price)
@@ -28,59 +27,63 @@ public class Snack
         return Items;
     }
 
-    private static void FoodOptionsToList(ShoppingCart ShoppingCart)
-    {
-        List<Snack> Food = LoadFoodOptions();
-        LoopOverSnacks(Food, ShoppingCart);
+    // private static void FoodOptionsToList(ShoppingCart ShoppingCart)
+    // {
+    //     List<Snack> Food = LoadFoodOptions();
+    //     LoopOverSnacks(Food, ShoppingCart);
 
 
-    }
+    // }
 
     private static List<Snack> LoadFoodOptions()
     {
-        List<Snack> Snacks = new();
-        Snack bueno = new Snack("Kinder bueno x8", 6.99);
-        Snack LaysChips = new Snack("Lays chips", 2.99);
-        Snack SweetPopcorn = new Snack("Popcorn zoet", 3.59);
-        Snack SaltPopcorn = new Snack("Popcorn zout", 3.59);
-        Snack CaramelPopcorn = new Snack("Popcorn caramel", 3.59);
-        Snacks.Add(bueno);
-        Snacks.Add(LaysChips);
-        Snacks.Add(SaltPopcorn);
-        Snacks.Add(SweetPopcorn);
-        Snacks.Add(CaramelPopcorn);
+        List<Snack> Snacks =
+        new()
+        {
+            new Snack("kinder Bueno", 1.28),
+            new Snack("M&M's Pinda", 4.19),
+            new Snack("Kinder bueno x8", 6.99),
+            new Snack("Lays chips", 2.99),
+            new Snack("Popcorn zoet", 3.59),
+            new Snack("Popcorn zout", 3.59),
+            new Snack("Popcorn caramel", 3.59),
+            new Snack("Milka Oreo", 1.09)
+    };
+
         return Snacks;
 
     }
 
     private static List<Snack> LoadDrinkOptions()
     {
-        List<Snack> Snacks = new();
-        Snack Fanta = new Snack("Fanta 0,5L", 1.25);
-        Snack Cola = new Snack("Cola 0,5L", 1.25);
-        Snack Pepsi = new Snack("Pepsi 0,5L", 1.25);
-        Snack Water = new Snack("Water 0,5L", 1.25);
-        Snacks.Add(Fanta);
-        Snacks.Add(Cola);
-        Snacks.Add(Pepsi);
-        Snacks.Add(Water);
+        List<Snack> Snacks =
+        new()
+        {
+            new Snack("Fanta 0,5L", 1.25),
+            new Snack("Cola 0,5L", 1.25),
+            new Snack("Pepsi 0,5L", 1.25),
+            new Snack("Water 0,5L", 1.25)
+        };
+
+
         return Snacks;
 
     }
-    private static void DrinksOptionsToList(ShoppingCart shoppingCart)
-    {
-        List<Snack> Drinks = LoadDrinkOptions();
-        LoopOverSnacks(Drinks, shoppingCart);
+    // private static void DrinksOptionsToList(ShoppingCart shoppingCart)
+    // {
+    //     List<Snack> Drinks = LoadDrinkOptions();
+    //     LoopOverSnacks(Drinks, shoppingCart);
 
-    }
+    // }
 
 
     public static void ChooseToAddSnackOrNot(string movieTitle, string conformationCode, Customer currentCustomer)
     {
         MovieTitle = movieTitle;
         Confirmationcode = conformationCode;
-        currentCustomer = currentCustomer;
+        currentCustomer = currentCustomer; // kan deze Warning weg?
         string choice;
+        ShoppingCart shoppingCart = new ShoppingCart();
         do
 
         {
@@ -93,11 +96,11 @@ public class Snack
 
         if (choice == "ja")
         {
-            List<string> options = new List<string> { };
-            options.Add("eten");
-            options.Add("drinken");
-
-            SnackMainMenu(options, shoppingCart);
+            // List<string> options = new List<string> { };
+            // options.Add("eten");
+            // options.Add("drinken");
+            LoopOverSnacks(LoadDrinkOptions(), LoadFoodOptions(), shoppingCart);
+            // SnackMainMenu(options, shoppingCart);
         }
         else Customer.CreateCustomer(MovieTitle, Confirmationcode, currentCustomer, shoppingCart);
 
@@ -148,11 +151,12 @@ druk op p om je producten uit je winkelwagen te verwijderen
             if (keyInfo.Key == ConsoleKey.Escape)
             {
                 System.Console.WriteLine(" SSee you!");
-                break;
+                return;
+
             }
             else if (keyInfo.Key == ConsoleKey.Spacebar)
             {
-                Confirmation();
+                Confirmation(shoppingcart);
                 break;
             }
             else if (keyInfo.Key == ConsoleKey.P)
@@ -165,22 +169,26 @@ druk op p om je producten uit je winkelwagen te verwijderen
             Console.ReadKey();
             Console.Clear();
 
-            if (options[selectedIndex] == "eten")
-            {
-                FoodOptionsToList(shoppingcart);
-                Console.ReadKey();
-            }
-            else if (options[selectedIndex] == "drinken")
-            {
-                DrinksOptionsToList(shoppingcart);
-                Console.ReadKey();
+            // if (options[selectedIndex] == "eten")
+            // {
+            //     FoodOptionsToList(shoppingcart);
+            //     Console.ReadKey();
+            // }
+            // else if (options[selectedIndex] == "drinken")
+            // {
+            //     DrinksOptionsToList(shoppingcart);
+            //     Console.ReadKey();
 
-            }
+            // }
         }
 
     }
-    private static void LoopOverSnacks(List<Snack> options, ShoppingCart shoppingcart)
+    private static void LoopOverSnacks(List<Snack> Food, List<Snack> Drinks, ShoppingCart shoppingcart)
     {
+        // bool Flag = true;
+        List<Snack> options = Food.Concat(Drinks).ToList();
+        // while (Flag)
+        // {
         while (true)
         {
             int selectedIndex = 0;
@@ -226,39 +234,49 @@ druk op p om je producten uit je winkelwagen te verwijderen
             if (keyInfo.Key == ConsoleKey.Escape)
             {
                 System.Console.WriteLine(" SSee you!");
+                // Flag = false;
                 break;
             }
             else if (keyInfo.Key == ConsoleKey.Spacebar)
             {
-                Confirmation();
-                break;
+                Confirmation(shoppingcart);
+                // break;
             }
             else if (keyInfo.Key == ConsoleKey.P)
             {
                 shoppingcart.ModifyShoppingCart();
-                break;
+                // LoopOverSnacks(Food, Drinks, shoppingcart);
+
             }
-
-
-            Console.WriteLine("je hebt dit geselecteerd: " + options[selectedIndex]);
-            Console.ReadKey();
-            Console.Clear();
-
-            foreach (Snack snack in options)
+            else
             {
-                if (options[selectedIndex].Name == snack.Name)
+
+
+
+
+                Console.ReadKey();
+                Console.Clear();
+
+                foreach (Snack snack in options)
                 {
-                    System.Console.WriteLine(snack.Name);
-                    shoppingcart.AddtoShoppingCart(snack);
-                    System.Console.WriteLine("is toegevoegd aan je ShoppingCart");
-                    Console.ReadKey();
+                    if (options[selectedIndex].Name == snack.Name)
+                    {
+                        System.Console.WriteLine(snack.Name);
+                        shoppingcart.AddtoShoppingCart(snack);
+                        System.Console.WriteLine("is toegevoegd aan je ShoppingCart");
+                        Console.ReadKey();
+                    }
                 }
             }
 
+            // }
         }
 
+
+
+
     }
-    private static void Confirmation()
+    private static void Confirmation(ShoppingCart shoppingcart)
     {
         string choice;
         do
@@ -271,12 +289,12 @@ druk op p om je producten uit je winkelwagen te verwijderen
         } while (choice != "ja" && choice != "nee");
         if (choice == "ja")
         {
-            Customer.CreateCustomer(MovieTitle, Confirmationcode, currentCustomer, shoppingCart);
+            Customer.CreateCustomer(MovieTitle, Confirmationcode, currentCustomer, shoppingcart);
         }
         else if (choice == "nee")
         {
             // zelf implenmenteren bij het mergen dit is nu een placeholder
-            Snack.ChooseToAddSnackOrNot(MovieTitle, Confirmationcode, currentCustomer);
+            // Snack.ChooseToAddSnackOrNot(MovieTitle, Confirmationcode, currentCustomer);
         }
     }
 }

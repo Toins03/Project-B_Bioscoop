@@ -56,6 +56,9 @@ public class Customer : IEquatable<Customer>
         Console.WriteLine(line);
         FrontPage.CreateTitleASCII();
         Console.WriteLine(line);
+        List<Film> FilmsToFilter = FilmSave.ReadFilms();
+        List<Film> SearchForMovie = FilmsToFilter
+        .Where(films => films.Title == MovieTitle).ToList();
         if (currentCustomer != null!)
         {
             Console.WriteLine($"Ingelogd als: {currentCustomer.Name}");
@@ -82,13 +85,15 @@ public class Customer : IEquatable<Customer>
             {
                 foreach (var snack in shoppingcart.shoppingcart)
                 {
-                    Snack += $"{snack.Name} -";
+                    Snack += $" {snack.Name} -";
                     Total += snack.Price;
                 }
+
             }
             else Snack += "Geen Snacks gekocht";
             Console.WriteLine(Snack);
-            Console.WriteLine($"Prijs {Total}");
+            Console.WriteLine($"Prijs {Total + SearchForMovie[0].FilmPrice}");
+            System.Console.WriteLine(SearchForMovie[0].ShowDate());
             Customer newCustomer = new Customer(name, name, email, confirmationCode);
             newCustomer.SaveToJsonFile();
             FilmSave.AddCustomerToFilm(MovieTitle, newCustomer);

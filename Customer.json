@@ -231,6 +231,78 @@
     "Email": "Z1S\u001b[32m[10D]\u001b[0m\u001b[32m[10E]\u001b[0mD13-12-23T9:36",
     "ConfirmationCode": "none",
     "Password": "Valdier@live.nl",
+    "SnacksBought": null
+  },
+  {
+    "ID": 27,
+    "Name": "Valdier",
+    "UserName": "Valdier",
+    "Email": "Z1S\u001b[32m[10F]\u001b[0mD13-12-23T11:8",
+    "ConfirmationCode": "none",
+    "Password": "Valduer010@live.nl",
+    "SnacksBought": null
+  },
+  {
+    "ID": 28,
+    "Name": "micheal",
+    "UserName": "micheal",
+    "Email": "Z1S\u001b[32m[8 E]\u001b[0m\u001b[32m[8 F]\u001b[0m\u001b[32m[8 G]\u001b[0mD13-12-23T11:22",
+    "ConfirmationCode": "none",
+    "Password": "sigma@.nl",
+    "SnacksBought": null
+  },
+  {
+    "ID": 29,
+    "Name": "asdasdwad",
+    "UserName": "asdasdwad",
+    "Email": "Z1S\u001b[32m[10F]\u001b[0mD13-12-23T13:31",
+    "ConfirmationCode": "none",
+    "Password": "asdasdasf@d",
+    "SnacksBought": null
+  },
+  {
+    "ID": 30,
+    "Name": "asdas",
+    "UserName": "asdas",
+    "Email": "Z1S\u001b[32m[10E]\u001b[0mD13-12-23T13:33",
+    "ConfirmationCode": "none",
+    "Password": "adsd@da",
+    "SnacksBought": null
+  },
+  {
+    "ID": 31,
+    "Name": "asdasd",
+    "UserName": "asdasd",
+    "Email": "Z1S\u001b[32m[8 F]\u001b[0m\u001b[32m[8 E]\u001b[0mD13-12-23T13:35",
+    "ConfirmationCode": "none",
+    "Password": "asdas@asdasd",
+    "SnacksBought": null
+  },
+  {
+    "ID": 32,
+    "Name": "asdasd",
+    "UserName": "asdasd",
+    "Email": "Z1S\u001b[32m[12A]\u001b[0mD13-12-23T13:38",
+    "ConfirmationCode": "none",
+    "Password": "sd@das",
+    "SnacksBought": null
+  },
+  {
+    "ID": 33,
+    "Name": "vasd",
+    "UserName": "vasd",
+    "Email": "Z1S\u001b[32m[12A]\u001b[0m\u001b[32m[13A]\u001b[0mD13-12-23T14:26",
+    "ConfirmationCode": "none",
+    "Password": "v#@f",
+    "SnacksBought": null
+  },
+  {
+    "ID": 34,
+    "Name": "asdasd",
+    "UserName": "asdasd",
+    "Email": "Z1S\u001b[32m[2 H]\u001b[0m\u001b[32m[2 G]\u001b[0mD13-12-23T19:27",
+    "ConfirmationCode": "none",
+    "Password": "asd@asd",
     "SnacksBought": []
   }
 ]

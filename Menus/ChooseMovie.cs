@@ -33,7 +33,7 @@ public class ChooseMovie : FrontPage
         Console.WriteLine(line);
         CreateTitleASCII();
         Console.WriteLine(line);
-        CenterText("Film kiezen om te bekijken:\n");
+        Console.WriteLine("Film kiezen om te bekijken:\n");
 
         for (int i = 0; i < options.Count; i++)
         {
