@@ -39,7 +39,7 @@ public class Snack
     private static List<Snack> LoadFoodOptions()
     {
         List<Snack> Snacks = new();
-        Snack bueno = new Snack("Kinder bueno x8",  6.99);
+        Snack bueno = new Snack("Kinder bueno x8", 6.99);
         Snack LaysChips = new Snack("Lays chips", 2.99);
         Snack SweetPopcorn = new Snack("Popcorn zoet", 3.59);
         Snack SaltPopcorn = new Snack("Popcorn zout", 3.59);
@@ -200,7 +200,7 @@ druk op p om je producten uit je winkelwagen te verwijderen
                     }
                     else
                     {
-                        Console.WriteLine("    " + options[i].Name);
+                        Console.WriteLine("    " + options[i].Name + " - " + "€" + options[i].Price);
                     }
 
                 }

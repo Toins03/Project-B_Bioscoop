@@ -222,6 +222,15 @@
     "Email": "Z1S\u001b[32m[13D]\u001b[0m\u001b[32m[13E]\u001b[0mD11-12-23T16:3",
     "ConfirmationCode": "none",
     "Password": "Gert@jan.nl",
+    "SnacksBought": null
+  },
+  {
+    "ID": 26,
+    "Name": "Valdier",
+    "UserName": "Valdier",
+    "Email": "Z1S\u001b[32m[10D]\u001b[0m\u001b[32m[10E]\u001b[0mD13-12-23T9:36",
+    "ConfirmationCode": "none",
+    "Password": "Valdier@live.nl",
     "SnacksBought": []
   }
 ]

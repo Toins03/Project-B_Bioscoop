@@ -13,7 +13,7 @@ class Program
                     {
                         Console.WriteLine("");
                         break;
-                    }                
+                    }
                 default:
                     {
                         Console.WriteLine("this is not a valid one");

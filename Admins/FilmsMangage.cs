@@ -2,51 +2,51 @@ using System.Diagnostics.Tracing;
 
 static class FilmsManage
 {
-    public static void FilmmanageMenu()
-    {
-        Console.Clear();
-        List<string> options = new List<string>()
-        {
-            "Add Films",
-            "Remove Films",
-            "View Films",
-        };
+    // public static void FilmmanageMenu()
+    // {
+    //     Console.Clear();
+    //     List<string> options = new List<string>()
+    //     {
+    //         "Add Films",
+    //         "Remove Films",
+    //         "View Films",
+    //     };
 
 
-        (string? optionChosen, ConsoleKey keyLeaving) inputs = BasicMenu.MenuBasic(options, "Manage films");
+    //     (string? optionChosen, ConsoleKey keyLeaving) inputs = BasicMenu.MenuBasic(options, "Manage films");
 
-        ConsoleKey Keyleaving = inputs.keyLeaving;
+    //     ConsoleKey Keyleaving = inputs.keyLeaving;
 
-        if (Keyleaving == ConsoleKey.Escape)
-        {
-            Console.WriteLine("Leaving Film options!");
-            return;
-        }
-        else if (inputs.optionChosen is null)
-        {
-            Console.WriteLine("Leaving Film options!");
-            return;
-        }
+    //     if (Keyleaving == ConsoleKey.Escape)
+    //     {
+    //         Console.WriteLine("Leaving Film options!");
+    //         return;
+    //     }
+    //     else if (inputs.optionChosen is null)
+    //     {
+    //         Console.WriteLine("Leaving Film options!");
+    //         return;
+    //     }
 
-        string request = inputs.optionChosen;
-        if (request is null) return;
-        else if (request == "Add Films")
-        {
-            AddFilm();
-        }
+    //     string request = inputs.optionChosen;
+    //     if (request is null) return;
+    //     else if (request == "Add Films")//
+    //     {
+    //         AddFilm();
+    //     }
 
-        else if (request == "Remove Films")
-        {
-            Console.WriteLine("Removing films has not been implemented yet!");
-            throw new NotImplementedException();
-        }
-        else if (request == "View Films")
-        {
-            ViewFilms();
-        }
+    //     else if (request == "Remove Films")//
+    //     {
+    //         Console.WriteLine("Removing films has not been implemented yet!");
+    //         throw new NotImplementedException();
+    //     }
+    //     else if (request == "View Films")//
+    //     {
+    //         ViewFilms();
+    //     }
 
-        FilmmanageMenu();
-    }
+    //     FilmmanageMenu();
+    // }
 
     private static void AddFilm()
     {
@@ -178,9 +178,9 @@ static class FilmsManage
         Console.Clear();
         List<string> options = new List<string>()
         {
-            "View Films",
-            "Add Films",
-            "Remove Films",
+            "Alle films zien",
+            "Film Toevoegen",
+            "Film verwijderen",
         };
 
         (string? optionChosen, ConsoleKey lastKey) menuResult = BasicMenu.MenuBasic(options, "Manage admins");
@@ -200,7 +200,7 @@ static class FilmsManage
             return;
         }
 
-        if (option_chosen == "Add Films")
+        if (option_chosen == "Film Toevoegen")
         {
 
             var filmInfo = GetFilmInfo();
@@ -239,13 +239,13 @@ static class FilmsManage
 
             FilmSave.AppendToJason(film);
         }
-        else if (option_chosen == "Remove Films")
+        else if (option_chosen == "Film verwijderen")
         {
-            Console.WriteLine("Enter the name of the film to remove:");
+            Console.WriteLine("Vul in de naam van de film die je wilt verwijdern:");
             string filmname = Console.ReadLine()!;
             FilmSave.Removefilm(filmname);
         }
-        else if (option_chosen == "View Films")
+        else if (option_chosen == "Alle films zien")
         {
             MovieWriteAndLoad film_menu = new("Movies.json");
             List<Film> AllFilms = film_menu.ReadFilms();
@@ -263,37 +263,37 @@ static class FilmsManage
         string title;
         do
         {
-            Console.Write("Enter the film title: ");
+            Console.Write("Vul in de titel naam: ");
             title = Console.ReadLine()!;
         } while (string.IsNullOrWhiteSpace(title));
 
         int runtime;
         while (!int.TryParse(Console.ReadLine(), out runtime) || runtime <= 0)
         {
-            Console.Write("Enter a valid positive integer for runtime: ");
+            Console.Write("Vul in de film tijd in minuten: ");
         }
 
         double price;
         while (!double.TryParse(Console.ReadLine(), out price) || price <= 0)
         {
-            Console.Write("Enter a valid positive number for price: ");
+            Console.Write("vul in de film prijs in euro's: ");
         }
 
         double filmRating;
         while (!double.TryParse(Console.ReadLine(), out filmRating) || filmRating < 0 || filmRating > 10)
         {
-            Console.Write("Enter a valid film rating between 0 and 10: ");
+            Console.Write("vul in de rating van de film van 0 tot 10: ");
         }
 
         int releaseYear;
         while (!int.TryParse(Console.ReadLine(), out releaseYear) || releaseYear < 1800 || releaseYear > DateTime.Now.Year)
         {
-            Console.Write($"Enter a valid release year between 1800 and {DateTime.Now.Year}: ");
+            Console.Write($"vul in de tijd waar de film te zien is vanaf {DateTime.Now.Year}: ");
         }
         string director;
         do
         {
-            Console.Write("Enter the film director: ");
+            Console.Write("vul in de Directeur van het film: ");
             director = Console.ReadLine()!;
         } while (string.IsNullOrWhiteSpace(director));
 
@@ -302,7 +302,7 @@ static class FilmsManage
 
     public static List<string> GenreList()
     {
-        System.Console.WriteLine("Enter the genre for this movie\n if there are multiple space them with (,)");
+        System.Console.WriteLine("Vul in de genre voor deze film\n als er meer dan 1 is doe dit (,) tussen de genre's");
         string genrestring = Console.ReadLine()!;
         List<string> genresList;
 

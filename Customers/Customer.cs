@@ -82,18 +82,18 @@ public class Customer : IEquatable<Customer>
             {
                 foreach (var snack in shoppingcart.shoppingcart)
                 {
-                    Snack += $"{snack.Name}";
+                    Snack += $"{snack.Name} -";
                     Total += snack.Price;
                 }
             }
             else Snack += "Geen Snacks gekocht";
-            Console.WriteLine(Snack);                 
+            Console.WriteLine(Snack);
             Console.WriteLine($"Prijs {Total}");
             Customer newCustomer = new Customer(name, name, email, confirmationCode);
             newCustomer.SaveToJsonFile();
             FilmSave.AddCustomerToFilm(MovieTitle, newCustomer);
         }
-        Console.WriteLine("\n\nWil je terug naar de hoofdpagina toets willekeurig knop\n");
+        Console.WriteLine("\n\nWil je terug naar de hoofdpagina?\ntoets dan een willekeurig knop in.\n");
         Console.ReadKey();
         Console.Clear();
         FrontPage.MainMenu(currentCustomer!);
@@ -124,7 +124,7 @@ public class Customer : IEquatable<Customer>
             List<Customer> customers = LoadFromJsonFile();
             customers.Add(toAdd);
             StreamWriter writer = new StreamWriter(CustomerPath);
-            Console.WriteLine("you have been added");
+            Console.WriteLine("jij bent toegevoegd");
             string toJson = JsonConvert.SerializeObject(customers, Formatting.Indented);
             writer.Write(toJson);
             writer.Close();

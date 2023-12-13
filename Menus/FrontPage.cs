@@ -38,7 +38,7 @@ public class FrontPage
                 System.Console.WriteLine(line);
                 CreateTitleASCII();
                 System.Console.WriteLine(line);
-                CenterText("menu opties");
+                // CenterText("menu opties");
 
                 for (int i = 0; i < options.Count; i++)
                 {

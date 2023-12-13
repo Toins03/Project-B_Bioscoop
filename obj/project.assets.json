@@ -6041,19 +6041,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\jahla\\.nuget\\packages\\": {}
+    "C:\\Users\\valdi\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\jahla\\Source\\Repos\\Project-B_Bioscoop\\Project-B_Bioscoop.csproj",
-      "projectName": "Project-B_Bioscoop",
-      "projectPath": "C:\\Users\\jahla\\Source\\Repos\\Project-B_Bioscoop\\Project-B_Bioscoop.csproj",
-      "packagesPath": "C:\\Users\\jahla\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\jahla\\Source\\Repos\\Project-B_Bioscoop\\obj\\",
+      "projectUniqueName": "C:\\Users\\valdi\\OneDrive\\Bureaublad\\opdracht tree\\Sprint5\\Project-B_Bioscoop\\project-b_bioscoop.csproj",
+      "projectName": "project-b_bioscoop",
+      "projectPath": "C:\\Users\\valdi\\OneDrive\\Bureaublad\\opdracht tree\\Sprint5\\Project-B_Bioscoop\\project-b_bioscoop.csproj",
+      "packagesPath": "C:\\Users\\valdi\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\valdi\\OneDrive\\Bureaublad\\opdracht tree\\Sprint5\\Project-B_Bioscoop\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\jahla\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\valdi\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -6111,6 +6111,24 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[6.0.25, 6.0.25]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Host.win-x64",
+            "version": "[6.0.25, 6.0.25]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Ref",
+            "version": "[6.0.25, 6.0.25]"
+          },
+          {
+            "name": "Microsoft.WindowsDesktop.App.Ref",
+            "version": "[6.0.25, 6.0.25]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"

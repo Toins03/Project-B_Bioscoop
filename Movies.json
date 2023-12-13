@@ -12,7 +12,8 @@
     "FilmPrice": 10.99,
     "FilmRating": 4.5,
     "CinemaAudience": [
-      "Customer ID 19 Customer Name jhgf"
+      "Customer ID 19 Customer Name jhgf",
+      "Customer ID 26 Customer Name Valdier"
     ],
     "DateAndAuditorium": {
       "2023-11-24T13:00:00": "2"
