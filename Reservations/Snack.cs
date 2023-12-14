@@ -27,13 +27,7 @@ public class Snack
         return Items;
     }
 
-    // private static void FoodOptionsToList(ShoppingCart ShoppingCart)
-    // {
-    //     List<Snack> Food = LoadFoodOptions();
-    //     LoopOverSnacks(Food, ShoppingCart);
 
-
-    // }
 
     private static List<Snack> LoadFoodOptions()
     {
@@ -69,12 +63,7 @@ public class Snack
         return Snacks;
 
     }
-    // private static void DrinksOptionsToList(ShoppingCart shoppingCart)
-    // {
-    //     List<Snack> Drinks = LoadDrinkOptions();
-    //     LoopOverSnacks(Drinks, shoppingCart);
 
-    // }
 
 
     public static void ChooseToAddSnackOrNot(string movieTitle, string conformationCode, Customer currentCustomer)
@@ -96,99 +85,16 @@ public class Snack
 
         if (choice == "ja")
         {
-            // List<string> options = new List<string> { };
-            // options.Add("eten");
-            // options.Add("drinken");
             LoopOverSnacks(LoadDrinkOptions(), LoadFoodOptions(), shoppingCart);
-            // SnackMainMenu(options, shoppingCart);
         }
         else Customer.CreateCustomer(MovieTitle, Confirmationcode, currentCustomer, shoppingCart);
 
 
     }
-    private static void SnackMainMenu(List<string> options, ShoppingCart shoppingcart)
-    {
-        while (true)
-        {
-            int selectedIndex = 0;
-            ConsoleKeyInfo keyInfo;
-            string line = new string('=', Console.WindowWidth);
 
-            do
-            {
-                Console.Clear();
-                System.Console.WriteLine(line);
-
-                for (int i = 0; i < options.Count; i++)
-                {
-                    if (i == selectedIndex)
-                    {
-                        Console.WriteLine("--> " + options[i]);
-                    }
-                    else
-                    {
-                        Console.WriteLine("    " + options[i]);
-                    }
-                }
-                System.Console.WriteLine(line);
-                System.Console.WriteLine(@"gebruik WASD keys om je optie te selecteren druk daarna op Enter op je keuze te bevestigen
-Druk op ESC om te vertrekken.
-druk op spatie om je bestellingen to confirmeren
-druk op p om je producten uit je winkelwagen te verwijderen
-");
-                keyInfo = Console.ReadKey();
-
-                if (keyInfo.Key == ConsoleKey.W && selectedIndex > 0)
-                {
-                    selectedIndex--;
-                }
-                else if (keyInfo.Key == ConsoleKey.S && selectedIndex < options.Count - 1)
-                {
-                    selectedIndex++;
-                }
-            } while (keyInfo.Key != ConsoleKey.Enter && keyInfo.Key != ConsoleKey.Escape && keyInfo.Key != ConsoleKey.Spacebar && keyInfo.Key != ConsoleKey.P);
-
-            if (keyInfo.Key == ConsoleKey.Escape)
-            {
-                System.Console.WriteLine(" SSee you!");
-                return;
-
-            }
-            else if (keyInfo.Key == ConsoleKey.Spacebar)
-            {
-                Confirmation(shoppingcart);
-                break;
-            }
-            else if (keyInfo.Key == ConsoleKey.P)
-            {
-                shoppingcart.ModifyShoppingCart();
-                break;
-            }
-
-            Console.WriteLine("je hebt dit geselecteerd: " + options[selectedIndex]);
-            Console.ReadKey();
-            Console.Clear();
-
-            // if (options[selectedIndex] == "eten")
-            // {
-            //     FoodOptionsToList(shoppingcart);
-            //     Console.ReadKey();
-            // }
-            // else if (options[selectedIndex] == "drinken")
-            // {
-            //     DrinksOptionsToList(shoppingcart);
-            //     Console.ReadKey();
-
-            // }
-        }
-
-    }
     private static void LoopOverSnacks(List<Snack> Food, List<Snack> Drinks, ShoppingCart shoppingcart)
     {
-        // bool Flag = true;
         List<Snack> options = Food.Concat(Drinks).ToList();
-        // while (Flag)
-        // {
         while (true)
         {
             int selectedIndex = 0;
@@ -234,18 +140,15 @@ druk op p om je producten uit je winkelwagen te verwijderen
             if (keyInfo.Key == ConsoleKey.Escape)
             {
                 System.Console.WriteLine(" SSee you!");
-                // Flag = false;
                 break;
             }
             else if (keyInfo.Key == ConsoleKey.Spacebar)
             {
                 Confirmation(shoppingcart);
-                // break;
             }
             else if (keyInfo.Key == ConsoleKey.P)
             {
                 shoppingcart.ModifyShoppingCart();
-                // LoopOverSnacks(Food, Drinks, shoppingcart);
 
             }
             else
@@ -269,7 +172,7 @@ druk op p om je producten uit je winkelwagen te verwijderen
                 }
             }
 
-            // }
+
         }
 
 
@@ -293,8 +196,7 @@ druk op p om je producten uit je winkelwagen te verwijderen
         }
         else if (choice == "nee")
         {
-            // zelf implenmenteren bij het mergen dit is nu een placeholder
-            // Snack.ChooseToAddSnackOrNot(MovieTitle, Confirmationcode, currentCustomer);
+
         }
     }
 }
