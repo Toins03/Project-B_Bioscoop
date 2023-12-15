@@ -60,7 +60,31 @@ public class MovieScheduleInformation
         }
     }
 
-    private List<MovieScheduleInformation>? ReadDataFromJson()
+    public List<MovieScheduleInformation>? ReadDataFromJson()
+    {
+        if (File.Exists("MovieScheduleInformation.json"))
+        {
+            try
+            {
+                using (StreamReader reader = new StreamReader("MovieScheduleInformation.json"))
+                {
+                    string json = reader.ReadToEnd();
+                    List<MovieScheduleInformation> ExistingData = JsonConvert.DeserializeObject<List<MovieScheduleInformation>>(json)!;
+                    if (ExistingData == null)
+                    {
+                        ExistingData = new List<MovieScheduleInformation>();
+                    }
+                    return ExistingData;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error reading JSON data: {ex.Message}");
+            }
+        }
+        return null;
+    }
+    public static List<MovieScheduleInformation>? ToList()
     {
         if (File.Exists("MovieScheduleInformation.json"))
         {

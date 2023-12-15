@@ -303,6 +303,87 @@
     "Email": "Z1S\u001b[32m[2 H]\u001b[0m\u001b[32m[2 G]\u001b[0mD13-12-23T19:27",
     "ConfirmationCode": "none",
     "Password": "asd@asd",
+    "SnacksBought": null
+  },
+  {
+    "ID": 1,
+    "Name": "Micheal",
+    "UserName": "micheal010",
+    "Email": "Micheal@live.nl",
+    "ConfirmationCode": "none",
+    "Password": "micheal-010",
+    "SnacksBought": null
+  },
+  {
+    "ID": 36,
+    "Name": "micheal",
+    "UserName": "micheal",
+    "Email": "Z1S\u001b[32m[14H]\u001b[0mD14-12-23T16:14",
+    "ConfirmationCode": "none",
+    "Password": "vuasd@casd",
+    "SnacksBought": null
+  },
+  {
+    "ID": 37,
+    "Name": "jahlani",
+    "UserName": "jahlani",
+    "Email": "Z1S\u001b[32m[14B]\u001b[0mD14-12-23T16:15",
+    "ConfirmationCode": "none",
+    "Password": "asd@asd",
+    "SnacksBought": null
+  },
+  {
+    "ID": 38,
+    "Name": "rowandina",
+    "UserName": "rowandina",
+    "Email": "Z1S\u001b[32m[10F]\u001b[0m\u001b[32m[10G]\u001b[0mD14-12-23T16:29",
+    "ConfirmationCode": "none",
+    "Password": "roawn@live.nl",
+    "SnacksBought": null
+  },
+  {
+    "ID": 1,
+    "Name": "Griek",
+    "UserName": "Griek010",
+    "Email": "Griek@live.nl",
+    "ConfirmationCode": "none",
+    "Password": "maandagenzijntochwelleuk",
+    "SnacksBought": null
+  },
+  {
+    "ID": 40,
+    "Name": "Griek",
+    "UserName": "Griek",
+    "Email": "Z1S\u001b[32m[3 D]\u001b[0m\u001b[32m[3 E]\u001b[0mD15-12-23T14:0",
+    "ConfirmationCode": "none",
+    "Password": "hebikal@gedaan",
+    "SnacksBought": null
+  },
+  {
+    "ID": 41,
+    "Name": "griek",
+    "UserName": "griek",
+    "Email": "Z1S\u001b[32m[9 A]\u001b[0mD15-12-23T14:4",
+    "ConfirmationCode": "none",
+    "Password": "hebikalgedaan@2keer",
+    "SnacksBought": null
+  },
+  {
+    "ID": 1,
+    "Name": "Krishna",
+    "UserName": "krishna010",
+    "Email": "krishna@live.nl",
+    "ConfirmationCode": "none",
+    "Password": "zondag",
+    "SnacksBought": null
+  },
+  {
+    "ID": 43,
+    "Name": "kirshna",
+    "UserName": "kirshna",
+    "Email": "Z1S\u001b[32m[12B]\u001b[0mD15-12-23T14:31",
+    "ConfirmationCode": "none",
+    "Password": "2keer@asd",
     "SnacksBought": []
   }
 ]

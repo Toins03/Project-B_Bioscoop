@@ -24,7 +24,8 @@ public class FrontPage
             options.AddRange(new List<string>
                     {
             "film kiezen",
-            "bioscoop informatie"
+            "bioscoop informatie",
+            "Cancellatie"
                     });
 
             int selectedIndex = 0;

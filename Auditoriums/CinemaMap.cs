@@ -68,7 +68,8 @@ public abstract class CinemaMap
         if (keyInfo.Key == ConsoleKey.Enter)
         {
             Console.Clear();
-            FrontPage.MainMenu(currentCustomer);
+            // FrontPage.MainMenu(currentCustomer);
+            // een inifnite loop fout
         }
         else
             return;

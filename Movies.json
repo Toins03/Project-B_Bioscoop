@@ -1,84 +1,24 @@
 [
   {
-    "Title": "Inception",
+    "Title": "The Equalizer 3",
     "Genres": [
-      "Sci-Fi",
-      "Action",
-      "Thriller"
+      "Actie",
+      "Avontuur"
     ],
-    "Director": "Christopher Nolan",
-    "ReleaseYear": 2000,
-    "FilmRunTime": 148,
-    "FilmPrice": 10.99,
-    "FilmRating": 4.5,
-    "CinemaAudience": [
-      "Customer ID 19 Customer Name jhgf",
-      "Customer ID 26 Customer Name Valdier",
-      "Customer ID 27 Customer Name Valdier"
-    ],
-    "DateAndAuditorium": {
-      "2023-11-24T13:00:00": "2"
-    }
-  },
-  {
-    "Title": "Mario",
-    "Genres": [
-      "Action",
-      "Avondtuur"
-    ],
-    "Director": "unknown",
+    "Director": "hansolo",
     "ReleaseYear": 2023,
-    "FilmRunTime": 110,
-    "FilmPrice": 30.0,
-    "FilmRating": 4.0,
+    "FilmRunTime": 105,
+    "FilmPrice": 5.0,
+    "FilmRating": 9.0,
     "CinemaAudience": [
-      "Customer ID 20 Customer Name Hawraz",
-      "Customer ID 31 Customer Name asdasd",
-      "Customer ID 32 Customer Name asdasd",
-      "Customer ID 34 Customer Name asdasd"
+      "Customer ID 40 Customer Name Griek",
+      "Customer ID 1 Customer Name Griek",
+      "Customer ID 41 Customer Name griek",
+      "Customer ID 1 Customer Name Krishna",
+      "Customer ID 43 Customer Name kirshna"
     ],
     "DateAndAuditorium": {
-      "2023-11-24T09:00:00": "3"
-    }
-  },
-  {
-    "Title": "Barbie",
-    "Genres": [
-      "Avondtuur"
-    ],
-    "Director": "Greta Thunburg",
-    "ReleaseYear": 2023,
-    "FilmRunTime": 120,
-    "FilmPrice": 20.0,
-    "FilmRating": 8.5,
-    "CinemaAudience": [
-      "Customer ID 21 Customer Name Khalid",
-      "Customer ID 28 Customer Name micheal",
-      "Customer ID 29 Customer Name asdasdwad",
-      "Customer ID 30 Customer Name asdas",
-      "Customer ID 33 Customer Name vasd"
-    ],
-    "DateAndAuditorium": {
-      "2022-03-04T03:00:00": "2"
-    }
-  },
-  {
-    "Title": "Oppenheimer",
-    "Genres": [
-      "Action",
-      "Thriller"
-    ],
-    "Director": "Christopher Nolan",
-    "ReleaseYear": 2023,
-    "FilmRunTime": 120,
-    "FilmPrice": 20.0,
-    "FilmRating": 8.0,
-    "CinemaAudience": [
-      "Customer ID 22 Customer Name Calvin",
-      "Customer ID 25 Customer Name Denhijer"
-    ],
-    "DateAndAuditorium": {
-      "2023-02-03T04:01:00": "1"
+      "2023-12-31T12:30:00": "1"
     }
   }
 ]

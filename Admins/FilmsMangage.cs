@@ -288,7 +288,7 @@ static class FilmsManage
         int releaseYear;
         while (!int.TryParse(Console.ReadLine(), out releaseYear) || releaseYear < 1800 || releaseYear > DateTime.Now.Year)
         {
-            Console.Write($"vul in de tijd waar de film te zien is vanaf {DateTime.Now.Year}: ");
+            Console.Write($"vul in het jaar waar de film te zien is: ");
         }
         string director;
         do

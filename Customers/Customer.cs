@@ -92,7 +92,8 @@ public class Customer : IEquatable<Customer>
             }
             else Snack += "Geen Snacks gekocht";
             Console.WriteLine(Snack);
-            Console.WriteLine($"Prijs {Total + SearchForMovie[0].FilmPrice}");
+            double TrueTotal = Total + SearchForMovie[0].FilmPrice;
+            Console.WriteLine($"Prijs {Math.Round(TrueTotal, 2)}");
             System.Console.WriteLine(SearchForMovie[0].ShowDate());
             Customer newCustomer = new Customer(name, name, email, confirmationCode);
             newCustomer.SaveToJsonFile();

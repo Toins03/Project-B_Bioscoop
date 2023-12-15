@@ -140,25 +140,27 @@ public class ManageReservations
         RemoveConfirmationcode(Movie.ReservationsList);
         WriteDataFromJson(allMovies);
 
-        switch (Movie.ScreeningTimeAndAuditorium["11-11-2023"].Count)
-        {
-            case 14:
-                AuditoriumMap150 map150 = new AuditoriumMap150();
-                map150.TakeSeats(Movie.ScreeningTimeAndAuditorium["11-11-2023"], true);
-                break;
-            case 21:
-                AuditoriumMap300 map300 = new AuditoriumMap300();
-                map300.TakeSeats(Movie.ScreeningTimeAndAuditorium["11-11-2023"], true);
-                break;
-            case 22:
-                AuditoriumMap500 map500 = new AuditoriumMap500();
-                map500.TakeSeats(Movie.ScreeningTimeAndAuditorium["11-11-2023"], true);
-                break;
-            default:
-                break;
-        }
+        // switch (Movie.ScreeningTimeAndAuditorium["11-11-2023"].Count)
+        // {
+        //     case 14:
+        //         AuditoriumMap150 map150 = new AuditoriumMap150();
+        //         map150.TakeSeats(Movie.ScreeningTimeAndAuditorium["11-11-2023"], true);
+        //         break;
+        //     case 21:
+        //         AuditoriumMap300 map300 = new AuditoriumMap300();
+        //         map300.TakeSeats(Movie.ScreeningTimeAndAuditorium["11-11-2023"], true);
+        //         break;
+        //     case 22:
+        //         AuditoriumMap500 map500 = new AuditoriumMap500();
+        //         map500.TakeSeats(Movie.ScreeningTimeAndAuditorium["11-11-2023"], true);
+        //         break;
+        //     default:
+        //         break;
+        // }
+        // zorgt ook voor een infinite loop
 
         System.Console.WriteLine("Reservatie is verwijderd");
+        Console.ReadKey();
     }
 
 

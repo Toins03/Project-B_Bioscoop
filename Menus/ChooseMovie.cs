@@ -1,4 +1,5 @@
 public class ChooseMovie : FrontPage
+
 {
     public static void Films_kiezen(Customer currentCustomer)
     {
@@ -6,8 +7,17 @@ public class ChooseMovie : FrontPage
 
         List<string> options = new() { "Film zoeken op titel", "Sorteer op titel\n" };
         List<Film> Movies = film_menu.ReadFilms();
+        TimeSpan timeGap = TimeSpan.FromHours(0);
 
-        foreach (var movie in film_menu.ReadFilms())
+        // check hier maken voor films die later dan vandaag te zien is op de bioscoop zodat je niet naar oude films gaat
+        // die niet meer te zien is
+
+        // en confirmatie code - film tijd wanneer het te zien is als het meer dan 2 uur is kan je het annuleren minder dan 2 weer niet
+        List<Film> MoviesAfterFilter = FilterMovies.MoviesInTheFuture(Movies, timeGap, DateTime.Now);
+
+
+
+        foreach (var movie in MoviesAfterFilter)
         {
             options.Add(movie.Title);
         }
@@ -23,7 +33,7 @@ public class ChooseMovie : FrontPage
 
         } while (keyInfo.Key != ConsoleKey.Enter);
 
-        HandleSelecedOption(currentCustomer, Movies, options, selectedIndex);
+        HandleSelecedOption(currentCustomer, MoviesAfterFilter, options, selectedIndex);
     }
 
     public static void Display(List<string> options, int selectedIndex)
@@ -157,7 +167,11 @@ public class ChooseMovie : FrontPage
         }
         else if (keyInfo.Key != ConsoleKey.Enter)
         {
-            Films_kiezen(currentCustomer);
+            // Films_kiezen(currentCustomer);
+            // infinite ?
+            // ja was infinite 
         }
     }
+
+
 }
