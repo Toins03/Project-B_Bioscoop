@@ -1,22 +1,35 @@
 [
   {
+    "Title": "Oppenheimer",
+    "Genres": [
+      "Action",
+      "Thriller"
+    ],
+    "Director": "Christopher Nolan",
+    "ReleaseYear": 2023,
+    "FilmRunTime": 120,
+    "FilmPrice": 20.0,
+    "FilmRating": 8.0,
+    "CinemaAudience": [
+      "Customer ID 22 Customer Name Calvin",
+      "Customer ID 25 Customer Name Denhijer"
+    ],
+    "DateAndAuditorium": {
+      "2023-02-03T04:01:00": "1"
+    }
+  },
+  {
     "Title": "The Equalizer 3",
     "Genres": [
       "Actie",
       "Avontuur"
     ],
-    "Director": "hansolo",
+    "Director": "han solo",
     "ReleaseYear": 2023,
     "FilmRunTime": 105,
     "FilmPrice": 5.0,
     "FilmRating": 9.0,
-    "CinemaAudience": [
-      "Customer ID 40 Customer Name Griek",
-      "Customer ID 1 Customer Name Griek",
-      "Customer ID 41 Customer Name griek",
-      "Customer ID 1 Customer Name Krishna",
-      "Customer ID 43 Customer Name kirshna"
-    ],
+    "CinemaAudience": [],
     "DateAndAuditorium": {
       "2023-12-31T12:30:00": "1"
     }

@@ -76,6 +76,8 @@ static class FilmSave
         }
         else
         {
+            MovieScheduleInformation machine = new MovieScheduleInformation();
+            machine.RemoveMovieScheduleObject(filmName);
             films.Remove(ToDelete);
             WritefilmList(films);
             Console.WriteLine("The film with this name has been deleted");

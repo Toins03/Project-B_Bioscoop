@@ -108,4 +108,40 @@ public class MovieScheduleInformation
         }
         return null;
     }
+    public void RemoveMovieScheduleObject(string title)
+    {
+        List<MovieScheduleInformation>? existingData = ReadDataFromJson();
+
+        if (existingData != null)
+        {
+            MovieScheduleInformation movieToRemove = existingData.FirstOrDefault(movie => movie.Title == title);
+
+            if (movieToRemove != null)
+            {
+                existingData.Remove(movieToRemove);
+
+                // Update the JSON file
+                UpdateJsonFile(existingData);
+            }
+            else
+            {
+                Console.WriteLine($"Movie with title '{title}' not found.");
+            }
+        }
+    }
+    private void UpdateJsonFile(List<MovieScheduleInformation> data)
+    {
+        try
+        {
+            using (StreamWriter writer = new StreamWriter("MovieScheduleInformation.json"))
+            {
+                string jsonData = JsonConvert.SerializeObject(data, Formatting.Indented);
+                writer.Write(jsonData);
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error updating JSON file: {ex.Message}");
+        }
+    }
 }

@@ -39,13 +39,37 @@ class Program
                     }
                 case "MovieSchedule":
                     {
-                        List<MovieScheduleInformation> lijst = MovieScheduleInformation.ToList()!;
-                        foreach (var item in lijst)
+                        string movieTitle = Console.ReadLine()!;
+                        bool CheckIfInMovies = false;
+                        // check if movieTitle is even in movies
+                        MovieWriteAndLoad film_menu = new MovieWriteAndLoad("Movies.json");
+                        List<Film> Movies = film_menu.ReadFilms();
+                        foreach (Film movie in Movies)
                         {
-                            System.Console.WriteLine(item.Title);
+                            if (movie.Title == movieTitle)
+                            {
+                                CheckIfInMovies = true;
+                            }
                         }
+                        if (CheckIfInMovies)
+                        {
+                            MovieScheduleInformation machine = new MovieScheduleInformation();
+                            machine.RemoveMovieScheduleObject(movieTitle);
+                        }
+                        else
+                        {
+                            System.Console.WriteLine("de film is niet gevonden");
+                        }
+
+
+                        Console.ReadKey();
                         break;
                     }
+                case "Movie":
+                    {
+
+                    }
+                    break;
                 default:
                     {
                         Console.WriteLine("this is not a valid one");
