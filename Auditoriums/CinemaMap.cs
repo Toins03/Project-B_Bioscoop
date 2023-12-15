@@ -32,8 +32,8 @@ public abstract class CinemaMap
         Console.Clear();
         do
         {
-      
-            System.Console.WriteLine($"Movie: {MovieTitle}\n Auditorium 1", SetSeatPrice.GetSeatPrices(selectedColumn, selectedRow));
+
+            System.Console.WriteLine($"Movie: {MovieTitle}\n Auditorium 1");
             System.Console.WriteLine($"{Guide}");
             Console.WriteLine();
             Console.SetCursorPosition(0, 7);
@@ -251,12 +251,12 @@ public abstract class CinemaMap
 
     private void DeselectSeat(int row, int column, string seat, bool IsAdd)
     {
-        
-        
+
+
         ListReservedSeats.Remove($"{CinemaMapCopy[row][column]}");
         CinemaMap1[row][column] = CinemaMapCopy[row][column];
         ReservingSeats = ReservingSeats.Replace($"{seat}", "");
-      
+
     }
 
     private string GetReservedSeats()

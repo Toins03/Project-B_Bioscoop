@@ -63,7 +63,7 @@ static class AdminMenu
         if (options[selectedIndex] == "Reserveringen beheren")
         {
             Console.Clear();
-            ManageReservations.ManageReservationsOptions();
+            ManageReservations.ManageReservationsOptions(admin);
             AdminMenu.Menu(admin);
 
         }
