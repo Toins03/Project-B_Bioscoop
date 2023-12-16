@@ -19,13 +19,13 @@ public class FrontPage
             {
                 options.Add("zie persoonlijke informatie");
                 options.Add("uitloggen");
+                options.Add("Cancellatie");
             }
 
             options.AddRange(new List<string>
                     {
             "film kiezen",
-            "bioscoop informatie",
-            "Cancellatie"
+            "bioscoop informatie"
                     });
 
             int selectedIndex = 0;
@@ -106,6 +106,11 @@ Druk op ESC om te vertrekken.
             {
                 ViewCustomerInfo.ViewInfoMenu(currentCustomer);
             }
+            else if (options[selectedIndex] == "Cancellatie")
+            {
+
+            }
+
         }
     }
 
