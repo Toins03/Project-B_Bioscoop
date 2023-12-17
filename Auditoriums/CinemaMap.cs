@@ -1,3 +1,4 @@
+using System.Collections.ObjectModel;
 using Newtonsoft.Json;
 using System.Threading.Channels;
 
@@ -23,7 +24,8 @@ public abstract class CinemaMap
 
     protected abstract void CreateCinemaMap();
 
-    public void TakeSeats(string MovieTitle, Customer currentCustomer, bool IsAddmin)
+// deze kan door iedereen worden gebruikt
+    public void TakeSeats(string MovieTitle, Customer? currentCustomer, bool IsAddmin)
     {
 
         ChosenMovie = MovieTitle;
@@ -57,27 +59,36 @@ public abstract class CinemaMap
             keyInfo = Console.ReadKey();
             if (keyInfo.Key == ConsoleKey.Escape)
             {
-                FrontPage.MainMenu(currentCustomer);
+                return;
             }
             Keyboard_input(keyInfo, IsAddmin);
         }
-        while (keyInfo.Key != ConsoleKey.Enter);
-        if (ListReservedSeats.Count == 0) FrontPage.MainMenu(currentCustomer);
+        while (keyInfo.Key != ConsoleKey.Enter );
+        
+        // returns to frontpage you are in and actually leaves takeseats
+        if (ListReservedSeats.Count == 0) return;
+        foreach (string reservedseat in ListReservedSeats)
+        {
+            Console.WriteLine(reservedseat);
+        }
+        
+        // datetime.now is a temporary actor. Fix later when I figure out how to view the time the film happens.
+        RentedMovieInfo currentinfo = new(MovieTitle, ListReservedSeats, DateTime.Now);
+        // add the seats taken to the info we are looking at
+
         System.Console.WriteLine($"{ReservedString} {GenerateConfirmationCode()}");
         WriteCinemaMapToJson();
-        Snack.ChooseToAddSnackOrNot(MovieTitle, GenerateConfirmationCode(), currentCustomer);
-        Console.WriteLine("\n\nWil je terug naar de hoofdpagina toets 'enter' wil je stoppen toets een willekeurig knop\n");
+        Snack.ChooseToAddSnackOrNot(currentinfo, currentCustomer);
+
+        // remember to ensure we currently have a customer
+
+        Console.WriteLine("\n\n Druk op een willekeurige knop om terug te gaan naar de voorpagina\n");
         keyInfo = Console.ReadKey();
-        if (keyInfo.Key == ConsoleKey.Enter)
-        {
-            Console.Clear();
-            // FrontPage.MainMenu(currentCustomer);
-            // een inifnite loop fout
-        }
-        else
-            return;
+        return;
     }
-    public void TakeSeats(List<List<string>> auditorium, List<string> reservations, int selectedIndex, bool IsAddmin)
+
+// deze wordt exlusief gebruikt binnen managreservations door admins
+    public void TakeSeats(List<List<string>> auditorium, bool IsAddmin)
     {
         CreateCinemaMap();
         CinemaMap1 = auditorium;
@@ -111,11 +122,11 @@ public abstract class CinemaMap
             }
             Keyboard_input(keyInfo, IsAddmin);
         }
-        while (keyInfo.Key != ConsoleKey.Enter);
+        while (keyInfo.Key != ConsoleKey.Enter && keyInfo.Key != ConsoleKey.Escape);
         WriteCinemaMapToJson();
-        ManageReservations.RemoveConfirmationcode(reservations, selectedIndex);
-        if (keyInfo.Key == ConsoleKey.Enter)
-            return;
+        Console.WriteLine("\n\nDruk op een willekeurige knop om terug te gaan");
+        keyInfo = Console.ReadKey();
+        return;
     }
 
     private void Keyboard_input(ConsoleKeyInfo keyInfo, bool IsAddmin)

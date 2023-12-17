@@ -10,8 +10,13 @@
     "AdminID": 2
   },
   {
-    "Name": "hasan2",
-    "Password": "asdad",
+    "Name": "Valdier",
+    "Password": "pennandteller",
     "AdminID": 2
+  },
+  {
+    "Name": "Jahlani",
+    "Password": "34567",
+    "AdminID": 3
   }
 ]

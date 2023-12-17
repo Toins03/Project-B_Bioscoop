@@ -1,11 +1,10 @@
-public class ChooseMovie : FrontPage
-
+public class ChooseMovie
 {
-    public static void Films_kiezen(Customer currentCustomer)
+    public static void Films_kiezen(Customer? currentCustomer)
     {
         MovieWriteAndLoad film_menu = new("Movies.json");
 
-        List<string> options = new() { "Film zoeken op titel", "Sorteer op titel\n" };
+        List<string> options = new() { "Sorteer en filter opties\n" };
         List<Film> Movies = film_menu.ReadFilms();
         TimeSpan timeGap = TimeSpan.FromHours(0);
 
@@ -29,8 +28,8 @@ public class ChooseMovie : FrontPage
         {
             Display(options, selectedIndex);
             keyInfo = Console.ReadKey();
+            if (keyInfo.Key == ConsoleKey.Escape) return;
             HandleUserInput(keyInfo, options, ref selectedIndex, currentCustomer);
-
         } while (keyInfo.Key != ConsoleKey.Enter);
 
         HandleSelecedOption(currentCustomer, MoviesAfterFilter, options, selectedIndex);
@@ -41,7 +40,7 @@ public class ChooseMovie : FrontPage
         string line = new string('=', Console.WindowWidth);
         Console.Clear();
         Console.WriteLine(line);
-        CreateTitleASCII();
+        BasicMenu.CreateTitleASCII();
         Console.WriteLine(line);
         Console.WriteLine("Film kiezen om te bekijken:\n");
 
@@ -60,7 +59,7 @@ public class ChooseMovie : FrontPage
     }
 
 
-    public static void HandleUserInput(ConsoleKeyInfo keyInfo, List<string> options, ref int selectedIndex, Customer currenCustomer)
+    public static void HandleUserInput(ConsoleKeyInfo keyInfo, List<string> options, ref int selectedIndex, Customer? currenCustomer)
     {
         switch (keyInfo.Key)
         {
@@ -71,24 +70,19 @@ public class ChooseMovie : FrontPage
                 if (selectedIndex < options.Count - 1) selectedIndex++;
                 break;
             case ConsoleKey.Escape:
-                MainMenu(currenCustomer);
-                break;
+                return;
         }
     }
 
-    public static void HandleSelecedOption(Customer currentCustomer, List<Film> movies, List<string> options, int selectedIndex)
+    public static void HandleSelecedOption(Customer? currentCustomer, List<Film> movies, List<string> options, int selectedIndex)
     {
-        if (selectedIndex >= 2 && selectedIndex < options.Count)
+        if (selectedIndex >= 1 && selectedIndex < options.Count)
         {
-            MovieWriteAndLoad.printfilmInfo(movies[selectedIndex - 2]);
+            MovieWriteAndLoad.printfilmInfo(movies[selectedIndex - 1]);
             System.Console.WriteLine("Druk op Enter om stoelen te reserveren voor deze film \nDruk een ander willekeurige toets om terug te gaan naar de vorige pagina");
             ConfirmMovieSelection(currentCustomer, options[selectedIndex]);
         }
         else if (selectedIndex == 0)
-        {
-            InputTitleToSearch(currentCustomer, movies);
-        }
-        else if (selectedIndex == 1)
         {
             SortedMovies.ViewSortOptions(currentCustomer, movies);
         }

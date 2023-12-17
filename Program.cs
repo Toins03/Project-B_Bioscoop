@@ -65,14 +65,16 @@ class Program
                         Console.ReadKey();
                         break;
                     }
-                case "Movie":
+                case "empty":
                     {
-
+                        Console.WriteLine("current errors and warnings shown. Press any key to continue.");
+                        Console.ReadKey();
+                        return;
                     }
-                    break;
                 default:
                     {
                         Console.WriteLine("this is not a valid one");
+                        Console.ReadKey();
                         break;
                     }
             }
