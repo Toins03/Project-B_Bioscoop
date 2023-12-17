@@ -6,6 +6,7 @@ public class Snack
     public static Customer currentCustomer { get; set; }
     public static string MovieTitle { get; set; }
     public static string Confirmationcode { get; set; }
+    public static RentedMovieInfo rentedMovieInfo {get; set;}
 
 
     public Snack(string name, double price)
@@ -66,11 +67,11 @@ public class Snack
 
 
 
-    public static void ChooseToAddSnackOrNot(string movieTitle, string conformationCode, Customer currentCustomer)
+    public static void ChooseToAddSnackOrNot(RentedMovieInfo rentedMovie, Customer currentCustomer)
     {
-        MovieTitle = movieTitle;
-        Confirmationcode = conformationCode;
-        currentCustomer = currentCustomer; // kan deze Warning weg?
+        MovieTitle = rentedMovie.FilmTitle;
+        rentedMovieInfo = rentedMovie;
+         // kan deze Warning weg?
         string choice;
         ShoppingCart shoppingCart = new ShoppingCart();
         do
@@ -87,7 +88,7 @@ public class Snack
         {
             LoopOverSnacks(LoadDrinkOptions(), LoadFoodOptions(), shoppingCart);
         }
-        else Customer.CreateCustomer(MovieTitle, Confirmationcode, currentCustomer, shoppingCart);
+        else Customer.CreateCustomer(rentedMovie, currentCustomer, shoppingCart);
 
 
     }
@@ -192,11 +193,12 @@ druk op p om je producten uit je winkelwagen te verwijderen
         } while (choice != "ja" && choice != "nee");
         if (choice == "ja")
         {
-            Customer.CreateCustomer(MovieTitle, Confirmationcode, currentCustomer, shoppingcart);
+            Customer.CreateCustomer(rentedMovieInfo, currentCustomer, shoppingcart);
         }
         else if (choice == "nee")
         {
-
+// placeholder, should be fixe
+            
         }
     }
 }

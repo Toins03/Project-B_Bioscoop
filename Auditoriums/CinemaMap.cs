@@ -95,7 +95,6 @@ public abstract class CinemaMap
         Console.Clear();
         do
         {
-            Console.WriteLine($"stoelen die gedeselecteerd moeten worden {reservations[selectedIndex]}");
             Console.SetCursorPosition(0, 7);
             for (int row = 0; row < CinemaMap1.Count; row++)
             {
