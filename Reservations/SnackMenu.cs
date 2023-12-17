@@ -19,7 +19,6 @@ public static class SnackMenu
 
 
         } while (choice != "ja" && choice != "nee");
-        System.Console.WriteLine("out");
 
         if (choice == "ja")
         {
@@ -120,7 +119,8 @@ druk op p om je producten uit je winkelwagen te verwijderen
             }
             else if (keyInfo.Key == ConsoleKey.Spacebar)
             {
-                Confirmation(shoppingcart);
+                string isdone = Confirmation(shoppingcart);
+                if (isdone == "ja") return;
             }
             else if (keyInfo.Key == ConsoleKey.P)
             {
@@ -129,9 +129,6 @@ druk op p om je producten uit je winkelwagen te verwijderen
             }
             else
             {
-
-
-
 
                 Console.ReadKey();
                 Console.Clear();
@@ -148,14 +145,9 @@ druk op p om je producten uit je winkelwagen te verwijderen
                 }
             }
 
-
         }
-
-
-
-
     }
-    private static void Confirmation(ShoppingCart shoppingcart)
+    private static string Confirmation(ShoppingCart shoppingcart)
     {
         string choice;
         do
@@ -169,12 +161,9 @@ druk op p om je producten uit je winkelwagen te verwijderen
         if (choice == "ja")
         {
             Customer.CreateCustomer(rentedMovieInfo, currentCustomer, shoppingcart);
+            return "ja";
         }
-        else if (choice == "nee")
-        {
-// placeholder, should be fixe
-            
-        }
+        else return "nee";
     }
 
     public static string DisplayShoppingCart(ShoppingCart shoppingcart)

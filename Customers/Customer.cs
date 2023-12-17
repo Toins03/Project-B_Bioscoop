@@ -99,6 +99,8 @@ public class Customer : IEquatable<Customer>
                 }
             }
 
+            if (currentCustomer.SnacksBought is null) currentCustomer.SnacksBought = new();
+
             currentCustomer.SnacksBought.AddRange(shoppingcart.shoppingcart);
 
             currentCustomer.RentedMovieInfo.Add(rentedMovie);
