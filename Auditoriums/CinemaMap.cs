@@ -24,7 +24,7 @@ public abstract class CinemaMap
 
     protected abstract void CreateCinemaMap();
 
-// deze kan door iedereen worden gebruikt
+    // deze kan door iedereen worden gebruikt
     public void TakeSeats(string MovieTitle, Customer? currentCustomer, bool IsAddmin)
     {
 
@@ -63,15 +63,15 @@ public abstract class CinemaMap
             }
             Keyboard_input(keyInfo, IsAddmin);
         }
-        while (keyInfo.Key != ConsoleKey.Enter );
-        
+        while (keyInfo.Key != ConsoleKey.Enter);
+
         // returns to frontpage you are in and actually leaves takeseats
         if (ListReservedSeats.Count == 0) return;
         foreach (string reservedseat in ListReservedSeats)
         {
             Console.WriteLine(reservedseat);
         }
-        
+
         // datetime.now is a temporary actor. Fix later when I figure out how to view the time the film happens.
         RentedMovieInfo currentinfo = new(MovieTitle, ListReservedSeats, DateTime.Now);
         // add the seats taken to the info we are looking at
@@ -87,14 +87,16 @@ public abstract class CinemaMap
         return;
     }
 
-// deze wordt exlusief gebruikt binnen managreservations door admins
-    public void TakeSeats(List<List<string>> auditorium, bool IsAddmin)
+    // deze wordt exlusief gebruikt binnen managreservations door admins
+    // moet 4 parameters zijn 
+    public void TakeSeats(List<List<string>> auditorium, List<string> reservations, int selectedIndex, bool IsAddmin)
     {
         CreateCinemaMap();
         CinemaMap1 = auditorium;
         Console.Clear();
         do
         {
+            Console.WriteLine($"stoelen die gedeselecteerd moeten worden {reservations[selectedIndex]}");
             Console.SetCursorPosition(0, 7);
             for (int row = 0; row < CinemaMap1.Count; row++)
             {
@@ -121,11 +123,11 @@ public abstract class CinemaMap
             }
             Keyboard_input(keyInfo, IsAddmin);
         }
-        while (keyInfo.Key != ConsoleKey.Enter && keyInfo.Key != ConsoleKey.Escape);
+        while (keyInfo.Key != ConsoleKey.Enter);
         WriteCinemaMapToJson();
-        Console.WriteLine("\n\nDruk op een willekeurige knop om terug te gaan");
-        keyInfo = Console.ReadKey();
-        return;
+        ManageReservations.RemoveConfirmationcode(reservations, selectedIndex);
+        if (keyInfo.Key == ConsoleKey.Enter)
+            return;
     }
 
     private void Keyboard_input(ConsoleKeyInfo keyInfo, bool IsAddmin)
