@@ -16,7 +16,11 @@
       "Customer ID 1 Customer Name Valdier",
       "Customer ID 15 Customer Name valdier",
       "Customer ID 1 Customer Name Valdier",
-      "Customer ID 16 Customer Name Valdier"
+      "Customer ID 16 Customer Name Valdier",
+      "Customer ID 1 Customer Name rowan",
+      "Customer ID 1 Customer Name rowan",
+      "Customer ID 1 Customer Name rowan",
+      "Customer ID 1 Customer Name rowan"
     ],
     "DateAndAuditorium": {
       "2023-11-24T13:00:00": "2"
@@ -30,20 +34,29 @@
     "FilmRunTime": 90,
     "FilmPrice": 30.0,
     "FilmRating": 4.0,
-    "CinemaAudience": [],
+    "CinemaAudience": [
+      "Customer ID 20 Customer Name ",
+      "Customer ID 21 Customer Name rowan",
+      "Customer ID 22 Customer Name nee",
+      "Customer ID 1 Customer Name rwon"
+    ],
     "DateAndAuditorium": {
       "2023-11-24T09:00:00": "3"
     }
   },
   {
     "Title": "Luigi",
-    "Genres": ["Action"],
+    "Genres": [
+      "Action"
+    ],
     "Director": "unknown",
     "ReleaseYear": 2022,
     "FilmRunTime": 90,
     "FilmPrice": 20.0,
     "FilmRating": 9.0,
-    "CinemaAudience": [],
+    "CinemaAudience": [
+      "Customer ID 19 Customer Name Rowan"
+    ],
     "DateAndAuditorium": {
       "2022-03-04T03:00:00": "2"
     }

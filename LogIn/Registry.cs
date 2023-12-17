@@ -68,6 +68,7 @@ class registreren
 
         Customer.AddCustomerToJson(new_customer);
 
+        FrontPage.CurrentCustomer = new_customer;
         return new_customer!;
     }
 }

@@ -119,15 +119,15 @@ public class ManageReservations
         {
             case 14:
                 AuditoriumMap150 map150 = new AuditoriumMap150();
-                map150.TakeSeats(Movie.Title!, null!, false);
+                map150.TakeSeats(Movie.Title!, FrontPage.CurrentCustomer, false);
                 break;
             case 21:
                 AuditoriumMap300 map300 = new AuditoriumMap300();
-                map300.TakeSeats(Movie.Title!, null!, false);
+                map300.TakeSeats(Movie.Title!, FrontPage.CurrentCustomer, false);
                 break;
             case 22:
                 AuditoriumMap500 map500 = new AuditoriumMap500();
-                map500.TakeSeats(Movie.Title!, null!, false);
+                map500.TakeSeats(Movie.Title!, FrontPage.CurrentCustomer!, false);
                 break;
             default:
                 break;

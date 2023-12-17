@@ -8,20 +8,20 @@ public class Customer : IEquatable<Customer>
     public string UserName;
     public string Password { get; }
     public string Email;
-    public string? ConfirmationCode;
+    public List<RentedMovieInfo>? RentedMovieInfo;
     public static int Counter { get; private set; } = 1;
 
     public List<Snack> SnacksBought { get; private set; } = new();
 
 
     [JsonConstructor]
-    public Customer(int ID, string name, string username, string password, string email, string? confirmationcode, List<Snack>? snacksReserved)
+    public Customer(int ID, string name, string username, string password, string email, List<RentedMovieInfo> rentedMoviesInfo, List<Snack>? snacksReserved)
     {
         Name = name;
         UserName = username;
         Password = password;
         Email = email;
-        ConfirmationCode = confirmationcode;
+        this.RentedMovieInfo = rentedMoviesInfo;
         this.ID = ID;
         if (SnacksBought is null) this.SnacksBought = new List<Snack>();
         else this.SnacksBought = snacksReserved!;
@@ -33,7 +33,7 @@ public class Customer : IEquatable<Customer>
         UserName = username;
         Password = password;
         Email = email;
-        ConfirmationCode = confirmationcode;
+        this.RentedMovieInfo = new();
         ID = Counter;
         Counter++;
     }
@@ -44,7 +44,7 @@ public class Customer : IEquatable<Customer>
         UserName = username;
         Password = password;
         Email = email;
-        ConfirmationCode = "none";
+        this.RentedMovieInfo = new();
         ID = Counter;
         Counter++;
     }
@@ -56,7 +56,7 @@ public class Customer : IEquatable<Customer>
         Console.WriteLine(line);
         FrontPage.CreateTitleASCII();
         Console.WriteLine(line);
-        if (currentCustomer != null!)
+        if (currentCustomer is not null)
         {
             Console.WriteLine($"Ingelogd als: {currentCustomer.Name}");
             Console.WriteLine($"Email: {currentCustomer.Email}");
@@ -65,6 +65,18 @@ public class Customer : IEquatable<Customer>
         }
         else
         {
+
+// first check if you want to log in or register
+            List<string> options = new List<string>() {"Registreren", "inloggen"};
+            string Uitleg = "Om door te gaan moet u registreren of uitloggen. Welke optie kiest u?";
+            (string? optionChosen, ConsoleKey KeyLeaving) registerOrLogIn = BasicMenu.MenuBasic(options: options, MenuName: Uitleg);
+
+            if (registerOrLogIn.KeyLeaving == ConsoleKey.Escape)
+            
+
+
+
+// if you want to register
             Console.WriteLine("Voer je naam in: ");
             string name = Console.ReadLine()!;
             string email;
@@ -72,7 +84,7 @@ public class Customer : IEquatable<Customer>
             {
                 Console.WriteLine("Voer je email in: ");
                 email = Console.ReadLine()!;
-            } while (!email.Contains("@"));
+            } while (!EmailParser.IsEmailValid(email));
 
             Console.WriteLine($"\n\nFilm: {MovieTitle}");
             Console.WriteLine($"Bevestegingscode: {confirmationCode}");
@@ -90,13 +102,14 @@ public class Customer : IEquatable<Customer>
             Console.WriteLine(Snack);                 
             Console.WriteLine($"Prijs {Total}");
             Customer newCustomer = new Customer(name, name, email, confirmationCode);
+// end of 
             newCustomer.SaveToJsonFile();
             FilmSave.AddCustomerToFilm(MovieTitle, newCustomer);
         }
         Console.WriteLine("\n\nWil je terug naar de hoofdpagina toets willekeurig knop\n");
         Console.ReadKey();
         Console.Clear();
-        FrontPage.MainMenu(currentCustomer!);
+        return;
     }
 
 

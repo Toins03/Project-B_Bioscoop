@@ -1,0 +1,1 @@
+within removereservation was a useless switch causing an infinite loop

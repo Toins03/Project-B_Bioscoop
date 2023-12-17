@@ -1,11 +1,14 @@
 public class FrontPage
 {
-    public static void MainMenu(Customer customer)
+    public static Customer? CurrentCustomer {get; set;}
+
+    public static void MainMenu(Customer? customer)
     {
 
-        Customer currentCustomer = null!;
+        Customer? currentCustomer = customer;
 
-        if (customer is not null) currentCustomer = customer;
+        if (FrontPage.CurrentCustomer is not null && currentCustomer is null) currentCustomer = FrontPage.CurrentCustomer;
+
 
         while (true)
         {
@@ -70,7 +73,7 @@ Druk op ESC om te vertrekken.
             if (keyInfo.Key == ConsoleKey.Escape)
             {
                 System.Console.WriteLine(" Tot ziens!");
-                break;
+                return;
             }
 
             Console.Clear();
@@ -98,6 +101,7 @@ Druk op ESC om te vertrekken.
                 if (response is null) continue;
                 else if (response.ToLower() == "ja" ^ response.ToLower() == "y")
                 {
+                    FrontPage.CurrentCustomer = null;
                     currentCustomer = null!;
                 }
             }

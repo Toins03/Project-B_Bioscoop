@@ -75,11 +75,10 @@ public class Snack
     }
 
 
-    public static void ChooseToAddSnackOrNot(string movieTitle, string conformationCode, Customer currentCustomer)
+    public static void ChooseToAddSnackOrNot(string movieTitle, string conformationCode, Customer? currentCustomer)
     {
         MovieTitle = movieTitle;
         Confirmationcode = conformationCode;
-        currentCustomer = currentCustomer;
         string choice;
         do
 
@@ -89,22 +88,22 @@ public class Snack
 
 
         } while (choice != "ja" && choice != "nee");
-        System.Console.WriteLine("out");
-
+        System.Console.WriteLine($"je hebt {choice} gekozen. Druk op een willekeurige knop om door te gaan.");
+        Console.ReadKey();
         if (choice == "ja")
         {
-            List<string> options = new List<string> { };
-            options.Add("eten");
-            options.Add("drinken");
-
-            SnackMainMenu(options, shoppingCart);
+            SnackMainMenu(shoppingCart);
         }
-        else Customer.CreateCustomer(MovieTitle, Confirmationcode, currentCustomer, shoppingCart);
+        else if (currentCustomer is null) Customer.CreateCustomer(MovieTitle, Confirmationcode, currentCustomer, shoppingCart);
 
 
     }
-    private static void SnackMainMenu(List<string> options, ShoppingCart shoppingcart)
+    private static void SnackMainMenu(ShoppingCart shoppingcart)
     {
+        List<string> options = new List<string>() {
+            "eten",
+            "Drinken"
+        };
         while (true)
         {
             int selectedIndex = 0;
