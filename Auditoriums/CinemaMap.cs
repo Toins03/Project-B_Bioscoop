@@ -67,18 +67,19 @@ public abstract class CinemaMap
         
         // returns to frontpage you are in and actually leaves takeseats
         if (ListReservedSeats.Count == 0) return;
-        foreach (string reservedseat in ListReservedSeats)
-        {
-            Console.WriteLine(reservedseat);
-        }
+
         
         // datetime.now is a temporary actor. Fix later when I figure out how to view the time the film happens.
         RentedMovieInfo currentinfo = new(MovieTitle, ListReservedSeats, DateTime.Now);
         // add the seats taken to the info we are looking at
 
-        System.Console.WriteLine($"{ReservedString} {GenerateConfirmationCode()}");
+        System.Console.WriteLine($"{ReservedString}");
+        foreach (string reservedseat in ListReservedSeats)
+        {
+            Console.WriteLine(reservedseat);
+        }
         WriteCinemaMapToJson();
-        Snack.ChooseToAddSnackOrNot(currentinfo, currentCustomer);
+        SnackMenu.ChooseToAddSnackOrNot(currentinfo, currentCustomer);
 
         // remember to ensure we currently have a customer
 

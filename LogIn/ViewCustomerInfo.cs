@@ -19,7 +19,7 @@ class ViewCustomerInfo
                 foreach (RentedMovieInfo info in toView.RentedMovieInfo)
                 {
                     Console.WriteLine($"Film gereserveerd {info.FilmTitle}");
-                    Console.WriteLine($"stoelen gereserveerd voor deze film {info.SeatsTaken}");
+                    Console.WriteLine($"stoelen gereserveerd voor deze film {string.Join("\n", info.SeatsTaken)}");
                     Console.WriteLine($"Tijd van deze film gereserveerd {info.TimeViewing}");
                 }
             }

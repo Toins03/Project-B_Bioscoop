@@ -10,4 +10,9 @@ public class RentedMovieInfo
         this.SeatsTaken = seatstaken;
         this.TimeViewing = timeViewing;
     }
+
+    public override string ToString()
+    {
+        return $"Title: {this.FilmTitle}, Seats chosen: {string.Join(", ", this.SeatsTaken)}, Time viewing: {this.TimeViewing}";
+    }
 } 

@@ -8,7 +8,7 @@ public class Customer : IEquatable<Customer>
     public string UserName;
     public string Password { get; }
     public string Email;
-    public List<RentedMovieInfo>? RentedMovieInfo;
+    public List<RentedMovieInfo> RentedMovieInfo = new();
     public static int Counter { get => Customer.LoadFromJsonFile().Count + 1; }
 
     public List<Snack> SnacksBought { get; private set; } = new();
@@ -35,6 +35,7 @@ public class Customer : IEquatable<Customer>
         Email = email;
         this.RentedMovieInfo = new();
         ID = Counter;
+        this.SnacksBought = new();
     }
 
     public Customer(string name, string username, string password, string email)
@@ -45,7 +46,7 @@ public class Customer : IEquatable<Customer>
         Email = email;
         this.RentedMovieInfo = new();
         ID = Counter;
-
+        this.SnacksBought = new();
     }
 
     public static void CreateCustomer(RentedMovieInfo rentedMovie, Customer? currentCustomer, ShoppingCart shoppingcart)
@@ -60,7 +61,17 @@ public class Customer : IEquatable<Customer>
             Console.WriteLine($"Ingelogd als: {currentCustomer.Name}");
             Console.WriteLine($"Email: {currentCustomer.Email}");
             Console.WriteLine($"Gebruikersnaam: {currentCustomer.UserName}");
+            Console.WriteLine(rentedMovie.ToString());
+
+
+            if (currentCustomer.SnacksBought is null) currentCustomer.SnacksBought = new();
+
+            currentCustomer.RentedMovieInfo.Add(rentedMovie);
+
+            currentCustomer.SnacksBought.AddRange(shoppingcart.shoppingcart);
+
             FilmSave.AddCustomerToFilm(rentedMovie.FilmTitle, currentCustomer);
+            currentCustomer.SaveToJsonFile();
         }
         else
         {
@@ -89,7 +100,9 @@ public class Customer : IEquatable<Customer>
             }
 
             currentCustomer.SnacksBought.AddRange(shoppingcart.shoppingcart);
-            currentCustomer.RentedMovieInfo!.Add(rentedMovie);
+
+            currentCustomer.RentedMovieInfo.Add(rentedMovie);
+
             currentCustomer.SaveToJsonFile();
             FilmSave.AddCustomerToFilm(rentedMovie.FilmTitle, currentCustomer);
 
