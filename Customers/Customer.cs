@@ -9,7 +9,7 @@ public class Customer : IEquatable<Customer>
     public string Password { get; }
     public string Email;
     public List<RentedMovieInfo>? RentedMovieInfo;
-    public static int Counter { get; private set; } = 1;
+    public static int Counter { get => Customer.LoadFromJsonFile().Count + 1; }
 
     public List<Snack> SnacksBought { get; private set; } = new();
 
@@ -35,7 +35,6 @@ public class Customer : IEquatable<Customer>
         Email = email;
         this.RentedMovieInfo = new();
         ID = Counter;
-        Counter++;
     }
 
     public Customer(string name, string username, string password, string email)
@@ -46,10 +45,10 @@ public class Customer : IEquatable<Customer>
         Email = email;
         this.RentedMovieInfo = new();
         ID = Counter;
-        Counter++;
+
     }
 
-    public static void CreateCustomer(string MovieTitle, string confirmationCode, Customer currentCustomer, ShoppingCart shoppingcart)
+    public static void CreateCustomer(RentedMovieInfo rentedMovie, Customer? currentCustomer, ShoppingCart shoppingcart)
     {
         string line = new string('=', Console.WindowWidth);
         Console.Clear();
@@ -61,50 +60,39 @@ public class Customer : IEquatable<Customer>
             Console.WriteLine($"Ingelogd als: {currentCustomer.Name}");
             Console.WriteLine($"Email: {currentCustomer.Email}");
             Console.WriteLine($"Gebruikersnaam: {currentCustomer.UserName}");
-            FilmSave.AddCustomerToFilm(MovieTitle, currentCustomer);
+            FilmSave.AddCustomerToFilm(rentedMovie.FilmTitle, currentCustomer);
         }
         else
         {
 
 // first check if you want to log in or register
-            List<string> options = new List<string>() {"Registreren", "inloggen"};
-            string Uitleg = "Om door te gaan moet u registreren of uitloggen. Welke optie kiest u?";
-            (string? optionChosen, ConsoleKey KeyLeaving) registerOrLogIn = BasicMenu.MenuBasic(options: options, MenuName: Uitleg);
-
-            if (registerOrLogIn.KeyLeaving == ConsoleKey.Escape)
-            
-
-
-
-// if you want to register
-            Console.WriteLine("Voer je naam in: ");
-            string name = Console.ReadLine()!;
-            string email;
-            do
+            List<string> options = new List<string>() {"Registreren", "Inloggen"};
+            while (currentCustomer is null)
             {
-                Console.WriteLine("Voer je email in: ");
-                email = Console.ReadLine()!;
-            } while (!EmailParser.IsEmailValid(email));
+                string Uitleg = "Om door te gaan moet u registreren of uitloggen. Welke optie kiest u?";
+                
+                (string? optionChosen, ConsoleKey KeyLeaving) registerOrLogIn = BasicMenu.MenuBasic(options: options, MenuName: Uitleg);
 
-            Console.WriteLine($"\n\nFilm: {MovieTitle}");
-            Console.WriteLine($"Bevestegingscode: {confirmationCode}");
-            string Snack = "Snacks: ";
-            double Total = 0;
-            if (shoppingcart != null)
-            {
-                foreach (var snack in shoppingcart.shoppingcart)
+                if (registerOrLogIn.KeyLeaving == ConsoleKey.Escape ^ registerOrLogIn.optionChosen is null)
                 {
-                    Snack += $"{snack.Name}";
-                    Total += snack.Price;
+                    Console.WriteLine("om te vertrekken druk nog eens op ESC. Om opnieuw te kiezen om in te loggen druk op een willekeurige andere knop.");
+                    return;
+                }
+                else if (registerOrLogIn.optionChosen == "Registreren")
+                {
+                    currentCustomer = registreren.RegistreerMenu();
+                }
+                else if (registerOrLogIn.optionChosen == "Inloggen")
+                {
+                    currentCustomer = LogIn.LogInCustomer();
                 }
             }
-            else Snack += "Geen Snacks gekocht";
-            Console.WriteLine(Snack);                 
-            Console.WriteLine($"Prijs {Total}");
-            Customer newCustomer = new Customer(name, name, email, confirmationCode);
-// end of 
-            newCustomer.SaveToJsonFile();
-            FilmSave.AddCustomerToFilm(MovieTitle, newCustomer);
+
+            currentCustomer.SnacksBought.AddRange(shoppingcart.shoppingcart);
+            currentCustomer.RentedMovieInfo!.Add(rentedMovie);
+            currentCustomer.SaveToJsonFile();
+            FilmSave.AddCustomerToFilm(rentedMovie.FilmTitle, currentCustomer);
+
         }
         Console.WriteLine("\n\nWil je terug naar de hoofdpagina toets willekeurig knop\n");
         Console.ReadKey();
@@ -119,9 +107,18 @@ public class Customer : IEquatable<Customer>
         // List<Customer> number = LoadFromJsonFile();
         List<Customer> customers = LoadFromJsonFile() ?? new List<Customer>();
         // RAAK DIT NIET AAN AUB
-        ID = customers.Count() + 1;
 
-        customers.Add(this); // Add the current customer to the list
+        bool IsInCustomers = false;
+        for (int i = 0; i < customers.Count; i++)
+        {
+            if (this == customers[i])
+            {
+                IsInCustomers = true;
+                customers[i] = this;
+                break;
+            }
+        }
+        if (!IsInCustomers) customers.Add(this);
 
         // Serialize the list of customers to JSON
         string json = JsonConvert.SerializeObject(customers, Formatting.Indented);

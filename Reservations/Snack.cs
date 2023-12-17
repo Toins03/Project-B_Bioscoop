@@ -1,4 +1,3 @@
-using System.Security.Cryptography.X509Certificates;
 public class Snack
 {
     public string Name { get; }
@@ -6,7 +5,9 @@ public class Snack
     public static Customer currentCustomer { get; set; }
     public static string MovieTitle { get; set; }
     public static string Confirmationcode { get; set; }
+    public static RentedMovieInfo currentMovieInfo {get; set;}
     public static ShoppingCart shoppingCart = new();
+    public static List<string> SeatsChosen = new();
 
 
     public Snack(string name, double price)
@@ -75,10 +76,11 @@ public class Snack
     }
 
 
-    public static void ChooseToAddSnackOrNot(string movieTitle, string conformationCode, Customer? currentCustomer)
+    public static void ChooseToAddSnackOrNot(RentedMovieInfo rentedMovie, Customer? currentCustomer)
     {
-        MovieTitle = movieTitle;
-        Confirmationcode = conformationCode;
+        currentMovieInfo = rentedMovie;
+        MovieTitle = rentedMovie.FilmTitle;
+        SeatsChosen = rentedMovie.SeatsTaken;
         string choice;
         do
 
@@ -94,10 +96,10 @@ public class Snack
         {
             SnackMainMenu(shoppingCart);
         }
-        else if (currentCustomer is null) Customer.CreateCustomer(MovieTitle, Confirmationcode, currentCustomer, shoppingCart);
-
+        else if (currentCustomer is null) Customer.CreateCustomer(rentedMovie, currentCustomer, shoppingCart);
 
     }
+
     private static void SnackMainMenu(ShoppingCart shoppingcart)
     {
         List<string> options = new List<string>() {
@@ -270,12 +272,12 @@ druk op p om je producten uit je winkelwagen te verwijderen
         } while (choice != "ja" && choice != "nee");
         if (choice == "ja")
         {
-            Customer.CreateCustomer(MovieTitle, Confirmationcode, currentCustomer, shoppingCart);
+            Customer.CreateCustomer(currentMovieInfo, currentCustomer, shoppingCart);
         }
         else if (choice == "nee")
         {
             // zelf implenmenteren bij het mergen dit is nu een placeholder
-            Snack.ChooseToAddSnackOrNot(MovieTitle, Confirmationcode, currentCustomer);
+            Snack.ChooseToAddSnackOrNot(currentMovieInfo, currentCustomer);
         }
     }
 }

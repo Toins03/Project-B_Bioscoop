@@ -36,8 +36,13 @@ static class BasicMenu
 Druk op ESC om te vertrekken.
 ");
             keyInfo = Console.ReadKey();
-
-            if (keyInfo.Key == ConsoleKey.W && selectedIndex > 0)
+            if (keyInfo.Key == ConsoleKey.Escape)
+            {
+                Console.WriteLine(@"Weet je zeker dat je terug wilt? Zo ja, druk nog eens op ESC.
+                ");
+                keyInfo = Console.ReadKey();
+            }
+            else if (keyInfo.Key == ConsoleKey.W && selectedIndex > 0)
             {
                 selectedIndex--;
             }

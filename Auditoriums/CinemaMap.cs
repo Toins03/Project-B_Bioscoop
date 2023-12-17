@@ -75,7 +75,7 @@ public abstract class CinemaMap
 
         System.Console.WriteLine($"{ReservedString} {GenerateConfirmationCode()}");
         WriteCinemaMapToJson();
-        Snack.ChooseToAddSnackOrNot(MovieTitle, GenerateConfirmationCode(), currentCustomer);
+        Snack.ChooseToAddSnackOrNot(currentinfo, currentCustomer);
 
         // remember to ensure we currently have a customer
 
