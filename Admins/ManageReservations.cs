@@ -129,29 +129,29 @@ public class ManageReservations
         }
     }
 
-    // private static void RemoveReservation(MovieScheduleInformation Movie, List<string> reservations, int selectedIndex)
-    // {
-    //     switch (Movie.ScreeningTimeAndAuditorium["11-11-2023"].Count)
-    //     {
-    //         case 14:
-    //             AuditoriumMap150 map150 = new AuditoriumMap150();
-    //             map150.TakeSeats(Movie.Title, reservations, selectedIndex, true);
-    //             break;
-    //         case 21:
-    //             AuditoriumMap300 map300 = new AuditoriumMap300();
-    //             map300.TakeSeats(Movie.ScreeningTimeAndAuditorium["11-11-2023"], reservations, selectedIndex, true);
-    //             break;
-    //         case 22:
-    //             AuditoriumMap500 map500 = new AuditoriumMap500();
-    //             map500.TakeSeats(Movie.ScreeningTimeAndAuditorium["11-11-2023"], reservations, selectedIndex, true);
-    //             break;
-    //         default:
-    //             break;
-    //     }
+    private static void RemoveReservation(MovieScheduleInformation Movie, List<string> reservations, int selectedIndex)
+    {
+        switch (Movie.ScreeningTimeAndAuditorium["11-11-2023"].Count)
+        {
+            case 14:
+                AuditoriumMap150 map150 = new AuditoriumMap150();
+                map150.TakeSeatsRemove(Movie.ScreeningTimeAndAuditorium["11-11-2023"], reservations, selectedIndex, true);
+                break;
+            case 21:
+                AuditoriumMap300 map300 = new AuditoriumMap300();
+                map300.TakeSeatsRemove(Movie.ScreeningTimeAndAuditorium["11-11-2023"], reservations, selectedIndex, true);
+                break;
+            case 22:
+                AuditoriumMap500 map500 = new AuditoriumMap500();
+                map500.TakeSeatsRemove(Movie.ScreeningTimeAndAuditorium["11-11-2023"], reservations, selectedIndex, true);
+                break;
+            default:
+                break;
+        }
 
-    //     System.Console.WriteLine("Reservatie is verwijderd");
-    //     Console.ReadKey();
-    // }
+        System.Console.WriteLine("Reservatie is verwijderd");
+        Console.ReadKey();
+    }
 
 
     public static void RemoveConfirmationcode(MovieScheduleInformation Movie)
@@ -181,8 +181,9 @@ public class ManageReservations
             HandeUserInput(ref selectedIndex, keyInfo, reservations);
         }
         while (keyInfo.Key != ConsoleKey.Enter);
-        // RemoveReservation(Movie, reservations, selectedIndex);
+        RemoveReservation(Movie, reservations, selectedIndex);
     }
+
     public static void RemoveConfirmationcode(List<string> reservations, int selectedIndex)
     {
         reservations.RemoveAt(selectedIndex);

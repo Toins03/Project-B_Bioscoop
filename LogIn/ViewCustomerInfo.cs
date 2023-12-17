@@ -19,8 +19,17 @@ class ViewCustomerInfo
                 foreach (RentedMovieInfo info in toView.RentedMovieInfo)
                 {
                     Console.WriteLine($"Film gereserveerd {info.FilmTitle}");
-                    Console.WriteLine($"stoelen gereserveerd voor deze film {string.Join("\n", info.SeatsTaken)}");
+                    Console.WriteLine($"stoelen gereserveerd voor deze film:\n {string.Join("\n", info.SeatsTaken)}");
                     Console.WriteLine($"Tijd van deze film gereserveerd {info.TimeViewing}");
+                }
+            }
+
+            if (toView.SnacksBought is null);
+            else if (toView.SnacksBought.Count >= 1)
+            {
+                foreach (KeyValuePair<Snack, int> snack in toView.SnacksBoughtDict())
+                {
+                    Console.WriteLine($"{snack.Key.Name} X {snack.Value}");
                 }
             }
             Console.WriteLine("\ndruk op een willekeurige knop om terug te gaan");

@@ -13,6 +13,8 @@ public class Customer : IEquatable<Customer>
 
     public List<Snack> SnacksBought { get; private set; } = new();
 
+    public Dictionary<Snack, int> SnacksBoughtDict() => ListToDict(SnacksBought);
+
 
     [JsonConstructor]
     public Customer(int ID, string name, string username, string password, string email, List<RentedMovieInfo> rentedMoviesInfo, List<Snack>? snacksReserved)
@@ -23,7 +25,7 @@ public class Customer : IEquatable<Customer>
         Email = email;
         this.RentedMovieInfo = rentedMoviesInfo;
         this.ID = ID;
-        if (SnacksBought is null) this.SnacksBought = new List<Snack>();
+        if (SnacksBought is null ^ snacksReserved is null) this.SnacksBought = new();
         else this.SnacksBought = snacksReserved!;
     }
 
@@ -187,8 +189,8 @@ public class Customer : IEquatable<Customer>
     public void AddSnack(List<Snack>? snacks)
     {
         if (snacks is null) return;
-
         this.SnacksBought.AddRange(snacks);
+
     }
 
     public void AddSnack(Snack? snack)
@@ -196,6 +198,18 @@ public class Customer : IEquatable<Customer>
         if (snack is null) return;
 
         this.SnacksBought.Add(snack);
+
+    }
+
+    private static Dictionary<T, int> ListToDict<T>(List<T> toConvert) where T: IEquatable<T>
+    {
+        Dictionary<T, int> toReturn = new();
+        foreach (T item in toConvert)
+        {
+            if (toReturn.ContainsKey(item)) toReturn[item] += 1;
+            else toReturn[item] = 1;
+        }
+        return toReturn;
     }
 
 

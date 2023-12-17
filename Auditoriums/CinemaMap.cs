@@ -87,50 +87,50 @@ public abstract class CinemaMap
         keyInfo = Console.ReadKey();
         return;
     }
+    
+    public void TakeSeatsRemove(List<List<string>> auditorium, List<string> reservations, int selectedIndex, bool IsAddmin)
+{
+    CreateCinemaMap();
+    CinemaMap1 = auditorium;
+    Console.Clear();
+    do
+    {
+        Console.WriteLine($"stoelen die gedeselecteerd moeten worden {reservations[selectedIndex]}");
+        Console.SetCursorPosition(0, 7);
+        for (int row = 0; row < CinemaMap1.Count; row++)
+        {
+            for (int column = 0; column < CinemaMap1[row].Count; column++)
+            {
+
+                if (row == selectedRow && column == selectedColumn)
+                {
+                    Console.Write($"\x1b[37m[POS]\x1b[0m");
+                }
+                else
+                {
+                    Console.Write(CinemaMap1[row][column]);
+                }
+            }
+            Console.WriteLine();
+        }
+        keyInfo = Console.ReadKey();
+        if (keyInfo.Key == ConsoleKey.Escape)
+        {
+            MovieScheduleInformation selectedMovie = ManageReservations.ChooseMovieToManageReservations(false);
+            ManageReservations.RemoveConfirmationcode(selectedMovie);
+
+        }
+        Keyboard_input(keyInfo, IsAddmin);
+    }
+    while (keyInfo.Key != ConsoleKey.Enter);
+    WriteCinemaMapToJson();
+    ManageReservations.RemoveConfirmationcode(reservations, selectedIndex);
+    if (keyInfo.Key == ConsoleKey.Enter)
+        return;
+}
 
     // deze wordt exlusief gebruikt binnen managreservations door admins
     // moet 4 parameters zijn 
-    public void TakeSeats(List<List<string>> auditorium, List<string> reservations, int selectedIndex, bool IsAddmin)
-    {
-        CreateCinemaMap();
-        CinemaMap1 = auditorium;
-        Console.Clear();
-        do
-        {
-            Console.WriteLine($"stoelen die gedeselecteerd moeten worden {reservations[selectedIndex]}");
-            Console.SetCursorPosition(0, 7);
-            for (int row = 0; row < CinemaMap1.Count; row++)
-            {
-                for (int column = 0; column < CinemaMap1[row].Count; column++)
-                {
-
-                    if (row == selectedRow && column == selectedColumn)
-                    {
-                        Console.Write($"\x1b[37m[POS]\x1b[0m");
-                    }
-                    else
-                    {
-                        Console.Write(CinemaMap1[row][column]);
-                    }
-                }
-                Console.WriteLine();
-            }
-            keyInfo = Console.ReadKey();
-            if (keyInfo.Key == ConsoleKey.Escape)
-            {
-                MovieScheduleInformation selectedMovie = ManageReservations.ChooseMovieToManageReservations(false);
-                ManageReservations.RemoveConfirmationcode(selectedMovie);
-
-            }
-            Keyboard_input(keyInfo, IsAddmin);
-        }
-        while (keyInfo.Key != ConsoleKey.Enter);
-        WriteCinemaMapToJson();
-        ManageReservations.RemoveConfirmationcode(reservations, selectedIndex);
-        if (keyInfo.Key == ConsoleKey.Enter)
-            return;
-    }
-
     private void Keyboard_input(ConsoleKeyInfo keyInfo, bool IsAddmin)
     {
         Console.Clear();

@@ -4,8 +4,41 @@
     "Name": "rowan",
     "UserName": "Rowan",
     "Email": "rowan@gmail.com",
-    "RentedMovieInfo": [],
+    "RentedMovieInfo": [
+      {
+        "FilmTitle": "The Equalizer 3",
+        "SeatsTaken": [
+          "\u001b[32m[9 C]\u001b[0m"
+        ],
+        "TimeViewing": "2023-12-17T16:25:37.0869292+01:00"
+      }
+    ],
     "Password": "hallo",
-    "SnacksBought": []
+    "SnacksBought": [
+      {
+        "Name": "Fanta 0,5L",
+        "Price": 1.25
+      },
+      {
+        "Name": "Cola 0,5L",
+        "Price": 1.25
+      },
+      {
+        "Name": "Cola 0,5L",
+        "Price": 1.25
+      },
+      {
+        "Name": "Water 0,5L",
+        "Price": 1.25
+      },
+      {
+        "Name": "Kinder bueno x8",
+        "Price": 6.99
+      },
+      {
+        "Name": "kinder Bueno",
+        "Price": 1.28
+      }
+    ]
   }
 ]
