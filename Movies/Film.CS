@@ -137,7 +137,7 @@ Film Rating: {this.FilmRating}";
         string AuditorumNumber;
         do
         {
-            System.Console.WriteLine("Enter the number of the auditorium room you want this movie to be in");
+            System.Console.WriteLine("\nVoer het nummer in van de zaal waarin je wilt dat deze film wordt vertoond.");
             AuditorumNumber = Console.ReadLine()!;
         } while (AuditorumNumber != "1" && AuditorumNumber != "2" && AuditorumNumber != "3");
         var dateAndTime = AskDateAndTime();
@@ -154,19 +154,19 @@ Film Rating: {this.FilmRating}";
     private (int Year, int month, int day, int hour, int minutes) AskDateAndTime()
     {
 
-        Console.Write("Enter the year: ");
+        Console.Write("Voer het jaar in: ");
         int year = int.Parse(Console.ReadLine()!);
 
-        Console.Write("Enter the month: ");
+        Console.Write("Voer het maand in: ");
         int month = int.Parse(Console.ReadLine()!);
 
-        Console.Write("Enter the day: ");
+        Console.Write("Voer de dag in: ");
         int day = int.Parse(Console.ReadLine()!);
 
-        Console.Write("Enter the hour: ");
+        Console.Write("Voer de uur in: ");
         int hour = int.Parse(Console.ReadLine()!);
 
-        Console.Write("Enter the minutes: ");
+        Console.Write("Voer de minuten in: ");
         int minutes = int.Parse(Console.ReadLine()!);
 
         return (year, month, day, hour, minutes);
