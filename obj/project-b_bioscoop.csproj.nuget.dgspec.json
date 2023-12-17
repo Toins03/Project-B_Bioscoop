@@ -14,12 +14,14 @@
         "outputPath": "C:\\Users\\rowan\\OneDrive\\Documents\\school 2023-2024\\project b\\groepsopdracht cinema\\cinema_gitfiles\\Project-B_Bioscoop\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\rowan\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\valdi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {

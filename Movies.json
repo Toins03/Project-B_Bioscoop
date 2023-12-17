@@ -30,8 +30,6 @@
     "FilmPrice": 5.0,
     "FilmRating": 9.0,
     "CinemaAudience": [
-      "Customer ID 1 Customer Name rowan",
-      "Customer ID 1 Customer Name rowan",
       "Customer ID 1 Customer Name rowan"
     ],
     "DateAndAuditorium": {
