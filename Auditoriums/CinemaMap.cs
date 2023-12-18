@@ -16,7 +16,6 @@ public abstract class CinemaMap
     protected string resetText { get; set; } = "\x1b[0m";
     private string FileName { get; set; } = "CinemaMaps.json";
     public List<string> ListReservedSeats { get; set; } = new();
-    public string reservationToRemove { get; set; }
     private string ReservedString { get; set; } = "je hebt de zitplaatsen: \n";
 
     protected string ChosenMovie { get; set; } = "";

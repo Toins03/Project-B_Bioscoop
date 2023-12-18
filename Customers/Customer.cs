@@ -206,8 +206,17 @@ public class Customer : IEquatable<Customer>
         Dictionary<T, int> toReturn = new();
         foreach (T item in toConvert)
         {
-            if (toReturn.ContainsKey(item)) toReturn[item] += 1;
-            else toReturn[item] = 1;
+            bool itemfound = false;
+            foreach (T tofind in toReturn.Keys)
+            {
+                if (tofind.Equals(item))
+                {
+                    toReturn[tofind] += 1;
+                    itemfound = true;
+                    break;
+                }
+            }
+            if (!itemfound) toReturn[item] = 1;
         }
         return toReturn;
     }
