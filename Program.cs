@@ -53,8 +53,7 @@ class Program
                         }
                         if (CheckIfInMovies)
                         {
-                            MovieScheduleInformation machine = new MovieScheduleInformation();
-                            machine.RemoveMovieScheduleObject(movieTitle);
+                            MovieScheduleInformation.RemoveMovieScheduleObject(movieTitle);
                         }
                         else
                         {

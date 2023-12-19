@@ -2,7 +2,7 @@ public class AuditoriumMap500 : CinemaMap
 {
     private const string GreenText = "\x1b[32m";
 
-    protected override void CreateCinemaMap()
+    public override void CreateCinemaMap()
     {
         List<string> alphabet = new List<string>();
         for (char letter = 'A'; letter <= 'Z'; letter++)
@@ -88,7 +88,8 @@ public class AuditoriumMap500 : CinemaMap
         }
     }
 
-    private void AddEmptyAisle()
+
+    private  void AddEmptyAisle()
     {
         List<string> Aisle = new();
         for (int i = 0; i < 30; i++)
@@ -98,7 +99,7 @@ public class AuditoriumMap500 : CinemaMap
         CinemaMap1.Add(Aisle);
         CinemaMapCopy.Add(Aisle);
     }
-    private void AddEmptySpace(List<string> RowSeats, int count)
+    private static void AddEmptySpace(List<string> RowSeats, int count)
     {
         for (int seat = 1; seat <= count; seat++)
         {

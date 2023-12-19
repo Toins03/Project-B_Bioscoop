@@ -1,3 +1,4 @@
+using System.Reflection.Metadata;
 using Newtonsoft.Json;
 
 public class Film
@@ -140,18 +141,55 @@ Film Rating: {this.FilmRating}";
             System.Console.WriteLine("\nVoer het nummer in van de zaal waarin je wilt dat deze film wordt vertoond.");
             AuditorumNumber = Console.ReadLine()!;
         } while (AuditorumNumber != "1" && AuditorumNumber != "2" && AuditorumNumber != "3");
-        var dateAndTime = AskDateAndTime();
+        DateTime dateAndTime = AskDateAndTime();
+
+        List<List<string>> Map = new();
+
+        switch(AuditorumNumber)
+        { 
+            case "1":
+            {
+                AuditoriumMap150 cinemaMap = new();
+                cinemaMap.CreateCinemaMap();
+                Map = cinemaMap.CinemaMap1;
+                break;
+            }
+            case "2":
+            {
+                AuditoriumMap300 cinemaMap = new();
+                cinemaMap.CreateCinemaMap();
+                Map = cinemaMap.CinemaMap1;
+                break;
+            }            
+            case "3":
+            {
+                AuditoriumMap500 cinemaMap = new();
+                cinemaMap.CreateCinemaMap();
+                Map = cinemaMap.CinemaMap1;
+                break;
+            }
+            default:
+            {
+                Console.WriteLine("Something went wrong");
+                return;
+            }
+        }
 
 
-        DateTime specificDateTime = new DateTime(dateAndTime.Year, dateAndTime.month, dateAndTime.day, dateAndTime.hour, dateAndTime.minutes, 0);
-        SetTime(specificDateTime, AuditorumNumber);
+        SetTime(dateAndTime, AuditorumNumber);
+        
+        Dictionary<DateTime, List<List<string>>> dateAndAuditorium = new()
+        {
+            { dateAndTime, Map }
+        };
 
-
-
+        MovieScheduleInformation ToAdd = new(this.Title, dateAndAuditorium);
+        
+        MovieScheduleInformation.AddNewMovieScheduleInfo(ToAdd, dateAndTime);
 
     }
 
-    private (int Year, int month, int day, int hour, int minutes) AskDateAndTime()
+    private DateTime AskDateAndTime()
     {
 
         Console.Write("Voer het jaar in: ");
@@ -169,7 +207,9 @@ Film Rating: {this.FilmRating}";
         Console.Write("Voer de minuten in: ");
         int minutes = int.Parse(Console.ReadLine()!);
 
-        return (year, month, day, hour, minutes);
+        DateTime toReturn = new DateTime (year:year, month: month, day: day, hour: hour, minute: minutes, second: 0);
+
+        return toReturn;
 
 
     }

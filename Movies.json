@@ -31,7 +31,11 @@
     "FilmRating": 9.0,
     "CinemaAudience": [
       "Customer ID 1 Customer Name rowan",
-      "Customer ID 1 Customer Name rowan"
+      "Customer ID 1 Customer Name rowan",
+      "Customer ID 2 Customer Name test",
+      "Customer ID 3 Customer Name testpersoon",
+      "Customer ID 4 Customer Name rowantest",
+      "Customer ID 2 Customer Name testrowan"
     ],
     "DateAndAuditorium": {
       "2023-12-31T12:30:00": "1"

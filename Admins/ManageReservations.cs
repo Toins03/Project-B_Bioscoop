@@ -6,8 +6,8 @@ public class ManageReservations
 
     public static List<string> options { get; } = new()
         {
-            "Reservatie(s) toevoegen",
-            "Reservatie(s) verwijderen"
+            "Reservering(en) toevoegen",
+            "Reservering(en) verwijderen"
         };
     public static Admin LoggedinAdmin;
 
@@ -26,7 +26,7 @@ public class ManageReservations
         do
         {
             PrintLogo();
-            Console.WriteLine("Admin reservatie opties\n");
+            Console.WriteLine("Admin reservering opties\n");
             for (int i = 0; i < options.Count; i++)
                 Console.WriteLine($"{(i == selectedIndex ? "--> " : "    ")}{options[i]}");
 
@@ -64,11 +64,11 @@ public class ManageReservations
             case 0:
                 AdminMenu.Menu(admin);
                 break;
-            case int selIndex when options[selIndex] == "Reservatie(s) toevoegen":
+            case int selIndex when options[selIndex] == "Reservering(en) toevoegen":
                 Console.Clear();
                 MovieTitleToManageReservations(true);
                 break;
-            case int selIndex when options[selIndex] == "Reservatie(s) verwijderen":
+            case int selIndex when options[selIndex] == "Reservering(en) verwijderen":
                 Console.Clear();
                 MovieTitleToManageReservations(false);
                 break;
@@ -93,7 +93,7 @@ public class ManageReservations
         do
         {
             PrintLogo();
-            Console.WriteLine($"Voor welke film wil je een reservatie {(isToAdd ? "toevoegen" : "verwijderen")}: \nDruk op Enter om te kiezen:");
+            Console.WriteLine($"Voor welke film wil je een reservering {(isToAdd ? "toevoegen" : "verwijderen")}: \nDruk op Enter om te kiezen:");
             for (int i = 0; i < allMovies.Count; i++)
                 Console.WriteLine($"{(i == selectedIndex ? "--> " : "    ")}{allMovies[i].Title}");
 
@@ -109,20 +109,25 @@ public class ManageReservations
 
     private static void AddReservation(MovieScheduleInformation Movie)
     {
-        List<List<string>> movieAuditorium = Movie.ScreeningTimeAndAuditorium["11-11-2023"];
+        DateTime showingchosen = ChooseBetweenShowings(Movie);
+        if (showingchosen == DateTime.MinValue) return;
+        
+        
+        
+        List<List<string>> movieAuditorium = Movie.ScreeningTimeAndAuditorium[showingchosen];
         switch (movieAuditorium.Count)
         {
             case 14:
                 AuditoriumMap150 map150 = new AuditoriumMap150();
-                map150.TakeSeats(Movie.Title!, FrontPage.CurrentCustomer, false);
+                map150.TakeSeats(Movie.Title!, FrontPage.CurrentCustomer, false, showingchosen);
                 break;
             case 21:
                 AuditoriumMap300 map300 = new AuditoriumMap300();
-                map300.TakeSeats(Movie.Title!, FrontPage.CurrentCustomer, false);
+                map300.TakeSeats(Movie.Title!, FrontPage.CurrentCustomer, false, showingchosen);
                 break;
             case 22:
                 AuditoriumMap500 map500 = new AuditoriumMap500();
-                map500.TakeSeats(Movie.Title!, FrontPage.CurrentCustomer!, false);
+                map500.TakeSeats(Movie.Title!, FrontPage.CurrentCustomer!, false, showingchosen);
                 break;
             default:
                 break;
@@ -131,19 +136,22 @@ public class ManageReservations
 
     private static void RemoveReservation(MovieScheduleInformation Movie, List<string> reservations, int selectedIndex)
     {
-        switch (Movie.ScreeningTimeAndAuditorium["11-11-2023"].Count)
+        DateTime showingchosen = ChooseBetweenShowings(Movie);
+        if (showingchosen == DateTime.MinValue) return;
+
+        switch (Movie.ScreeningTimeAndAuditorium[showingchosen].Count)
         {
             case 14:
                 AuditoriumMap150 map150 = new AuditoriumMap150();
-                map150.TakeSeatsRemove(Movie.ScreeningTimeAndAuditorium["11-11-2023"], reservations, selectedIndex, true);
+                map150.TakeSeatsRemove(Movie.ScreeningTimeAndAuditorium[showingchosen], reservations, selectedIndex, true);
                 break;
             case 21:
                 AuditoriumMap300 map300 = new AuditoriumMap300();
-                map300.TakeSeatsRemove(Movie.ScreeningTimeAndAuditorium["11-11-2023"], reservations, selectedIndex, true);
+                map300.TakeSeatsRemove(Movie.ScreeningTimeAndAuditorium[showingchosen], reservations, selectedIndex, true);
                 break;
             case 22:
                 AuditoriumMap500 map500 = new AuditoriumMap500();
-                map500.TakeSeatsRemove(Movie.ScreeningTimeAndAuditorium["11-11-2023"], reservations, selectedIndex, true);
+                map500.TakeSeatsRemove(Movie.ScreeningTimeAndAuditorium[showingchosen], reservations, selectedIndex, true);
                 break;
             default:
                 break;
@@ -233,4 +241,39 @@ public class ManageReservations
         }
         return null;
     }
+
+    public static DateTime ChooseBetweenShowings(MovieScheduleInformation movie)
+    {
+        if (movie.ScreeningTimeAndAuditorium.Count == 0) return DateTime.MinValue;
+        
+        string menuName = "Kies op welke tijd u deze film wilt zien.";
+        List<string> options = movie.ScreeningTimeAndAuditorium.Keys
+        .Select(TimeOption => $"{TimeOption.Day}/{TimeOption.Month}/{TimeOption.Year} {TimeOption.Hour}:{TimeOption.Minute}")
+        .ToList();
+        
+        (string? optionChosen, ConsoleKey lastKey) reservationChosen = BasicMenu.MenuBasic(options, menuName);
+
+        if (reservationChosen.lastKey == ConsoleKey.Escape)
+        {
+            Console.WriteLine(" LLeaving admin options!");
+            return DateTime.MinValue;
+        }
+        else if (reservationChosen.optionChosen is null)
+        {
+            Console.WriteLine("something went wrong");
+            return DateTime.MinValue;
+        }
+
+        foreach (DateTime viewoption in movie.ScreeningTimeAndAuditorium.Keys)
+        {
+            string toCompare = $"{viewoption.Day}/{viewoption.Month}/{viewoption.Year} {viewoption.Hour}:{viewoption.Minute}";
+            if (toCompare == reservationChosen.optionChosen)
+            {
+                return viewoption;
+            }
+        }
+        return DateTime.MinValue;
+
+    }
+
 }

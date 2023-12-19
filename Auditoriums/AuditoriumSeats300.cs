@@ -2,7 +2,7 @@ public class AuditoriumMap300 : CinemaMap
 {
     private const string GreenText = "\x1b[32m";
 
-    protected override void CreateCinemaMap()
+    public override void CreateCinemaMap()
     {
         for (int column = 19; column >= 1; column--)
         {

@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using Newtonsoft.Json;
 
 public class Customer : IEquatable<Customer>
@@ -77,44 +78,54 @@ public class Customer : IEquatable<Customer>
         }
         else
         {
-
+            Customer customerNow = Customer.LoginOrRegisterCustomer();
+            if (customerNow is null) return;
 // first check if you want to log in or register
-            List<string> options = new List<string>() {"Registreren", "Inloggen"};
-            while (currentCustomer is null)
-            {
-                string Uitleg = "Om door te gaan moet u registreren of uitloggen. Welke optie kiest u?";
-                
-                (string? optionChosen, ConsoleKey KeyLeaving) registerOrLogIn = BasicMenu.MenuBasic(options: options, MenuName: Uitleg);
 
-                if (registerOrLogIn.KeyLeaving == ConsoleKey.Escape ^ registerOrLogIn.optionChosen is null)
-                {
-                    Console.WriteLine("om te vertrekken druk nog eens op ESC. Om opnieuw te kiezen om in te loggen druk op een willekeurige andere knop.");
-                    return;
-                }
-                else if (registerOrLogIn.optionChosen == "Registreren")
-                {
-                    currentCustomer = registreren.RegistreerMenu();
-                }
-                else if (registerOrLogIn.optionChosen == "Inloggen")
-                {
-                    currentCustomer = LogIn.LogInCustomer();
-                }
-            }
 
-            if (currentCustomer.SnacksBought is null) currentCustomer.SnacksBought = new();
+            if (customerNow.SnacksBought is null) customerNow.SnacksBought = new();
 
-            currentCustomer.SnacksBought.AddRange(shoppingcart.shoppingcart);
+            customerNow.SnacksBought.AddRange(shoppingcart.shoppingcart);
 
-            currentCustomer.RentedMovieInfo.Add(rentedMovie);
+            customerNow.RentedMovieInfo.Add(rentedMovie);
 
-            currentCustomer.SaveToJsonFile();
-            FilmSave.AddCustomerToFilm(rentedMovie.FilmTitle, currentCustomer);
+            customerNow.SaveToJsonFile();
+            FilmSave.AddCustomerToFilm(rentedMovie.FilmTitle, customerNow);
 
         }
         Console.WriteLine("\n\nWil je terug naar de hoofdpagina?\ntoets dan een willekeurig knop in.\n");
         Console.ReadKey();
         Console.Clear();
         return;
+    }
+
+
+    public static Customer LoginOrRegisterCustomer()
+    {
+        Customer currentCustomer = null!;
+        List<string> options = new List<string>() {"Registreren", "Inloggen"};
+        while (currentCustomer is null)
+        {
+            string Uitleg = "Om door te gaan moet u registreren of uitloggen. Welke optie kiest u?";
+            
+            (string? optionChosen, ConsoleKey KeyLeaving) registerOrLogIn = BasicMenu.MenuBasic(options: options, MenuName: Uitleg);
+
+            if (registerOrLogIn.KeyLeaving == ConsoleKey.Escape ^ registerOrLogIn.optionChosen is null)
+            {
+                Console.WriteLine("om te vertrekken druk nog eens op ESC. Om opnieuw te kiezen om in te loggen druk op een willekeurige andere knop.");
+                ConsoleKeyInfo consoleKey = Console.ReadKey();
+                if (consoleKey.Key == ConsoleKey.Escape) return null!;
+            }
+            else if (registerOrLogIn.optionChosen == "Registreren")
+            {
+                currentCustomer = registreren.RegistreerMenu();
+            }
+            else if (registerOrLogIn.optionChosen == "Inloggen")
+            {
+                currentCustomer = LogIn.LogInCustomer();
+            }
+        }
+        return currentCustomer;
     }
 
 

@@ -62,7 +62,7 @@ static class FilmSave
         Film ToDelete = null!;
         foreach (Film film in films)
         {
-            if (true)
+            if (film.Title == filmName)
             {
                 ToDelete = film;
                 break;
@@ -76,8 +76,7 @@ static class FilmSave
         }
         else
         {
-            MovieScheduleInformation machine = new MovieScheduleInformation();
-            machine.RemoveMovieScheduleObject(filmName);
+            MovieScheduleInformation.RemoveMovieScheduleObject(filmName);
             films.Remove(ToDelete);
             WritefilmList(films);
             Console.WriteLine("The film with this name has been deleted");

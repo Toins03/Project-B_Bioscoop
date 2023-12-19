@@ -29,7 +29,7 @@ public class ChooseMovie
             Display(options, selectedIndex);
             keyInfo = Console.ReadKey();
             if (keyInfo.Key == ConsoleKey.Escape) return;
-            HandleUserInput(keyInfo, options, ref selectedIndex, currentCustomer);
+            HandleUserInput(keyInfo, options, ref selectedIndex);
         } while (keyInfo.Key != ConsoleKey.Enter);
 
         HandleSelecedOption(currentCustomer, MoviesAfterFilter, options, selectedIndex);
@@ -59,7 +59,7 @@ public class ChooseMovie
     }
 
 
-    public static void HandleUserInput(ConsoleKeyInfo keyInfo, List<string> options, ref int selectedIndex, Customer? currenCustomer)
+    public static void HandleUserInput(ConsoleKeyInfo keyInfo, List<string> options, ref int selectedIndex)
     {
         switch (keyInfo.Key)
         {
@@ -79,7 +79,7 @@ public class ChooseMovie
         if (selectedIndex >= 1 && selectedIndex < options.Count)
         {
             MovieWriteAndLoad.printfilmInfo(movies[selectedIndex - 1]);
-            System.Console.WriteLine("Druk op Enter om stoelen te reserveren voor deze film \nDruk een ander willekeurige toets om terug te gaan naar de vorige pagina");
+
             ConfirmMovieSelection(currentCustomer, options[selectedIndex]);
         }
         else if (selectedIndex == 0)
@@ -138,34 +138,73 @@ public class ChooseMovie
 
     public static string SearchTitleThroughMovies(string title, List<Film> Movies)
     {
-        foreach (var movie in Movies)
+        foreach (Film movie in Movies)
         {
             if (title.ToLower() == movie.Title.ToLower())
             {
-                MovieWriteAndLoad.printfilmInfo(movie);
-                Console.WriteLine("Druk op Enter om stoelen te reserveren voor deze film \nDruk een ander willekeurige toets om terug te gaan naar de vorige pagina");
                 return movie.Title;
             }
         }
         return null!;
     }
+
     public static void ConfirmMovieSelection(Customer currentCustomer, string MovieTitle)
     {
+        Console.WriteLine("Druk op enter om een tijdoptie voor deze film te kiezen. Om terug te gaan druk op een willekeurige ander knop");
         ConsoleKeyInfo keyInfo;
         keyInfo = Console.ReadKey();
         if (keyInfo.Key == ConsoleKey.Enter)
-        {
+        {        
+            MovieScheduleInformation movie = MovieScheduleInformation.findMovieScheduleInfoByTitle(MovieTitle)!;
+            if (movie is null) return;
+            DateTime showChosen = ChooseBetweenShowings(movie);
+
+
             Console.Clear();
             AuditoriumMap150 map500 = new AuditoriumMap150();
-            map500.TakeSeats(MovieTitle, currentCustomer, false);
+            map500.TakeSeats(MovieTitle, currentCustomer, false, showChosen);
         }
         else if (keyInfo.Key != ConsoleKey.Enter)
         {
+            return;
             // Films_kiezen(currentCustomer);
             // infinite ?
             // ja was infinite 
         }
     }
 
+    public static DateTime ChooseBetweenShowings(MovieScheduleInformation movie)
+    {
+        if (movie.ScreeningTimeAndAuditorium.Count == 0) return DateTime.MinValue;
+        
+        string menuName = "Kies op welke tijd u deze film wilt zien.";
+        List<string> options = movie.ScreeningTimeAndAuditorium.Keys
+        .Select(TimeOption => $"{TimeOption.Day}/{TimeOption.Month}/{TimeOption.Year} {TimeOption.Hour}:{TimeOption.Minute}")
+        .ToList();
+        
+        (string? optionChosen, ConsoleKey lastKey) reservationChosen = BasicMenu.MenuBasic(options, menuName);
+
+        if (reservationChosen.lastKey == ConsoleKey.Escape)
+        {
+            Console.WriteLine(" LLeaving admin options!");
+            return DateTime.MinValue;
+        }
+        else if (reservationChosen.optionChosen is null)
+        {
+            Console.WriteLine("something went wrong");
+            return DateTime.MinValue;
+        }
+
+        foreach (DateTime viewoption in movie.ScreeningTimeAndAuditorium.Keys)
+        {
+            string toCompare = $"{viewoption.Day}/{viewoption.Month}/{viewoption.Year} {viewoption.Hour}:{viewoption.Minute}";
+            if (toCompare == reservationChosen.optionChosen)
+            {
+                return viewoption;
+            }
+        }
+        return DateTime.MinValue;
+
+    }
 
 }

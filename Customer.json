@@ -40,5 +40,22 @@
         "Price": 1.28
       }
     ]
+  },
+  {
+    "ID": 2,
+    "Name": "testrowan",
+    "UserName": "testrowan",
+    "Email": "1@2.com",
+    "RentedMovieInfo": [
+      {
+        "FilmTitle": "The Equalizer 3",
+        "SeatsTaken": [
+          "\u001b[32m[11H]\u001b[0m"
+        ],
+        "TimeViewing": "2023-11-11T00:00:00"
+      }
+    ],
+    "Password": "hallo",
+    "SnacksBought": []
   }
 ]

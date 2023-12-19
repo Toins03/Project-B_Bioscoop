@@ -1,33 +1,34 @@
-using System.Collections.ObjectModel;
 using Newtonsoft.Json;
-using System.Threading.Channels;
 
 public abstract class CinemaMap
 {
     private int selectedRow { get; set; }
     private int selectedColumn { get; set; }
-    private List<List<string>> CinemaMap1Json { get; set; } = new();
-    protected List<List<string>> CinemaMap1 { get; set; } = new();
+    public List<List<string>> CinemaMap1Json { get; private set; } = new();
+    public List<List<string>> CinemaMap1 { get; protected set; } = new();
     protected List<List<string>> CinemaMapCopy { get; set; } = new();
-    private string Guide { get; set; } = "Gebruik de pijltjes of 'WASD' om te navigeren. \nToets de 'spatie' om een stoel te selecteren. \nToets Enter wanneer je klaar bent met het selecteren van stoelen en wil afrekenen. \nToets 'esc' wanneer je terug wil gaan naar de vorige pagina.\n";
-    private string ReservingSeats { get; set; } = "plekken die je hebt geselecteerd: ";
+    private const string Guide = "Gebruik de pijltjes of 'WASD' om te navigeren. \nToets de 'spatie' om een stoel te selecteren. \nToets Enter wanneer je klaar bent met het selecteren van stoelen en wil afrekenen. \nToets 'esc' wanneer je terug wil gaan naar de vorige pagina.\n";
+    private string ReservingSeats = "plekken die je hebt geselecteerd: ";
     private ConsoleKeyInfo keyInfo { get; set; }
-    private string purpleColor { get; set; } = "\u001b[35m";
-    protected string resetText { get; set; } = "\x1b[0m";
-    private string FileName { get; set; } = "CinemaMaps.json";
+    private const string purpleColor = "\u001b[35m";
+    protected const string resetText = "\x1b[0m";
+    private static string FileName { get; set; } = "CinemaMaps.json";
     public List<string> ListReservedSeats { get; set; } = new();
     private string ReservedString { get; set; } = "je hebt de zitplaatsen: \n";
 
     protected string ChosenMovie { get; set; } = "";
 
+    private DateTime _currentDateusing {get; set;} = DateTime.MinValue;
 
-    protected abstract void CreateCinemaMap();
+
+    public abstract void CreateCinemaMap();
 
     // deze kan door iedereen worden gebruikt
-    public void TakeSeats(string MovieTitle, Customer? currentCustomer, bool IsAddmin)
+    public void TakeSeats(string MovieTitle, Customer? currentCustomer, bool IsAddmin, DateTime Showing)
     {
 
         ChosenMovie = MovieTitle;
+        _currentDateusing = Showing;
         CreateCinemaMap();
         LoadCinemaMapFromJson();
         Console.Clear();
@@ -69,7 +70,7 @@ public abstract class CinemaMap
 
         
         // datetime.now is a temporary actor. Fix later when I figure out how to view the time the film happens.
-        RentedMovieInfo currentinfo = new(MovieTitle, ListReservedSeats, DateTime.Now);
+        RentedMovieInfo currentinfo = new(MovieTitle, ListReservedSeats, Showing);
         // add the seats taken to the info we are looking at
 
         System.Console.WriteLine($"{ReservedString}");
@@ -77,16 +78,27 @@ public abstract class CinemaMap
         {
             Console.WriteLine(reservedseat);
         }
-        WriteCinemaMapToJson();
-        SnackMenu.ChooseToAddSnackOrNot(currentinfo, currentCustomer);
 
+// here we look at the customer and write the mape we currently have.
+        Customer currentnow;
+        if (currentCustomer is null)
+        {
+            currentnow = Customer.LoginOrRegisterCustomer();
+            if (currentnow is null) return; 
+        }
+        else currentnow = currentCustomer;
+
+        SnackMenu.ChooseToAddSnackOrNot(currentinfo, currentnow);
+        WriteCinemaMapToJson();
         // remember to ensure we currently have a customer
 
         Console.WriteLine("\n\n Druk op een willekeurige knop om terug te gaan naar de voorpagina\n");
         keyInfo = Console.ReadKey();
         return;
     }
-    
+
+
+// deze wordt exclusief gebruikt om reservaties te verwijderen.
     public void TakeSeatsRemove(List<List<string>> auditorium, List<string> reservations, int selectedIndex, bool IsAddmin)
 {
     CreateCinemaMap();
@@ -186,8 +198,9 @@ public abstract class CinemaMap
 
     private void LoadCinemaMapFromJson()
     {
+        if (_currentDateusing == DateTime.MinValue) return; 
         string jsonData;
-        using (StreamReader reader = new StreamReader("MovieScheduleInformation.json"))
+        using (StreamReader reader = new StreamReader(MovieScheduleInformation.FileSaved))
         {
             jsonData = reader.ReadToEnd();
         }
@@ -201,7 +214,7 @@ public abstract class CinemaMap
         {
             if (movie.Title == ChosenMovie)
             {
-                CinemaMap1Json = movie.ScreeningTimeAndAuditorium["11-11-2023"];
+                CinemaMap1Json = movie.ScreeningTimeAndAuditorium[_currentDateusing];
             }
         }
 
@@ -228,8 +241,14 @@ public abstract class CinemaMap
 
             }
         }
-        MovieScheduleInformation movieSchedule = new MovieScheduleInformation();
-        movieSchedule.AddTitleAndScreeningTimeAndAuditorium(ChosenMovie, "11-11-2023", CinemaMap1, GenerateConfirmationCode());
+
+
+        Dictionary<DateTime, List<List<string>>> writinginfo = new() {
+            {_currentDateusing, CinemaMap1}
+        };
+
+        MovieScheduleInformation movieSchedule = new MovieScheduleInformation(ChosenMovie, writinginfo);
+        movieSchedule.AddTitleAndScreeningTimeAndAuditorium( _currentDateusing, CinemaMap1, GenerateConfirmationCode());
 
         using (StreamWriter writer = new StreamWriter(FileName))
         {
