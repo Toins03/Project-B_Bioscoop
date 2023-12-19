@@ -20,7 +20,7 @@ class ViewCustomerInfo
                 {
                     Console.WriteLine($"Film gereserveerd {info.FilmTitle}");
                     Console.WriteLine($"stoelen gereserveerd voor deze film:\n {string.Join("\n", info.SeatsTaken)}");
-                    Console.WriteLine($"Tijd van deze film gereserveerd {info.TimeViewing}");
+                    Console.WriteLine($"Starttijd van de gereserveerde film: {info.seeTimeViewing()}");
                 }
             }
 

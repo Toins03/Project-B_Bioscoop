@@ -15,4 +15,10 @@ public class RentedMovieInfo
     {
         return $"Title: {this.FilmTitle}, Seats chosen: {string.Join(", ", this.SeatsTaken)}, Time viewing: {this.TimeViewing}";
     }
+
+    public string seeTimeViewing()
+    {
+        string toReturn = $"{this.TimeViewing.Day}/{this.TimeViewing.Month}/{this.TimeViewing.Year} {this.TimeViewing.Hour}:{this.TimeViewing.Minute}";
+        return toReturn;
+    }
 } 
