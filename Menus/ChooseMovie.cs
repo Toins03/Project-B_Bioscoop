@@ -2,37 +2,44 @@ public class ChooseMovie
 {
     public static void Films_kiezen(Customer? currentCustomer)
     {
-        MovieWriteAndLoad film_menu = new("Movies.json");
+
 
         List<string> options = new() { "Sorteer en filter opties\n" };
-        List<Film> Movies = film_menu.ReadFilms();
-        TimeSpan timeGap = TimeSpan.FromHours(0);
+        List<MovieScheduleInformation> Movies = MovieScheduleInformation.ReadDataFromJson()!;
 
+        if (Movies is null)
+        {
+            Console.WriteLine("Er zijn geen films gepland. Druk op een willekeurige knop om terug te gaan.");
+            Console.ReadKey();
+            return;
+        }
         // check hier maken voor films die later dan vandaag te zien is op de bioscoop zodat je niet naar oude films gaat
         // die niet meer te zien is
 
-        // en confirmatie code - film tijd wanneer het te zien is als het meer dan 2 uur is kan je het annuleren minder dan 2 weer niet
-        List<Film> MoviesAfterFilter = FilterMovies.MoviesInTheFuture(Movies, timeGap, DateTime.Now);
+        List<MovieScheduleInformation> MoviesAfterFilter = FilterMovies.FutureMoviesScheduled(Movies, DateTime.Now);
 
 
-
-        foreach (var movie in MoviesAfterFilter)
+        foreach (MovieScheduleInformation movie in MoviesAfterFilter)
         {
-            options.Add(movie.Title);
+            if (movie.Title is not null) options.Add(movie.Title);
         }
 
-        ConsoleKeyInfo keyInfo;
-        int selectedIndex = 0;
+        (string? optionChosen, ConsoleKey lastKey) moviechosen = BasicMenu.MenuBasic(options, "Kies een tijd waarin u de film wilt zien");
 
-        do
+        if (moviechosen.lastKey == ConsoleKey.Escape) 
         {
-            Display(options, selectedIndex);
-            keyInfo = Console.ReadKey();
-            if (keyInfo.Key == ConsoleKey.Escape) return;
-            HandleUserInput(keyInfo, options, ref selectedIndex);
-        } while (keyInfo.Key != ConsoleKey.Enter);
+            return;
+        }
+        else if (moviechosen.optionChosen is null)
+        {
+            return;
+        }
+        else
+        {
+            ConfirmMovieSelection(currentCustomer, moviechosen.optionChosen); 
 
-        HandleSelecedOption(currentCustomer, MoviesAfterFilter, options, selectedIndex);
+        }
+
     }
 
     public static void Display(List<string> options, int selectedIndex)
@@ -148,7 +155,7 @@ public class ChooseMovie
         return null!;
     }
 
-    public static void ConfirmMovieSelection(Customer currentCustomer, string MovieTitle)
+    public static void ConfirmMovieSelection(Customer? currentCustomer, string MovieTitle)
     {
         Console.WriteLine("Druk op enter om een tijdoptie voor deze film te kiezen. Om terug te gaan druk op een willekeurige ander knop");
         ConsoleKeyInfo keyInfo;
@@ -158,6 +165,8 @@ public class ChooseMovie
             MovieScheduleInformation movie = MovieScheduleInformation.findMovieScheduleInfoByTitle(MovieTitle)!;
             if (movie is null) return;
             DateTime showChosen = ChooseBetweenShowings(movie);
+
+            if (showChosen == DateTime.MinValue) return;
 
 
             Console.Clear();
@@ -179,7 +188,8 @@ public class ChooseMovie
         
         string menuName = "Kies op welke tijd u deze film wilt zien.";
         List<string> options = movie.ScreeningTimeAndAuditorium.Keys
-        .Select(TimeOption => $"{TimeOption.Day}/{TimeOption.Month}/{TimeOption.Year} {TimeOption.Hour}:{TimeOption.Minute}")
+        .Where(Timeoption => Timeoption > DateTime.Now)
+        .Select(TimeOption => TimeOption.ToString("dd/MM/yyyy HH:mm"))
         .ToList();
         
         (string? optionChosen, ConsoleKey lastKey) reservationChosen = BasicMenu.MenuBasic(options, menuName);

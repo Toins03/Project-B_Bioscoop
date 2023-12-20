@@ -37,7 +37,7 @@ public class FrontPage
 
             if (MainMenu.lastKey == ConsoleKey.Escape)
             {
-                System.Console.WriteLine(" Tot ziens!");
+                Console.WriteLine(" Tot ziens!");
                 return;
             }
 

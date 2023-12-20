@@ -33,8 +33,7 @@ static class BasicMenu
             }
             System.Console.WriteLine(line);
             System.Console.WriteLine(@"gebruik WASD keys om je optie te selecteren druk daarna op Enter op je keuze te bevestigen
-Druk op ESC om te vertrekken.
-");
+Druk op ESC om te vertrekken.");
             keyInfo = Console.ReadKey();
             if (keyInfo.Key == ConsoleKey.Escape)
             {

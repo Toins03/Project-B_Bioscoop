@@ -18,7 +18,7 @@ public class RentedMovieInfo
 
     public string seeTimeViewing()
     {
-        string toReturn = $"{this.TimeViewing.Day}/{this.TimeViewing.Month}/{this.TimeViewing.Year} {this.TimeViewing.Hour}:{this.TimeViewing.Minute}";
+        string toReturn = this.TimeViewing.ToString("dd/MM/yy HH:mm");
         return toReturn;
     }
 } 
