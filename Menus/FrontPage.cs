@@ -7,11 +7,12 @@ public class FrontPage
 
         Customer? currentCustomer = customer;
 
-        if (FrontPage.CurrentCustomer is not null && currentCustomer is null) currentCustomer = FrontPage.CurrentCustomer;
 
 
         while (true)
         {
+            if (FrontPage.CurrentCustomer is not null && currentCustomer is null) currentCustomer = FrontPage.CurrentCustomer;
+
             List<string> options = new List<string> { };
             if (currentCustomer is null)
             {
@@ -31,47 +32,10 @@ public class FrontPage
             "bioscoop informatie"
                     });
 
-            int selectedIndex = 0;
+            (string? optionChosen, ConsoleKey lastKey) MainMenu = BasicMenu.MenuBasic(options, "Hoofdmenu");
 
-            ConsoleKeyInfo keyInfo;
-            string line = new string('=', Console.WindowWidth);
 
-            do
-            {
-                Console.Clear();
-                System.Console.WriteLine(line);
-                CreateTitleASCII();
-                System.Console.WriteLine(line);
-                // CenterText("menu opties");
-
-                for (int i = 0; i < options.Count; i++)
-                {
-                    if (i == selectedIndex)
-                    {
-                        Console.WriteLine("--> " + options[i]);
-                    }
-                    else
-                    {
-                        Console.WriteLine("    " + options[i]);
-                    }
-                }
-                System.Console.WriteLine(line);
-                System.Console.WriteLine(@"gebruik WASD keys om je optie te selecteren druk daarna op Enter op je keuze te bevestigen
-Druk op ESC om te vertrekken.
-");
-                keyInfo = Console.ReadKey();
-
-                if (keyInfo.Key == ConsoleKey.W && selectedIndex > 0 || keyInfo.Key == ConsoleKey.UpArrow && selectedIndex > 0)
-                {
-                    selectedIndex--;
-                }
-                else if (keyInfo.Key == ConsoleKey.S && selectedIndex < options.Count - 1 || keyInfo.Key == ConsoleKey.DownArrow && selectedIndex < options.Count - 1)
-                {
-                    selectedIndex++;
-                }
-            } while (keyInfo.Key != ConsoleKey.Enter && keyInfo.Key != ConsoleKey.Escape);
-
-            if (keyInfo.Key == ConsoleKey.Escape)
+            if (MainMenu.lastKey == ConsoleKey.Escape)
             {
                 System.Console.WriteLine(" Tot ziens!");
                 return;
@@ -79,23 +43,26 @@ Druk op ESC om te vertrekken.
 
             Console.Clear();
 
-            if (options[selectedIndex] == "inloggen")
+            string? optionChosen = MainMenu.optionChosen;
+
+
+            if (optionChosen == "inloggen")
             {
                 currentCustomer = LogIn.LogInMenu();
             }
-            else if (options[selectedIndex] == "registreren")
+            else if (optionChosen == "registreren")
             {
                 currentCustomer = registreren.RegistreerMenu();
             }
-            else if (options[selectedIndex] == "bioscoop informatie")
+            else if (optionChosen == "bioscoop informatie")
             {
                 CinemaInfo();
             }
-            else if (options[selectedIndex] == "film kiezen")
+            else if (optionChosen == "film kiezen")
             {
                 ChooseMovie.Films_kiezen(currentCustomer!);
             }
-            else if (options[selectedIndex] == "uitloggen")
+            else if (optionChosen == "uitloggen")
             {
                 Console.WriteLine("Weet je zeker dat je wilt uitloggen? Zo ja typ in ja. zo nee typ iets anders in.");
                 string response = Console.ReadLine()!;
@@ -106,11 +73,11 @@ Druk op ESC om te vertrekken.
                     currentCustomer = null!;
                 }
             }
-            else if (options[selectedIndex] == "zie persoonlijke informatie")
+            else if (optionChosen == "zie persoonlijke informatie")
             {
                 ViewCustomerInfo.ViewInfoMenu(currentCustomer);
             }
-            else if (options[selectedIndex] == "Cancellatie")
+            else if (optionChosen == "Cancellatie")
             {
 
             }
