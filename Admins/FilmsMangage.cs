@@ -179,7 +179,8 @@ static class FilmsManage
         List<string> options = new List<string>()
         {
             "Alle films zien",
-            "Film Toevoegen",
+            "Film toevoegen",
+            "Bestaande film inplannen",
             "Film verwijderen",
         };
 
@@ -256,6 +257,10 @@ static class FilmsManage
             }
             Console.ReadKey();
         }
+        else if (option_chosen == "Bestaande film inplannen")
+        {
+            Addmovieschedule();
+        }
         FilmManagement();
     }
     public static (string Title, int Runtime, double Price, double FilmRating, int ReleaseYear, string director) GetFilmInfo()
@@ -299,6 +304,37 @@ static class FilmsManage
 
         return (title, runtime, price, filmRating, releaseYear, director);
     }
+
+    public static void Addmovieschedule()
+    {
+        List<Film> films = FilmSave.ReadFilms();
+        List<string> options = films.Select(film => film.Title).ToList();
+        
+        string MenuName = "Kies het film dat u wilt inplannen";
+
+        (string? optionChosen, ConsoleKey lastKey) chosenresult = BasicMenu.MenuBasic(options, MenuName);
+
+        if (chosenresult.lastKey == ConsoleKey.Escape)
+        {
+            return;
+        }
+        else if (chosenresult.optionChosen is null)
+        {
+            return;
+        }
+
+        string titleToFind = chosenresult.optionChosen;
+
+        List<Film> FoundFilms = films.Where(film => film.Title == titleToFind).ToList();
+        if (FoundFilms.Count == 0)
+        {
+            return;
+        }
+
+        Film toFind = FoundFilms[0];
+        toFind.AddDateTimeAndAuditorium();
+    }
+
 
     public static List<string> GenreList()
     {

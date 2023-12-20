@@ -170,7 +170,7 @@ Film Rating: {this.FilmRating}";
             }
             default:
             {
-                Console.WriteLine("Something went wrong");
+                Console.WriteLine("Iets ging fout");
                 return;
             }
         }
@@ -192,20 +192,37 @@ Film Rating: {this.FilmRating}";
     private DateTime AskDateAndTime()
     {
 
-        Console.Write("Voer het jaar in: ");
-        int year = int.Parse(Console.ReadLine()!);
+        
+        int year;
+        while (!int.TryParse(Console.ReadLine(), out year) || year <= 0)
+        {
+            Console.Write("Voer het jaar in: ");
+        }
 
-        Console.Write("Voer het maand in: ");
-        int month = int.Parse(Console.ReadLine()!);
+        int month;
+        while (!int.TryParse(Console.ReadLine(), out month) || month <= 0)
+        {
+            Console.Write("Voer het maand in: ");
+        }
 
-        Console.Write("Voer de dag in: ");
-        int day = int.Parse(Console.ReadLine()!);
-
+        int day;
+        while (!int.TryParse(Console.ReadLine(), out day) || day <= 0)
+        {
+            Console.Write("Voer de dag in: ");
+        }
         Console.Write("Voer de uur in: ");
-        int hour = int.Parse(Console.ReadLine()!);
 
-        Console.Write("Voer de minuten in: ");
-        int minutes = int.Parse(Console.ReadLine()!);
+        int hour;
+        while (!int.TryParse(Console.ReadLine(), out hour) || hour <= 0)
+        {
+            Console.Write("Voer de uur in: ");
+        }
+
+        int minutes;
+        while (!int.TryParse(Console.ReadLine(), out minutes) || minutes <= 0)
+        {
+            Console.Write("Voer het minuut in: ");
+        }
 
         DateTime toReturn = new DateTime (year:year, month: month, day: day, hour: hour, minute: minutes, second: 0);
 
