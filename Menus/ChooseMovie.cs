@@ -166,8 +166,12 @@ public class ChooseMovie
             if (movie is null) return;
             DateTime showChosen = ChooseBetweenShowings(movie);
 
-            if (showChosen == DateTime.MinValue) return;
-
+            if (showChosen == DateTime.MinValue) 
+            {
+                Console.WriteLine("something went wrong when choosing time");
+                Console.ReadKey();
+                return;
+            }
 
             Console.Clear();
             AuditoriumMap150 map500 = new AuditoriumMap150();
@@ -207,12 +211,13 @@ public class ChooseMovie
 
         foreach (DateTime viewoption in movie.ScreeningTimeAndAuditorium.Keys)
         {
-            string toCompare = $"{viewoption.Day}/{viewoption.Month}/{viewoption.Year} {viewoption.Hour}:{viewoption.Minute}";
+            string toCompare = viewoption.ToString("dd/MM/yyyy HH:mm");
             if (toCompare == reservationChosen.optionChosen)
             {
                 return viewoption;
             }
         }
+        Console.WriteLine("datetime not found");
         return DateTime.MinValue;
 
     }
