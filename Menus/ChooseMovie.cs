@@ -168,8 +168,6 @@ public class ChooseMovie
 
             if (showChosen == DateTime.MinValue) 
             {
-                Console.WriteLine("something went wrong when choosing time");
-                Console.ReadKey();
                 return;
             }
 
@@ -217,7 +215,6 @@ public class ChooseMovie
                 return viewoption;
             }
         }
-        Console.WriteLine("datetime not found");
         return DateTime.MinValue;
 
     }
