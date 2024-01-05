@@ -16,6 +16,13 @@ class ViewCustomerInfo
             if (toView.RentedMovieInfo is null);
             else if (toView.RentedMovieInfo.Count >= 1)
             {
+                for (int i = 0; i > toView.RentedMovieInfo.Count; i++)
+                {
+                    if (toView.RentedMovieInfo[i].TimeViewing > DateTime.Now)
+                    {
+                        toView.RentedMovieInfo.Remove(toView.RentedMovieInfo[i]);
+                    }
+                }
                 foreach (RentedMovieInfo info in toView.RentedMovieInfo)
                 {
                     Console.WriteLine($"Film gereserveerd {info.FilmTitle}");
