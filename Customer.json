@@ -57,5 +57,61 @@
     ],
     "Password": "hallo",
     "SnacksBought": []
+  },
+  {
+    "ID": 3,
+    "Name": "micheal",
+    "UserName": "micheal010",
+    "Email": "Micheal@live.nl",
+    "RentedMovieInfo": [
+      {
+        "FilmTitle": "The Equalizer 3",
+        "SeatsTaken": [
+          "\u001b[32m[8 F]\u001b[0m"
+        ],
+        "TimeViewing": "2024-02-12T14:30:00"
+      }
+    ],
+    "Password": "1234567",
+    "SnacksBought": []
+  },
+  {
+    "ID": 4,
+    "Name": "jvp",
+    "UserName": "jbp",
+    "Email": "jbp@live.nl",
+    "RentedMovieInfo": [
+      {
+        "FilmTitle": "The Equalizer 3",
+        "SeatsTaken": [
+          "\u001b[32m[8 E]\u001b[0m"
+        ],
+        "TimeViewing": "2024-02-12T14:30:00"
+      }
+    ],
+    "Password": "jbp123",
+    "SnacksBought": [
+      {
+        "Name": "M&M's Pinda",
+        "Price": 4.19
+      }
+    ]
+  },
+  {
+    "ID": 5,
+    "Name": "jason",
+    "UserName": "borne",
+    "Email": "Borne@live.nl",
+    "RentedMovieInfo": [
+      {
+        "FilmTitle": "The Equalizer 3",
+        "SeatsTaken": [
+          "\u001b[32m[8 E]\u001b[0m"
+        ],
+        "TimeViewing": "2024-02-12T14:30:00"
+      }
+    ],
+    "Password": "Holland-010",
+    "SnacksBought": []
   }
 ]

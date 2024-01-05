@@ -145,46 +145,46 @@ Film Rating: {this.FilmRating}";
 
         List<List<string>> Map = new();
 
-        switch(AuditorumNumber)
-        { 
+        switch (AuditorumNumber)
+        {
             case "1":
-            {
-                AuditoriumMap150 cinemaMap = new();
-                cinemaMap.CreateCinemaMap();
-                Map = cinemaMap.CinemaMap1;
-                break;
-            }
+                {
+                    AuditoriumMap150 cinemaMap = new();
+                    cinemaMap.CreateCinemaMap();
+                    Map = cinemaMap.CinemaMap1;
+                    break;
+                }
             case "2":
-            {
-                AuditoriumMap300 cinemaMap = new();
-                cinemaMap.CreateCinemaMap();
-                Map = cinemaMap.CinemaMap1;
-                break;
-            }            
+                {
+                    AuditoriumMap300 cinemaMap = new();
+                    cinemaMap.CreateCinemaMap();
+                    Map = cinemaMap.CinemaMap1;
+                    break;
+                }
             case "3":
-            {
-                AuditoriumMap500 cinemaMap = new();
-                cinemaMap.CreateCinemaMap();
-                Map = cinemaMap.CinemaMap1;
-                break;
-            }
+                {
+                    AuditoriumMap500 cinemaMap = new();
+                    cinemaMap.CreateCinemaMap();
+                    Map = cinemaMap.CinemaMap1;
+                    break;
+                }
             default:
-            {
-                Console.WriteLine("Iets ging fout");
-                return;
-            }
+                {
+                    Console.WriteLine("Iets ging fout");
+                    return;
+                }
         }
 
 
         SetTime(dateAndTime, AuditorumNumber);
-        
+
         Dictionary<DateTime, List<List<string>>> dateAndAuditorium = new()
         {
             { dateAndTime, Map }
         };
 
         MovieScheduleInformation ToAdd = new(this.Title, dateAndAuditorium);
-        
+
         MovieScheduleInformation.AddNewMovieScheduleInfo(ToAdd, dateAndTime);
 
     }
@@ -192,7 +192,7 @@ Film Rating: {this.FilmRating}";
     private DateTime AskDateAndTime()
     {
 
-        
+
         int year;
         while (!int.TryParse(Console.ReadLine(), out year) || year <= 0)
         {
@@ -224,7 +224,7 @@ Film Rating: {this.FilmRating}";
             Console.Write("Voer het minuut in: ");
         }
 
-        DateTime toReturn = new DateTime (year:year, month: month, day: day, hour: hour, minute: minutes, second: 0);
+        DateTime toReturn = new DateTime(year: year, month: month, day: day, hour: hour, minute: minutes, second: 0);
 
         return toReturn;
 
@@ -248,6 +248,35 @@ Film Rating: {this.FilmRating}";
 
         }
         return "no date to be seen";
+    }
+
+
+    public static List<Film> LoadFilmFromJsonFile()
+    {
+        if (File.Exists("Movies.json"))
+        {
+            try
+            {
+                // Read the JSON from the file
+                string json = File.ReadAllText("Movies.json");
+
+                // Deserialize the JSON into a list of Customer objects
+                List<Film> Films = JsonConvert.DeserializeObject<List<Film>>(json)!;
+
+                return Films;
+            }
+            catch (Exception ex)
+            {
+                // Handle any exceptions (e.g., JSON parsing errors)
+                Console.WriteLine($"Error loading customer data: {ex.Message}");
+            }
+        }
+        else
+        {
+            Console.WriteLine($"File not found: {"Movies.json"}");
+        }
+
+        return null!;
     }
 
 

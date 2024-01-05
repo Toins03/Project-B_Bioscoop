@@ -67,7 +67,24 @@ public class Customer : IEquatable<Customer>
             Console.WriteLine(rentedMovie.ToString());
 
 
+            System.Console.WriteLine("Gekochte Snacks");
             if (currentCustomer.SnacksBought is null) currentCustomer.SnacksBought = new();
+            else if (currentCustomer.SnacksBought.Count >= 1)
+            {
+                foreach (KeyValuePair<Snack, int> snack in currentCustomer.SnacksBoughtDict())
+                {
+                    Console.WriteLine($"{snack.Key.Name} X {snack.Value}");
+                }
+            }
+            List<Film> Films = Film.LoadFilmFromJsonFile();
+            List<Film> FilmPrices = Films.Where(film => film.Title == rentedMovie.FilmTitle).ToList();
+            if (FilmPrices.Count == 1)
+            {
+                // dit is nog niet helemaal goed want dit moet ook code hebben om te calculeren hoeveel een bepaalde zitplek kost
+                System.Console.WriteLine($"\n je totale kosten zijn {shoppingcart.ShoppingCartCosts() + FilmPrices[0].FilmPrice}");
+            }
+
+
 
             currentCustomer.RentedMovieInfo.Add(rentedMovie);
 
@@ -80,7 +97,7 @@ public class Customer : IEquatable<Customer>
         {
             Customer customerNow = Customer.LoginOrRegisterCustomer();
             if (customerNow is null) return;
-// first check if you want to log in or register
+            // first check if you want to log in or register
 
 
             if (customerNow.SnacksBought is null) customerNow.SnacksBought = new();
@@ -103,11 +120,11 @@ public class Customer : IEquatable<Customer>
     public static Customer LoginOrRegisterCustomer()
     {
         Customer currentCustomer = null!;
-        List<string> options = new List<string>() {"Registreren", "Inloggen"};
+        List<string> options = new List<string>() { "Registreren", "Inloggen" };
         while (currentCustomer is null)
         {
             string Uitleg = "Om door te gaan moet u registreren of uitloggen. Welke optie kiest u?";
-            
+
             (string? optionChosen, ConsoleKey KeyLeaving) registerOrLogIn = BasicMenu.MenuBasic(options: options, MenuName: Uitleg);
 
             if (registerOrLogIn.KeyLeaving == ConsoleKey.Escape ^ registerOrLogIn.optionChosen is null)
@@ -212,7 +229,7 @@ public class Customer : IEquatable<Customer>
 
     }
 
-    private static Dictionary<T, int> ListToDict<T>(List<T> toConvert) where T: IEquatable<T>
+    private static Dictionary<T, int> ListToDict<T>(List<T> toConvert) where T : IEquatable<T>
     {
         Dictionary<T, int> toReturn = new();
         foreach (T item in toConvert)

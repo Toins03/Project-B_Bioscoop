@@ -13,7 +13,7 @@ class ViewCustomerInfo
             Console.WriteLine($"Gebruikersnaam: {toView.UserName}");
             Console.WriteLine($"Email account: {toView.Email}");
             Console.WriteLine($"Wachtwoord: {toView.Password}");
-            if (toView.RentedMovieInfo is null);
+            if (toView.RentedMovieInfo is null) ;
             else if (toView.RentedMovieInfo.Count >= 1)
             {
                 foreach (RentedMovieInfo info in toView.RentedMovieInfo)
@@ -24,7 +24,7 @@ class ViewCustomerInfo
                 }
             }
 
-            if (toView.SnacksBought is null);
+            if (toView.SnacksBought is null) return;
             else if (toView.SnacksBought.Count >= 1)
             {
                 foreach (KeyValuePair<Snack, int> snack in toView.SnacksBoughtDict())

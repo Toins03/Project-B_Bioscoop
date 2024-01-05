@@ -35,7 +35,10 @@
       "Customer ID 2 Customer Name test",
       "Customer ID 3 Customer Name testpersoon",
       "Customer ID 4 Customer Name rowantest",
-      "Customer ID 2 Customer Name testrowan"
+      "Customer ID 2 Customer Name testrowan",
+      "Customer ID 3 Customer Name micheal",
+      "Customer ID 4 Customer Name jvp",
+      "Customer ID 5 Customer Name jason"
     ],
     "DateAndAuditorium": {
       "2023-12-31T12:30:00": "1"
