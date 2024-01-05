@@ -57,6 +57,43 @@ public class MovieScheduleInformation: IEquatable<MovieScheduleInformation>
         }    
     }
 
+
+    public static void UpdateJsonFile(MovieScheduleInformation toUpdate, DateTime date, List<List<string>> auditorium)
+    {
+
+        List<MovieScheduleInformation> ExistingData = ReadDataFromJson()!;
+        if (File.Exists(FileSaved))
+        {
+            try
+            {
+                using (StreamWriter writer = new StreamWriter(FileSaved))
+                {
+                    bool isTitleInSchedule = false;
+                    foreach (MovieScheduleInformation movie in ExistingData)
+                    {
+                        if (movie.Title == toUpdate.Title)
+                        {
+                            movie.ScreeningTimeAndAuditorium[date] = toUpdate.ScreeningTimeAndAuditorium[date];
+
+                            isTitleInSchedule = true;
+                        }
+                    }
+                    if (!isTitleInSchedule)
+                    {
+                        ExistingData.Add(toUpdate);
+                    }
+                    string List2Json = JsonConvert.SerializeObject(ExistingData, Formatting.Indented);
+                    writer.Write(List2Json);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error reading JSON data: {ex.Message}");
+            }
+        }
+
+    }
+
     public void AddTitleAndScreeningTimeAndAuditorium(DateTime Date, List<List<string>> Auditorium, string ConfirmationCode)
     {
         ScreeningTimeAndAuditorium[Date] = Auditorium;

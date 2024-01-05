@@ -1,4 +1,4 @@
-public class FrontPage
+public static class FrontPage
 {
     public static Customer? CurrentCustomer {get; set;}
 
@@ -23,7 +23,7 @@ public class FrontPage
             {
                 options.Add("zie persoonlijke informatie");
                 options.Add("uitloggen");
-                options.Add("Cancellatie");
+                options.Add("Reservering annuleren");
             }
 
             options.AddRange(new List<string>
@@ -77,9 +77,9 @@ public class FrontPage
             {
                 ViewCustomerInfo.ViewInfoMenu(currentCustomer);
             }
-            else if (optionChosen == "Cancellatie")
+            else if (optionChosen == "Reservering annuleren")
             {
-
+                MovieCancel.CancelRegistry(currentCustomer);
             }
 
         }

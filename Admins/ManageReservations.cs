@@ -1,3 +1,5 @@
+using System.Data;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
 
 public class ManageReservations
@@ -160,6 +162,117 @@ public class ManageReservations
         System.Console.WriteLine("Reservatie is verwijderd");
         Console.ReadKey();
     }
+
+    public static bool RemoveReservation(RentedMovieInfo movieInfo)
+    {
+        List<MovieScheduleInformation>? movies = MovieScheduleInformation.ReadDataFromJson();
+        if (movies is null) 
+        {
+            Console.WriteLine("Geen opgeslagen films gevonden.");
+            Console.ReadKey();
+            return false;
+        }
+        List<MovieScheduleInformation> movieWithTitle = movies.Where(movie => movie.Title == movieInfo.FilmTitle).ToList();
+        if (movieWithTitle.Count == 0)
+        {
+            Console.WriteLine("geen film met die titel gevonden");
+            Console.ReadKey();
+            return false;
+        }
+
+        MovieScheduleInformation foundMovie = movieWithTitle[0];
+
+        if (foundMovie.ScreeningTimeAndAuditorium.ContainsKey(movieInfo.TimeViewing))
+        {
+            List<List<string>> currentAuditorium = foundMovie.ScreeningTimeAndAuditorium[movieInfo.TimeViewing];
+            int auditoriumlenght = currentAuditorium.Count;
+            foreach (string seat in movieInfo.SeatsTaken)
+            {
+                (int row, int col) position = FindRowAndColFromSeat(seat, auditoriumlenght);
+                
+                List<List<string>>? changedauditorium = UpdateAtseatposition(seat, position.row, position.col, currentAuditorium);
+                if (changedauditorium is null)
+                {
+                    Console.WriteLine($"stoel {seat} is niet geupdated.");
+                    Console.ReadKey();
+                }
+                else currentAuditorium = changedauditorium;
+            }
+
+            MovieScheduleInformation.UpdateJsonFile(foundMovie, movieInfo.TimeViewing, currentAuditorium);
+            return true;
+        }
+        else 
+        {
+            Console.WriteLine("De tijd van de film is niet gevonden");
+            Console.ReadKey();
+            return false;
+        }
+        
+    }
+
+    private static (int row, int col) FindRowAndColFromSeat(string seat, int auditoriumlenght)
+    {
+        string seatearlypart = seat.Split("]").First();
+        string seatnumberlettersonly = seatearlypart.Split("[").Last();
+        string lettersonly = "";
+        int intonly = 0;
+        foreach (char letter in seatnumberlettersonly)
+        {
+            Console.WriteLine(letter);
+            Console.WriteLine(intonly);
+            if (letter == ' ') continue;
+            else if (int.TryParse(letter.ToString(), out int number))
+            {
+                Console.WriteLine($"Adding {number} here");
+                intonly *= 10;
+                intonly += number;
+            }
+            else
+            {
+                lettersonly += letter;
+            }
+        }
+        int row = intonly;
+        int column = 0;
+
+        List<string> alphabet = new List<string>();
+        for (char letter = 'A'; letter <= 'Z'; letter++)
+        {
+            alphabet.Add(letter.ToString());
+        }
+        alphabet.AddRange(new List<string> { "AA", "BB", "CC", "DD" });
+
+        for (int i = 0; i < alphabet.Count; i++)
+        {
+            if (alphabet[i] == lettersonly)
+            {
+                column = i;
+                break;
+            }
+        }
+
+        return (row, column);
+    }
+
+    private static List<List<string>>? UpdateAtseatposition(string seatfullname, int row, int seatColumn, List<List<string>> auditorium)
+    {
+        int currentColumn = 0;
+        for (int i = 0; i < auditorium[row].Count; i++)
+        {
+            if (auditorium[row][i].Trim() != "")
+            {
+                currentColumn += 1;
+                if (currentColumn == seatColumn)
+                {
+                    auditorium[row][i] = seatfullname;
+                    return auditorium;
+                }
+            }
+        }
+        return null;
+    }
+
 
 
     public static void RemoveConfirmationcode(MovieScheduleInformation Movie)
