@@ -188,6 +188,7 @@ public class ManageReservations
             int auditoriumlenght = currentAuditorium.Count;
             foreach (string seat in movieInfo.SeatsTaken)
             {
+                Console.WriteLine(seat);
                 (int row, int col) position = FindRowAndColFromSeat(seat, auditoriumlenght);
                 
                 List<List<string>>? changedauditorium = UpdateAtseatposition(seat, position.row, position.col, currentAuditorium);
@@ -219,12 +220,9 @@ public class ManageReservations
         int intonly = 0;
         foreach (char letter in seatnumberlettersonly)
         {
-            Console.WriteLine(letter);
-            Console.WriteLine(intonly);
             if (letter == ' ') continue;
             else if (int.TryParse(letter.ToString(), out int number))
             {
-                Console.WriteLine($"Adding {number} here");
                 intonly *= 10;
                 intonly += number;
             }
@@ -233,7 +231,7 @@ public class ManageReservations
                 lettersonly += letter;
             }
         }
-        int row = intonly;
+        int row = auditoriumlenght - intonly;
         int column = 0;
 
         List<string> alphabet = new List<string>();
@@ -247,7 +245,7 @@ public class ManageReservations
         {
             if (alphabet[i] == lettersonly)
             {
-                column = i;
+                column = i + 1;
                 break;
             }
         }
@@ -265,7 +263,12 @@ public class ManageReservations
                 currentColumn += 1;
                 if (currentColumn == seatColumn)
                 {
+                    Console.WriteLine("Before");
+                    Console.WriteLine(auditorium[row][i]);
                     auditorium[row][i] = seatfullname;
+
+                    Console.WriteLine($"stoel op rij {row} kolom {seatColumn} is verwijderd");
+                    Console.ReadKey();
                     return auditorium;
                 }
             }

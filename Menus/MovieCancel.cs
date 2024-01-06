@@ -34,6 +34,7 @@ public static class MovieCancel
             ManageReservations.RemoveReservation(chosenfilm[0]);
 
             bool successfullyremoved = currentCustomer.RentedMovieInfo.Remove(chosenfilm[0]);
+            currentCustomer.SaveToJsonFile();
             if (!successfullyremoved)
             {
                 Console.WriteLine("Het verwijderen is mislukt!");
