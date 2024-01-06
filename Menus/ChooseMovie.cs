@@ -26,7 +26,7 @@ public class ChooseMovie
 
         (string? optionChosen, ConsoleKey lastKey) moviechosen = BasicMenu.MenuBasic(options, "Kies een tijd waarin u de film wilt zien");
 
-        if (moviechosen.lastKey == ConsoleKey.Escape) 
+        if (moviechosen.lastKey == ConsoleKey.Escape)
         {
             return;
         }
@@ -36,7 +36,7 @@ public class ChooseMovie
         }
         else
         {
-            ConfirmMovieSelection(currentCustomer, moviechosen.optionChosen); 
+            ConfirmMovieSelection(currentCustomer, moviechosen.optionChosen);
 
         }
 
@@ -161,19 +161,43 @@ public class ChooseMovie
         ConsoleKeyInfo keyInfo;
         keyInfo = Console.ReadKey();
         if (keyInfo.Key == ConsoleKey.Enter)
-        {        
+        {
             MovieScheduleInformation movie = MovieScheduleInformation.findMovieScheduleInfoByTitle(MovieTitle)!;
             if (movie is null) return;
             DateTime showChosen = ChooseBetweenShowings(movie);
 
-            if (showChosen == DateTime.MinValue) 
+            if (showChosen == DateTime.MinValue)
             {
                 return;
             }
 
             Console.Clear();
-            AuditoriumMap150 map500 = new AuditoriumMap150();
-            map500.TakeSeats(MovieTitle, currentCustomer, false, showChosen);
+            // elke film word tot nu toe bij AuditoriumMap150 gezet en dat klopt niet hier is de fix ervoor
+            List<Film> AllFilms = Film.LoadFilmFromJsonFile();
+
+            List<Film> FilmWithSameTitle =
+            AllFilms.
+            Where(Movie => Movie.Title == MovieTitle)
+            .ToList();
+            // alle auditorums zijn 150,300 en 500
+            KeyValuePair<DateTime, string> dateAuditoriumPair = FilmWithSameTitle[0].DateAndAuditorium.First();
+            string auditorium = dateAuditoriumPair.Value;
+            if (auditorium == "1")
+            {
+                AuditoriumMap150 map150 = new AuditoriumMap150();
+                map150.TakeSeats(MovieTitle, currentCustomer, false, showChosen);
+            }
+            else if (auditorium == "2")
+            {
+                AuditoriumMap300 map300 = new AuditoriumMap300();
+                map300.TakeSeats(MovieTitle, currentCustomer, false, showChosen);
+            }
+            else
+            {
+                AuditoriumMap500 map500 = new AuditoriumMap500();
+                map500.TakeSeats(MovieTitle, currentCustomer, false, showChosen);
+            }
+
         }
         else if (keyInfo.Key != ConsoleKey.Enter)
         {
@@ -187,13 +211,13 @@ public class ChooseMovie
     public static DateTime ChooseBetweenShowings(MovieScheduleInformation movie)
     {
         if (movie.ScreeningTimeAndAuditorium.Count == 0) return DateTime.MinValue;
-        
+
         string menuName = "Kies op welke tijd u deze film wilt zien.";
         List<string> options = movie.ScreeningTimeAndAuditorium.Keys
         .Where(Timeoption => Timeoption > DateTime.Now)
         .Select(TimeOption => TimeOption.ToString("dd/MM/yyyy HH:mm"))
         .ToList();
-        
+
         (string? optionChosen, ConsoleKey lastKey) reservationChosen = BasicMenu.MenuBasic(options, menuName);
 
         if (reservationChosen.lastKey == ConsoleKey.Escape)
