@@ -1,4 +1,5 @@
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 public abstract class CinemaMap
 {
@@ -20,6 +21,12 @@ public abstract class CinemaMap
 
     private DateTime _currentDateusing {get; set;} = DateTime.MinValue;
 
+    public double SeatPrice { get; private set; }
+
+    public double TotalCost { get; private set; }
+
+
+
 
     public abstract void CreateCinemaMap();
 
@@ -37,13 +44,14 @@ public abstract class CinemaMap
 
             System.Console.WriteLine($"Movie: {MovieTitle}\n Auditorium 1");
             System.Console.WriteLine($"{Guide}");
+            Console.OutputEncoding = System.Text.Encoding.UTF8;
+            Console.WriteLine($"Totale kosten: €{TotalCost}");
             Console.WriteLine();
-            Console.SetCursorPosition(0, 7);
             for (int row = 0; row < CinemaMap1.Count; row++)
             {
                 for (int column = 0; column < CinemaMap1[row].Count; column++)
                 {
-
+                    SeatPrice = SeatPricingManager.IdentyfyAuditorium(CinemaMap1, column, row);
                     if (row == selectedRow && column == selectedColumn)
                     {
                         Console.Write($"\x1b[37m[POS]\x1b[0m");
@@ -88,7 +96,7 @@ public abstract class CinemaMap
         }
         else currentnow = currentCustomer;
 
-        SnackMenu.ChooseToAddSnackOrNot(currentinfo, currentnow);
+        SnackMenu.ChooseToAddSnackOrNot(currentinfo, currentnow, TotalCost);
         WriteCinemaMapToJson();
         // remember to ensure we currently have a customer
 
@@ -266,7 +274,7 @@ public abstract class CinemaMap
 
             ListReservedSeats.Add($"{CinemaMap1[row][column]}");
             CinemaMap1[row][column] = purpleColor + "[SEL]" + resetText;
-
+            TotalCost += SeatPrice;
         }
     }
 
@@ -277,6 +285,8 @@ public abstract class CinemaMap
             ListReservedSeats.Remove($"{CinemaMapCopy[row][column]}");
             CinemaMap1[row][column] = CinemaMapCopy[row][column];
             ReservingSeats = ReservingSeats.Replace($"{seat}", "");
+            TotalCost -= SeatPrice;
+
         }
     }
 
