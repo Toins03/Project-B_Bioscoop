@@ -52,7 +52,7 @@ public class Customer : IEquatable<Customer>
         this.SnacksBought = new();
     }
 
-    public static void CreateCustomer(RentedMovieInfo rentedMovie, Customer? currentCustomer, ShoppingCart shoppingcart)
+    public static void CreateCustomer(RentedMovieInfo rentedMovie, Customer? currentCustomer, ShoppingCart shoppingcart, double TotalSeatCost)
     {
         string line = new string('=', Console.WindowWidth);
         Console.Clear();
@@ -81,7 +81,7 @@ public class Customer : IEquatable<Customer>
             if (FilmPrices.Count == 1)
             {
                 // dit is nog niet helemaal goed want dit moet ook code hebben om te calculeren hoeveel een bepaalde zitplek kost
-                System.Console.WriteLine($"\n je totale kosten zijn {shoppingcart.ShoppingCartCosts() + FilmPrices[0].FilmPrice}");
+                System.Console.WriteLine($"\n je totale kosten zijn {shoppingcart.ShoppingCartCosts() + FilmPrices[0].FilmPrice + TotalSeatCost}");
             }
 
 
