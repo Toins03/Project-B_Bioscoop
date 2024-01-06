@@ -2,11 +2,13 @@ public static class SnackMenu
 {
     public static Customer currentCustomer { get; set; }
     public static RentedMovieInfo rentedMovieInfo {get; set;}
+    public static double TotalCost { get; set; }
 
-    public static void ChooseToAddSnackOrNot(RentedMovieInfo rentedMovie, Customer currentCustomer)
+    public static void ChooseToAddSnackOrNot(RentedMovieInfo rentedMovie, Customer currentCustomer, double TotalCostSeats)
     {
         SnackMenu.currentCustomer = currentCustomer;
         SnackMenu.rentedMovieInfo = rentedMovie;
+        TotalCost = TotalCostSeats;
 
 
         string choice;
@@ -24,7 +26,7 @@ public static class SnackMenu
         {
             LoopOverSnacks(LoadDrinkOptions(), LoadFoodOptions(), shoppingCart);
         }
-        else Customer.CreateCustomer(rentedMovie, currentCustomer, shoppingCart);
+        else Customer.CreateCustomer(rentedMovie, currentCustomer, shoppingCart, TotalCostSeats);
 
 
     }
@@ -160,7 +162,7 @@ druk op p om je producten uit je winkelwagen te verwijderen
         } while (choice != "ja" && choice != "nee");
         if (choice == "ja")
         {
-            Customer.CreateCustomer(rentedMovieInfo, currentCustomer, shoppingcart);
+            Customer.CreateCustomer(rentedMovieInfo, currentCustomer, shoppingcart, TotalCost);
             return "ja";
         }
         else return "nee";
