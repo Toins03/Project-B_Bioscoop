@@ -39,7 +39,7 @@ public class ChooseMovie
         {
             return;
         }
-        else if (moviechosen.optionChosen == "Sorteer en filter opties")
+        else if (moviechosen.optionChosen =="Sorteer en filter opties\n")
         {
             List<Film> tosortby = FilmSave.FindFilmsWithSchedule(MoviesAfterFilter);
             
