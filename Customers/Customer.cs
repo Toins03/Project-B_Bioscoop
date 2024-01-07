@@ -67,21 +67,20 @@ public class Customer : IEquatable<Customer>
             Console.WriteLine(rentedMovie.ToString());
 
 
-            System.Console.WriteLine("Gekochte Snacks");
-            if (currentCustomer.SnacksBought is null) currentCustomer.SnacksBought = new();
-            else if (currentCustomer.SnacksBought.Count >= 1)
+            System.Console.WriteLine("Gekochte Snacks:");
+            Dictionary<Snack, int> ShoppingCartDict = ListToDict(shoppingcart.shoppingcart);
+            foreach (KeyValuePair<Snack, int> snack in ShoppingCartDict)
             {
-                foreach (KeyValuePair<Snack, int> snack in currentCustomer.SnacksBoughtDict())
-                {
-                    Console.WriteLine($"{snack.Key.Name} X {snack.Value}");
-                }
+                Console.WriteLine($"{snack.Key.Name} X {snack.Value}");
             }
+
+
             List<Film> Films = Film.LoadFilmFromJsonFile();
             List<Film> FilmPrices = Films.Where(film => film.Title == rentedMovie.FilmTitle).ToList();
             if (FilmPrices.Count == 1)
             {
                 // dit is nog niet helemaal goed want dit moet ook code hebben om te calculeren hoeveel een bepaalde zitplek kost
-                System.Console.WriteLine($"\n je totale kosten zijn {shoppingcart.ShoppingCartCosts() + FilmPrices[0].FilmPrice + TotalSeatCost}");
+                System.Console.WriteLine($"\n je totale kosten zijn {shoppingcart.ShoppingCartCosts() + TotalSeatCost}");
             }
 
 

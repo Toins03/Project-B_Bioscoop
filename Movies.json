@@ -15,7 +15,7 @@
       "Customer ID 25 Customer Name Denhijer"
     ],
     "DateAndAuditorium": {
-      "2023-02-03T04:01:00": "1"
+      "2024-01-11T00:00:00": "1"
     }
   },
   {
@@ -39,10 +39,74 @@
       "Customer ID 1 Customer Name rowan",
       "Customer ID 3 Customer Name micheal",
       "Customer ID 4 Customer Name jvp",
-      "Customer ID 5 Customer Name jason"
+      "Customer ID 5 Customer Name jason",
+      "Customer ID 1 Customer Name rowan",
+      "Customer ID 1 Customer Name rowan"
     ],
     "DateAndAuditorium": {
-      "2023-12-31T12:30:00": "1"
+      "2024-12-11T00:00:00": "1"
+    }
+  },
+  {
+    "Title": "The Super Mario Bros. Movie",
+    "Genres": [
+      "Avontuur",
+      "Comedy"
+    ],
+    "Director": "Aaron Horvath",
+    "ReleaseYear": 2023,
+    "FilmRunTime": 93,
+    "FilmPrice": 15.0,
+    "FilmRating": 9.0,
+    "CinemaAudience": [],
+    "DateAndAuditorium": {
+      "2024-01-21T15:20:00": "2"
+    }
+  },
+  {
+    "Title": "The Exorcist: Believer",
+    "Genres": [
+      "Horror"
+    ],
+    "Director": "David Gordon Green",
+    "ReleaseYear": 2023,
+    "FilmRunTime": 111,
+    "FilmPrice": 18.0,
+    "FilmRating": 8.0,
+    "CinemaAudience": [],
+    "DateAndAuditorium": {
+      "2024-02-02T18:01:00": "1"
+    }
+  },
+  {
+    "Title": "The Expendables 4",
+    "Genres": [
+      "Actie"
+    ],
+    "Director": "Scott Waugh",
+    "ReleaseYear": 2023,
+    "FilmRunTime": 100,
+    "FilmPrice": 12.0,
+    "FilmRating": 8.0,
+    "CinemaAudience": [],
+    "DateAndAuditorium": {
+      "2024-01-27T15:00:00": "1"
+    }
+  },
+  {
+    "Title": "No Hard Feelings",
+    "Genres": [
+      "Comedy",
+      "Romantiek"
+    ],
+    "Director": "Gene Stupnitsky",
+    "ReleaseYear": 2023,
+    "FilmRunTime": 100,
+    "FilmPrice": 21.0,
+    "FilmRating": 8.0,
+    "CinemaAudience": [],
+    "DateAndAuditorium": {
+      "2024-02-03T18:00:00": "1"
     }
   }
 ]

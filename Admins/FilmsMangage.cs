@@ -201,7 +201,7 @@ static class FilmsManage
             return;
         }
 
-        if (option_chosen == "Film Toevoegen")
+        if (option_chosen == "Film toevoegen")
         {
 
             var filmInfo = GetFilmInfo();
@@ -229,11 +229,11 @@ static class FilmsManage
 
             do
             {
-                Console.WriteLine("Wil je een komende auditorium toevoegen? (y/n)");
+                Console.WriteLine("Wil je een auditorium toevoegen? (j/n)");
                 keyread = Console.ReadKey();
-            } while (keyread.Key != ConsoleKey.Y && keyread.Key != ConsoleKey.N);
+            } while (keyread.Key != ConsoleKey.J && keyread.Key != ConsoleKey.N);
 
-            if (keyread.Key == ConsoleKey.Y)
+            if (keyread.Key == ConsoleKey.J)
             {
                 film.AddDateTimeAndAuditorium();
             }
@@ -293,7 +293,7 @@ static class FilmsManage
         int releaseYear;
         while (!int.TryParse(Console.ReadLine(), out releaseYear) || releaseYear < 1800 || releaseYear > DateTime.Now.Year)
         {
-            Console.Write($"vul in het jaar waar de film te zien is: ");
+            Console.Write($"vul Jaar van uitgave: ");
         }
         string director;
         do
@@ -309,7 +309,7 @@ static class FilmsManage
     {
         List<Film> films = FilmSave.ReadFilms();
         List<string> options = films.Select(film => film.Title).ToList();
-        
+
         string MenuName = "Kies het film dat u wilt inplannen";
 
         (string? optionChosen, ConsoleKey lastKey) chosenresult = BasicMenu.MenuBasic(options, MenuName);

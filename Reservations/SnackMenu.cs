@@ -1,7 +1,7 @@
 public static class SnackMenu
 {
     public static Customer currentCustomer { get; set; }
-    public static RentedMovieInfo rentedMovieInfo {get; set;}
+    public static RentedMovieInfo rentedMovieInfo { get; set; }
     public static double TotalCost { get; set; }
 
     public static void ChooseToAddSnackOrNot(RentedMovieInfo rentedMovie, Customer currentCustomer, double TotalCostSeats)
