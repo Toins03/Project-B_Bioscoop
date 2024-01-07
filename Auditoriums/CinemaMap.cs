@@ -21,10 +21,9 @@ public abstract class CinemaMap
 
     private DateTime _currentDateusing {get; set;} = DateTime.MinValue;
 
-    public double SeatPrice { get; private set; }
+    public double SeatPrice = 0;
 
-    public double TotalCost { get; private set; }
-
+    public double TotalCost { get; set; }
 
 
 
@@ -45,16 +44,17 @@ public abstract class CinemaMap
             System.Console.WriteLine($"Movie: {MovieTitle}\n Auditorium 1");
             System.Console.WriteLine($"{Guide}");
             Console.OutputEncoding = System.Text.Encoding.UTF8;
-            Console.WriteLine($"Totale kosten: €{TotalCost}");
+            Console.WriteLine($"Totale kosten: €{Math.Round(TotalCost, 2)}");
             Console.WriteLine();
             for (int row = 0; row < CinemaMap1.Count; row++)
             {
                 for (int column = 0; column < CinemaMap1[row].Count; column++)
                 {
-                    SeatPrice = SeatPricingManager.IdentyfyAuditorium(CinemaMap1, column, row);
+                 
                     if (row == selectedRow && column == selectedColumn)
                     {
                         Console.Write($"\x1b[37m[POS]\x1b[0m");
+                        SeatPrice = SeatPricingManager.IdentyfyAuditorium(CinemaMap1, column, row);
                     }
                     else
                     {
