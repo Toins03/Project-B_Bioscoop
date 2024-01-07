@@ -11,7 +11,7 @@ public class ManageReservations
             "Reservering(en) toevoegen",
             "Reservering(en) verwijderen"
         };
-    public static Admin LoggedinAdmin;
+    public static Admin? LoggedinAdmin;
 
     private static void PrintLogo()
     {

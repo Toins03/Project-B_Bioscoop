@@ -4,7 +4,7 @@ public class ChooseMovie
     {
 
 
-        List<string> options = new() { "Sorteer en filter opties" };
+        List<string> options = new() { "Sorteer en filter opties\n" };
         List<MovieScheduleInformation> Movies = MovieScheduleInformation.ReadDataFromJson()!;
 
         if (Movies is null)

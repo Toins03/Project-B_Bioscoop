@@ -212,7 +212,7 @@
     public static void DisplaySortedMovies(Customer? currentCustomer, List<Film> toDisplay)
     {
 
-        List<string> options = new List<string> { "Sorteer en filter opties"};
+        List<string> options = new List<string> { "Sorteer en filter opties \n"};
 
         options.AddRange(toDisplay.Select(film => film.Title));
         (string? optionChosen, ConsoleKey lastKey) moviechosen = BasicMenu.MenuBasic(options, "Kies een film die u wilt zien");
