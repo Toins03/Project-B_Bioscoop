@@ -138,6 +138,7 @@ Film Rating: {this.FilmRating}";
         do
         {
             System.Console.WriteLine("\nVoer het nummer in van de zaal waarin je wilt dat deze film wordt vertoond.");
+            System.Console.WriteLine("(1,2 of 3)");
             AuditorumNumber = Console.ReadLine()!;
         } while (AuditorumNumber != "1" && AuditorumNumber != "2" && AuditorumNumber != "3");
         DateTime dateAndTime = AskDateAndTime();
@@ -190,37 +191,47 @@ Film Rating: {this.FilmRating}";
 
     private DateTime AskDateAndTime()
     {
+        System.Console.WriteLine("vul hier de tijden in waar de film te zien is in jou gekozen auditorium");
+        System.Console.WriteLine("druk op een knop om verder te gaan");
+        Console.ReadKey();
 
 
         int year;
+
+
+        // = DateTime.Now;
         while (!int.TryParse(Console.ReadLine(), out year) || year <= 0)
         {
-            Console.Write("Voer het jaar in: ");
+            Console.WriteLine("Voer het jaar in waar het te zien is in de bioscoop: ");
         }
 
         int month;
-        while (!int.TryParse(Console.ReadLine(), out month) || month <= 0)
+        while (!int.TryParse(Console.ReadLine(), out month) || month < 1 || month > 12)
         {
-            Console.Write("Voer het maand in: ");
+            Console.WriteLine("Voer het maand in: ");
+            System.Console.WriteLine("van 1 tot en met 12");
         }
 
         int day;
-        while (!int.TryParse(Console.ReadLine(), out day) || day <= 0)
+        while (!int.TryParse(Console.ReadLine(), out day) || day < 1 || month > 31)
         {
-            Console.Write("Voer de dag in: ");
+            Console.WriteLine("Voer de dag in: ");
+            System.Console.WriteLine("van 1 tot en met 31");
+
         }
-        Console.Write("Voer de uur in: ");
 
         int hour;
-        while (!int.TryParse(Console.ReadLine(), out hour) || hour <= 0)
+        while (!int.TryParse(Console.ReadLine(), out hour) || hour < 0 || hour > 24)
         {
-            Console.Write("Voer de uur in: ");
+            Console.WriteLine("Voer de uur in: ");
+            System.Console.WriteLine("van 0 tot en met 24");
         }
 
         int minutes;
-        while (!int.TryParse(Console.ReadLine(), out minutes) || minutes <= 0)
+        while (!int.TryParse(Console.ReadLine(), out minutes) || minutes < 0 || minutes > 60)
         {
-            Console.Write("Voer het minuut in: ");
+            Console.WriteLine("Voer het minuut in: ");
+            System.Console.WriteLine("van 0 tot en met 60");
         }
 
         DateTime toReturn = new DateTime(year: year, month: month, day: day, hour: hour, minute: minutes, second: 0);
