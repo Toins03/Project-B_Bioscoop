@@ -1,3 +1,5 @@
+using System.Collections.Immutable;
+using System.Reflection.Metadata.Ecma335;
 using Newtonsoft.Json;
 
 static class FilmSave
@@ -27,6 +29,35 @@ static class FilmSave
                 if (film is not null) Console.WriteLine(film.ToString());
             }
         }
+    }
+
+    public static List<Film> FindFilmsWithSchedule(List<MovieScheduleInformation> scheduleInformation)
+    {
+        List<Film> allfilms = ReadFilms();
+
+        List<string> filmtitles = scheduleInformation.Select(schedule => schedule.Title).ToList();
+
+
+        List<Film> scheduledFilms = allfilms.Where(film => filmtitles.Contains(film.Title)).ToList();
+        return scheduledFilms;
+    }
+
+
+    public static List<MovieScheduleInformation>? FindSchedulesWithFilms(List<Film> toFind)
+    {
+        List<MovieScheduleInformation>? allScheduled = MovieScheduleInformation.ReadDataFromJson();
+        if (allScheduled is null)
+        {
+            Console.WriteLine("Geen Films van deze waren gevonden");
+            Console.ReadKey();
+            return null;
+        }
+
+        List<string> filmtitles = toFind.Select(film => film.Title).ToList();
+
+        List<MovieScheduleInformation> toReturn = allScheduled.Where(schedule => filmtitles.Contains(schedule.Title)).ToList();
+
+        return toReturn;
     }
 
     public static void printfilmInfo(Film film)

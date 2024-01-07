@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 
 public class MovieScheduleInformation: IEquatable<MovieScheduleInformation>
 {
-    public string? Title { get; set; }
+    public string Title { get; set; }
     public Dictionary<DateTime, List<List<string>>> ScreeningTimeAndAuditorium { get; set; } = new Dictionary<DateTime, List<List<string>>>();
     public List<string> ReservationsList { get; set; } = new List<string>();
 
@@ -191,7 +191,7 @@ public class MovieScheduleInformation: IEquatable<MovieScheduleInformation>
 
         if (existingData != null && existingData.Count > 0)
         {
-            MovieScheduleInformation movieToRemove = existingData.FirstOrDefault(movie => movie.Title == title);
+            MovieScheduleInformation movieToRemove = existingData.First(movie => movie.Title == title);
 
             if (movieToRemove != null)
             {
