@@ -4,7 +4,7 @@ public class ChooseMovie
     {
 
 
-        List<string> options = new() { "Sorteer en filter opties\n" };
+        List<string> options = new() { "Sorteer en filter opties" };
         List<MovieScheduleInformation> Movies = MovieScheduleInformation.ReadDataFromJson()!;
 
         if (Movies is null)
@@ -17,14 +17,19 @@ public class ChooseMovie
         // die niet meer te zien is
 
         List<MovieScheduleInformation> MoviesAfterFilter = FilterMovies.FutureMoviesScheduled(Movies, DateTime.Now);
-
-
-        foreach (MovieScheduleInformation movie in MoviesAfterFilter)
+        if (MoviesAfterFilter is null)
         {
-            if (movie.Title is not null) options.Add(movie.Title);
+            Console.WriteLine("Er zijn geen films gepland. Druk op een willekeurige knop om terug te gaan.");
+            Console.ReadKey();
+            return;
+        }
+        
+        foreach (MovieScheduleInformation scheduleInformation in MoviesAfterFilter)
+        {
+            options.Add(scheduleInformation.Title);
         }
 
-        (string? optionChosen, ConsoleKey lastKey) moviechosen = BasicMenu.MenuBasic(options, "Kies een tijd waarin u de film wilt zien");
+        (string? optionChosen, ConsoleKey lastKey) moviechosen = BasicMenu.MenuBasic(options, "Kies een film die u wilt zien");
 
         if (moviechosen.lastKey == ConsoleKey.Escape)
         {
@@ -33,6 +38,12 @@ public class ChooseMovie
         else if (moviechosen.optionChosen is null)
         {
             return;
+        }
+        else if (moviechosen.optionChosen == "Sorteer en filter opties")
+        {
+            List<Film> tosortby = FilmSave.FindFilmsWithSchedule(MoviesAfterFilter);
+            
+            SortedMovies.ViewSortOptions(currentCustomer, tosortby);
         }
         else
         {
