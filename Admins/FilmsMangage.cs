@@ -331,7 +331,7 @@ static class FilmsManage
             return;
         }
 
-        Film toFind = FoundFilms[0];
+        Film toFind = FoundFilms.First();
         toFind.AddDateTimeAndAuditorium();
     }
 

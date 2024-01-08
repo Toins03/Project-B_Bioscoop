@@ -22,7 +22,7 @@ static class AdminMenu
         {
 
             Console.Clear();
-            System.Console.WriteLine("Admin commands");
+            System.Console.WriteLine("Admin opties");
 
             for (int i = 0; i < options.Count; i++)
             {
@@ -50,8 +50,8 @@ static class AdminMenu
 
         if (keyInfo.Key == ConsoleKey.Escape)
         {
-            Console.WriteLine("  LLeaving admin options!");
-            Console.ReadLine();
+            Console.WriteLine("  UU gaat weg uit de admin menu!");
+            Console.ReadKey();
             return;
         }
 

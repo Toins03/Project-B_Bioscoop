@@ -1,7 +1,7 @@
 public static class SnackMenu
 {
-    public static Customer currentCustomer { get; set; }
-    public static RentedMovieInfo rentedMovieInfo { get; set; }
+    public static Customer? currentCustomer { get; set; }
+    public static RentedMovieInfo? rentedMovieInfo { get; set; }
     public static double TotalCost { get; set; }
 
     public static void ChooseToAddSnackOrNot(RentedMovieInfo rentedMovie, Customer currentCustomer, double TotalCostSeats)
@@ -180,7 +180,7 @@ druk op p om je producten uit je winkelwagen te verwijderen
         }
         if (choice == "ja")
         {
-            Customer.CreateCustomer(rentedMovieInfo, currentCustomer, shoppingcart, TotalCost);
+            Customer.CreateCustomer(rentedMovieInfo!, currentCustomer, shoppingcart, TotalCost);
             return "ja";
         }
         else return "nee";

@@ -1,5 +1,3 @@
-using System.Transactions;
-
 class ViewCustomerInfo
 {
     public static void ViewInfoMenu(Customer? toView)
@@ -23,12 +21,7 @@ class ViewCustomerInfo
                 {
                     foreach (RentedMovieInfo info in toView.RentedMovieInfo)
                     {
-                        Film? currentfilm = (FilmSave.FindFilmwithTitle(info.FilmTitle));
-                        if (currentfilm is null) continue;
-                        else
-                        {
-                        Console.WriteLine($"Film gereserveerd {currentfilm}");
-                        }
+                        Console.WriteLine($"Film gereserveerd {info.FilmTitle}");
                         Console.WriteLine($"stoelen gereserveerd voor deze film:\n {string.Join("\n", info.SeatsTaken)}");
                         Console.WriteLine($"Starttijd van de gereserveerde film: {info.seeTimeViewing()}");
                     }

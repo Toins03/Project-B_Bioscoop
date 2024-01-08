@@ -53,6 +53,7 @@ public class MovieScheduleInformation: IEquatable<MovieScheduleInformation>
             catch (Exception ex)
             {
                 Console.WriteLine($"Error reading JSON data: {ex.Message}");
+                Console.ReadKey();
             }
         }    
     }

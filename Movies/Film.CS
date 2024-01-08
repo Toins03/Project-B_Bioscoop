@@ -1,3 +1,4 @@
+using System.Net;
 using Newtonsoft.Json;
 
 public class Film
@@ -187,6 +188,71 @@ Film Rating: {this.FilmRating}";
 
         MovieScheduleInformation.AddNewMovieScheduleInfo(ToAdd, dateAndTime);
 
+        AskRepeatSchedule(ToAdd, dateAndTime);
+
+    }
+
+    public static void AskRepeatSchedule(MovieScheduleInformation toAdd, DateTime starttime)
+    {
+        while (true)
+        {
+            Console.WriteLine("Wilt u dat deze film op de volgende dagen wordt herhaald op dezelfde tijd? (ja/nee)");
+            string answer = Console.ReadLine()!;
+            if (answer is null)
+            {
+                Console.WriteLine("Geen antwoord gevonden");
+                Console.ReadKey();
+                return;
+            } 
+            else if (answer == "nee")
+            {
+                return;
+            }
+            else if (answer == "ja")
+            {
+                break;
+            }
+        }
+
+        while (true)
+        {
+            Console.WriteLine("Voor hoeveel dagen wilt u deze film laten herhalen? Houd deze lijn leeg om terug te gaan.");
+            string? repeatAmountString = Console.ReadLine();
+            if (repeatAmountString is null)
+            {
+                Console.WriteLine("Geen antwoord gevonden");
+                Console.ReadKey();
+                return;
+            }
+            else if (repeatAmountString == "")
+            {
+                Console.WriteLine("U gaat nu terug");
+                Console.ReadKey();
+                return;
+            }
+            else if (int.TryParse(repeatAmountString, out int repeatAmountint))
+            {
+                repeatAmountint = Math.Clamp(repeatAmountint, 0, 100);
+                if (repeatAmountint == 0)
+                {
+                    return;
+                }
+                else 
+                {
+                    for (int i = 1; i <= repeatAmountint; i++)
+                    {
+                        TimeSpan timeAdded = new TimeSpan(days: i, hours: 0, minutes: 0, seconds: 0);
+                        
+                        toAdd.ScreeningTimeAndAuditorium[starttime + timeAdded] = toAdd.ScreeningTimeAndAuditorium[starttime];
+                        MovieScheduleInformation.AddNewMovieScheduleInfo(toAdd, starttime + timeAdded);
+                    }
+                    break;
+                }
+            }
+
+
+        }
+
     }
 
     private DateTime AskDateAndTime()
@@ -200,11 +266,13 @@ Film Rating: {this.FilmRating}";
 
 
         // = DateTime.Now;
+        Console.WriteLine("Voer het jaar in waar het te zien is in de bioscoop: ");
         while (!int.TryParse(Console.ReadLine(), out year) || year <= 0)
         {
             Console.WriteLine("Voer het jaar in waar het te zien is in de bioscoop: ");
         }
 
+        Console.WriteLine("Voer het maand in: ");
         int month;
         while (!int.TryParse(Console.ReadLine(), out month) || month < 1 || month > 12)
         {
@@ -212,6 +280,7 @@ Film Rating: {this.FilmRating}";
             System.Console.WriteLine("van 1 tot en met 12");
         }
 
+        Console.WriteLine("Voer de dag in: ");
         int day;
         while (!int.TryParse(Console.ReadLine(), out day) || day < 1 || month > 31)
         {
@@ -220,6 +289,7 @@ Film Rating: {this.FilmRating}";
 
         }
 
+        Console.WriteLine("Voer de uur in: ");
         int hour;
         while (!int.TryParse(Console.ReadLine(), out hour) || hour < 0 || hour > 24)
         {
@@ -227,6 +297,7 @@ Film Rating: {this.FilmRating}";
             System.Console.WriteLine("van 0 tot en met 24");
         }
 
+        Console.WriteLine("Voer het minuut in: ");
         int minutes;
         while (!int.TryParse(Console.ReadLine(), out minutes) || minutes < 0 || minutes > 60)
         {
