@@ -49,4 +49,8 @@ public class Snack: IEquatable<Snack>
     {
         return !(a1 == a2);
     }
+    public override string ToString()
+    {
+        return $"{this.Name}: {this.Price}";
+    }
 }

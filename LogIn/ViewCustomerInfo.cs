@@ -1,3 +1,5 @@
+using System.Transactions;
+
 class ViewCustomerInfo
 {
     public static void ViewInfoMenu(Customer? toView)
@@ -16,18 +18,20 @@ class ViewCustomerInfo
             if (toView.RentedMovieInfo is null) ;
             else if (toView.RentedMovieInfo.Count >= 1)
             {
-                for (int i = 0; i > toView.RentedMovieInfo.Count; i++)
+                toView.RentedMovieInfo = toView.RentedMovieInfo.Where(rentedmovie => rentedmovie.TimeViewing > DateTime.Now).ToList();
+                if (toView.RentedMovieInfo.Count > 1)
                 {
-                    if (toView.RentedMovieInfo[i].TimeViewing > DateTime.Now)
+                    foreach (RentedMovieInfo info in toView.RentedMovieInfo)
                     {
-                        toView.RentedMovieInfo.Remove(toView.RentedMovieInfo[i]);
+                        Film? currentfilm = (FilmSave.FindFilmwithTitle(info.FilmTitle));
+                        if (currentfilm is null) continue;
+                        else
+                        {
+                        Console.WriteLine($"Film gereserveerd {currentfilm}");
+                        }
+                        Console.WriteLine($"stoelen gereserveerd voor deze film:\n {string.Join("\n", info.SeatsTaken)}");
+                        Console.WriteLine($"Starttijd van de gereserveerde film: {info.seeTimeViewing()}");
                     }
-                }
-                foreach (RentedMovieInfo info in toView.RentedMovieInfo)
-                {
-                    Console.WriteLine($"Film gereserveerd {info.FilmTitle}");
-                    Console.WriteLine($"stoelen gereserveerd voor deze film:\n {string.Join("\n", info.SeatsTaken)}");
-                    Console.WriteLine($"Starttijd van de gereserveerde film: {info.seeTimeViewing()}");
                 }
             }
 

@@ -43,19 +43,25 @@ static class FilmSave
     }
 
 
-    public static List<MovieScheduleInformation>? FindSchedulesWithFilms(List<Film> toFind)
+    public static Film? FindFilmwithTitle(string toFind)
     {
-        List<MovieScheduleInformation>? allScheduled = MovieScheduleInformation.ReadDataFromJson();
-        if (allScheduled is null)
+        List<Film>? allFilms = FilmSave.ReadFilms();
+        if (allFilms is null)
         {
             Console.WriteLine("Geen Films van deze waren gevonden");
             Console.ReadKey();
             return null;
         }
 
-        List<string> filmtitles = toFind.Select(film => film.Title).ToList();
+        List<Film> filmtitles = allFilms.Where(film => film.Title == toFind).ToList();
 
-        List<MovieScheduleInformation> toReturn = allScheduled.Where(schedule => filmtitles.Contains(schedule.Title)).ToList();
+        if (filmtitles.Count == 0)
+        {
+            Console.WriteLine($"Film {toFind} niet gevonden");
+            Console.ReadKey();
+            return null;
+        }
+        Film toReturn = filmtitles.First();
 
         return toReturn;
     }

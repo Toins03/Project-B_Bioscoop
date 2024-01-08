@@ -116,8 +116,8 @@ druk op p om je producten uit je winkelwagen te verwijderen
 
             if (keyInfo.Key == ConsoleKey.Escape)
             {
-                System.Console.WriteLine(" SSee you!");
-                break;
+                string isdone = Confirmation(new ShoppingCart());
+                if (isdone == "ja") return;
             }
             else if (keyInfo.Key == ConsoleKey.Spacebar)
             {
@@ -152,14 +152,32 @@ druk op p om je producten uit je winkelwagen te verwijderen
     private static string Confirmation(ShoppingCart shoppingcart)
     {
         string choice;
-        do
+        if (shoppingcart.shoppingcart.Count == 0)
+        {            do
 
+            {
+                System.Console.WriteLine("Je hebt gekozen om geen snacks te kopen");
+                System.Console.WriteLine("ben je klaar met het kopen van Snacks? (ja/nee)");
+                choice = Console.ReadLine()!;
+
+
+            } while (choice != "ja" && choice != "nee");}
+        else
         {
-            System.Console.WriteLine("ben je klaar met het kopen van Snacks? (ja/nee)");
-            choice = Console.ReadLine()!;
+            do
+
+            {
+                System.Console.WriteLine("Huidige snacks:");
+                foreach (Snack snack in shoppingcart.shoppingcart)
+                {
+                    Console.WriteLine(snack);
+                }
+                System.Console.WriteLine("ben je klaar met het kopen van Snacks? (ja/nee)");
+                choice = Console.ReadLine()!;
 
 
-        } while (choice != "ja" && choice != "nee");
+            } while (choice != "ja" && choice != "nee");
+        }
         if (choice == "ja")
         {
             Customer.CreateCustomer(rentedMovieInfo, currentCustomer, shoppingcart, TotalCost);
@@ -175,7 +193,6 @@ druk op p om je producten uit je winkelwagen te verwijderen
 
         foreach (Snack snack in shoppingcart.shoppingcart)
         {
-
             Items += $"{snack.Name}\n";
         };
         return Items;

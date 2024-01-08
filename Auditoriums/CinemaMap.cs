@@ -77,7 +77,6 @@ public abstract class CinemaMap
         if (ListReservedSeats.Count == 0) return;
 
         
-        // datetime.now is a temporary actor. Fix later when I figure out how to view the time the film happens.
         RentedMovieInfo currentinfo = new(MovieTitle, ListReservedSeats, Showing);
         // add the seats taken to the info we are looking at
 
