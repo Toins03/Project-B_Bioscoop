@@ -1,8 +1,14 @@
 {
   "version": 2,
+<<<<<<< HEAD
   "dgSpecHash": "dv/wFmkAm5DTC1U8qF1VshUGSJrdaZURn8D0LDdtndC9ja3XaOok1Q+9pdBXnyXuuZUul1c8pKjfLZ2mfQT7IQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\valdi\\OneDrive\\Bureaublad\\opdracht tree\\eindweek\\Project-B_Bioscoop\\project-b_bioscoop.csproj",
+=======
+  "dgSpecHash": "jXdFtqIQZKwr1lEzvEpXqQx2NUfVdC3OdEJ39Eho4T+38vcG+kxGWmbqPX+v0NF7MJveIsBY1sx+Qipq3aDSfA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\rowan\\OneDrive\\Documents\\school 2023-2024\\project b\\groepsopdracht cinema\\cinema_gitfiles\\Project-B_Bioscoop\\project-b_bioscoop.csproj",
+>>>>>>> 06e982f42fdd53cd43b1dee7961054e57b75d5f1
   "expectedPackageFiles": [
     "C:\\Users\\valdi\\.nuget\\packages\\coverlet.collector\\3.1.2\\coverlet.collector.3.1.2.nupkg.sha512",
     "C:\\Users\\valdi\\.nuget\\packages\\microsoft.codecoverage\\17.1.0\\microsoft.codecoverage.17.1.0.nupkg.sha512",

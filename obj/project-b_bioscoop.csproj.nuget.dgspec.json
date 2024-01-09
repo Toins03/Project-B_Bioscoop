@@ -1,6 +1,7 @@
 {
   "format": 1,
   "restore": {
+<<<<<<< HEAD
     "C:\\Users\\valdi\\OneDrive\\Bureaublad\\opdracht tree\\eindweek\\Project-B_Bioscoop\\project-b_bioscoop.csproj": {}
   },
   "projects": {
@@ -12,6 +13,19 @@
         "projectPath": "C:\\Users\\valdi\\OneDrive\\Bureaublad\\opdracht tree\\eindweek\\Project-B_Bioscoop\\project-b_bioscoop.csproj",
         "packagesPath": "C:\\Users\\valdi\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\valdi\\OneDrive\\Bureaublad\\opdracht tree\\eindweek\\Project-B_Bioscoop\\obj\\",
+=======
+    "C:\\Users\\rowan\\OneDrive\\Documents\\school 2023-2024\\project b\\groepsopdracht cinema\\cinema_gitfiles\\Project-B_Bioscoop\\project-b_bioscoop.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\rowan\\OneDrive\\Documents\\school 2023-2024\\project b\\groepsopdracht cinema\\cinema_gitfiles\\Project-B_Bioscoop\\project-b_bioscoop.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\rowan\\OneDrive\\Documents\\school 2023-2024\\project b\\groepsopdracht cinema\\cinema_gitfiles\\Project-B_Bioscoop\\project-b_bioscoop.csproj",
+        "projectName": "project-b_bioscoop",
+        "projectPath": "C:\\Users\\rowan\\OneDrive\\Documents\\school 2023-2024\\project b\\groepsopdracht cinema\\cinema_gitfiles\\Project-B_Bioscoop\\project-b_bioscoop.csproj",
+        "packagesPath": "C:\\Users\\rowan\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\rowan\\OneDrive\\Documents\\school 2023-2024\\project b\\groepsopdracht cinema\\cinema_gitfiles\\Project-B_Bioscoop\\obj\\",
+>>>>>>> 06e982f42fdd53cd43b1dee7961054e57b75d5f1
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\valdi\\AppData\\Roaming\\NuGet\\NuGet.Config",

@@ -1,3 +1,5 @@
+using System.Security.Cryptography.X509Certificates;
+
 public class ChooseMovie
 {
     public static void Films_kiezen(Customer? currentCustomer)
@@ -168,14 +170,14 @@ public class ChooseMovie
 
     public static void ConfirmMovieSelection(Customer? currentCustomer, string MovieTitle)
     {
-        Console.WriteLine("Druk op enter om een tijdoptie voor deze film te kiezen. Om terug te gaan druk op een willekeurige ander knop");
+        Console.WriteLine("Druk op enter om een dagoptie voor deze film te kiezen. Om terug te gaan druk op een willekeurige ander knop");
         ConsoleKeyInfo keyInfo;
         keyInfo = Console.ReadKey();
         if (keyInfo.Key == ConsoleKey.Enter)
         {
             MovieScheduleInformation movie = MovieScheduleInformation.findMovieScheduleInfoByTitle(MovieTitle)!;
             if (movie is null) return;
-            DateTime showChosen = ChooseBetweenShowings(movie);
+            DateTime showChosen = ChooseBetweenDates(movie);
 
             if (showChosen == DateTime.MinValue)
             {
@@ -219,13 +221,64 @@ public class ChooseMovie
         }
     }
 
-    public static DateTime ChooseBetweenShowings(MovieScheduleInformation movie)
+    public static DateTime ChooseBetweenDates(MovieScheduleInformation movie)
+    {
+        List<string> options = new();
+        List<DateOnly> dateOptions = new();
+        foreach (DateTime datetime in movie.ScreeningTimeAndAuditorium.Keys)
+        {
+            DateOnly date = DateOnly.FromDateTime(datetime);
+            if ( datetime > DateTime.Now && !dateOptions.Contains(date))
+            {
+                dateOptions.Add(date);
+            }
+        }
+        dateOptions.Sort();
+        options = dateOptions.Select(date => date.ToString("dd/MM/yyyy")).ToList();
+        
+        (string? optionChosen, ConsoleKey lastKey) dateChosen = BasicMenu.MenuBasic(options, "Kies op welke dag u deze film wilt zien.");
+
+        if (dateChosen.lastKey == ConsoleKey.Escape)
+        {
+            Console.WriteLine(" LLeaving admin options!");
+            return DateTime.MinValue;
+        }
+        else if (dateChosen.optionChosen is null)
+        {
+            Console.WriteLine("something went wrong");
+            return DateTime.MinValue;
+        }
+
+        DateOnly toProcess = DateOnly.MinValue;
+
+        foreach (DateOnly date in dateOptions)
+        {
+            if (date.ToString("dd/MM/yyyy") == dateChosen.optionChosen)
+            {
+                toProcess = date;
+                break;
+            }
+        }
+
+        if (!toProcess.Equals(DateOnly.MinValue))
+        {
+            return ChooseBetweenShowings(movie, toProcess);
+        }
+        else
+        {
+            Console.WriteLine("Iets ging fout met het kiezen van de datum!");
+            return DateTime.MinValue;
+        }
+    }
+
+
+    public static DateTime ChooseBetweenShowings(MovieScheduleInformation movie, DateOnly date)
     {
         if (movie.ScreeningTimeAndAuditorium.Count == 0) return DateTime.MinValue;
 
         string menuName = "Kies op welke tijd u deze film wilt zien.";
         List<string> options = movie.ScreeningTimeAndAuditorium.Keys
-        .Where(Timeoption => Timeoption > DateTime.Now)
+        .Where(Timeoption => DateOnly.FromDateTime(Timeoption) == date && Timeoption > DateTime.Now)
         .Select(TimeOption => TimeOption.ToString("dd/MM/yyyy HH:mm"))
         .ToList();
 
