@@ -203,42 +203,7 @@ static class FilmsManage
 
         if (option_chosen == "Film toevoegen")
         {
-
-            var filmInfo = GetFilmInfo();
-            var GenreForMovie = GenreList();
-
-
-            string title = filmInfo.Title;
-            int runtime = filmInfo.Runtime;
-            double price = filmInfo.Price;
-            double filmRating = filmInfo.FilmRating;
-            int releaseYear = filmInfo.ReleaseYear;
-            string directorName = filmInfo.director;
-
-            Film film = new Film(
-                title,
-                runtime,
-                price,
-                filmRating,
-                releaseYear,
-                directorName,
-                GenreForMovie
-            );
-
-            ConsoleKeyInfo keyread;
-
-            do
-            {
-                Console.WriteLine("Wil je een auditorium toevoegen? (j/n)");
-                keyread = Console.ReadKey();
-            } while (keyread.Key != ConsoleKey.J && keyread.Key != ConsoleKey.N);
-
-            if (keyread.Key == ConsoleKey.J)
-            {
-                film.AddDateTimeAndAuditorium();
-            }
-
-            FilmSave.AppendToJason(film);
+            AddNewMovie();
         }
         else if (option_chosen == "Film verwijderen")
         {
@@ -263,47 +228,101 @@ static class FilmsManage
         }
         FilmManagement();
     }
-    public static (string Title, int Runtime, double Price, double FilmRating, int ReleaseYear, string director) GetFilmInfo()
+    public static Film? GetFilmInfo()
     {
         string title;
-        do
+        while (true)
         {
-            Console.Write("Vul in de titel naam: ");
+            Console.Write("Vul in de titel naam: Om te stoppen houdt deze lijn leeg");
             title = Console.ReadLine()!;
-        } while (string.IsNullOrWhiteSpace(title));
+            if (string.IsNullOrEmpty(title))
+            {
+                return null;
+            }
+            else break;
+        }
 
         int runtime;
-        while (!int.TryParse(Console.ReadLine(), out runtime) || runtime <= 0)
+        while (true)
         {
-            Console.Write("Vul in de film tijd in minuten: ");
+            Console.WriteLine("Vul in de film tijd in minuten: Om te stoppen houdt deze lijn leeg");
+            string? runtTimeString = Console.ReadLine();
+            if (!string.IsNullOrEmpty(runtTimeString)) return null;
+            else if (int.TryParse(runtTimeString, out runtime)) break;
         }
 
         double price;
-        while (!double.TryParse(Console.ReadLine(), out price) || price <= 0)
+        while (true)
         {
-            Console.Write("vul in de film prijs in euro's: ");
+            Console.Write("vul in de film prijs in euro's: Om te stoppen houdt deze lijn leeg");
+            string? pricestring = Console.ReadLine();
+            if (!string.IsNullOrEmpty(pricestring)) return null;
+            else if (double.TryParse(pricestring, out price) && price > 0) break;
         }
 
         double filmRating;
         while (!double.TryParse(Console.ReadLine(), out filmRating) || filmRating < 0 || filmRating > 10)
         {
-            Console.Write("vul in de rating van de film van 0 tot 10: ");
+            Console.Write("vul in de rating van de film van 0 tot 10: Om te stoppen houdt deze lijn leeg");            
+            string? filmratingstring = Console.ReadLine();
+            if (!string.IsNullOrEmpty(filmratingstring)) return null;
+            else if (double.TryParse(filmratingstring, out filmRating) && filmRating > 0 && filmRating < 10) break;
         }
 
         int releaseYear;
-        while (!int.TryParse(Console.ReadLine(), out releaseYear) || releaseYear < 1800 || releaseYear > DateTime.Now.Year)
+        while (true)
         {
-            Console.Write($"vul Jaar van uitgave: ");
+            Console.Write($"vul het Jaar van uitgave in: Om te stoppen houdt deze lijn leeg");
+            string? releaseYearstring = Console.ReadLine();
+            if (!string.IsNullOrEmpty(releaseYearstring)) return null;
+            else if (int.TryParse(releaseYearstring, out releaseYear) && releaseYear > 1800 && releaseYear < DateTime.Now.Year) break;
         }
         string director;
-        do
+        while (true)
         {
-            Console.Write("vul in de Directeur van het film: ");
+            Console.Write("vul het Directeur van de film in: Om te stoppen houdt deze lijn leeg");
             director = Console.ReadLine()!;
-        } while (string.IsNullOrWhiteSpace(director));
+            if (string.IsNullOrEmpty(director))
+            {
+                return null;
+            }
+            else break;
+        }
 
-        return (title, runtime, price, filmRating, releaseYear, director);
+
+        return new Film(title, runtime, price, filmRating, releaseYear, director: director);
     }
+
+    public static void AddNewMovie()
+    {
+        
+            Film? film = GetFilmInfo();
+            if (film is null) return;
+
+            List<string> genres = GenreList();
+
+
+            foreach (string genre in genres) 
+            {
+                film.Add_genre(genre);
+            }
+
+            ConsoleKeyInfo keyread;
+
+            do
+            {
+                Console.WriteLine("Wil je een auditorium toevoegen? (j/n)");
+                keyread = Console.ReadKey();
+            } while (keyread.Key != ConsoleKey.J && keyread.Key != ConsoleKey.N);
+
+            if (keyread.Key == ConsoleKey.J)
+            {
+                film.AddDateTimeAndAuditorium();
+            }
+
+            FilmSave.AppendToJason(film);
+    }
+
 
     public static void Addmovieschedule()
     {
