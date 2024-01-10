@@ -204,7 +204,7 @@ Film Rating: {this.FilmRating}";
                 Console.WriteLine("Geen antwoord gevonden");
                 Console.ReadKey();
                 return;
-            } 
+            }
             else if (answer == "nee")
             {
                 return;
@@ -238,12 +238,12 @@ Film Rating: {this.FilmRating}";
                 {
                     return;
                 }
-                else 
+                else
                 {
                     for (int i = 1; i <= repeatAmountint; i++)
                     {
                         TimeSpan timeAdded = new TimeSpan(days: i, hours: 0, minutes: 0, seconds: 0);
-                        
+
                         toAdd.ScreeningTimeAndAuditorium[starttime + timeAdded] = toAdd.ScreeningTimeAndAuditorium[starttime];
                         MovieScheduleInformation.AddNewMovieScheduleInfo(toAdd, starttime + timeAdded);
                     }
@@ -274,6 +274,8 @@ Film Rating: {this.FilmRating}";
         }
 
         Console.WriteLine("Voer het maand in: ");
+        System.Console.WriteLine("van 1 tot en met 12");
+
         int month;
         while (!int.TryParse(Console.ReadLine(), out month) || month < 1 || month > 12)
         {
@@ -282,6 +284,8 @@ Film Rating: {this.FilmRating}";
         }
 
         Console.WriteLine("Voer de dag in: ");
+        System.Console.WriteLine("van 1 tot en met 31");
+
         int day;
         while (!int.TryParse(Console.ReadLine(), out day) || day < 1 || month > 31)
         {
@@ -291,6 +295,8 @@ Film Rating: {this.FilmRating}";
         }
 
         Console.WriteLine("Voer de uur in: ");
+        System.Console.WriteLine("van 0 tot en met 24");
+
         int hour;
         while (!int.TryParse(Console.ReadLine(), out hour) || hour < 0 || hour > 24)
         {
@@ -299,6 +305,8 @@ Film Rating: {this.FilmRating}";
         }
 
         Console.WriteLine("Voer het minuut in: ");
+        System.Console.WriteLine("van 0 tot en met 60");
+
         int minutes;
         while (!int.TryParse(Console.ReadLine(), out minutes) || minutes < 0 || minutes > 60)
         {

@@ -11,7 +11,7 @@ public class SeatPricingManager
                 return Math.Round(defaultPrice * 1.10, 2);
             case "outer":
                 return defaultPrice;
-            default: 
+            default:
                 return defaultPrice;
         }
     }
@@ -19,8 +19,8 @@ public class SeatPricingManager
     public static double IdentyfyAuditorium(List<List<string>> Auditorium, int column, int row)
     {
         // Dit kijkt welke auditorium het is door het aantal rijen in de lijst te tellen en aan de hand van de hoeveelheid rijen gebruikt het een bepaalde method 
-        switch (Auditorium.Count) 
-        { 
+        switch (Auditorium.Count)
+        {
             case 14:
                 return DetermineSeatCategoryForAuditorium150(Auditorium, column, row);
             case 19:
@@ -53,7 +53,7 @@ public class SeatPricingManager
                 return CalculateSeatPrice("inbetween");
             default:
                 return CalculateSeatPrice("outer");
-        }      
+        }
     }
     private static double DetermineSeatCategoryForAuditorium300(List<List<string>> Auditorium, int column, int row)
     {

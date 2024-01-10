@@ -2,19 +2,15 @@ public static class MovieCancel
 {
     public static void CancelRegistry(Customer? currentCustomer)
     {
-        if (currentCustomer is null) 
+        if (currentCustomer is null)
         {
             Console.WriteLine("Om te annuleren, log eerst in.");
             Console.ReadKey();
             return;
         }
 
-        List<string> movies = currentCustomer.RentedMovieInfo.Where(movie => 
-        {
-            TimeSpan timeFromNow = movie.TimeViewing - DateTime.Now;
-            return timeFromNow.Hours >= 2;
-        }).Select(movie => movie.ToString()).ToList();
-        
+        List<string> movies = MoviesOfCustomer(currentCustomer);
+
         (string? optionChosen, ConsoleKey lastKey) chosen = BasicMenu.MenuBasic(movies, "Kies welke film u wilt annuleren");
 
         if (chosen.lastKey == ConsoleKey.Escape || chosen.optionChosen is null)
@@ -29,7 +25,7 @@ public static class MovieCancel
             Console.ReadKey();
             return;
         }
-        else 
+        else
         {
             ManageReservations.RemoveReservation(chosenfilm[0]);
 
@@ -41,7 +37,7 @@ public static class MovieCancel
                 Console.ReadKey();
             }
         }
-        
+
     }
     public static List<string> MoviesOfCustomer(Customer currentCustomer)
     {

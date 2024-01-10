@@ -6041,24 +6041,26 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\rowan\\.nuget\\packages\\": {}
+    "C:\\Users\\valdi\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\rowan\\OneDrive\\Documents\\school 2023-2024\\project b\\groepsopdracht cinema\\cinema_gitfiles\\Project-B_Bioscoop\\Project-B_Bioscoop.csproj",
+      "projectUniqueName": "C:\\Users\\valdi\\OneDrive\\Bureaublad\\opdracht tree\\eindweek\\Project-B_Bioscoop\\Project-B_Bioscoop.csproj",
       "projectName": "Project-B_Bioscoop",
-      "projectPath": "C:\\Users\\rowan\\OneDrive\\Documents\\school 2023-2024\\project b\\groepsopdracht cinema\\cinema_gitfiles\\Project-B_Bioscoop\\Project-B_Bioscoop.csproj",
-      "packagesPath": "C:\\Users\\rowan\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\rowan\\OneDrive\\Documents\\school 2023-2024\\project b\\groepsopdracht cinema\\cinema_gitfiles\\Project-B_Bioscoop\\obj\\",
+      "projectPath": "C:\\Users\\valdi\\OneDrive\\Bureaublad\\opdracht tree\\eindweek\\Project-B_Bioscoop\\Project-B_Bioscoop.csproj",
+      "packagesPath": "C:\\Users\\valdi\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\valdi\\OneDrive\\Bureaublad\\opdracht tree\\eindweek\\Project-B_Bioscoop\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\rowan\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\valdi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
