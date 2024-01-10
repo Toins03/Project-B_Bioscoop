@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("project-b_bioscoop")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cf03c47afc161511b5b9669231c4617544395ef5")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6427b92c2e8f7cc2317792a82b85b4f69af01273")]
 [assembly: System.Reflection.AssemblyProductAttribute("project-b_bioscoop")]
 [assembly: System.Reflection.AssemblyTitleAttribute("project-b_bioscoop")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

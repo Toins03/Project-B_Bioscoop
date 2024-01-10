@@ -153,7 +153,8 @@ druk op p om je producten uit je winkelwagen te verwijderen
     {
         string choice;
         if (shoppingcart.shoppingcart.Count == 0)
-        {            do
+        {
+            do
 
             {
                 System.Console.WriteLine("Je hebt gekozen om geen snacks te kopen");
@@ -161,7 +162,8 @@ druk op p om je producten uit je winkelwagen te verwijderen
                 choice = Console.ReadLine()!;
 
 
-            } while (choice != "ja" && choice != "nee");}
+            } while (choice != "ja" && choice != "nee");
+        }
         else
         {
             do

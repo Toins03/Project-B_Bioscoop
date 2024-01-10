@@ -6046,9 +6046,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\valdi\\OneDrive\\Bureaublad\\opdracht tree\\eindweek\\Project-B_Bioscoop\\Project-B_Bioscoop.csproj",
-      "projectName": "Project-B_Bioscoop",
-      "projectPath": "C:\\Users\\valdi\\OneDrive\\Bureaublad\\opdracht tree\\eindweek\\Project-B_Bioscoop\\Project-B_Bioscoop.csproj",
+      "projectUniqueName": "C:\\Users\\valdi\\OneDrive\\Bureaublad\\opdracht tree\\eindweek\\Project-B_Bioscoop\\project-b_bioscoop.csproj",
+      "projectName": "project-b_bioscoop",
+      "projectPath": "C:\\Users\\valdi\\OneDrive\\Bureaublad\\opdracht tree\\eindweek\\Project-B_Bioscoop\\project-b_bioscoop.csproj",
       "packagesPath": "C:\\Users\\valdi\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\valdi\\OneDrive\\Bureaublad\\opdracht tree\\eindweek\\Project-B_Bioscoop\\obj\\",
       "projectStyle": "PackageReference",

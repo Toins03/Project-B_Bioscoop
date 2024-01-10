@@ -43,15 +43,15 @@
 
     public static List<Film> SortFilmByDateAvailable(List<Film> ToSort, bool desc = false)
     {
-// filter by is ever available
-        List<Film> filmsAvailable = ToSort.Where(film => 
+        // filter by is ever available
+        List<Film> filmsAvailable = ToSort.Where(film =>
         {
             if (film.DateAndAuditorium is null) return false;
             else if (film.DateAndAuditorium.Count <= 0) return false;
             else return true;
         }).ToList();
-// order by soonest available
-        List<Film> sortedFilms = filmsAvailable.OrderBy(film => 
+        // order by soonest available
+        List<Film> sortedFilms = filmsAvailable.OrderBy(film =>
         {
             DateTime currentfirst = DateTime.MinValue;
             DateTime now = DateTime.Now;
@@ -185,7 +185,7 @@
                         ToSearch = Console.ReadLine()!;
                         if (ToSearch is null) DisplaySortedMovies(currentcustomer, ToView);
                         else if (ToSearch.Length == 0) DisplaySortedMovies(currentcustomer, ToView);
-                        else break; 
+                        else break;
                     }
 
                     sortedFilm = FindFilmbyTitle(ToView, ToSearch, chosenAscOrDesc)!;
@@ -212,7 +212,7 @@
     public static void DisplaySortedMovies(Customer? currentCustomer, List<Film> toDisplay)
     {
 
-        List<string> options = new List<string> { "Sorteer en filter opties \n"};
+        List<string> options = new List<string> { "Sorteer en filter opties \n" };
 
         options.AddRange(toDisplay.Select(film => film.Title));
         (string? optionChosen, ConsoleKey lastKey) moviechosen = BasicMenu.MenuBasic(options, "Kies een film die u wilt zien");

@@ -1,4 +1,4 @@
-public class Snack: IEquatable<Snack>
+public class Snack : IEquatable<Snack>
 {
     public string Name { get; }
     public double Price { get; }
@@ -10,7 +10,7 @@ public class Snack: IEquatable<Snack>
         Name = name;
         Price = price;
     }
-    
+
     public override bool Equals(object? obj)
     {
 
