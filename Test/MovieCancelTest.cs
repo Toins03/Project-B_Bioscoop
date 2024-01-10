@@ -6,7 +6,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 
 [TestClass]
-public class SortMovieTest
+public class MovieCancelTest
 {
     [TestInitialize]
     public void TestStart()
