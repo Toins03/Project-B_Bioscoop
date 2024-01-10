@@ -21,11 +21,11 @@ public class SortMovieTest
         //Arrange
         List<RentedMovieInfo> rentedMoviesInfoShouldbeTrue = new List<RentedMovieInfo>
         {
-            new RentedMovieInfo("Example True Movie", new List<string> { "a1", "a2" },DateTime.Now.AddHours(2).AddSeconds(2))
+            new RentedMovieInfo("Example True Movie", new List<string> { "a1", "a2" },DateTime.Now.AddHours(2).AddSeconds(2), "")
         };
         List<RentedMovieInfo> rentedMoviesInfoShouldbeFalse = new List<RentedMovieInfo>
         {
-            new RentedMovieInfo("Example False Movie", new List<string> { "a1", "a2" },DateTime.Now.AddHours(1))
+            new RentedMovieInfo("Example False Movie", new List<string> { "a1", "a2" },DateTime.Now.AddHours(1), "")
         };
 
         List<Snack> snacksReserved = new List<Snack> { };
