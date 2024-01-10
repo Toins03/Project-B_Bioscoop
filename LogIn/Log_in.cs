@@ -37,14 +37,14 @@ static class LogIn
         {
             if (customer.UserName == username && customer.Password == password)
             {
-                System.Console.WriteLine("You have successfully logged in.");
-                System.Console.WriteLine($"Welcome back, {customer.UserName}");
+                System.Console.WriteLine("Je bent succesvol ingelogd.");
+                System.Console.WriteLine($"Welkom terug, {customer.UserName}");
                 FrontPage.CurrentCustomer = customer;
                 return customer;
             }
         }
 
-        Console.WriteLine("The username or password are incorrect");
+        Console.WriteLine("De gebruikersnaam of het wachtwoord is onjuist");
         Console.ReadKey();
         return null!;
 
@@ -58,15 +58,15 @@ static class LogIn
         System.Console.WriteLine(line);
         FrontPage.CreateTitleASCII();
         System.Console.WriteLine(line);
-// add in the basic frontpage items then login data
+        // add in the basic frontpage items then login data
 
-        Console.WriteLine("You have decided to log in");
-        Console.WriteLine("Please enter your username.");
+        Console.WriteLine("Je hebt besloten om in te loggen");
+        Console.WriteLine("Voer alstublieft uw gebruikersnaam in.");
         string username = Console.ReadLine()!;
 
-        Console.WriteLine("Please enter your password");
+        Console.WriteLine("Voer alstublieft uw wachtwoord in");
         string password = Console.ReadLine()!;
-// check in if it is in admins else go back.
+        // check in if it is in admins else go back.
 
         List<Customer> customers = Customer.LoadFromJsonFile();
 
@@ -74,8 +74,8 @@ static class LogIn
         {
             if (customer.UserName == username && customer.Password == password)
             {
-                System.Console.WriteLine("You have successfully logged in.");
-                System.Console.WriteLine($"Welcome back, {customer.UserName}");
+                System.Console.WriteLine("Je bent succesvol ingelogd.");
+                System.Console.WriteLine($"Welkom terug, {customer.UserName}");
                 FrontPage.CurrentCustomer = customer;
                 return customer;
             }

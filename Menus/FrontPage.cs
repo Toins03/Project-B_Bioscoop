@@ -1,6 +1,6 @@
 public static class FrontPage
 {
-    public static Customer? CurrentCustomer {get; set;}
+    public static Customer? CurrentCustomer { get; set; }
 
     public static void MainMenu(Customer? customer)
     {

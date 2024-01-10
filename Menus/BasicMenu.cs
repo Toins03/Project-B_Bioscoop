@@ -17,7 +17,7 @@ static class BasicMenu
             ShowBasics();
             System.Console.WriteLine(MenuName);
 
-            System.Console.WriteLine("menu opties");
+            // System.Console.WriteLine("menu opties");
 
 
             for (int i = 0; i < options.Count; i++)

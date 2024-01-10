@@ -9,7 +9,6 @@
     "ReleaseYear": 2023,
     "FilmRunTime": 105,
     "FilmPrice": 5.0,
-    "FilmRating": 9.0,
     "CinemaAudience": [
       "Customer ID 1 Customer Name rowan",
       "Customer ID 1 Customer Name rowan",
@@ -26,7 +25,8 @@
     ],
     "DateAndAuditorium": {
       "2024-12-11T00:00:00": "1"
-    }
+    },
+    "FilmRating": 9.0
   },
   {
     "Title": "The Super Mario Bros. Movie",
@@ -38,11 +38,14 @@
     "ReleaseYear": 2023,
     "FilmRunTime": 93,
     "FilmPrice": 15.0,
-    "FilmRating": 9.0,
-    "CinemaAudience": [],
+    "CinemaAudience": [
+      "Customer ID 1 Customer Name Rowan",
+      "Customer ID 1 Customer Name Rowan"
+    ],
     "DateAndAuditorium": {
       "2024-01-21T15:20:00": "2"
-    }
+    },
+    "FilmRating": 9.0
   },
   {
     "Title": "The Exorcist: Believer",
@@ -53,11 +56,11 @@
     "ReleaseYear": 2023,
     "FilmRunTime": 111,
     "FilmPrice": 18.0,
-    "FilmRating": 8.0,
     "CinemaAudience": [],
     "DateAndAuditorium": {
       "2024-02-02T18:01:00": "1"
-    }
+    },
+    "FilmRating": 8.0
   },
   {
     "Title": "The Expendables 4",
@@ -68,11 +71,11 @@
     "ReleaseYear": 2023,
     "FilmRunTime": 100,
     "FilmPrice": 12.0,
-    "FilmRating": 8.0,
     "CinemaAudience": [],
     "DateAndAuditorium": {
       "2024-01-27T15:00:00": "1"
-    }
+    },
+    "FilmRating": 8.0
   },
   {
     "Title": "John Wick 4",
@@ -84,11 +87,11 @@
     "ReleaseYear": 2023,
     "FilmRunTime": 183,
     "FilmPrice": 12.0,
-    "FilmRating": 9.0,
     "CinemaAudience": [],
     "DateAndAuditorium": {
       "2024-01-15T18:30:00": "2"
-    }
+    },
+    "FilmRating": 9.0
   },
   {
     "Title": "Jurassic World: Dominion",
@@ -100,11 +103,11 @@
     "ReleaseYear": 2022,
     "FilmRunTime": 182,
     "FilmPrice": 9.0,
-    "FilmRating": 9.0,
     "CinemaAudience": [],
     "DateAndAuditorium": {
       "2024-01-20T12:00:00": "3"
-    }
+    },
+    "FilmRating": 9.0
   },
   {
     "Title": "No Hard Feelings",
@@ -116,11 +119,11 @@
     "ReleaseYear": 2023,
     "FilmRunTime": 100,
     "FilmPrice": 21.0,
-    "FilmRating": 8.0,
     "CinemaAudience": [],
     "DateAndAuditorium": {
       "2024-01-14T00:00:00": "1"
-    }
+    },
+    "FilmRating": 8.0
   },
   {
     "Title": "Oppenheimer",
@@ -131,11 +134,11 @@
     "ReleaseYear": 2023,
     "FilmRunTime": 181,
     "FilmPrice": 11.0,
-    "FilmRating": 9.0,
     "CinemaAudience": [],
     "DateAndAuditorium": {
       "2024-01-19T09:00:00": "3"
-    }
+    },
+    "FilmRating": 9.0
   },
   {
     "Title": "Bon Bini: Bangkok Nights",
@@ -146,11 +149,11 @@
     "ReleaseYear": 2023,
     "FilmRunTime": 106,
     "FilmPrice": 25.0,
-    "FilmRating": 8.0,
     "CinemaAudience": [],
     "DateAndAuditorium": {
       "2024-01-22T06:30:00": "1"
-    }
+    },
+    "FilmRating": 8.0
   },
   {
     "Title": "aquaman and the lost kingdom",
@@ -162,11 +165,11 @@
     "ReleaseYear": 2023,
     "FilmRunTime": 135,
     "FilmPrice": 23.0,
-    "FilmRating": 9.0,
     "CinemaAudience": [],
     "DateAndAuditorium": {
       "2024-01-26T17:30:00": "2"
-    }
+    },
+    "FilmRating": 9.0
   },
   {
     "Title": "Mean Girls",
@@ -178,11 +181,11 @@
     "ReleaseYear": 2023,
     "FilmRunTime": 180,
     "FilmPrice": 20.0,
-    "FilmRating": 8.0,
     "CinemaAudience": [],
     "DateAndAuditorium": {
       "2024-03-04T12:00:00": "1"
-    }
+    },
+    "FilmRating": 8.0
   },
   {
     "Title": "The Beekeeper",
@@ -193,10 +196,10 @@
     "ReleaseYear": 2024,
     "FilmRunTime": 101,
     "FilmPrice": 40.0,
-    "FilmRating": 8.0,
     "CinemaAudience": [],
     "DateAndAuditorium": {
       "2024-01-12T16:00:00": "3"
-    }
+    },
+    "FilmRating": 8.0
   }
 ]
