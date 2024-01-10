@@ -41,28 +41,6 @@
         return toReturn;
     }
 
-    public static List<Film> SortFilmByDateAvailable(List<Film> ToSort, bool desc = false)
-    {
-// filter by is ever available
-        List<Film> filmsAvailable = ToSort.Where(film => 
-        {
-            if (film.DateAndAuditorium is null) return false;
-            else if (film.DateAndAuditorium.Count <= 0) return false;
-            else return true;
-        }).ToList();
-// order by soonest available
-        List<Film> sortedFilms = filmsAvailable.OrderBy(film => 
-        {
-            DateTime currentfirst = DateTime.MinValue;
-            DateTime now = DateTime.Now;
-            foreach (KeyValuePair<DateTime, string> dateavailaible in film.DateAndAuditorium)
-            {
-                if (dateavailaible.Key < currentfirst && dateavailaible.Key > now) currentfirst = dateavailaible.Key;
-            }
-            return currentfirst;
-        }).ToList();
-        return sortedFilms;
-    }
 
     public static List<Film> FindFilmbyTitle(List<Film> ToSort, string Titlesearching, bool desc = false)
     {
@@ -189,13 +167,6 @@
                     }
 
                     sortedFilm = FindFilmbyTitle(ToView, ToSearch, chosenAscOrDesc)!;
-                    if (sortedFilm is null) return;
-                    DisplaySortedMovies(currentcustomer, sortedFilm);
-                    break;
-                }
-            case "sorteer op wanneer het eerst in de film komt":
-                {
-                    sortedFilm = SortFilmByDateAvailable(ToView, chosenAscOrDesc)!;
                     if (sortedFilm is null) return;
                     DisplaySortedMovies(currentcustomer, sortedFilm);
                     break;

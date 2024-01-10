@@ -1,4 +1,6 @@
 ﻿// using data_acces.Tests;
+using Cancel.Tests;
+
 class Program
 {
     static void Main(string[] args)
@@ -68,6 +70,11 @@ class Program
                     {
                         Console.WriteLine("current errors and warnings shown. Press any key to continue.");
                         Console.ReadKey();
+                        return;
+                    }
+                case "Cancel":
+                    {
+                        SortMovieTest.MoviesOfCustomerTest();
                         return;
                     }
                 default:

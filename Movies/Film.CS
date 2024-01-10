@@ -11,7 +11,8 @@ public class Film
     public int ReleaseYear;
     public int FilmRunTime;
     public double FilmPrice = 0;
-    public double FilmRating = 5;
+    private double _filmRating;
+    public double FilmRating {get => _filmRating; set => _filmRating = Math.Clamp(value, 0, 10);}
     public List<string> CinemaAudience = new() { };
 
     public Dictionary<DateTime, string> DateAndAuditorium = new Dictionary<DateTime, string>();

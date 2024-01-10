@@ -9,19 +9,19 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 public class SortMovieTest
 {
     [TestInitialize]
-    public void TestStart()
+    public static void TestStart()
     { }
 
     [DataTestMethod]
     [DataRow()]
 
-    public void MoviesOfCustomerTest()
+    public static void MoviesOfCustomerTest()
     {
 
         //Arrange
         List<RentedMovieInfo> rentedMoviesInfoShouldbeTrue = new List<RentedMovieInfo>
         {
-            new RentedMovieInfo("Example True Movie", new List<string> { "a1", "a2" },DateTime.Now.AddHours(2))
+            new RentedMovieInfo("Example True Movie", new List<string> { "a1", "a2" },DateTime.Now.AddHours(2).AddSeconds(2))
         };
         List<RentedMovieInfo> rentedMoviesInfoShouldbeFalse = new List<RentedMovieInfo>
         {
@@ -56,9 +56,7 @@ public class SortMovieTest
         //Assert
         Assert.AreEqual(films.Count, 1);
         Assert.AreEqual(films1.Count, 0);
-
-
-
+        Console.WriteLine("succes");
 
     }
 }
