@@ -170,6 +170,23 @@ public class ChooseMovie
 
     public static void ConfirmMovieSelection(Customer? currentCustomer, string MovieTitle)
     {
+        List<Film> AllFilms = Film.LoadFilmFromJsonFile();
+
+        List<Film> FilmWithSameTitle =
+        AllFilms.
+        Where(Movie => Movie.Title == MovieTitle)
+        .ToList();        
+
+        if (FilmWithSameTitle.FirstOrDefault() is default(Film))
+        {
+            Console.WriteLine("De film is niet gevonden!");
+            Console.ReadKey();
+            return;
+        }
+
+        MovieWriteAndLoad.printfilmInfo(FilmWithSameTitle.First());
+
+
         Console.WriteLine("Druk op enter om een dagoptie voor deze film te kiezen. Om terug te gaan druk op een willekeurige ander knop");
         ConsoleKeyInfo keyInfo;
         keyInfo = Console.ReadKey();
@@ -186,12 +203,7 @@ public class ChooseMovie
 
             Console.Clear();
             // elke film word tot nu toe bij AuditoriumMap150 gezet en dat klopt niet hier is de fix ervoor
-            List<Film> AllFilms = Film.LoadFilmFromJsonFile();
 
-            List<Film> FilmWithSameTitle =
-            AllFilms.
-            Where(Movie => Movie.Title == MovieTitle)
-            .ToList();
             // alle auditorums zijn 150,300 en 500
             KeyValuePair<DateTime, string> dateAuditoriumPair = FilmWithSameTitle[0].DateAndAuditorium.First();
             string auditorium = dateAuditoriumPair.Value;
