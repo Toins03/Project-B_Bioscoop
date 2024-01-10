@@ -193,13 +193,6 @@
                     DisplaySortedMovies(currentcustomer, sortedFilm);
                     break;
                 }
-            case "sorteer op wanneer het eerst in de film komt":
-                {
-                    sortedFilm = SortFilmByDateAvailable(ToView, chosenAscOrDesc)!;
-                    if (sortedFilm is null) return;
-                    DisplaySortedMovies(currentcustomer, sortedFilm);
-                    break;
-                }
             default:
                 {
                     Console.WriteLine("No valid sorting method found");

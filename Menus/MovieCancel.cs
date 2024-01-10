@@ -37,6 +37,17 @@ public static class MovieCancel
                 Console.ReadKey();
             }
         }
+        
+    }
+    public static List<string> MoviesOfCustomer(Customer currentCustomer)
+    {
+        List<string> movies = currentCustomer.RentedMovieInfo.Where(movie =>
+        {
+            TimeSpan timeFromNow = movie.TimeViewing - DateTime.Now;
+            return timeFromNow.Hours >= 2;
+        }).Select(movie => movie.ToString()).ToList();
+
+        return movies;
     }
     public static List<string> MoviesOfCustomer(Customer currentCustomer)
     {

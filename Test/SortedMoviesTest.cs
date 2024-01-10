@@ -31,33 +31,6 @@ public class SortMovieTest
 
     }
 
-    public void SortFilmByDateAvailableTest()
-    {
-        //Arrange
-        /*string title,
-    int runtime,
-    double price,
-    double filmrating,
-    int ReleaseYear,
-    string director,
-    List<string> genres,
-    List<string> cinemaAudience = null!,
-    Dictionary<DateTime, string> DateAndAuditorium = null!)*/
-        List<Film> films = new List<Film>
-        {
-            new Film("Apple", 120, 9.99, 4.5, 2022, "Hancock", new List<string> { "Adventure", "Family" }, new List<string> { "audience1" }, new Dictionary<DateTime, string> { {  DateTime.Today.AddDays(2), "2" } }),
-            new Film("Banana", 120, 9.99, 4.5, 2022, "Hancock", new List<string> { "Adventure", "Family" }, new List<string> { "audience1" }, new Dictionary<DateTime, string> { {  DateTime.Today.AddDays(1), "1" } }),
-            new Film("Cucumber", 120, 9.99, 4.5, 2022, "Hancock", new List<string> { "Adventure", "Family" }, new List<string> { "audience1" }, new Dictionary<DateTime, string> { {  DateTime.Today.AddDays(3), "3" } }),
-        };
-        //Act
-        List<Film> FilteredMoves = SortedMovies.SortFilmByDateAvailable(films);
-        //Assert
-        Assert.AreEqual(FilteredMoves[0].Title, "Banana");
-        Assert.AreEqual(FilteredMoves[1].Title, "Apple");
-        Assert.AreEqual(FilteredMoves[2].Title, "Cucumber");
-
-
-    }
 
     public void FindFilmbyTitleTest()
     {
