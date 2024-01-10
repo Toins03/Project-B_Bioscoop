@@ -77,7 +77,7 @@ public abstract class CinemaMap
         if (ListReservedSeats.Count == 0) return;
 
         
-        RentedMovieInfo currentinfo = new(MovieTitle, ListReservedSeats, Showing);
+        RentedMovieInfo currentinfo = new(MovieTitle, ListReservedSeats, Showing, GenerateConfirmationCode());
         // add the seats taken to the info we are looking at
 
         System.Console.WriteLine($"{ReservedString}");

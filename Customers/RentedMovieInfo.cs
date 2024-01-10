@@ -3,12 +3,14 @@ public class RentedMovieInfo: IEquatable<RentedMovieInfo>
     public string FilmTitle;
     public List<string> SeatsTaken;
     public DateTime TimeViewing;
+    public string ConfirmationCode;
 
-    public RentedMovieInfo(string filmTitle, List<string> seatstaken, DateTime timeViewing)
+    public RentedMovieInfo(string filmTitle, List<string> seatstaken, DateTime timeViewing, string confirmationCode)
     {
         this.FilmTitle = filmTitle;
         this.SeatsTaken = seatstaken;
         this.TimeViewing = timeViewing;
+        this.ConfirmationCode = confirmationCode;
     }
 
     public override string ToString()
