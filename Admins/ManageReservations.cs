@@ -63,9 +63,6 @@ public class ManageReservations
         int selectedIndex = DisplayMenu();
         switch (selectedIndex)
         {
-            case 0:
-                AdminMenu.Menu(admin);
-                break;
             case int selIndex when options[selIndex] == "Reservering(en) toevoegen":
                 Console.Clear();
                 MovieTitleToManageReservations(true);
