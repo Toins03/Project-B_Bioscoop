@@ -29,13 +29,15 @@ class ViewCustomerInfo
                 toView.RentedMovieInfo = toView.RentedMovieInfo.Where(rentedmovie => rentedmovie.TimeViewing > DateTime.Now).ToList();
                 List<RentedMovieInfo> FilmsReservationsOfThePast = toView.RentedMovieInfo.Where(rentedmovie => rentedmovie.TimeViewing < DateTime.Now).ToList();
 
-                if (toView.RentedMovieInfo.Count > 1)
+                if (toView.RentedMovieInfo.Count >= 1)
                 {
                     foreach (RentedMovieInfo info in toView.RentedMovieInfo)
                     {
                         Console.WriteLine($"Film gereserveerd:\n {info.FilmTitle}");
                         Console.WriteLine($"stoelen gereserveerd voor deze film:\n {string.Join("\n", info.SeatsTaken)}");
                         Console.WriteLine($"Starttijd van de gereserveerde film:\n {info.seeTimeViewing()}\n");
+                        System.Console.WriteLine($"Bewijscode: {info.ConfirmationCode}\n");
+
                         System.Console.WriteLine(new string('=', Console.WindowWidth));
 
                     }
@@ -49,6 +51,7 @@ class ViewCustomerInfo
                         Console.WriteLine($"Film gereserveerd:\n {info.FilmTitle}");
                         Console.WriteLine($"Starttijd van de gereserveerde film:\n {info.seeTimeViewing()}\n");
                         System.Console.WriteLine(new string('=', Console.WindowWidth));
+                        System.Console.WriteLine(info.ConfirmationCode);
 
 
                     }

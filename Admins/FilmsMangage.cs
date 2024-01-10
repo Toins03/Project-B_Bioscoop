@@ -280,7 +280,7 @@ static class FilmsManage
         string director;
         while (true)
         {
-            Console.Write("vul het Directeur van de film in: Om te stoppen houdt deze lijn leeg");
+            Console.Write("vul de regisseur van de film in: Om te stoppen houdt deze lijn leeg");
             director = Console.ReadLine()!;
             if (string.IsNullOrEmpty(director))
             {

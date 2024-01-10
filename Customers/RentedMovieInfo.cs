@@ -15,7 +15,7 @@ public class RentedMovieInfo: IEquatable<RentedMovieInfo>
 
     public override string ToString()
     {
-        return $"Title: {this.FilmTitle}, Seats chosen: {string.Join(", ", this.SeatsTaken)}, Time viewing: {this.TimeViewing.ToString("dd/MM/yy HH:mm")}";
+        return $"Title: {this.FilmTitle}, Seats chosen: {string.Join(", ", this.SeatsTaken)}, Time viewing: {this.TimeViewing.ToString("dd/MM/yy HH:mm")}\nBewijscode: {this.ConfirmationCode}";
     }
 
     public string seeTimeViewing()
