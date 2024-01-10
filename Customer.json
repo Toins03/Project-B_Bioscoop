@@ -1,1 +1,28 @@
-[]
+[
+  {
+    "ID": 1,
+    "Name": "Rowan",
+    "UserName": "Rowan",
+    "Email": "Rowandina@live.nl",
+    "RentedMovieInfo": [
+      {
+        "FilmTitle": "The Super Mario Bros. Movie",
+        "SeatsTaken": [
+          "\u001b[32m[10I]\u001b[0m"
+        ],
+        "TimeViewing": "2024-03-07T14:30:00",
+        "ConfirmationCode": "Z1S\u001b[32m[10I]\u001b[0mD10-1-24T15:27"
+      },
+      {
+        "FilmTitle": "The Super Mario Bros. Movie",
+        "SeatsTaken": [
+          "\u001b[32m[12F]\u001b[0m"
+        ],
+        "TimeViewing": "2024-03-21T14:30:00",
+        "ConfirmationCode": "Z2S\u001b[32m[12F]\u001b[0mD10-1-24T15:28"
+      }
+    ],
+    "Password": "hallo",
+    "SnacksBought": []
+  }
+]
