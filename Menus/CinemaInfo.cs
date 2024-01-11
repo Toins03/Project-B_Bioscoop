@@ -1,5 +1,16 @@
-public class CinemaInfo
+public static class CinemaInfo
 {
+    public static void PrintCinemaInfo()
+    {
+        CinemaInfo.PrintLogo();
+        CinemaInfo.AddressAndContact();
+        CinemaInfo.OpeningClosingTime();
+        CinemaInfo.Availability();
+        CinemaInfo.AboutTheCinema();
+        Console.WriteLine("Druk een knop om terug te gaan naar de hoofdpagina.");
+        Console.ReadKey();
+    }
+
     public static void PrintLogo()
     {
         string line = new string('=', Console.WindowWidth);
@@ -52,15 +63,5 @@ public class CinemaInfo
         Console.WriteLine("\nOV");
         Console.WriteLine("-------");
         Console.WriteLine("Bij Beurs uitstappen");
-    }
-    public static void PrintCinemaInfo()
-    {
-        CinemaInfo.PrintLogo();
-        CinemaInfo.AddressAndContact();
-        CinemaInfo.OpeningClosingTime();
-        CinemaInfo.Availability();
-        CinemaInfo.AboutTheCinema();
-        Console.WriteLine("Druk een knop om terug te gaan naar de hoofdpagina.");
-        Console.ReadKey();
     }
 }
