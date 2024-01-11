@@ -139,18 +139,18 @@ static class FilmsManage
             filmNames.Add(film.Title);
         }
 
-        (string? optionChosen, ConsoleKey keyLeaving) inputs = BasicMenu.MenuBasic(filmNames, "view all films");
+        (string? optionChosen, ConsoleKey keyLeaving) inputs = BasicMenu.MenuBasic(filmNames, "Alle films");
 
         ConsoleKey Keyleaving = inputs.keyLeaving;
 
         if (Keyleaving == ConsoleKey.Escape)
         {
-            Console.WriteLine("Leaving Film options!");
+            Console.WriteLine("Je vertrekt van de filmopties!");
             return;
         }
         if (inputs.optionChosen is null)
         {
-            Console.WriteLine("Leaving Film options!");
+            Console.WriteLine("Je vertrekt van de filmopties!");
             return;
         }
 
