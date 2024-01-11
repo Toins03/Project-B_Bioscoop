@@ -56,7 +56,7 @@ public static class FrontPage
             }
             else if (optionChosen == "bioscoop informatie")
             {
-                CinemaInfo();
+                CinemaInfo.PrintCinemaInfo();
             }
             else if (optionChosen == "film kiezen")
             {
@@ -85,13 +85,7 @@ public static class FrontPage
         }
     }
 
-    public static void CinemaInfo()
-    {
-        Console.Clear();
-        System.Console.WriteLine("Bioscoop informatie\n Wijnhaven 107, 3011 WN in Rotterdam\n\n\ndruk op een willekeurige knop om terug naar de voorpagina te gaan ");
-        Console.ReadKey();
 
-    }
 
     public static void CreateTitleASCII()
     {

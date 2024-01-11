@@ -1,4 +1,4 @@
-public class RentedMovieInfo: IEquatable<RentedMovieInfo>
+public class RentedMovieInfo : IEquatable<RentedMovieInfo>
 {
     public string FilmTitle;
     public List<string> SeatsTaken;
@@ -15,7 +15,17 @@ public class RentedMovieInfo: IEquatable<RentedMovieInfo>
 
     public override string ToString()
     {
-        return $"Title: {this.FilmTitle}, Seats chosen: {string.Join(", ", this.SeatsTaken)}, Time viewing: {this.TimeViewing.ToString("dd/MM/yy HH:mm")}\nBewijscode: {this.ConfirmationCode}";
+        return $"Title: {this.FilmTitle}, Seats chosen: {string.Join(", ", this.SeatsTaken)}, Time viewing: {this.TimeViewing.ToString("dd/MM/yy HH:mm")} {auditoriumNumber()}\nBewijscode: {this.ConfirmationCode}";
+    }
+    public string auditoriumNumber()
+    {
+        if (ConfirmationCode.Count() > 0)
+        {
+            char auditoriumZaal = ConfirmationCode[1];
+            return $"op zaal {auditoriumZaal}";
+        }
+        return "geen zaal gevonden dit is fout bij RentedMovieInfo.cs Method AuditoriumNumber";
+
     }
 
     public string seeTimeViewing()
@@ -26,7 +36,7 @@ public class RentedMovieInfo: IEquatable<RentedMovieInfo>
 
     public bool Equals(RentedMovieInfo? movie)
     {
-        if (this is null && movie is null ) return true;
+        if (this is null && movie is null) return true;
         else if (this is null || movie is null) return false;
         else if (this.FilmTitle == movie.FilmTitle && this.SeatsTaken == movie.SeatsTaken && this.TimeViewing == movie.TimeViewing) return true;
         else return false;
@@ -34,7 +44,7 @@ public class RentedMovieInfo: IEquatable<RentedMovieInfo>
 
     public static bool operator ==(RentedMovieInfo? m1, RentedMovieInfo? m2)
     {
-        if (m1 is null && m2 is null ) return true;
+        if (m1 is null && m2 is null) return true;
         else if (m1 is null || m2 is null) return false;
         else return m1.Equals(m2);
     }
@@ -54,4 +64,4 @@ public class RentedMovieInfo: IEquatable<RentedMovieInfo>
     {
         return base.GetHashCode();
     }
-} 
+}

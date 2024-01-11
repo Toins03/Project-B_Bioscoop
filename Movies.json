@@ -103,7 +103,9 @@
     "ReleaseYear": 2022,
     "FilmRunTime": 182,
     "FilmPrice": 9.0,
-    "CinemaAudience": [],
+    "CinemaAudience": [
+      "Customer ID 1 Customer Name Rowan"
+    ],
     "DateAndAuditorium": {
       "2024-01-20T12:00:00": "3"
     },
@@ -119,7 +121,9 @@
     "ReleaseYear": 2023,
     "FilmRunTime": 100,
     "FilmPrice": 21.0,
-    "CinemaAudience": [],
+    "CinemaAudience": [
+      "Customer ID 1 Customer Name Rowan"
+    ],
     "DateAndAuditorium": {
       "2024-01-14T00:00:00": "1"
     },
@@ -181,7 +185,9 @@
     "ReleaseYear": 2023,
     "FilmRunTime": 180,
     "FilmPrice": 20.0,
-    "CinemaAudience": [],
+    "CinemaAudience": [
+      "Customer ID 1 Customer Name Rowan"
+    ],
     "DateAndAuditorium": {
       "2024-03-04T12:00:00": "1"
     },

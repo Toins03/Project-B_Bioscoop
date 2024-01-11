@@ -20,9 +20,128 @@
         ],
         "TimeViewing": "2024-03-21T14:30:00",
         "ConfirmationCode": "Z2S\u001b[32m[12F]\u001b[0mD10-1-24T15:28"
+      },
+      {
+        "FilmTitle": "Mean Girls",
+        "SeatsTaken": [
+          "\u001b[32m[7 F]\u001b[0m"
+        ],
+        "TimeViewing": "2024-03-04T12:00:00",
+        "ConfirmationCode": "Z1S\u001b[32m[7 F]\u001b[0mD11-1-24T11:4"
+      },
+      {
+        "FilmTitle": "No Hard Feelings",
+        "SeatsTaken": [
+          "\u001b[32m[7 C]\u001b[0m"
+        ],
+        "TimeViewing": "2024-01-23T00:00:00",
+        "ConfirmationCode": "Z1S\u001b[32m[7 C]\u001b[0mD11-1-24T11:5"
+      },
+      {
+        "FilmTitle": "Jurassic World: Dominion",
+        "SeatsTaken": [
+          "\u001b[32m[17A]\u001b[0m",
+          "\u001b[32m[17B]\u001b[0m",
+          "\u001b[32m[17C]\u001b[0m",
+          "\u001b[32m[15I]\u001b[0m",
+          "\u001b[32m[15L]\u001b[0m",
+          "\u001b[32m[15M]\u001b[0m",
+          "\u001b[32m[15O]\u001b[0m",
+          "\u001b[32m[13Q]\u001b[0m",
+          "\u001b[32m[11Q]\u001b[0m",
+          "\u001b[32m[7 O]\u001b[0m",
+          "\u001b[32m[6 N]\u001b[0m",
+          "\u001b[32m[6 M]\u001b[0m",
+          "\u001b[32m[6 L]\u001b[0m",
+          "\u001b[32m[6 K]\u001b[0m",
+          "\u001b[32m[6 J]\u001b[0m",
+          "\u001b[32m[6 I]\u001b[0m",
+          "\u001b[32m[6 H]\u001b[0m",
+          "\u001b[32m[6 G]\u001b[0m",
+          "\u001b[32m[6 F]\u001b[0m",
+          "\u001b[32m[8 F]\u001b[0m",
+          "\u001b[32m[9 G]\u001b[0m",
+          "\u001b[32m[10H]\u001b[0m",
+          "\u001b[32m[12I]\u001b[0m",
+          "\u001b[32m[14I]\u001b[0m",
+          "\u001b[32m[17I]\u001b[0m",
+          "\u001b[32m[16L]\u001b[0m",
+          "\u001b[32m[17M]\u001b[0m",
+          "\u001b[32m[18N]\u001b[0m",
+          "\u001b[32m[19O]\u001b[0m",
+          "\u001b[32m[20O]\u001b[0m",
+          "\u001b[32m[19R]\u001b[0m",
+          "\u001b[32m[18S]\u001b[0m",
+          "\u001b[32m[17T]\u001b[0m",
+          "\u001b[32m[16T]\u001b[0m",
+          "\u001b[32m[15V]\u001b[0m",
+          "\u001b[32m[14W]\u001b[0m",
+          "\u001b[32m[12X]\u001b[0m",
+          "\u001b[32m[12V]\u001b[0m",
+          "\u001b[32m[12W]\u001b[0m",
+          "\u001b[32m[11U]\u001b[0m",
+          "\u001b[32m[10U]\u001b[0m",
+          "\u001b[32m[9 T]\u001b[0m",
+          "\u001b[32m[7 Q]\u001b[0m"
+        ],
+        "TimeViewing": "2024-01-20T12:00:00",
+        "ConfirmationCode": "Z3S\u001b[32m[17A]\u001b[0m\u001b[32m[17B]\u001b[0m\u001b[32m[17C]\u001b[0m\u001b[32m[15I]\u001b[0m\u001b[32m[15L]\u001b[0m\u001b[32m[15M]\u001b[0m\u001b[32m[15O]\u001b[0m\u001b[32m[13Q]\u001b[0m\u001b[32m[11Q]\u001b[0m\u001b[32m[7 O]\u001b[0m\u001b[32m[6 N]\u001b[0m\u001b[32m[6 M]\u001b[0m\u001b[32m[6 L]\u001b[0m\u001b[32m[6 K]\u001b[0m\u001b[32m[6 J]\u001b[0m\u001b[32m[6 I]\u001b[0m\u001b[32m[6 H]\u001b[0m\u001b[32m[6 G]\u001b[0m\u001b[32m[6 F]\u001b[0m\u001b[32m[8 F]\u001b[0m\u001b[32m[9 G]\u001b[0m\u001b[32m[10H]\u001b[0m\u001b[32m[12I]\u001b[0m\u001b[32m[14I]\u001b[0m\u001b[32m[17I]\u001b[0m\u001b[32m[16L]\u001b[0m\u001b[32m[17M]\u001b[0m\u001b[32m[18N]\u001b[0m\u001b[32m[19O]\u001b[0m\u001b[32m[20O]\u001b[0m\u001b[32m[19R]\u001b[0m\u001b[32m[18S]\u001b[0m\u001b[32m[17T]\u001b[0m\u001b[32m[16T]\u001b[0m\u001b[32m[15V]\u001b[0m\u001b[32m[14W]\u001b[0m\u001b[32m[12X]\u001b[0m\u001b[32m[12V]\u001b[0m\u001b[32m[12W]\u001b[0m\u001b[32m[11U]\u001b[0m\u001b[32m[10U]\u001b[0m\u001b[32m[9 T]\u001b[0m\u001b[32m[7 Q]\u001b[0mD11-1-24T11:10"
       }
     ],
     "Password": "hallo",
-    "SnacksBought": []
+    "SnacksBought": [
+      {
+        "Name": "Pepsi 0,5L",
+        "Price": 1.25
+      },
+      {
+        "Name": "Popcorn zout",
+        "Price": 3.59
+      },
+      {
+        "Name": "Cola 0,5L",
+        "Price": 1.25
+      },
+      {
+        "Name": "Fanta 0,5L",
+        "Price": 1.25
+      },
+      {
+        "Name": "Fanta 0,5L",
+        "Price": 1.25
+      },
+      {
+        "Name": "Fanta 0,5L",
+        "Price": 1.25
+      },
+      {
+        "Name": "Popcorn caramel",
+        "Price": 3.59
+      },
+      {
+        "Name": "Fanta 0,5L",
+        "Price": 1.25
+      },
+      {
+        "Name": "Popcorn caramel",
+        "Price": 3.59
+      },
+      {
+        "Name": "Pepsi 0,5L",
+        "Price": 1.25
+      },
+      {
+        "Name": "Popcorn zout",
+        "Price": 3.59
+      },
+      {
+        "Name": "Kinder bueno x8",
+        "Price": 6.99
+      },
+      {
+        "Name": "Milka Oreo",
+        "Price": 1.09
+      }
+    ]
   }
 ]
