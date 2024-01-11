@@ -2,63 +2,53 @@ class ViewCustomerInfo
 {
     public static void ViewInfoMenu(Customer? toView)
     {
-
-        // Bij persoonlijk informatie moet je van toekomstige reserveringen de titel, stoelen en datum te zien.
-        // Van reserveringen in het verleden hetzelfde behalve dat je de stoelen niet ziet. 
-        // Dit is voor de refinement
-
+        CinemaInfo.PrintLogo();
         if (toView is null)
         {
             Console.WriteLine("Je bent niet ingelogd!");
             return;
         }
-        else
+
+        Console.WriteLine($"Naam: {toView.Name}");
+        Console.WriteLine($"Gebruikersnaam: {toView.UserName}");
+        Console.WriteLine($"Email account: {toView.Email}");
+        Console.WriteLine($"Wachtwoord: {toView.Password}");
+        Console.WriteLine();
+        Console.WriteLine("De door jou gereserveerde films:\n");
+        Console.WriteLine(new string('=', Console.WindowWidth));
+
+        if (toView.RentedMovieInfo is not null && toView.RentedMovieInfo.Count >= 1)
         {
-            Console.WriteLine($"naam: {toView.Name}");
-            Console.WriteLine($"Gebruikersnaam: {toView.UserName}");
-            Console.WriteLine($"Email account: {toView.Email}");
-            Console.WriteLine($"Wachtwoord: {toView.Password}");
-            System.Console.WriteLine();
-            System.Console.WriteLine("De door jou gereserveerde films:\n");
-            System.Console.WriteLine(new string('=', Console.WindowWidth));
+            // Future reservations
+            List<RentedMovieInfo> futureReservations = toView.RentedMovieInfo.Where(rentedMovie => rentedMovie.TimeViewing > DateTime.Now).OrderBy(rentedMovie => rentedMovie.TimeViewing).ToList();
+            DisplayReservations(futureReservations);
 
+            // Past reservations
+            List<RentedMovieInfo> pastReservations = toView.RentedMovieInfo.Where(rentedMovie => rentedMovie.TimeViewing < DateTime.Now).OrderBy(rentedMovie => rentedMovie.TimeViewing).ToList();
+            DisplayReservations(pastReservations, false);
+        }
 
-            if (toView.RentedMovieInfo is null) ;
-            else if (toView.RentedMovieInfo.Count >= 1)
+        Console.WriteLine("\nDruk op een willekeurige knop om terug te gaan");
+        Console.ReadKey();
+    }
+
+    private static void DisplayReservations(List<RentedMovieInfo> reservations, bool ShowSeats = true)
+    {
+        foreach (var info in reservations)
+        {
+            Console.WriteLine($"Film gereserveerd: \n{info.FilmTitle}");
+
+            if (ShowSeats)
             {
-                toView.RentedMovieInfo = toView.RentedMovieInfo.Where(rentedmovie => rentedmovie.TimeViewing > DateTime.Now).ToList();
-                List<RentedMovieInfo> FilmsReservationsOfThePast = toView.RentedMovieInfo.Where(rentedmovie => rentedmovie.TimeViewing < DateTime.Now).ToList();
-
-                if (toView.RentedMovieInfo.Count >= 1)
-                {
-                    foreach (RentedMovieInfo info in toView.RentedMovieInfo)
-                    {
-                        Console.WriteLine($"Film gereserveerd:\n {info.FilmTitle}");
-                        Console.WriteLine($"stoelen gereserveerd voor deze film:\n {string.Join("\n", info.SeatsTaken)}");
-                        Console.WriteLine($"Starttijd van de gereserveerde film:\n {info.seeTimeViewing()}\n");
-                        System.Console.WriteLine(info.auditoriumNumber());
-                        System.Console.WriteLine($"Bewijscode: {info.ConfirmationCode}\n");
-
-                        System.Console.WriteLine(new string('=', Console.WindowWidth));
-
-                    }
-                }
-                // RentedMovieInfo of the past
-                // Van reserveringen in het verleden hetzelfde behalve dat je de stoelen niet ziet. 
-                if (FilmsReservationsOfThePast.Count >= 1)
-                {
-                    foreach (RentedMovieInfo info in FilmsReservationsOfThePast)
-                    {
-                        Console.WriteLine($"Film gereserveerd:\n {info.FilmTitle}");
-                        Console.WriteLine($"Starttijd van de gereserveerde film:\n {info.seeTimeViewing()}\n");
-                        System.Console.WriteLine(new string('=', Console.WindowWidth));
-                        System.Console.WriteLine(info.ConfirmationCode);
-
-
-                    }
-
-                }
+                Console.WriteLine($"Stoelen gereserveerd voor deze film: \n{string.Join(", ", info.SeatsTaken)}");
             }
+
+            Console.WriteLine($"Tijd van de voorstelling: \n{info.seeTimeViewing()}");
+            Console.WriteLine(info.auditoriumNumber());
+            
+
+            Console.WriteLine($"Bewijscode: {info.ConfirmationCode}\n");
+            Console.WriteLine(new string('=', Console.WindowWidth));
 
             // if (toView.SnacksBought is null) return;
             // else if (toView.SnacksBought.Count >= 1)
@@ -68,8 +58,7 @@ class ViewCustomerInfo
             //         Console.WriteLine($"{snack.Key.Name} X {snack.Value}");
             //     }
             // }
-            Console.WriteLine("\ndruk op een willekeurige knop om terug te gaan");
-            Console.ReadKey();
+
         }
     }
 }
