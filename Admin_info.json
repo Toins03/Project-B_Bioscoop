@@ -3,5 +3,10 @@
     "Name": "super",
     "Password": "12345",
     "AdminID": 0
+  },
+  {
+    "Name": "Willem",
+    "Password": "welkom1",
+    "AdminID": 1
   }
 ]

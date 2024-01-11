@@ -24,5 +24,108 @@
     ],
     "Password": "hallo",
     "SnacksBought": []
+  },
+  {
+    "ID": 2,
+    "Name": "Echtbert",
+    "UserName": "Echtbert",
+    "Email": "echtbert@live.com",
+    "RentedMovieInfo": [
+      {
+        "FilmTitle": "The Super Mario Bros. Movie",
+        "SeatsTaken": [
+          "\u001b[32m[16H]\u001b[0m",
+          "\u001b[32m[16I]\u001b[0m",
+          "\u001b[32m[15F]\u001b[0m",
+          "\u001b[32m[15G]\u001b[0m",
+          "\u001b[32m[15H]\u001b[0m",
+          "\u001b[32m[15I]\u001b[0m",
+          "\u001b[32m[15J]\u001b[0m",
+          "\u001b[32m[15K]\u001b[0m",
+          "\u001b[32m[16K]\u001b[0m",
+          "\u001b[32m[16J]\u001b[0m",
+          "\u001b[32m[16G]\u001b[0m",
+          "\u001b[32m[16F]\u001b[0m",
+          "\u001b[32m[16E]\u001b[0m",
+          "\u001b[32m[15E]\u001b[0m",
+          "\u001b[32m[15D]\u001b[0m",
+          "\u001b[32m[16D]\u001b[0m",
+          "\u001b[32m[16M]\u001b[0m",
+          "\u001b[32m[15M]\u001b[0m",
+          "\u001b[32m[15L]\u001b[0m",
+          "\u001b[32m[16L]\u001b[0m",
+          "\u001b[32m[15C]\u001b[0m"
+        ],
+        "TimeViewing": "2024-03-02T14:30:00",
+        "ConfirmationCode": "Z2S\u001b[32m[16H]\u001b[0m\u001b[32m[16I]\u001b[0m\u001b[32m[15F]\u001b[0m\u001b[32m[15G]\u001b[0m\u001b[32m[15H]\u001b[0m\u001b[32m[15I]\u001b[0m\u001b[32m[15J]\u001b[0m\u001b[32m[15K]\u001b[0m\u001b[32m[16K]\u001b[0m\u001b[32m[16J]\u001b[0m\u001b[32m[16G]\u001b[0m\u001b[32m[16F]\u001b[0m\u001b[32m[16E]\u001b[0m\u001b[32m[15E]\u001b[0m\u001b[32m[15D]\u001b[0m\u001b[32m[16D]\u001b[0m\u001b[32m[16M]\u001b[0m\u001b[32m[15M]\u001b[0m\u001b[32m[15L]\u001b[0m\u001b[32m[16L]\u001b[0m\u001b[32m[15C]\u001b[0mD11-1-24T10:23"
+      }
+    ],
+    "Password": "abcd",
+    "SnacksBought": [
+      {
+        "Name": "Lays chips",
+        "Price": 2.99
+      },
+      {
+        "Name": "Lays chips",
+        "Price": 2.99
+      },
+      {
+        "Name": "Lays chips",
+        "Price": 2.99
+      },
+      {
+        "Name": "Lays chips",
+        "Price": 2.99
+      },
+      {
+        "Name": "Lays chips",
+        "Price": 2.99
+      },
+      {
+        "Name": "Lays chips",
+        "Price": 2.99
+      },
+      {
+        "Name": "Lays chips",
+        "Price": 2.99
+      },
+      {
+        "Name": "Lays chips",
+        "Price": 2.99
+      },
+      {
+        "Name": "Lays chips",
+        "Price": 2.99
+      },
+      {
+        "Name": "Lays chips",
+        "Price": 2.99
+      },
+      {
+        "Name": "Lays chips",
+        "Price": 2.99
+      },
+      {
+        "Name": "Lays chips",
+        "Price": 2.99
+      },
+      {
+        "Name": "Lays chips",
+        "Price": 2.99
+      },
+      {
+        "Name": "Lays chips",
+        "Price": 2.99
+      },
+      {
+        "Name": "Lays chips",
+        "Price": 2.99
+      },
+      {
+        "Name": "Lays chips",
+        "Price": 2.99
+      }
+    ]
   }
 ]

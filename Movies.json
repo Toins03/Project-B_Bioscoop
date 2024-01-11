@@ -40,7 +40,8 @@
     "FilmPrice": 15.0,
     "CinemaAudience": [
       "Customer ID 1 Customer Name Rowan",
-      "Customer ID 1 Customer Name Rowan"
+      "Customer ID 1 Customer Name Rowan",
+      "Customer ID 2 Customer Name Echtbert"
     ],
     "DateAndAuditorium": {
       "2024-01-21T15:20:00": "2"
