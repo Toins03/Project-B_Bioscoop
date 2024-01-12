@@ -40,8 +40,7 @@
     "FilmPrice": 15.0,
     "CinemaAudience": [
       "Customer ID 1 Customer Name Rowan",
-      "Customer ID 1 Customer Name Rowan",
-      "Customer ID 2 Customer Name Echtbert"
+      "Customer ID 1 Customer Name Rowan"
     ],
     "DateAndAuditorium": {
       "2024-01-21T15:20:00": "2"
@@ -88,7 +87,9 @@
     "ReleaseYear": 2023,
     "FilmRunTime": 183,
     "FilmPrice": 12.0,
-    "CinemaAudience": [],
+    "CinemaAudience": [
+      "Customer ID 1 Customer Name Rowan"
+    ],
     "DateAndAuditorium": {
       "2024-01-15T18:30:00": "2"
     },
@@ -154,7 +155,9 @@
     "ReleaseYear": 2023,
     "FilmRunTime": 106,
     "FilmPrice": 25.0,
-    "CinemaAudience": [],
+    "CinemaAudience": [
+      "Customer ID 1 Customer Name Rowan"
+    ],
     "DateAndAuditorium": {
       "2024-01-22T06:30:00": "1"
     },
@@ -170,7 +173,9 @@
     "ReleaseYear": 2023,
     "FilmRunTime": 135,
     "FilmPrice": 23.0,
-    "CinemaAudience": [],
+    "CinemaAudience": [
+      "Customer ID 1 Customer Name Rowan"
+    ],
     "DateAndAuditorium": {
       "2024-01-26T17:30:00": "2"
     },
@@ -187,6 +192,7 @@
     "FilmRunTime": 180,
     "FilmPrice": 20.0,
     "CinemaAudience": [
+      "Customer ID 1 Customer Name Rowan",
       "Customer ID 1 Customer Name Rowan"
     ],
     "DateAndAuditorium": {
@@ -203,7 +209,9 @@
     "ReleaseYear": 2024,
     "FilmRunTime": 101,
     "FilmPrice": 40.0,
-    "CinemaAudience": [],
+    "CinemaAudience": [
+      "Customer ID 1 Customer Name Rowan"
+    ],
     "DateAndAuditorium": {
       "2024-01-12T16:00:00": "3"
     },

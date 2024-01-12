@@ -102,8 +102,7 @@
         List<string> sortOptions = new() {
             "Een specifieke titel zoeken",
             "sorteer op titel",
-            "sorteer op wanneer het eerst in de film komt",
-            "sorteer op datum van uitkomst",
+            "sorteer op jaar van uitgave",
             "sorteer op genre"
         };
 
@@ -112,22 +111,23 @@
 
         if (sortsChosen.keyLeaving is ConsoleKey.Escape)
         {
-            Console.WriteLine("returning to movies unsorted");
+            Console.WriteLine("terugkeren naar ongesorteerde films");
             ChooseMovie.Films_kiezen(currentcustomer);
             return;
         }
         else if (sortsChosen.optionChosen is null)
         {
             ChooseMovie.Films_kiezen(currentcustomer);
-            Console.WriteLine("returning to movies unsorted");
+            Console.WriteLine("terugkeren naar ongesorteerde films");
             return;
         }
 
         string sortFinal = sortsChosen.optionChosen;
 
         List<string> ascOrDesc = new List<string>() {
-            "Ascending",
-            "Descending"
+            "(A -> Z)",
+            "(Z -> A)"
+
         };
 
         (string? optionChosen, ConsoleKey keyLeaving) ascOrDescchosen = BasicMenu.MenuBasic(ascOrDesc, $"Want to sort by {sortFinal} ascending or descending?");
@@ -135,13 +135,13 @@
 
         if (ascOrDescchosen.keyLeaving is ConsoleKey.Escape)
         {
-            Console.WriteLine("returning to movies unsorted");
+            Console.WriteLine("terugkeren naar ongesorteerde films");
             ChooseMovie.Films_kiezen(currentcustomer);
             return;
         }
         else if (ascOrDescchosen.optionChosen is null)
         {
-            Console.WriteLine("returning to movies unsorted");
+            Console.WriteLine("terugkeren naar ongesorteerde films");
             ChooseMovie.Films_kiezen(currentcustomer);
             return;
         }
@@ -150,7 +150,7 @@
 
         List<Film> sortedFilm = new();
 
-        if (ascOrDescchosen.optionChosen == "Ascending")
+        if (ascOrDescchosen.optionChosen == "(Z -> A)")
         {
             chosenAscOrDesc = true;
         }
@@ -162,8 +162,9 @@
                     sortedFilm = SortFilmByTitle(ToView, chosenAscOrDesc);
                     DisplaySortedMovies(currentcustomer, sortedFilm);
                     break;
+                    // goed
                 }
-            case "sorteer op datum van uitkomst":
+            case "sorteer op jaar van uitgave":
                 {
                     sortedFilm = SortFilmByReleaseYear(ToView, chosenAscOrDesc);
                     DisplaySortedMovies(currentcustomer, sortedFilm);
@@ -195,7 +196,7 @@
                 }
             default:
                 {
-                    Console.WriteLine("No valid sorting method found");
+                    Console.WriteLine("Geen geldige sorteermethode gevonden");
                     return;
                 }
         }
@@ -205,7 +206,7 @@
     public static void DisplaySortedMovies(Customer? currentCustomer, List<Film> toDisplay)
     {
 
-        List<string> options = new List<string> { "Sorteer en filter opties \n" };
+        List<string> options = new List<string> { "Sorteer en filter opties\n" };
 
         options.AddRange(toDisplay.Select(film => film.Title));
         (string? optionChosen, ConsoleKey lastKey) moviechosen = BasicMenu.MenuBasic(options, "Kies een film die u wilt zien");
@@ -220,10 +221,11 @@
         }
 
 
-        else if (moviechosen.optionChosen == "Sorteer en filter opties")
+        else if (moviechosen.optionChosen == "Sorteer en filter opties\n")
         {
-
-            SortedMovies.ViewSortOptions(currentCustomer, toDisplay);
+            // hier moet code
+            List<Film> AvaiableMovies = Film.LoadFilmFromJsonFile();
+            SortedMovies.ViewSortOptions(currentCustomer, AvaiableMovies);
         }
         else
         {

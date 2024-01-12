@@ -5,29 +5,38 @@ public static class AdminSave
     
     public static List<Admin> GetAdmins()
     {
-        if (File.Exists(PathName))
+        try
         {
-            StreamReader reader = new(PathName);
-            string filefromjson = reader.ReadToEnd();
-            List<Admin> admins = JsonConvert.DeserializeObject<List<Admin>>(filefromjson)!;
-            reader.Close();
-            if (admins is null) 
+            if (File.Exists(PathName))
             {
-                List<Admin> to_make = new() {new Admin(name: "super", password: "12345", adminID: 1)};
-                WriteAdminList(to_make);
-                return to_make;
+                StreamReader reader = new(PathName);
+                string filefromjson = reader.ReadToEnd();
+                List<Admin> admins = JsonConvert.DeserializeObject<List<Admin>>(filefromjson)!;
+                reader.Close();
+                if (admins is null) 
+                {
+                    List<Admin> to_make = new() {new Admin(name: "super", password: "12345", adminID: 1)};
+                    WriteAdminList(to_make);
+                    return to_make;
+                }
+                else 
+                {
+                    return admins;
+                }
             }
             else 
             {
+                Console.WriteLine("Adminfile does not exist");
+                List<Admin> admins = new List<Admin>() {new Admin(name: "super", password: "12345", adminID: 0)};           
+                WriteAdminList(admins);
                 return admins;
             }
         }
-        else 
+        catch (Exception e)
         {
-            Console.WriteLine("Adminfile does not exist");
-            List<Admin> admins = new List<Admin>() {new Admin(name: "super", password: "12345", adminID: 0)};           
-            WriteAdminList(admins);
-            return admins;
+            Console.WriteLine(e.Message);
+            Console.ReadKey();
+            return new();
         }
     }
 
