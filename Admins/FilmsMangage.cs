@@ -263,7 +263,7 @@ static class FilmsManage
         double filmRating;
         while (!double.TryParse(Console.ReadLine(), out filmRating) || filmRating < 0 || filmRating > 10)
         {
-            Console.WriteLine("vul in de rating van de film van 0 tot 10: Om te stoppen houdt deze lijn leeg");            
+            Console.WriteLine("vul in de rating van de film van 0 tot 10: Om te stoppen houdt deze lijn leeg");
             string? filmratingstring = Console.ReadLine();
             if (string.IsNullOrEmpty(filmratingstring)) return null;
             else if (double.TryParse(filmratingstring, out filmRating) && filmRating > 0 && filmRating < 10) break;
@@ -295,32 +295,32 @@ static class FilmsManage
 
     public static void AddNewMovie()
     {
-        
-            Film? film = GetFilmInfo();
-            if (film is null) return;
 
-            List<string> genres = GenreList();
+        Film? film = GetFilmInfo();
+        if (film is null) return;
+
+        List<string> genres = GenreList();
 
 
-            foreach (string genre in genres) 
-            {
-                film.Add_genre(genre);
-            }
+        foreach (string genre in genres)
+        {
+            film.Add_genre(genre);
+        }
 
-            ConsoleKeyInfo keyread;
+        ConsoleKeyInfo keyread;
 
-            do
-            {
-                Console.WriteLine("Wil je een auditorium toevoegen? (j/n)");
-                keyread = Console.ReadKey();
-            } while (keyread.Key != ConsoleKey.J && keyread.Key != ConsoleKey.N);
+        do
+        {
+            Console.WriteLine("Wil je een auditorium toevoegen? (j/n)");
+            keyread = Console.ReadKey();
+        } while (keyread.Key != ConsoleKey.J && keyread.Key != ConsoleKey.N);
 
-            if (keyread.Key == ConsoleKey.J)
-            {
-                film.AddDateTimeAndAuditorium();
-            }
+        if (keyread.Key == ConsoleKey.J)
+        {
+            film.AddDateTimeAndAuditorium();
+        }
 
-            FilmSave.AppendToJason(film);
+        FilmSave.AppendToJason(film);
     }
 
 

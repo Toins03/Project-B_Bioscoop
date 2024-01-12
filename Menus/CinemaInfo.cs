@@ -2,15 +2,15 @@ public static class CinemaInfo
 {
     public static void PrintCinemaInfo()
     {
-    CinemaInfo.PrintLogo();
-    CinemaInfo.AddressAndContact();
-    CinemaInfo.OpeningClosingTime();
-    CinemaInfo.Availability();
-    CinemaInfo.AboutTheCinema();
-    Console.WriteLine("Druk een knop om terug te gaan naar de hoofdpagina.");
-    Console.ReadKey();
+        CinemaInfo.PrintLogo();
+        CinemaInfo.AddressAndContact();
+        CinemaInfo.OpeningClosingTime();
+        CinemaInfo.Availability();
+        CinemaInfo.AboutTheCinema();
+        Console.WriteLine("Druk een knop om terug te gaan naar de hoofdpagina.");
+        Console.ReadKey();
     }
-    
+
     public static void PrintLogo()
     {
         string line = new string('=', Console.WindowWidth);
@@ -19,8 +19,8 @@ public static class CinemaInfo
         FrontPage.CreateTitleASCII();
         Console.WriteLine(line);
     }
-	public static void OpeningClosingTime()
-	{
+    public static void OpeningClosingTime()
+    {
         Console.WriteLine("\nOpeningstijden");
         Console.WriteLine("Maandag: 8:30 - 1:30");
         Console.WriteLine("Dinsdag: 8:30 - 1:30");
@@ -30,7 +30,7 @@ public static class CinemaInfo
         Console.WriteLine("Zaterdag: 8:30 - 1:30");
         Console.WriteLine("Zondag: 9:30 - 23:30");
     }
-      
+
     public static void AddressAndContact()
     {
         Console.WriteLine("Adres & contact");

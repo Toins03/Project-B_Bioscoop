@@ -36,6 +36,7 @@ class ViewCustomerInfo
                         Console.WriteLine($"Film gereserveerd:\n {info.FilmTitle}");
                         Console.WriteLine($"stoelen gereserveerd voor deze film:\n {string.Join("\n", info.SeatsTaken)}");
                         Console.WriteLine($"Starttijd van de gereserveerde film:\n {info.seeTimeViewing()}\n");
+                        System.Console.WriteLine(info.auditoriumNumber());
                         System.Console.WriteLine($"Bewijscode: {info.ConfirmationCode}\n");
 
                         System.Console.WriteLine(new string('=', Console.WindowWidth));

@@ -45,54 +45,54 @@ public static class FrontPage
 
             string? optionChosen = MainMenu.optionChosen;
 
-            switch(optionChosen)
+            switch (optionChosen)
             {
                 case "inloggen":
-                {
-                    currentCustomer = LogIn.LogInMenu();
-                    break;
-                }
-                case "registreren":
-                {
-                    currentCustomer = registreren.RegistreerMenu();
-                    break;
-                }
-                case "bioscoop informatie":
-                {
-                    CinemaInfo.PrintCinemaInfo();
-                    break;
-                }
-                case "film kiezen":
-                {
-                    ChooseMovie.Films_kiezen(currentCustomer!);
-                    break;
-                }
-                case "uitloggen":
-                {
-                    Console.WriteLine("Weet je zeker dat je wilt uitloggen? Zo ja typ in ja. zo nee typ iets anders in.");
-                    string response = Console.ReadLine()!;
-                    if (response is null) break;
-                    else if (response.ToLower() == "ja" ^ response.ToLower() == "y")
                     {
-                        FrontPage.CurrentCustomer = null;
-                        currentCustomer = null!;
+                        currentCustomer = LogIn.LogInMenu();
+                        break;
                     }
-                    return;
-                }
+                case "registreren":
+                    {
+                        currentCustomer = registreren.RegistreerMenu();
+                        break;
+                    }
+                case "bioscoop informatie":
+                    {
+                        CinemaInfo.PrintCinemaInfo();
+                        break;
+                    }
+                case "film kiezen":
+                    {
+                        ChooseMovie.Films_kiezen(currentCustomer!);
+                        break;
+                    }
+                case "uitloggen":
+                    {
+                        Console.WriteLine("Weet je zeker dat je wilt uitloggen? Zo ja typ in ja. zo nee typ iets anders in.");
+                        string response = Console.ReadLine()!;
+                        if (response is null) break;
+                        else if (response.ToLower() == "ja" ^ response.ToLower() == "y")
+                        {
+                            FrontPage.CurrentCustomer = null;
+                            currentCustomer = null!;
+                        }
+                        return;
+                    }
                 case "zie persoonlijke informatie":
-                {
-                    ViewCustomerInfo.ViewInfoMenu(currentCustomer);
-                    break;
-                }
+                    {
+                        ViewCustomerInfo.ViewInfoMenu(currentCustomer);
+                        break;
+                    }
                 case "Reservering annuleren":
-                {
-                    MovieCancel.CancelRegistry(currentCustomer);
-                    break;
-                }
+                    {
+                        MovieCancel.CancelRegistry(currentCustomer);
+                        break;
+                    }
                 default:
-                {
-                    break;
-                }
+                    {
+                        break;
+                    }
             }
 
         }

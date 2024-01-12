@@ -80,7 +80,9 @@ public class Customer : IEquatable<Customer>
             if (FilmPrices.Count == 1)
             {
                 // dit is nog niet helemaal goed want dit moet ook code hebben om te calculeren hoeveel een bepaalde zitplek kost
-                System.Console.WriteLine($"\n je totale kosten zijn {shoppingcart.ShoppingCartCosts() + TotalSeatCost}");
+                // oplossing voor de bug dat het met meer dan 2 decimalen achter de komma afrond :D
+                double RoundedNumber = shoppingcart.ShoppingCartCosts() + TotalSeatCost;
+                System.Console.WriteLine($"\n je totale kosten zijn € {Math.Round(RoundedNumber, 2)}");
             }
 
 
