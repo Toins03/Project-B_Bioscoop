@@ -25,7 +25,7 @@ public class ChooseMovie
             Console.ReadKey();
             return;
         }
-        
+
         foreach (MovieScheduleInformation scheduleInformation in MoviesAfterFilter)
         {
             options.Add(scheduleInformation.Title);
@@ -41,10 +41,10 @@ public class ChooseMovie
         {
             return;
         }
-        else if (moviechosen.optionChosen =="Sorteer en filter opties\n")
+        else if (moviechosen.optionChosen == "Sorteer en filter opties\n")
         {
             List<Film> tosortby = FilmSave.FindFilmsWithSchedule(MoviesAfterFilter);
-            
+
             SortedMovies.ViewSortOptions(currentCustomer, tosortby);
         }
         else
@@ -175,7 +175,7 @@ public class ChooseMovie
         List<Film> FilmWithSameTitle =
         AllFilms.
         Where(Movie => Movie.Title == MovieTitle)
-        .ToList();        
+        .ToList();
 
         if (FilmWithSameTitle.FirstOrDefault() is default(Film))
         {
@@ -240,14 +240,14 @@ public class ChooseMovie
         foreach (DateTime datetime in movie.ScreeningTimeAndAuditorium.Keys)
         {
             DateOnly date = DateOnly.FromDateTime(datetime);
-            if ( datetime > DateTime.Now && !dateOptions.Contains(date))
+            if (datetime > DateTime.Now && !dateOptions.Contains(date))
             {
                 dateOptions.Add(date);
             }
         }
         dateOptions.Sort();
         options = dateOptions.Select(date => date.ToString("dd/MM/yyyy")).ToList();
-        
+
         (string? optionChosen, ConsoleKey lastKey) dateChosen = BasicMenu.MenuBasic(options, "Kies op welke dag u deze film wilt zien.");
 
         if (dateChosen.lastKey == ConsoleKey.Escape)
