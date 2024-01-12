@@ -16,9 +16,7 @@ public abstract class CinemaMap
     private static string FileName { get; set; } = "CinemaMaps.json";
     public List<string> ListReservedSeats { get; set; } = new();
     private string ReservedString { get; set; } = "je hebt de zitplaatsen: \n";
-
     protected string ChosenMovie { get; set; } = "";
-
     private DateTime _currentDateusing {get; set;} = DateTime.MinValue;
 
     public double SeatPrice = 0;
@@ -77,7 +75,7 @@ public abstract class CinemaMap
         if (ListReservedSeats.Count == 0) return;
 
         
-        RentedMovieInfo currentinfo = new(MovieTitle, ListReservedSeats, Showing, GenerateConfirmationCode());
+        RentedMovieInfo currentinfo = new(MovieTitle, ListReservedSeats, Showing, GenerateConfirmationCode(), new Dictionary<Snack, int>());
         // add the seats taken to the info we are looking at
 
         System.Console.WriteLine($"{ReservedString}");
