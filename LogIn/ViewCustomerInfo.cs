@@ -25,14 +25,14 @@ class ViewCustomerInfo
 
             // Past reservations
             List<RentedMovieInfo> pastReservations = toView.RentedMovieInfo.Where(rentedMovie => rentedMovie.TimeViewing < DateTime.Now).OrderBy(rentedMovie => rentedMovie.TimeViewing).ToList();
-            DisplayReservations(pastReservations, false);
+            DisplayReservations(pastReservations, false, false);
         }
 
         Console.WriteLine("\nDruk op een willekeurige knop om terug te gaan");
         Console.ReadKey();
     }
 
-    private static void DisplayReservations(List<RentedMovieInfo> reservations, bool ShowSeats = true)
+    private static void DisplayReservations(List<RentedMovieInfo> reservations, bool ShowSeats = true, bool ShowSnacksBought = true)
     {
         foreach (var info in reservations)
         {
@@ -43,21 +43,18 @@ class ViewCustomerInfo
                 Console.WriteLine($"Stoelen gereserveerd voor deze film: \n{string.Join(", ", info.SeatsTaken)}");
             }
 
+            if (ShowSnacksBought) 
+            {
+                Console.WriteLine(info.SeeSnacksBought());
+            }
+
+
             Console.WriteLine($"Tijd van de voorstelling: \n{info.seeTimeViewing()}");
             Console.WriteLine(info.auditoriumNumber());
             
 
             Console.WriteLine($"Bewijscode: {info.ConfirmationCode}\n");
             Console.WriteLine(new string('=', Console.WindowWidth));
-
-            // if (toView.SnacksBought is null) return;
-            // else if (toView.SnacksBought.Count >= 1)
-            // {
-            //     foreach (KeyValuePair<Snack, int> snack in toView.SnacksBoughtDict())
-            //     {
-            //         Console.WriteLine($"{snack.Key.Name} X {snack.Value}");
-            //     }
-            // }
 
         }
     }
