@@ -4,18 +4,21 @@ public class RentedMovieInfo : IEquatable<RentedMovieInfo>
     public List<string> SeatsTaken;
     public DateTime TimeViewing;
     public string ConfirmationCode;
+    public new Dictionary<Snack, int> SnacksBought;
 
-    public RentedMovieInfo(string filmTitle, List<string> seatstaken, DateTime timeViewing, string confirmationCode)
+    public RentedMovieInfo(string filmTitle, List<string> seatstaken, DateTime timeViewing, string confirmationCode, Dictionary<Snack, int> snacksBought)
     {
         this.FilmTitle = filmTitle;
         this.SeatsTaken = seatstaken;
         this.TimeViewing = timeViewing;
         this.ConfirmationCode = confirmationCode;
+        SnacksBought = snacksBought;
     }
 
+    
     public override string ToString()
     {
-        return $"Title: {this.FilmTitle}, Seats chosen: {string.Join(", ", this.SeatsTaken)}, Time viewing: {this.TimeViewing.ToString("dd/MM/yy HH:mm")}, {auditoriumNumber()}\n    Bewijscode: {this.ConfirmationCode}\n\n";
+        return $"Title: {this.FilmTitle}, Seats chosen: {string.Join(", ", this.SeatsTaken)}, Time viewing: {this.TimeViewing.ToString("dd/MM/yy HH:mm")} {auditoriumNumber()}\nBewijscode: {this.ConfirmationCode}";
     }
     public string auditoriumNumber()
     {
@@ -28,6 +31,22 @@ public class RentedMovieInfo : IEquatable<RentedMovieInfo>
 
     }
 
+    public string SeeSnacksBought()
+    {
+        if (SnacksBought == null) return "Geen snacks gekocht";
+        else
+        {
+            string result = "Snacks gekocht:\n";
+
+            foreach (KeyValuePair<Snack, int> snack in SnacksBought)
+            {
+                result += $"{snack.Key.Name} X {snack.Value}";
+            }
+
+            return result;
+
+        }
+    }
     public string seeTimeViewing()
     {
         string toReturn = this.TimeViewing.ToString("dd/MM/yy HH:mm");
