@@ -57,7 +57,12 @@ class registreren
             if (Email is null) return null!;
             else if (Email.Length == 0) return null!;
             else if (EmailParser.IsEmailValid(Email)) break;
-            else System.Console.WriteLine("De ingevulde Email-adres is fout, probeer het nog is.");
+            else 
+            {
+                System.Console.WriteLine("De ingevulde Email-adres is fout, probeer het nog een keer.");
+                System.Console.WriteLine("Goed voorbeeld: test@gmail.com");
+            }
+            
 
         }
         ConfirmationData.Add($"Email: {Email}");
