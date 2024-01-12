@@ -4,7 +4,7 @@ public class RentedMovieInfo : IEquatable<RentedMovieInfo>
     public List<string> SeatsTaken;
     public DateTime TimeViewing;
     public string ConfirmationCode;
-    public new Dictionary<Snack, int> SnacksBought;
+    public Dictionary<Snack, int> SnacksBought = new();
 
     public RentedMovieInfo(string filmTitle, List<string> seatstaken, DateTime timeViewing, string confirmationCode, Dictionary<Snack, int> snacksBought)
     {
@@ -12,13 +12,13 @@ public class RentedMovieInfo : IEquatable<RentedMovieInfo>
         this.SeatsTaken = seatstaken;
         this.TimeViewing = timeViewing;
         this.ConfirmationCode = confirmationCode;
-        SnacksBought = snacksBought;
+        this.SnacksBought = snacksBought;
     }
 
     
     public override string ToString()
     {
-        return $"Title: {this.FilmTitle}, Seats chosen: {string.Join(", ", this.SeatsTaken)}, Time viewing: {this.TimeViewing.ToString("dd/MM/yy HH:mm")} {auditoriumNumber()}\nBewijscode: {this.ConfirmationCode}";
+        return $"Title: {this.FilmTitle},\n Seats chosen: {string.Join(", ", this.SeatsTaken)},\n Time viewing: {this.TimeViewing.ToString("dd/MM/yy HH:mm")},\n {auditoriumNumber()}\nBewijscode: {this.ConfirmationCode}\n";
     }
     public string auditoriumNumber()
     {

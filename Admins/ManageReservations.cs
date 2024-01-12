@@ -260,12 +260,8 @@ public class ManageReservations
                 currentColumn += 1;
                 if (currentColumn == seatColumn)
                 {
-                    Console.WriteLine("Before");
-                    Console.WriteLine(auditorium[row][i]);
                     auditorium[row][i] = seatfullname;
 
-                    Console.WriteLine($"stoel op rij {row} kolom {seatColumn} is verwijderd");
-                    Console.ReadKey();
                     return auditorium;
                 }
             }

@@ -77,7 +77,7 @@ public static class FrontPage
                             FrontPage.CurrentCustomer = null;
                             currentCustomer = null!;
                         }
-                        return;
+                        break;
                     }
                 case "zie persoonlijke informatie":
                     {
