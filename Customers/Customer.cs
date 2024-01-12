@@ -18,7 +18,7 @@ public class Customer : IEquatable<Customer>
 
 
     [JsonConstructor]
-    public Customer(int ID, string name, string username, string password, string email, List<RentedMovieInfo> rentedMoviesInfo, List<Snack>? snacksReserved)
+    public Customer(int ID, string name, string username, string password, string email, List<RentedMovieInfo> rentedMoviesInfo)
     {
         Name = name;
         UserName = username;
@@ -26,19 +26,6 @@ public class Customer : IEquatable<Customer>
         Email = email;
         this.RentedMovieInfo = rentedMoviesInfo;
         this.ID = ID;
-        if (SnacksBought is null ^ snacksReserved is null) this.SnacksBought = new();
-        else this.SnacksBought = snacksReserved!;
-    }
-
-    public Customer(string name, string confirmationcode, string username = "none ", string password = "none", string email = "none")
-    {
-        Name = name;
-        UserName = username;
-        Password = password;
-        Email = email;
-        this.RentedMovieInfo = new();
-        ID = Counter;
-        this.SnacksBought = new();
     }
 
     public Customer(string name, string username, string password, string email)
@@ -86,10 +73,8 @@ public class Customer : IEquatable<Customer>
             }
 
 
-
+            rentedMovie.SnacksBought = ListToDict(shoppingcart.shoppingcart);
             currentCustomer.RentedMovieInfo.Add(rentedMovie);
-
-            currentCustomer.SnacksBought.AddRange(shoppingcart.shoppingcart);
 
             FilmSave.AddCustomerToFilm(rentedMovie.FilmTitle, currentCustomer);
             currentCustomer.SaveToJsonFile();
@@ -103,8 +88,7 @@ public class Customer : IEquatable<Customer>
 
             if (customerNow.SnacksBought is null) customerNow.SnacksBought = new();
 
-            customerNow.SnacksBought.AddRange(shoppingcart.shoppingcart);
-
+            rentedMovie.SnacksBought = ListToDict(shoppingcart.shoppingcart);
             customerNow.RentedMovieInfo.Add(rentedMovie);
 
             customerNow.SaveToJsonFile();
